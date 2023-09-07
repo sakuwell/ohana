@@ -4,36 +4,37 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ƒƒOƒCƒ“‰æ–Ê</title>
+<title>ãƒ­ã‚°ã‚¤ãƒ³ç”»é¢</title>
 	<script>
 		function validateForm() {
 			var inputID = document.getElementById("inputID").value;
 			var inputPass = document.getElementById("inputPass").value;
 
 			if(inputID === "" && inputPass === ""){
-				alert("ID‚ÆPassword‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B");
-				return false; // ƒtƒH[ƒ€‚Ì‘—M‚ğ’†~
+				alert("IDã¨Passwordã‚’å…¥åŠ›ã—ã¦ãã ã•ã„");
+				return false; // ãƒ•ã‚©ãƒ¼ãƒ ã®é€ä¿¡ã‚’ä¸­æ­¢
 			}else if (inputID === "") {
-				alert("ID‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B");
-				return false; // ƒtƒH[ƒ€‚Ì‘—M‚ğ’†~
+				alert("IDã‚’å…¥åŠ›ã—ã¦ãã ã•ã„");
+				return false; // ãƒ•ã‚©ãƒ¼ãƒ ã®é€ä¿¡ã‚’ä¸­æ­¢
 			}else if(inputPass === ""){
-				alert("Password‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B");
+				alert("Passwordã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚");
 				return false;
 			}
-			return true; // ƒtƒH[ƒ€‚Ì‘—M‚ğ‘±s
+			return true; // ãƒ•ã‚©ãƒ¼ãƒ ã®é€ä¿¡ã‚’ç¶šè¡Œ
 		}
 			</script>
 </head>
-<body>
-	<h1>ƒƒOƒCƒ“‰æ–Ê</h1>
+<body style="text-align:center;">
+	<h1>ãƒ­ã‚°ã‚¤ãƒ³</h1>
 	<form action="<%=request.getContextPath()%>/ExecuteLogin" method="post" onsubmit="return validateForm()">
-	<p>ƒ†[ƒU[IDF<br>
+	<p>ãƒ¦ãƒ¼ã‚¶ãƒ¼ID<br>
 	<input type="text" name="USERID" maxlength="50">
 	</p>
-	<p>ƒpƒXƒ[ƒhF<br>
+	<p id="errId"></p>
+	<p>ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰<br>
 	<input type="password" name="PASS" maxlength="20">
 	</p>
-	<input type="submit" value="ƒƒOƒCƒ“">
+	<input type="submit" value="ãƒ­ã‚°ã‚¤ãƒ³">
 	</form>
 </body>
 </html>
