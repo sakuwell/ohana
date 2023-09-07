@@ -59,39 +59,48 @@
     
     <!-- ここから下　ページごとの内容 -->
 	<div class="p-5">
-        <form  action="ExeEditUser" class="container bg-white p-4 rounded" style="max-width:500px;">
+        <form  action="ExeEditCat" class="container bg-white p-4 rounded" style="max-width:500px;">
             <div class="h2 pb-2 mb-4 text-center">
                 ネコ情報編集
             </div>
             <p class="text-danger">エラーメッセージ</p>
             <div class="mb-3">
-                <label for="" class="form-label">ユーザーID<span class="text-danger">　※必須</span></label>
-                <input type="text" class="form-control" id="" value="">
+                <label for="" class="form-label">名前<span class="text-danger">　※必須</span></label>
+                <input type="text" class="form-control" name="CATNAME" id="" value="">
             </div>
             <div class="mb-3">
-                <label for="" class="form-label">ユーザー名<span class="text-danger">　※必須</span></label>
-                <input type="text" class="form-control" id="" value="">
+                <label for="" class="form-label">描種<span class="text-danger">　※必須</span></label>
+                <input type="text" class="form-control" name="KIND" id="" value="">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">誕生日</label>
+                <input type="text" class="form-control" name="BIRTH" id="" value="">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">体重<span class="text-danger">　※必須</span></label>
+                <input type="text" class="form-control" name="WEIGHT" id="" value="">
             </div>
             <div class="mb-3">
 				<label for="" class="form-label">性別<span class="text-danger">　※必須</span></label><br>
-				<input type="radio" class="btn-check" name="GENDER" id="success-outlined" autocomplete="off">
+				<input type="radio" class="btn-check" name="GENDER" id="success-outlined" value="" autocomplete="off">
 				<label class="btn btn-outline-success" for="success-outlined">男の子</label>
-				<input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
-				<label class="btn btn-outline-danger" for="danger-outlined">女の子</label>
+				<input type="radio" class="btn-check" name="GENDER" id="danger-outlined" value="" autocomplete="off">
+				<label class="btn btn-outline-danger ms-3" for="danger-outlined">女の子</label>
             </div>
-       		<div class="form-check mt-3">
-         		<input type="checkbox" class="btn-check" id="gender_1" value="1" autocomplete="off">
-				<label class="btn btn-outline-secondary" for="gender_1">男の子</label>
-         		<input type="checkbox" class="btn-check" id="gender_2" value="2" autocomplete="off">
-				<label class="btn btn-outline-secondary ms-3" for="gender_2">女の子</label>
-			</div>
+            <div class="mb-3">
+                <label for="" class="form-label">画像<span class="text-danger">　※必須</span></label>
+                <input type="text" class="form-control" name="IMAGE" id="" value="">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">コメント<span class="text-danger">　※必須</span></label>
+                <textarea class="form-control" name="COMMENT" id="" cols="50" rows="4" maxlength="200"></textarea>
+            </div>
             <div style="text-align: center;">
                 <button type="submit" class="btn btn-lg mt-3" style="background-color:#E87B4C; color:#ffffff;">更新する</button>
             </div>
         </form>
     </div>
 
-    
 	<!-- ここまで　ページごとの内容 -->
 	
 	
