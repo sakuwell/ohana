@@ -54,7 +54,7 @@ public class ExeLogout extends HttpServlet {
 			out.println("<body>                                           ");
 			out.println(" <h1>(ログアウト完了画面）</h1> ");
 			out.println("  <p>ログアウトしました。</p>                    ");
-			out.println("  <a href=\"Login\">ログイン画面に戻る</a>       ");
+			out.println("  <a href=\"index\">トップ画面に戻る</a>       ");
 			out.println("</body>                                          ");
 			out.println("</html>                                          ");
 			

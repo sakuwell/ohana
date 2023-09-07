@@ -36,7 +36,7 @@ public class Login extends HttpServlet {
 		
 		
 		if (userInfoOnSession != null) {
-			response.sendRedirect("top.jsp");
+			response.sendRedirect("index.jsp");
 		}else{
 			RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/login.jsp");
 			dispatch.forward(request, response);

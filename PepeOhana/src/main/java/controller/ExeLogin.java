@@ -47,7 +47,7 @@ public class ExeLogin extends HttpServlet {
 		
 		if (userInfoOnSession != null) {
 			//ログイン済：トップページ
-			response.sendRedirect("Top.jsp");
+			response.sendRedirect("index.jsp");
 		} else {
 			
 			String userId   = request.getParameter("USERID");      
@@ -63,11 +63,11 @@ public class ExeLogin extends HttpServlet {
 				session.setAttribute("USERINFO", dto);
 
 				//トップページ画面へ転送
-				response.sendRedirect("top.jsp");
+				response.sendRedirect("index.jsp");
 
 			} else {
 				//ユーザーデータの抽出に失敗：ログインNGとしてログイン画面へ転送
-				response.sendRedirect("login.jsp");
+				response.sendRedirect("Login.jsp");
 
 			}
 		}

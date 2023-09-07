@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ƒƒOƒAƒEƒg‰æ–Ê</title>
+<title>ãƒ­ã‚°ã‚¢ã‚¦ãƒˆå®Œäº†ç”»é¢</title>
 </head>
 <body>
-	<h1>ƒƒOƒAƒEƒgŠ®—¹‰æ–Ê</h1>
-	<p>ƒƒOƒAƒEƒg‚µ‚Ü‚µ‚½B</p>
-	<a herf="top">ƒgƒbƒv‰æ–Ê‚Ö</a>
+	<h1>ãƒ­ã‚°ã‚¢ã‚¦ãƒˆå®Œäº†ç”»é¢</h1>
+	<p>ãƒ­ã‚°ã‚¢ã‚¦ãƒˆã—ã¾ã—ãŸã€‚</p>
+	<a herf="index">ãƒˆãƒƒãƒ—ç”»é¢ã«æˆ»ã‚‹</a>
 </body>
 </html>
