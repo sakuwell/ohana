@@ -28,15 +28,36 @@
 %>
 
 <body  style="background-color:beige;">
+    <!-- ナビゲーションボタンのカラー -->
+    <style>
+        .custom-btn {
+            border-color: #523F24;
+            color: #523F24; /* テキストカラー */
+        }
+        .custom-btn:focus, .custom-btn:active {
+            background-color: #523F24;
+            color: #ffffff; /* テキストカラー */
+            border-color: #523F24; /* ボーダーカラー */
+        }
+        .login-custom-btn{
+            background-color: #523F24;
+            color: #ffffff; /* テキストカラー */
+            border-color: #523F24; /* ボーダーカラー */
+        }
+        .login-custom-btn:focus, .login-custom-btn:active{
+            border-color: #523F24;
+            color: #523F24; /* テキストカラー */
+        }
+    </style>
 	<% if (isLoggedIn) { %>
     <!-- ログイン済ヘッダー -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.jsp">
-                <img src="images/pepe_ohana_logo.png" alt="ページロゴ" width="auto" height="70">
+                <img src="images/pepe_logo.png" alt="ページロゴ" width="auto" height="70">
             </a>
             <div class="btn-group">
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <button type="button" class="btn login-custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     userName
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
@@ -49,13 +70,13 @@
     <!-- ログイン済ヘッダーここまで -->
     <% } else { %>
     <!-- 未ログインヘッダー -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <nav class="navbar navbar-expand-lg navbar-light">
     	<div class="container-fluid">
         	<a class="navbar-brand" href="index.jsp">
-          		<img src="images/pepe_ohana_logo.png" alt="ページロゴ" width="auto" height="70">
+          		<img src="images/pepe_logo.png" alt="ページロゴ" width="auto" height="70">
           	</a>
          	<div class="btn-group">
-            	<button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            	<button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
              		 未ログイン
             	</button>
             	<ul class="dropdown-menu dropdown-menu-end">
@@ -163,7 +184,7 @@
 					<label class="btn btn-outline-secondary ms-3" for="age_3">3歳～</label>
 				</div>
 				<p style="text-align:center; margin-bottom:0;">
-					<button type="submit" class="btn btn-success btn-lg mt-4">まっちんぐ</button>
+					<button type="submit" class="btn btn-lg mt-4" style="background-color:#E87B4C; color:#ffffff;">まっちんぐ</button>
 				</p>
 			</form>
 		</div>
