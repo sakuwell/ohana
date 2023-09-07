@@ -13,16 +13,38 @@
     <title>ユーザー編集ページ | pepeohana</title>
 </head>
 
+<%
+    // セッションを取得
+	UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
+    if (userInfoOnSession != null) {
+		String userId = userInfoOnSession.getUserId();
+		String userName = userInfoOnSession.getUserName();
+    }
+%>
 
-<body  style="background-color:beige;">
+
+<body style="background-color:beige; color:#523F24;">
+
+    <!-- ナビゲーションボタンのカラー -->
+    <style>
+        .login-custom-btn{
+            background-color: #523F24;
+            color: #ffffff; /* テキストカラー */
+            border-color: #523F24; /* ボーダーカラー */
+        }
+        .login-custom-btn:focus, .login-custom-btn:active{
+            border-color: #523F24;
+            color: #523F24; /* テキストカラー */
+        }
+    </style>
     <!-- ログイン済ヘッダー -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <nav class="navbar navbar-expand-lg navbar-light border-bottom">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.jsp">
-                <img src="images/pepe_ohana_logo.png" alt="ページロゴ" width="auto" height="70">
+                <img src="images/pepe_logo.png" alt="ページロゴ" width="auto" height="70">
             </a>
             <div class="btn-group">
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <button type="button" class="btn login-custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     userName
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
@@ -33,109 +55,37 @@
         </div>
     </nav>
     <!-- ログイン済ヘッダーここまで -->
-
-    <!-- ヒーロー画像 -->
-    <img class="img-fluid mb-4" src="images/hero_index.jpg"  alt="index画像" style="max-height:500px; width:100%; object-fit: cover;">
-
+    
+    
     <!-- ここから下　ページごとの内容 -->
-    <div class="container">
-        <div class="h4 pb-2 mb-4 text-black border-bottom border-black">
-            ねこまっちんぐ
-        </div>
-            <p>家族をさがしているネコがたくさんいます！</p>
-        <!-- 猫カードエリア -->
-        <div class="row">
-           <!-- カードのコンテンツ1 -->
-           <div class="col-6 col-md-4 col-lg-3">
-                <div class="card mb-3">
-                	<img src="images/cat_2.jpg" style="height:180px; width: 100%; object-fit: cover;" class="card-img-top" alt="猫画像">
-                    <div class="card-body">
-                        <h5 class="card-title text-center border-bottom pb-2">pepe<small> ちゃん</small></h5>
-                        <p class="card-text text-right">描種 : アメリカンショートヘアー</p>
-                        <p class="card-text text-right">年齢 : 1歳2ヵ月</p>
-                        <p class="card-text text-right">性別 : 男の子</p>
-                        <div class="d-flex justify-content-center">
-                            <a href="#" class="stretched-link"></a>
-                        </div>
-                    </div>
-                </div>
+	<div class="p-5">
+        <form  action="ExeEditUser" class="container bg-white p-4 rounded" style="max-width:500px;">
+            <div class="h2 pb-2 mb-4 text-center">
+                ユーザー編集
             </div>
-           <!-- カードのコンテンツ2 -->
-           <div class="col-6 col-md-4 col-lg-3">
-                <div class="card mb-3">
-                	<img src="images/cat_2.jpg" style="height:180px; width: 100%; object-fit: cover;" class="card-img-top" alt="猫画像">
-                    <div class="card-body">
-                        <h5 class="card-title text-center border-bottom pb-2">pepe<small> ちゃん</small></h5>
-                        <p class="card-text text-right">描種 : アメリカンショートヘアー</p>
-                        <p class="card-text text-right">年齢 : 1歳2ヵ月</p>
-                        <p class="card-text text-right">性別 : 男の子</p>
-                        <div class="d-flex justify-content-center">
-                            <a href="#" class="stretched-link"></a>
-                        </div>
-                    </div>
-                </div>
+            <p class="text-danger">エラーメッセージ</p>
+            <div class="mb-3">
+                <label for="" class="form-label">ユーザーID<span class="text-danger">　※必須</span></label>
+                <input type="text" class="form-control" name="" id="" value="">
             </div>
-           <!-- カードのコンテンツ3 -->
-           <div class="col-6 col-md-4 col-lg-3">
-                <div class="card mb-3">
-                	<img src="images/cat_2.jpg" style="height:180px; width: 100%; object-fit: cover;" class="card-img-top" alt="猫画像">
-                    <div class="card-body">
-                        <h5 class="card-title text-center border-bottom pb-2">pepe<small> ちゃん</small></h5>
-                        <p class="card-text text-right">描種 : アメリカンショートヘアー</p>
-                        <p class="card-text text-right">年齢 : 1歳2ヵ月</p>
-                        <p class="card-text text-right">性別 : 男の子</p>
-                        <div class="d-flex justify-content-center">
-                            <a href="#" class="stretched-link"></a>
-                        </div>
-                    </div>
-                </div>
+            <div class="mb-3">
+                <label for="" class="form-label">ユーザー名<span class="text-danger">　※必須</span></label>
+                <input type="text" class="form-control" name="" id="" value="">
             </div>
-           <!-- カードのコンテンツ4 -->
-           <div class="col-6 col-md-4 col-lg-3">
-                <div class="card mb-3">
-                	<img src="images/cat_2.jpg" style="height:180px; width: 100%; object-fit: cover;" class="card-img-top" alt="猫画像">
-                     <div class="card-body">
-                         <h5 class="card-title text-center border-bottom pb-2">pepe<small> ちゃん</small></h5>
-                         <p class="card-text text-right">描種 : アメリカンショートヘアー</p>
-                         <p class="card-text text-right">年齢 : 1歳2ヵ月</p>
-                         <p class="card-text text-right">性別 : 男の子</p>
-                         <div class="d-flex justify-content-center">
-                             <a href="#" class="stretched-link"></a>
-                         </div>
-                     </div>
-                 </div>
+            <div class="mb-3">
+                <label for="" class="form-label">パスワード<span class="text-danger">　※必須</span></label>
+                <input type="password" class="form-control" name="" id="">
             </div>
-		</div>
-             
-        <!-- 検索フォームエリア -->
-        <div class="card mt-3 p-3">
-         	<form action="SearchCat">
-         		<h3 class="border-bottom pb-2" style="text-align:center;">まっちんぐ</h3>
-         		<div class="form-check mt-3">
-					<label for="" class="form-label">性別を選んでください(複数選択可)<span class="text-danger">　※必須</span></label><br>
-	         		<input type="checkbox" class="btn-check" id="gender_1" value="1" autocomplete="off">
-					<label class="btn btn-outline-secondary" for="gender_1">男の子</label>
-	         		<input type="checkbox" class="btn-check" id="gender_2" value="2" autocomplete="off">
-					<label class="btn btn-outline-secondary ms-3" for="gender_2">女の子</label>
-				</div>
-         		<div class="form-check mt-3">
-					<label for="" class="form-label">年齢を選んでください(複数選択可)<span class="text-danger">　※必須</span></label><br>
-	         		<input type="checkbox" class="btn-check" id="age_1" value="1" autocomplete="off">
-					<label class="btn btn-outline-secondary" for="age_1">～1歳未満</label>
-	         		<input type="checkbox" class="btn-check" id="age_2" value="2" autocomplete="off">
-					<label class="btn btn-outline-secondary ms-3" for="age_2">1歳～3歳未満</label>
-	         		<input type="checkbox" class="btn-check" id="age_3" value="3" autocomplete="off">
-					<label class="btn btn-outline-secondary ms-3" for="age_3">3歳～</label>
-				</div>
-				<p style="text-align:center; margin-bottom:0;">
-					<button type="submit" class="btn btn-success btn-lg mt-4">まっちんぐ</button>
-				</p>
-			</form>
-		</div>
-		
-	</div>
-    <!-- ここまで　ページごとの内容 -->
+            <div style="text-align: center;">
+                <button type="submit" class="btn btn-lg mt-3" style="background-color:#E87B4C; color:#ffffff;">更新する</button>
+            </div>
+        </form>
+    </div>
 
+    
+	<!-- ここまで　ページごとの内容 -->
+	
+	
     <!-- フッター -->
     <div class="text-center mt-4">
         <a class="icon-link icon-link-hover" href="#">
