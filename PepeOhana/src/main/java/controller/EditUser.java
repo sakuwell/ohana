@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 
+
 import java.sql.Timestamp;
 
 import javax.servlet.RequestDispatcher;
@@ -70,11 +71,19 @@ public class EditUser extends HttpServlet {
 		dto.setUserId(userId);
 		dto.setUserName( userName );
 		dto.setPassWord( passWord );
-		dto.setTime( new Timestamp(System.currentTimeMillis()) );   //現在時刻を更新時刻として設定
+		
 		
 		//データをDBに登録
 		UpdateUserBL logic = new UpdateUserBL();
 		boolean succesUpdate = logic.executeUpdateUserBL(dto);
+		
+		if (succesUpdate) {
+			
+			response.sendRedirect("/WEB-INF/view/mypage.jsp");
+		} else {
+			response.sendRedirect("html/error.html");
+			
+		}
 		
 	}
 
