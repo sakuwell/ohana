@@ -1,16 +1,23 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.CatsInfoDto;
+import model.SearchCatBL;
+
 /**
  * Servlet implementation class SearchCat
  */
-@WebServlet("/SearchCat")
+@WebServlet("/ExeSearchCat")
 public class ExeSearchCat extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,7 +34,19 @@ public class ExeSearchCat extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.setContentType("text/html;charset=UTF-8");
+		
+		String[] genders=request.getParameterValues("GENDER");
+		String gender=String.join(",", genders);
+		
+		List<CatsInfoDto> list = new ArrayList<CatsInfoDto>();
+		SearchCatBL logic = new SearchCatBL();
+		list = logic.executeSelectCatLists(gender);
+		request.setAttribute("list",list);
+		System.out.println(list);
+		RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/catLists.jsp");
+		dispatch.forward(request, response);
 	}
 
 	/**
