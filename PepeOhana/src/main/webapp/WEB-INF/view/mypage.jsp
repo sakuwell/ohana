@@ -112,7 +112,8 @@
                     </tr>
                     <tr>
                         <th><small>誕生日</small></th>
-                        <td>2020/09/09</td>
+                        <td>2020/09/09<br>
+                        	(3歳2ヵ月)</td>
                         <th><small>体重</small></th>
                         <td>1.5kg</td>
                     </tr>
