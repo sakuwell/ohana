@@ -158,8 +158,8 @@ public class UsersInfoDao {
 			return isSuccess;
 		}
 		
-		public UsersInfoDto doSelectOne(int id) {
-			UsersInfoDto dto = new UsersInfoDto();
+		public UsersInfoDto doSelect(String inputUserId, String inputPassWord) {
+			
 			//-------------------------------------------
 			//JDBCドライバのロード
 			//-------------------------------------------
@@ -180,7 +180,7 @@ public class UsersInfoDao {
 			ResultSet rs = null;
 			//実行結果（真：成功、偽：例外発生）格納用変数
 			//※最終的にreturnするため、tryブロック内で宣言してはいけないことに注意
-			
+			UsersInfoDto dto = new UsersInfoDto();
 
 			try {
 
@@ -190,12 +190,17 @@ public class UsersInfoDao {
 				con = DriverManager.getConnection(JDBC_URL, USER_ID, USER_PASS);
 
 				StringBuffer buf = new StringBuffer();
-				buf.append("SELECT USERID,USERNAME,PASSWORD");
+				buf.append(" SELECT             ");
+				buf.append("   USERID  ,       ");
+				buf.append("   USERNAME,       ");
+				buf.append("   PASSWORD         ");
 				
-				ps.setInt(1, id);
-				rs = ps.executeQuery();
+				ps = con.prepareStatement(buf.toString());
 				
-				while (rs.next()) {
+				ps.setString( 1, inputUserId   );  //第1パラメータ：ユーザーID（ユーザー入力）
+				ps.setString( 2, inputPassWord ); 
+				
+				if (rs.next()) {
 					dto.setUserId(rs.getString("USERID"));
 					dto.setUserName(rs.getString("USERNAME"));
 					dto.setPassWord(rs.getString("PASSWORD"));
