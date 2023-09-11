@@ -27,42 +27,34 @@
     }
 %>
 
-<body  style="background-color:beige;">
+<body style="background-color:beige; color:#523F24;">
     <!-- ナビゲーションボタンのカラー -->
     <style>
         .custom-btn {
             border-color: #523F24;
-            color: #523F24; /* テキストカラー */
+            color: #523F24;
         }
         .custom-btn:focus, .custom-btn:active {
             background-color: #523F24;
-            color: #ffffff; /* テキストカラー */
-            border-color: #523F24; /* ボーダーカラー */
-        }
-        .login-custom-btn{
-            background-color: #523F24;
-            color: #ffffff; /* テキストカラー */
-            border-color: #523F24; /* ボーダーカラー */
-        }
-        .login-custom-btn:focus, .login-custom-btn:active{
+            color: #ffffff;
             border-color: #523F24;
-            color: #523F24; /* テキストカラー */
         }
     </style>
+    
 	<% if (isLoggedIn) { %>
     <!-- ログイン済ヘッダー -->
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.jsp">
-                <img src="images/pepe_logo.png" alt="ページロゴ" width="auto" height="70">
+            <a class="navbar-brand" href="#">
+                <img src="images/pepe_logo.png" alt="ページロゴ" width="auto" height="60">
             </a>
             <div class="btn-group">
-                <button type="button" class="btn login-custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     userName
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeMyPage">マイページ</a></li>
-                    <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeLogout">ログアウト</a></li>
+                    <li><a class="dropdown-item" href="#">マイページ</a></li>
+                    <li><a class="dropdown-item" href="#">ログアウト</a></li>
                 </ul>
             </div>
         </div>
@@ -71,19 +63,19 @@
     <% } else { %>
     <!-- 未ログインヘッダー -->
     <nav class="navbar navbar-expand-lg navbar-light">
-    	<div class="container-fluid">
-        	<a class="navbar-brand" href="index.jsp">
-          		<img src="images/pepe_logo.png" alt="ページロゴ" width="auto" height="70">
-          	</a>
-         	<div class="btn-group">
-            	<button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-             		 未ログイン
-            	</button>
-            	<ul class="dropdown-menu dropdown-menu-end">
-              		<li><a class="dropdown-item" href="jsp/Login.jsp">ログイン</a></li>
-              		<li><a class="dropdown-item" href="jsp/registUser.jsp">新規ユーザー登録</a></li>
-            	</ul>
-          	</div>
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.jsp">
+            <img src="images/pepe_logo.png" alt="ページロゴ" width="auto" height="60">
+          </a>
+          <div class="btn-group">
+            <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              未ログイン
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="#">ログイン</a></li>
+              <li><a class="dropdown-item" href="#">新規ユーザー登録</a></li>
+            </ul>
+          </div>
         </div>
     </nav>
     <!-- 未ログインヘッダーここまで -->
@@ -91,7 +83,8 @@
 
 
     <!-- ヒーロー画像 -->
-    <img class="img-fluid mb-4" src="images/hero_index.jpg"  alt="index画像" style="max-height:500px; width:100%; object-fit: cover;">
+    <img class="img-fluid mb-4" src="images/hero_index.png"  alt="index画像" style="max-height:600px; width:100%; object-fit: cover;">
+
 
     <!-- ここから下　ページごとの内容 -->
     <div class="container">
@@ -174,7 +167,7 @@
 	         		<input type="checkbox" class="btn-check" id="gender_2" value="2" autocomplete="off">
 					<label class="btn btn-outline-secondary ms-3" for="gender_2">女の子</label>
 				</div>
-         		<div class="form-check mt-3">
+         		<!-- <div class="form-check mt-3">
 					<label for="" class="form-label">年齢を選んでください(複数選択可)<span class="text-danger">　※必須</span></label><br>
 	         		<input type="checkbox" class="btn-check" id="age_1" value="1" autocomplete="off">
 					<label class="btn btn-outline-secondary" for="age_1">～1歳未満</label>
@@ -182,7 +175,7 @@
 					<label class="btn btn-outline-secondary ms-3" for="age_2">1歳～3歳未満</label>
 	         		<input type="checkbox" class="btn-check" id="age_3" value="3" autocomplete="off">
 					<label class="btn btn-outline-secondary ms-3" for="age_3">3歳～</label>
-				</div>
+				</div>  -->
 				<p style="text-align:center; margin-bottom:0;">
 					<button type="submit" class="btn btn-lg mt-4" style="background-color:#E87B4C; color:#ffffff;">まっちんぐ</button>
 				</p>
@@ -197,18 +190,19 @@
         <a class="icon-link icon-link-hover" href="#">
             ページトップへ
         </a>
-	</div>
-	<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-    	<div class="col-md-4 d-flex align-items-center ms-3">
-        	<a href="index.jsp" class="mb-3 me-2 mb-md-0"><img alt="ロゴ画像" src="images/nikukyu_logo.png" width="auto" height="40"></a>
-          	<span class="mb-3 mb-md-0 text-body-secondary">© 2023 pepeohana, Inc</span>
+    </div>
+    <img src="images/footer_cat.png" alt=""  class="img-fluid" style="width:100%;">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-1">
+        <div class="col-md-4 d-flex align-items-center ms-3">
+          <span class="mb-3 mb-md-0 text-body-secondary">© 2023 Company, Inc</span>
         </div>
+    
         <ul class="nav col-md-4 justify-content-end list-unstyled d-flex me-3">
-            <li><a href="#"><img src=images/twitter_logo.png width="auto" height="25"></a></li>
-            <li class="ms-4"><a href="#"><img src=images/insta_logo.png width="auto" height="25"></a></li>
-            <li class="ms-4"><a href="#"><img src=images/facebook_logo.png width="auto" height="25"></a></li>
+            <li><a href="#"><img src=images/twitter_logo.png width="auto" height="24"></a></li>
+            <li class="ms-4"><a href="#"><img src=images/insta_logo.png width="auto" height="24"></a></li>
+            <li class="ms-4"><a href="#"><img src=images/facebook_logo.png width="auto" height="24"></a></li>
         </ul>
-	</footer>
+      </footer>
     <!-- フッター　ここまで -->
 
 </body>
