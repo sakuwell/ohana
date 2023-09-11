@@ -2,8 +2,6 @@ package controller;
 
 import java.io.IOException;
 
-import java.sql.Timestamp;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.SelectUserBL;
-import model.UpdateUserBL
 import model.UsersInfoDto;
 
 /**
@@ -39,43 +36,25 @@ public class EditUser extends HttpServlet {
 		HttpSession session           = request.getSession();
 		UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("USERINFO");
 		
-		if (userInfoOnSession == null) {
-			//未ログインの場合ログイン画面へ
-			response.sendRedirect("login.jsp");
-		}else{
-			RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/editUser.jsp");
+		if (userInfoOnSession != null) {
+			String id = request.getParameter("ID");
+			SelectUserBL logic = new SelectUserBL();
+			
+			RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/edit.jsp");
 			dispatch.forward(request, response);
+			
+		}else{
+			response.sendRedirect("/WEB-INF/view/error.html");
+			
+			
 		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		response.setContentType("text/html;charset=UTF-8");
-		
-		request.setCharacterEncoding("UTF-8"); 
-		
-		HttpSession session = request.getSession();
-		UsersInfoDto userInfoOnSession = (UsersInfoDto) session.getAttribute("USERINFO");
-		
-		//リクエストパラメータを取得　ユーザー名を取得userName
-		String userId              = request.getParameter("USERID");
-		String userName              = request.getParameter("USERNAME");
-		String passWord				= request.getParameter("PassWord");
-		
-		//ユーザー情報の作成
-		UsersInfoDto dto = new UsersInfoDto();
-		dto.setUserId(userId);
-		dto.setUserName( userName );
-		dto.setPassWord( passWord );
-		dto.setTime( new Timestamp(System.currentTimeMillis()) );   //現在時刻を更新時刻として設定
-		
-		//データをDBに登録
-		UpdateUserBL logic = new UpdateUserBL();
-		boolean succesUpdate = logic.executeUpdateUserBL(dto);
+	
 		
 	}
 
-}
+

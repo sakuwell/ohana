@@ -2,12 +2,15 @@ package model;
 
 public class UpdateUserBL {
 	
-	public UsersInfoDto executeSelectSurvey (int id) {
+	
+	public boolean executeUpdate(UsersInfoDto dto) {
+		
+		boolean   succesUpdate = false ; 
 		
 		UsersInfoDao dao = new UsersInfoDao();
-		UsersInfoDto dto = dao.doSelectOne(id);
+		succesUpdate = dao.doUpdate(dto);
 		
-		return dto;
+		return succesUpdate;
 	}
 
 }

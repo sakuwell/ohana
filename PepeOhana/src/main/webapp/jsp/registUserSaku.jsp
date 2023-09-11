@@ -10,7 +10,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    <title>ユーザー編集 | pepeohana</title>
+    <title>新規ユーザー登録 | pepeohana</title>
     
    	<script>
 		function validateForm() {
@@ -21,7 +21,7 @@
 			if(inputID === "" || inputName === "" ||inputPass === ""){
 				alert("入力できていない項目があります");
 				return false; // フォームの送信を中止
-			} else {
+			}
 			return true; // フォームの送信を続行
 		}
 	</script>
@@ -51,31 +51,31 @@
         }
     </style>
     
-    <!-- ログイン済ヘッダー -->
+    <!-- 未ログインヘッダー -->
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.jsp">
-                <img src="images/pepe_logo.png" alt="ページロゴ" width="auto" height="60">
-            </a>
-            <div class="btn-group">
-                <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    userName
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="<%=request.getContextPath()%>/Mypage">マイページ</a></li>
-                    <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeLogout">ログアウト</a></li>
-                </ul>
-            </div>
+          <a class="navbar-brand" href="index.jsp">
+            <img src="images/pepe_logo.png" alt="ページロゴ" width="auto" height="60">
+          </a>
+          <div class="btn-group">
+            <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              未ログイン
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="jsp/Login.jsp">ログイン</a></li>
+              <li><a class="dropdown-item" href="jsp/registUser.jsp">新規ユーザー登録</a></li>
+            </ul>
+          </div>
         </div>
     </nav>
-    <!-- ログイン済ヘッダーここまで -->
+    <!-- 未ログインヘッダーここまで -->
     
     
     <!-- ここから下　ページごとの内容 -->
 	<div class="p-5">
         <form action="<%=request.getContextPath()%>/ExeEditUser" method="post" onsubmit="return validateForm()" class="container bg-white p-4 rounded" style="max-width:500px;">
             <div class="h2 pb-2 mb-4 text-center">
-                ユーザー編集
+                新規ユーザー登録
             </div>
             <p class="text-danger">エラーメッセージ</p>
             <div class="mb-3">
