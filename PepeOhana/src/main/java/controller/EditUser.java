@@ -2,6 +2,9 @@ package controller;
 
 import java.io.IOException;
 
+
+import java.sql.Timestamp;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.UpdateUserBL;
+import model.SelectUserBL;
+import model.UpdateUserBL
 import model.UsersInfoDto;
 
 /**
@@ -38,7 +42,7 @@ public class EditUser extends HttpServlet {
 		
 		if (userInfoOnSession == null) {
 			//未ログインの場合ログイン画面へ
-			response.sendRedirect("/WEB-INF/view/login.jsp");
+			response.sendRedirect("login.jsp");
 		}else{
 			RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/editUser.jsp");
 			dispatch.forward(request, response);
@@ -71,7 +75,7 @@ public class EditUser extends HttpServlet {
 		
 		//データをDBに登録
 		UpdateUserBL logic = new UpdateUserBL();
-		boolean succesUpdate = logic.executeUpdatetSurvey(dto);
+		boolean succesUpdate = logic.executeUpdateUserBL(dto);
 		
 		if (succesUpdate) {
 			

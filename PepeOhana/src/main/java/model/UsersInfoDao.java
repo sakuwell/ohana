@@ -3,7 +3,6 @@ package model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UsersInfoDao {
@@ -85,7 +84,7 @@ public class UsersInfoDao {
 				buf.append(") VALUES (            ");
 				buf.append("  ?,                  ");
 				buf.append("  ?,                  ");
-				buf.append("  ?,                  ");
+				buf.append("  ?                  ");
 				buf.append(")                     ");
 				
 				System.out.println();
@@ -157,6 +156,9 @@ public class UsersInfoDao {
 			//実行結果を返す
 			return isSuccess;
 		}
+<<<<<<< HEAD
+	
+=======
 		
 		public UsersInfoDto doSelect(String inputUserId, String inputPassWord) {
 			
@@ -389,4 +391,6 @@ public class UsersInfoDao {
 			return isSuccess;
 		}
 
+>>>>>>> f83389bf6715cbc0d1183a3b4c239dde8d41d9c5
 }
+
