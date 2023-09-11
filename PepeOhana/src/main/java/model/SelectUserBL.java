@@ -2,10 +2,10 @@ package model;
 
 public class SelectUserBL {
 	
-	public UsersInfoDto excuteSelectSurvey(int id)  {
+	public UsersInfoDto executeSelectUserInfo(String inputUserId, String inputPassWord)  {
 		
 		UsersInfoDao dao = new UsersInfoDao();
-		UsersInfoDto dto = dao.doSelectOne(id);
+		UsersInfoDto dto = dao.doSelect(inputUserId,inputPassWord );
 		
 		return dto;
 	}
