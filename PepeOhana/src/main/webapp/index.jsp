@@ -53,8 +53,8 @@
                     userName
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="#">マイページ</a></li>
-                    <li><a class="dropdown-item" href="#">ログアウト</a></li>
+                    <li><a class="dropdown-item" href="<%=request.getContextPath()%>/Mypage">マイページ</a></li>
+                    <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeLogout">ログアウト</a></li>
                 </ul>
             </div>
         </div>
@@ -72,8 +72,8 @@
               未ログイン
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="#">ログイン</a></li>
-              <li><a class="dropdown-item" href="#">新規ユーザー登録</a></li>
+              <li><a class="dropdown-item" href="jsp/Login.jsp">ログイン</a></li>
+              <li><a class="dropdown-item" href="jsp/registUser.jsp">新規ユーザー登録</a></li>
             </ul>
           </div>
         </div>
