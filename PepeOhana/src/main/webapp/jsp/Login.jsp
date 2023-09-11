@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    <title>ログイン | nekomatch</title>
+    <title>ログイン | pepeohana</title>
     
 	<script>
 		function validateForm() {
@@ -31,6 +31,7 @@
 	</script>
 	
 </head>
+
 <body style="background-color:beige; color:#523F24;">
     <!-- ナビゲーションボタンのカラー -->
     <style>
@@ -48,8 +49,8 @@
     <!-- 未ログインヘッダー -->
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.jsp">
-            <img src="images/pepe_logo.png" alt="ページロゴ" width="auto" height="60">
+            <a class="navbar-brand" href="#">
+            <img src="../images/pepe_logo.png" alt="ページロゴ" width="auto" height="60">
             </a>
             <div class="btn-group">
                 <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -65,21 +66,21 @@
     <!-- 未ログインヘッダーここまで -->
     
     <div class="p-5">
-        <form action="<%=request.getContextPath()%>/ExecuteLogin" method="post" class="container bg-white p-4 rounded" style="max-width:500px;">
+        <form action="<%=request.getContextPath()%>/ExeLogin" method="post" onsubmit="return validateForm()" class="container bg-white p-4 rounded" style="max-width:500px;">
             <div class="h2 pb-2 mb-4 text-center">
                 ログイン
             </div>
             <p class="text-danger">エラーメッセージ</p>
             <div class="mb-3">
-                <label for="" class="form-label">ユーザーID</label>
-                <input type="text" name="USERID" id="inputID" maxlength="50" class="form-control">
+                <label for="" class="form-label">ユーザーID　<span class="badge text-bg-danger">必須</span></label>
+                <input type="text" class="form-control" name="userId" id="inputID">
             </div>
             <div class="mb-3">
-                <label for="" class="form-label">パスワード</label>
-                <input type="password" name="PASS" id="inputPass" maxlength="20" class="form-control" id="">
+                <label for="" class="form-label">パスワード　<span class="badge text-bg-danger">必須</span></label>
+                <input type="password" class="form-control" name="userPass" id="inputPass">
             </div>
             <div style="text-align: center;">
-                <button type="submit"  onclick="return validateForm()" class="btn btn-lg mt-3" style="background-color:#E87B4C; color:#ffffff;">ログイン</button>
+                <button type="submit" class="btn btn-lg mt-3" style="background-color:#E87B4C; color:#ffffff;">ログイン</button>
             </div>
         </form>
     </div>
@@ -92,13 +93,12 @@
 	</div>
 	<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
     	<div class="col-md-4 d-flex align-items-center ms-3">
-        	<a href="index.jsp" class="mb-3 me-2 mb-md-0"><img alt="ロゴ画像" src="images/nikukyu_logo.png" width="auto" height="40"></a>
           	<span class="mb-3 mb-md-0 text-body-secondary">© 2023 pepeohana, Inc</span>
         </div>
         <ul class="nav col-md-4 justify-content-end list-unstyled d-flex me-3">
-            <li><a href="#"><img src=images/twitter_logo.png width="auto" height="25"></a></li>
-            <li class="ms-4"><a href="#"><img src=images/insta_logo.png width="auto" height="25"></a></li>
-            <li class="ms-4"><a href="#"><img src=images/facebook_logo.png width="auto" height="25"></a></li>
+            <li><a href="#"><img src=../images/twitter_logo.png width="auto" height="25"></a></li>
+            <li class="ms-4"><a href="#"><img src=../images/insta_logo.png width="auto" height="25"></a></li>
+            <li class="ms-4"><a href="#"><img src=../images/facebook_logo.png width="auto" height="25"></a></li>
         </ul>
 	</footer>
     <!-- フッター　ここまで -->
