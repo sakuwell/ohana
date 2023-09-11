@@ -18,11 +18,10 @@
 			var inputName = document.getElementById("inputName").value;
 			var inputPass = document.getElementById("inputPass").value;
 
-			if(inputID === "" || inputName === "" || inputPass === ""){
+			if(inputID === "" || inputName === "" ||inputPass === ""){
 				alert("入力できていない項目があります");
 				return false; // フォームの送信を中止
-			}
-			
+			} else {
 			return true; // フォームの送信を続行
 		}
 	</script>

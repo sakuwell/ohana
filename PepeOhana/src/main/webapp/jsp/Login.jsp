@@ -49,18 +49,18 @@
     <!-- 未ログインヘッダー -->
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-            <img src="../images/pepe_logo.png" alt="ページロゴ" width="auto" height="60">
-            </a>
-            <div class="btn-group">
-                <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    未ログイン
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="#">ログイン</a></li>
-                    <li><a class="dropdown-item" href="#">新規ユーザー登録</a></li>
-                </ul>
-            </div>
+          <a class="navbar-brand" href="index.jsp">
+            <img src="images/pepe_logo.png" alt="ページロゴ" width="auto" height="60">
+          </a>
+          <div class="btn-group">
+            <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              未ログイン
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="jsp/Login.jsp">ログイン</a></li>
+              <li><a class="dropdown-item" href="jsp/registUser.jsp">新規ユーザー登録</a></li>
+            </ul>
+          </div>
         </div>
     </nav>
     <!-- 未ログインヘッダーここまで -->
