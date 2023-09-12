@@ -63,7 +63,7 @@ public class ExeRegistUser extends HttpServlet {
 			System.out.println(password);
 			
 			
-			//ユーザーデータ（UsersInfoDto型）の作成
+			//ユーザーデータ（UserInfoDto型）の作成
 			UsersInfoDto dto = new UsersInfoDto();
 			dto.setUserName( username );
 			dto.setUserId( userid );
@@ -74,7 +74,7 @@ public class ExeRegistUser extends HttpServlet {
 			
 //		データをDBに登録
 			RegistUserBL logic = new RegistUserBL();
-			boolean succesInsert = logic.exeInsertUsersInfo(dto);
+			boolean succesInsert = logic.exeInsertUserInfo(dto);
 			
 			//DB操作の成功/失敗に応じて表示させる画面を振り分ける
 			
