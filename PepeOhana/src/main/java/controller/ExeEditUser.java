@@ -49,13 +49,13 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		
 		//リクエストパラメータを取得　ユーザー名を取得userName
 		String userId              = request.getParameter("USERID");
-		String userName              = request.getParameter("USERNAME");
+		String Name              = request.getParameter("NAME");
 		String passWord				= request.getParameter("PassWord");
 		
 		//ユーザー情報の作成
 		UsersInfoDto dto = new UsersInfoDto();
 		dto.setUserId(userId);
-		dto.setName( userName );
+		dto.setUserName( Name );
 		dto.setPassWord( passWord );
 		
 		

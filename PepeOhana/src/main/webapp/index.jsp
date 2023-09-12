@@ -17,7 +17,7 @@
     		var Gender2 = document.getElementById("gender_2").checked; // ラジオボタンのチェック状態を取得
 
     		if  (!Gender1 && !Gender2) {
-	            alert("入力できていない項目があります");
+	            alert("男の子か女の子を選んでください");
 	            return false;
 	        }
 	            return true;
