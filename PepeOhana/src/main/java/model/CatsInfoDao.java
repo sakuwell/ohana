@@ -153,4 +153,111 @@ public class CatsInfoDao {
 					//抽出したユーザーデータを戻す
 					return dtoList;
 				}
+		public CatsInfoDto doSelectCatInfo(int catId) {
+			CatsInfoDto dto = new CatsInfoDto();
+			//-------------------------------------------
+			//JDBCドライバのロード
+			//-------------------------------------------
+			try {
+				Class.forName(DRIVER_NAME);       //JDBCドライバをロード＆接続先として指定
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+
+			//-------------------------------------------
+			//SQL発行
+			//-------------------------------------------
+
+			//JDBCの接続に使用するオブジェクトを宣言
+			Connection        con = null ;   // Connection（DB接続情報）格納用変数
+			PreparedStatement ps  = null ;   // PreparedStatement（SQL発行用オブジェクト）格納用変数
+			ResultSet         rs  = null ;   // ResultSet（SQL抽出結果）格納用変数
+
+			try {
+
+				//-------------------------------------------
+				//接続の確立（Connectionオブジェクトの取得）
+				//-------------------------------------------
+				con = DriverManager.getConnection(JDBC_URL, USER_ID, USER_PASS);
+
+				//-------------------------------------------
+				//SQL文の送信 ＆ 結果の取得
+				//-------------------------------------------
+
+				//発行するSQL文の生成（SELECT）
+				StringBuffer buf = new StringBuffer();
+				buf.append("SELECT                ");
+				buf.append("  CATID,               ");
+				buf.append("  CATNAME,               ");
+				buf.append("  KIND,                ");
+				buf.append("  BIRTH,                ");
+				buf.append("  CONCAT(TIMESTAMPDIFF(YEAR,BIRTH,CURTIME()),'歳',MOD(TIMESTAMPDIFF(MONTH,BIRTH,CURTIME()),12),'ヶ月') AS AGE,                ");
+				buf.append("  GENDER,            	  ");
+				buf.append("  WEIGHT, ");
+				buf.append("  IMAGE,            ");
+				buf.append("  COMMENT,                  ");
+				buf.append("  UP_DATE                  ");
+				buf.append("FROM                  ");
+				buf.append("  CATS_INFO              ");
+				buf.append("  WHERE CATID =        ");
+				buf.append("  ?       ");
+				
+				ps = con.prepareStatement(buf.toString());
+				ps.setInt(1, catId);
+				rs = ps.executeQuery();
+				
+
+				//ResultSetオブジェクトからDTOリストに格納
+				while (rs.next()) {
+					dto.setCatId(rs.getInt("CATID"));
+					dto.setCatName(  rs.getString(    "CATNAME"   ));
+					dto.setKind(  rs.getString(    "KIND"   ));
+					dto.setKind(  rs.getString(    "BIRTH"   ));
+					dto.setAge(  rs.getString(    "AGE"   ));
+					dto.setGender( rs.getInt( "GENDER"  ));
+					dto.setWeight( rs.getInt( "WEIGHT"  ));
+					dto.setImage( rs.getBytes( "IMAGE"  ));
+					dto.setComment( rs.getString( "COMMENT"  ));
+					dto.setComment( rs.getString( "UP_DATE"  ));
+
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				//-------------------------------------------
+				//接続の解除
+				//-------------------------------------------
+
+				//ResultSetオブジェクトの接続解除
+				if (rs != null) {    //接続が確認できている場合のみ実施
+					try {
+						rs.close();  //接続の解除
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+
+				//PreparedStatementオブジェクトの接続解除
+				if (ps != null) {    //接続が確認できている場合のみ実施
+					try {
+						ps.close();  //接続の解除
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+
+				//Connectionオブジェクトの接続解除
+				if (con != null) {    //接続が確認できている場合のみ実施
+					try {
+						con.close();  //接続の解除
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+
+			//抽出結果を返す
+			return dto;
+		}
 }
