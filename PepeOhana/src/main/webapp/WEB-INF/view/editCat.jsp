@@ -23,10 +23,10 @@
 	
 	        if (inputName === "" || inputKind === "" || inputWeight === "" || inputImage === "" || inputComment === "" || (!inputMale && !inputFemale)) {
 	            alert("入力できていない項目があります");
-	            return false; // フォームの送信を中止
+	            return false;
 	        }
-	            return true; // フォームの送信を続行
-	        }
+	            return true;
+	        
 	    }
 	    const photo = document.getElementById("inputImage");
 	    photo.addEventListener("change", function (e) {
@@ -34,8 +34,8 @@
 	        const reader = new FileReader();
 	        const image = document.getElementById("setImage");
 
-	        image.style.height = "100px";
-	        image.style.width = "auto";
+	        setImage.style.height = "100px";
+	        setImage.style.width = "auto";
 
 	        reader.addEventListener("load", function () {
 	            image.src = reader.result;
