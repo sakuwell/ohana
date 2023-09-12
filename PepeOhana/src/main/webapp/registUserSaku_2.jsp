@@ -73,7 +73,7 @@
     
     <!-- ここから下　ページごとの内容 -->
 	<div class="p-5">
-        <form action="<%=request.getContextPath()%>/ExeEditUser" method="post" onsubmit="return validateForm()" class="container bg-white p-4 rounded" style="max-width:500px;">
+        <form action="/ExeRegistUser" method="post" onsubmit="return validateForm()" class="container bg-white p-4 rounded" style="max-width:500px;">
             <div class="h2 pb-2 mb-4 text-center">
                 新規ユーザー登録
             </div>

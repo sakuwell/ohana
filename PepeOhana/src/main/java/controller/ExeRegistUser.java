@@ -50,26 +50,24 @@ public class ExeRegistUser extends HttpServlet {
 //		リクエストパラメータを取得
 
 			
-			String userid			=request.getParameter("USERID");
+			String userId			=request.getParameter("userId");
 //			(USERID)
-			String username			=request.getParameter("USERNAME");
+			String userName			=request.getParameter("userName");
 //			(USERNAME)
 			
-			String password		=request.getParameter("PASSWORD");
-			
-
-			System.out.println(userid);
-			System.out.println(username);
-			System.out.println(password);
-			
+			String userPass		=request.getParameter("userPass");
+						
 			
 			//ユーザーデータ（UserInfoDto型）の作成
 			UsersInfoDto dto = new UsersInfoDto();
-			dto.setUserName( username );
-			dto.setUserId( userid );
-			dto.setPassWord( password );
+			dto.setUserId( userId );
+			dto.setUserName( userName );
+			dto.setPassWord( userPass );
 			
-			System.out.println(password);
+			System.out.println(userId);
+			System.out.println(userName);
+			System.out.println(userPass);
+
 			
 			
 //		データをDBに登録
