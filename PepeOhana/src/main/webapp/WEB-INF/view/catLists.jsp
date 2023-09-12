@@ -170,7 +170,7 @@
                         <%}; %>
                         
                         <div class="d-flex justify-content-center">
-                            <a href="<%=request.getContextPath()%>/ExeShowCatInfo?ID=<%= dto.getCatId()%>" class="stretched-link"></a>
+                            <a href="<%=request.getContextPath()%>/ExeShowCatInfo?CATID=<%= dto.getCatId()%>" class="stretched-link"></a>
                         </div>
                     </div>
                 </div>

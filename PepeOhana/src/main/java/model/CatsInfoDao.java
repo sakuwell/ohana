@@ -212,13 +212,13 @@ public class CatsInfoDao {
 					dto.setCatId(rs.getInt("CATID"));
 					dto.setCatName(  rs.getString(    "CATNAME"   ));
 					dto.setKind(  rs.getString(    "KIND"   ));
-					dto.setKind(  rs.getString(    "BIRTH"   ));
+					dto.setBirth(  rs.getDate(    "BIRTH"   ));
 					dto.setAge(  rs.getString(    "AGE"   ));
 					dto.setGender( rs.getInt( "GENDER"  ));
 					dto.setWeight( rs.getInt( "WEIGHT"  ));
 					dto.setImage( rs.getBytes( "IMAGE"  ));
 					dto.setComment( rs.getString( "COMMENT"  ));
-					dto.setComment( rs.getString( "UP_DATE"  ));
+					dto.setUpDate( rs.getTimestamp( "UP_DATE"  ));
 
 				}
 

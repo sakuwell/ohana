@@ -1,5 +1,8 @@
 package model;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+
 public class CatsInfoDto {
 	//----------------------------------------------------------------
 			//フィールド
@@ -7,11 +10,13 @@ public class CatsInfoDto {
 			private int		catId;         //ネコID
 			private String	catName;       //ネコの名前
 			private String	kind;		//ネコの種類
-			private String 	age;       //ネコの誕生日
+			private Date	birth;		//ネコの誕生日
+			private String 	age;       //ネコの年齢
 			private int		gender;		//ネコの性別
 			private int		weight;		//ネコの体重
 			private byte[]	image;	//ネコの写真
 			private String 	comment;	//飼い主のコメント
+			private Timestamp 	update;	//飼い主のコメント
 
 
 			//----------------------------------------------------------------
@@ -29,6 +34,10 @@ public class CatsInfoDto {
 			//getter/setter（対象フィールド：kind）
 			public String getKind() { return kind; }
 			public void setKind(String kind) { this.kind = kind; }
+			
+			//getter/setter (対象フィールド:birth)
+			public Date getBirth() { return birth; }
+			public void setBirth(Date birth) { this.birth = birth; }
 
 			//getter/setter（対象フィールド：age）
 			public String getAge() { return age; }
@@ -49,6 +58,9 @@ public class CatsInfoDto {
 			//getter/setter（対象フィールド：comment）
 			public String getComment() { return comment; }
 			public void setComment(String comment) { this.comment = comment; }
+			
+			public Timestamp getUpDate() { return update; }
+			public void setUpDate(Timestamp update) { this.update = update; }
 		
 
 }

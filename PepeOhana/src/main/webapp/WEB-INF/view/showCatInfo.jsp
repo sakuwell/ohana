@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="model.UsersInfoDto" %>
+<%@ page import="model.CatsInfoDto" %>
+
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -96,9 +98,10 @@
 
 
     <!-- ねこ情報テーブル -->
+    <% CatsInfoDto ShowCatInfo = (CatsInfoDto)request.getAttribute("showCatInfo"); %>
     <div class="container">
         <div class="h3 pb-2 mt-3 mb-4 text-center">
-            catName
+            <%=ShowCatInfo.getCatName() %>
         </div>
 
         <!-- カードのコンテンツ -->
@@ -112,19 +115,19 @@
                         <th><small>オーナーユーザー</small></th>
                         <td>kato</td>
                         <th><small>登録日</small></th>
-                        <td>yyyy/mm/dd</td>
+                        <td><%=ShowCatInfo.getUpDate() %></td>
 
                     </tr>
                     <tr>
                         <th style="width:30%;"><small>性別</small></th>
                         <td style="width:20%;">男の子</td>
                         <th style="width:20%;"><small>描種</small></th>
-                        <td style="width:30%;">アメリカンショートヘアー</td>
+                        <td style="width:30%;"><%=ShowCatInfo.getKind() %></td>
                     </tr>
                     <tr>
                         <th><small>誕生日</small></th>
-                        <td>2020/09/09<br>
-                        	(3歳2ヵ月)</td>
+                        <td><%=ShowCatInfo.getBirth() %><br>
+                        	(<%=ShowCatInfo.getAge() %>)</td>
                         <th><small>体重</small></th>
                         <td>1.5kg</td>
                     </tr>

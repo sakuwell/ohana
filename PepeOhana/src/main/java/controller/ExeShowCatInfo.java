@@ -15,7 +15,7 @@ import model.ShowCatInfoBL;
 /**
  * Servlet implementation class ShowCatInfo
  */
-@WebServlet("/ShowCatInfo")
+@WebServlet("/ExeShowCatInfo")
 public class ExeShowCatInfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,11 +32,14 @@ public class ExeShowCatInfo extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		String catId = request.getParameter("ID"); //リクエストパラメータ（CAT_ID)
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.setContentType("text/html;charset=UTF-8");
+		String catId = request.getParameter("CATID"); //リクエストパラメータ（CAT_ID)
+		System.out.println(catId);
 
 		ShowCatInfoBL logic = new ShowCatInfoBL();
 		CatsInfoDto ShowCatInfo = logic.executeSelectShowCatInfo(Integer.parseInt(catId));
+		System.out.println(ShowCatInfo.getCatId());
 		
 		request.setAttribute("showCatInfo",ShowCatInfo);
 		
