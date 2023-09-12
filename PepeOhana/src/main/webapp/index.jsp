@@ -168,15 +168,6 @@
 	         		<input type="checkbox" class="btn-check" name="GENDER2" id="gender_2" value="2" autocomplete="off">
 					<label class="btn btn-outline-secondary ms-3" for="gender_2">女の子</label>
 				</div>
-         		<!-- <div class="form-check mt-3">
-					<label for="" class="form-label">年齢を選んでください(複数選択可)<span class="text-danger">　※必須</span></label><br>
-	         		<input type="checkbox" class="btn-check" id="age_1" value="1" autocomplete="off">
-					<label class="btn btn-outline-secondary" for="age_1">～1歳未満</label>
-	         		<input type="checkbox" class="btn-check" id="age_2" value="2" autocomplete="off">
-					<label class="btn btn-outline-secondary ms-3" for="age_2">1歳～3歳未満</label>
-	         		<input type="checkbox" class="btn-check" id="age_3" value="3" autocomplete="off">
-					<label class="btn btn-outline-secondary ms-3" for="age_3">3歳～</label>
-				</div>  -->
 				<p style="text-align:center; margin-bottom:0;">
 					<button type="submit" class="btn btn-lg mt-4" style="background-color:#E87B4C; color:#ffffff;">まっちんぐ</button>
 				</p>
