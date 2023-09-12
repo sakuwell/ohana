@@ -41,7 +41,7 @@ public class CatsInfoDao {
 		 *引数②：ユーザーパスワード（ユーザー入力）
 		 *戻り値：「user_info」テーブルから抽出したユーザーデータ（UserInfoDto型）
 		 *----------------------------------------------------------------------**/
-		public List<CatsInfoDto> doSelectCatLists(String gender) {
+		public List<CatsInfoDto> doSelectCatLists(String gender1,String gender2) {
 			//-------------------------------------------
 					//JDBCドライバのロード
 					//-------------------------------------------
@@ -81,16 +81,23 @@ public class CatsInfoDao {
 						buf.append("  CATID,               ");
 						buf.append("  CATNAME,               ");
 						buf.append("  KIND,            	  ");
-						buf.append("  CONCAT(TIMESTAMPDIFF(YEAR,BIRTH,CURTIME()),'年',MOD(TIMESTAMPDIFF(MONTH,BIRTH,CURTIME()),12),'月') AS AGE,                ");
+						buf.append("  CONCAT(TIMESTAMPDIFF(YEAR,BIRTH,CURTIME()),'歳',MOD(TIMESTAMPDIFF(MONTH,BIRTH,CURTIME()),12),'ヶ月') AS AGE,                ");
 						buf.append("  GENDER,                ");
 						buf.append("  IMAGE ");
 						buf.append("FROM                  ");
 						buf.append("  CATS_INFO              ");
 						buf.append("  WHERE GENDER = ?       ");
-						
+						if(gender1 != null) {
+							buf.append("OR   ?       ;");
+						}
 						//PreparedStatement（SQL発行用オブジェクト）を生成＆発行するSQLをセット
 						ps = con.prepareStatement(buf.toString());
-						ps.setString(1, gender);
+						if(gender1!=null) {
+							ps.setString(1, gender1);
+							ps.setString(2, gender2);
+						}else {
+							ps.setString(1, gender2);
+						}
 						rs = ps.executeQuery();
 
 						//パラメータをセット

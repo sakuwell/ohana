@@ -37,12 +37,17 @@ public class ExeSearchCat extends HttpServlet {
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/html;charset=UTF-8");
 		
-		String[] genders=request.getParameterValues("GENDER");
-		String gender=String.join(",", genders);
-		
+//		String[] genders=request.getParameterValues("GENDER");
+		String gender1=request.getParameter("GENDER1");
+		String gender2=request.getParameter("GENDER2");
+//		System.out.println(genders);
+//		String gender=String.join(" OR ", genders);
+		System.out.println(gender1);
+		System.out.println(gender2);
+//		System.out.println(gender);
 		List<CatsInfoDto> list = new ArrayList<CatsInfoDto>();
 		SearchCatBL logic = new SearchCatBL();
-		list = logic.executeSelectCatLists(gender);
+		list = logic.executeSelectCatLists(gender1,gender2);
 		request.setAttribute("list",list);
 		System.out.println(list);
 		RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/catLists.jsp");

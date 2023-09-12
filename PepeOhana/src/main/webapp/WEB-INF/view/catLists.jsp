@@ -151,7 +151,13 @@
 			CatsInfoDto dto = list.get(i); %>
            <div class="col-6 col-md-4 col-lg-3">
                 <div class="card mb-3">
-                	<img src="images/cat_2.jpg" style="height:180px; width: 100%; object-fit: cover;" class="card-img-top" alt="猫画像">
+                <%String webContentPath = getServletContext().getRealPath("/img");
+		             		  String imageFileName = webContentPath + "/cat_" + dto.getCatId() + ".jpg";
+		             		  System.out.println(imageFileName);
+		             		  FileOutputStream outputStream = new FileOutputStream(imageFileName);
+		             		  outputStream.write(dto.getImage());
+		             		  outputStream.close();%>
+                	<img src=<%=request.getContextPath()%>/img/image_<%=dto.getCatId()%>.jpg" style="height:180px; width: 100%; object-fit: cover;" class="card-img-top" alt="猫画像">
                     <div class="card-body">
                         <h5 class="card-title text-center border-bottom pb-2"><%=dto.getCatName() %><small> ちゃん</small></h5>
                         <p class="card-text text-right">描種 : <%=dto.getKind() %></p>
