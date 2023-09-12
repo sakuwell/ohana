@@ -72,8 +72,8 @@
               未ログイン
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="jsp/Login.jsp">ログイン</a></li>
-              <li><a class="dropdown-item" href="jsp/registUser.jsp">新規ユーザー登録</a></li>
+              <li><a class="dropdown-item" href="Login.jsp">ログイン</a></li>
+              <li><a class="dropdown-item" href="registUserSaku_2.jsp">新規ユーザー登録</a></li>
             </ul>
           </div>
         </div>
