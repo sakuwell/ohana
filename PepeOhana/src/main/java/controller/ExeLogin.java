@@ -51,6 +51,7 @@ public class ExeLogin extends HttpServlet {
 			
 		} else {
 			
+//			この文章は消してください
 			String userId   = request.getParameter("USERID");      
 			String passWord = request.getParameter("PASS");
 			
