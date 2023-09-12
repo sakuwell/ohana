@@ -11,6 +11,7 @@ public class UsersInfoDto {
 	//----------------------------------------------------------------
 	//フィールド
 	//----------------------------------------------------------------
+	private int ID;
 	private String userId;         //ユーザーID
 	private String userName;       //ユーザー名
 	private String passWord;       //ユーザーパスワード
@@ -31,6 +32,9 @@ public class UsersInfoDto {
 	//getter/setter（対象フィールド：passWord）
 	public String getPassWord() { return passWord; }
 	public void setPassWord(String passWord) { this.passWord = passWord; }
+	
+	public int getID() {return ID;}
+	public void setID(int iD) {ID = iD;}
 
 }
 

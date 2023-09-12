@@ -80,7 +80,7 @@ public class UsersInfoDao {
 				StringBuffer buf = new StringBuffer();
 				buf.append("INSERT INTO USERINFO (  ");
 				buf.append("  USERID,               ");
-				buf.append("  USERNAME,                ");
+				buf.append("  NAME,                ");
 				buf.append("  PASSWORD                ");
 				buf.append(") VALUES (            ");
 				buf.append("  ?,                  ");
@@ -101,7 +101,7 @@ public class UsersInfoDao {
 //			System.out.println(dto.getAge());
 				
 				//SQL文の実行
-				ps.executeUpdate();
+				ps.execute();
 
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -295,7 +295,7 @@ public class UsersInfoDao {
 
 				//発行するSQL文の生成（SELECT）
 				StringBuffer buf = new StringBuffer();
-				buf.append("SELECT ID,NAME, PASSWORD;");
+				buf.append("SELECT ID, USERID, NAME, PASSWORD;");
 
 				ps = con.prepareStatement(buf.toString());
 				
