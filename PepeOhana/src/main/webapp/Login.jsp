@@ -69,7 +69,7 @@
     <!-- 未ログインヘッダーここまで -->
     
     <div class="p-5">
-        <form action="/ExeLogin" method="post" onsubmit="return validateForm()" class="container bg-white p-4 rounded" style="max-width:500px;">
+        <form action="ExeLogin" method="post" onsubmit="return validateForm()" class="container bg-white p-4 rounded" style="max-width:500px;">
             <div class="h2 pb-2 mb-4 text-center">
                 ログイン
             </div>
