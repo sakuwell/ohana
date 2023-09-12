@@ -295,7 +295,7 @@ public class UsersInfoDao {
 
 				//発行するSQL文の生成（SELECT）
 				StringBuffer buf = new StringBuffer();
-				buf.append("SELECT ID,NAME, PASSWORD;");
+				buf.append("SELECT ID, USERID, NAME, PASSWORD;");
 
 				ps = con.prepareStatement(buf.toString());
 				
