@@ -48,6 +48,7 @@ public class ExeLogin extends HttpServlet {
 		if (userInfoOnSession != null) {
 			//ログイン済：トップページ
 			response.sendRedirect("index.jsp");
+			
 		} else {
 			
 			String userId   = request.getParameter("USERID");      
@@ -66,7 +67,10 @@ public class ExeLogin extends HttpServlet {
 				response.sendRedirect("index.jsp");
 
 			} else {
-				//ユーザーデータの抽出に失敗：ログインNGとしてログイン画面へ転送
+				//ユーザーデータの抽出に失敗：ログインNGとしてログイン画面へエラーメッセージを渡す
+				
+				String error = "ログインに失敗しました。ユーザー名とパスワードを確認してください。";
+				request.setAttribute("errorMessage", error);
 				response.sendRedirect("Login.jsp");
 
 			}

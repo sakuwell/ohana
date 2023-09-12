@@ -12,6 +12,7 @@
     <title>ログイン | pepeohana</title>
     
 	<script>
+		//フォームバリデーション
 		function validateForm() {
 			var inputID = document.getElementById("inputID").value;
 			var inputPass = document.getElementById("inputPass").value;
@@ -32,6 +33,8 @@
 	
 </head>
 
+<% String error = (String) request.getAttribute("error"); %>
+
 <body style="background-color:beige; color:#523F24;">
     <!-- ナビゲーションボタンのカラー -->
     <style>
@@ -50,7 +53,7 @@
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
           <a class="navbar-brand" href="index.jsp">
-            <img src="images/pepe_logo.png" alt="ページロゴ" width="auto" height="60">
+            <img src="../images/pepe_logo.png" alt="ページロゴ" width="auto" height="60">
           </a>
           <div class="btn-group">
             <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -66,31 +69,31 @@
     <!-- 未ログインヘッダーここまで -->
     
     <div class="p-5">
-        <form action="<%=request.getContextPath()%>/ExeLogin" method="post" onsubmit="return validateForm()" class="container bg-white p-4 rounded" style="max-width:500px;">
+        <form action="/ExeLogin" method="post" onsubmit="return validateForm()" class="container bg-white p-4 rounded" style="max-width:500px;">
             <div class="h2 pb-2 mb-4 text-center">
                 ログイン
             </div>
-            <p class="text-danger">エラーメッセージ</p>
+            <p class="text-danger"><%= error %></p>
             <div class="mb-3">
                 <label for="" class="form-label">ユーザーID　<span class="badge text-bg-danger">必須</span></label>
-                <input type="text" class="form-control" name="userId" id="inputID">
+                <input type="text" class="form-control" name="USERID" id="inputID">
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">パスワード　<span class="badge text-bg-danger">必須</span></label>
-                <input type="password" class="form-control" name="userPass" id="inputPass">
+                <input type="password" class="form-control" name="PASS" id="inputPass">
             </div>
             <div style="text-align: center;">
                 <button type="submit" class="btn btn-lg mt-3" style="background-color:#E87B4C; color:#ffffff;">ログイン</button>
             </div>
+            <div class="text-end mt-4">
+       			<a class="icon-link icon-link-hover" href="#">
+            		新規登録はこちら
+        		</a>
+			</div>
         </form>
     </div>
     
     <!-- フッター -->
-    <div class="text-center mt-4">
-        <a class="icon-link icon-link-hover" href="#">
-            ページトップへ
-        </a>
-	</div>
 	<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
     	<div class="col-md-4 d-flex align-items-center ms-3">
           	<span class="mb-3 mb-md-0 text-body-secondary">© 2023 pepeohana, Inc</span>
