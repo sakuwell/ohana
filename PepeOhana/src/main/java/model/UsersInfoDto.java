@@ -26,8 +26,8 @@ public class UsersInfoDto {
 	public void setUserId(String userId) { this.userId = userId; }
 
 	//getter/setter（対象フィールド：userName）
-	public String getName() { return userName; }
-	public void setName(String userName) { this.userName = userName; }
+	public String getUserName() { return userName; }
+	public void setUserName(String userName) { this.userName = userName; }
 
 	//getter/setter（対象フィールド：passWord）
 	public String getPassWord() { return passWord; }
