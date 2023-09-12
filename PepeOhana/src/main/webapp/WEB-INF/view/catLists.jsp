@@ -157,7 +157,7 @@
 		             		  FileOutputStream outputStream = new FileOutputStream(imageFileName);
 		             		  outputStream.write(dto.getImage());
 		             		  outputStream.close();%>
-                	<img src=<%=request.getContextPath()%>/img/image_<%=dto.getCatId()%>.jpg" style="height:180px; width: 100%; object-fit: cover;" class="card-img-top" alt="猫画像">
+                	<img src="<%=request.getContextPath()%>/img/cat_<%=dto.getCatId()%>.jpg" style="height:180px; width: 100%; object-fit: cover;" class="card-img-top" alt="猫画像">
                     <div class="card-body">
                         <h5 class="card-title text-center border-bottom pb-2"><%=dto.getCatName() %><small> ちゃん</small></h5>
                         <p class="card-text text-right">描種 : <%=dto.getKind() %></p>
@@ -168,8 +168,9 @@
                         <%}else{ %>
                         <p class="card-text text-right">性別 : 女の子</p>
                         <%}; %>
+                        
                         <div class="d-flex justify-content-center">
-                            <a href="#" class="stretched-link"></a>
+                            <a href="<%=request.getContextPath()%>/ExeShowCatInfo?ID=<%= dto.getCatId()%>" class="stretched-link"></a>
                         </div>
                     </div>
                 </div>
