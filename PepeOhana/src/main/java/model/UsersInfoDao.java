@@ -18,7 +18,7 @@ public class UsersInfoDao {
 
 		//接続先のデータベース
 		//※データベース名が「test_db」でない場合は該当の箇所を変更してください
-		String JDBC_URL    = "jdbc:mysql://localhost/pepe_db?characterEncoding=UTF-8&useSSL=false";
+		String JDBC_URL    = "jdbc:mysql://192.168.1.35/pepe_db?characterEncoding=UTF-8&useSSL=false";
 
 		//接続するユーザー名
 		//※ユーザー名が「test_user」でない場合は該当の箇所を変更してください
