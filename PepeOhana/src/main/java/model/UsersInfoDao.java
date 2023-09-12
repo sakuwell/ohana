@@ -21,7 +21,7 @@ public class UsersInfoDao {
 		String JDBC_URL    = "jdbc:mysql://192.168.1.35/pepe_db?characterEncoding=UTF-8&useSSL=false";
 
 		//接続するユーザー名
-		//※ユーザー名が「test_user」でない場合は該当の箇所を変更してください
+		//※ユーザー名が「test_user」ない場合は該当の箇所を変更してください
 		String USER_ID     = "pepe_user";
 
 		//接続するユーザーのパスワード
