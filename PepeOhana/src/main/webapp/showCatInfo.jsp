@@ -110,12 +110,10 @@
                 <table class="table">
                     <tr>
                         <th><small>オーナーユーザー</small></th>
-                        <td colspan="2">kato</td>
-                        <td style="text-align: right;">
-                            <button type="submit" class="btn btn-sm" style=" width:120px; background-color:#E87B4C; color:#ffffff;"
-                                onclick="">編集/削除する
-                            </button>
-                        </td>
+                        <td>kato</td>
+                        <th><small>登録日</small></th>
+                        <td>yyyy/mm/dd</td>
+
                     </tr>
                     <tr>
                         <th style="width:30%;"><small>性別</small></th>
@@ -135,6 +133,11 @@
                         <td colspan="3">ここにコメントが入ります。ここにコメントが入ります。ここにコメントが入ります。</td>
                     </tr>
                 </table>
+            </div>
+            <div class="text-center">
+	            <a href="<%= request.getContextPath() %>/Message.java" class="btn" style="width:200px; background-color:#E87B4C; color:#ffffff;">
+	            	メッセージを送る
+	            </a>
             </div>
         </div><!-- ネコテーブルループここまで -->
         
