@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="model.UsersInfoDto" %>
+<%@ page import="model.CatsInfoDto" %>
+<%@ page import="java.io.FileOutputStream" %>
+<%@ page import="java.util.List" %>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -142,7 +145,30 @@
                     </div>
                 </div>
             </div>
-            
+           <!-- カードのコンテンツ1 -->
+           <% List<CatsInfoDto> list = (List<CatsInfoDto>)request.getAttribute("list");
+			  for (int i = 0; i < list.size(); i++) {
+			CatsInfoDto dto = list.get(i); %>
+           <div class="col-6 col-md-4 col-lg-3">
+                <div class="card mb-3">
+                	<img src="images/cat_2.jpg" style="height:180px; width: 100%; object-fit: cover;" class="card-img-top" alt="猫画像">
+                    <div class="card-body">
+                        <h5 class="card-title text-center border-bottom pb-2"><%=dto.getCatName() %><small> ちゃん</small></h5>
+                        <p class="card-text text-right">描種 : <%=dto.getKind() %></p>
+                        <p class="card-text text-right">年齢 : <%=dto.getAge() %></p>
+                        <%int g = dto.getGender();
+                        if (g == 1){   %>
+                        <p class="card-text text-right">性別 : 男の子</p>
+                        <%}else{ %>
+                        <p class="card-text text-right">性別 : 女の子</p>
+                        <%}; %>
+                        <div class="d-flex justify-content-center">
+                            <a href="#" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%}; %>
         </div>
     </div>
     <!-- ここまで　ページごとの内容 -->

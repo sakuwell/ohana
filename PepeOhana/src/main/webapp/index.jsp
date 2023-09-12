@@ -158,13 +158,13 @@
              
         <!-- 検索フォームエリア -->
         <div class="card mt-3 p-3">
-         	<form action="SearchCat">
+         	<form action="ExeSearchCat">
          		<h3 class="border-bottom pb-2" style="text-align:center;">まっちんぐ</h3>
          		<div class="form-check mt-3">
 					<label for="" class="form-label">性別を選んでください(複数選択可)<span class="text-danger">　※必須</span></label><br>
-	         		<input type="checkbox" class="btn-check" id="gender_1" value="1" autocomplete="off">
+	         		<input type="checkbox" class="btn-check" name="GENDER" id="gender_1" value="1" autocomplete="off">
 					<label class="btn btn-outline-secondary" for="gender_1">男の子</label>
-	         		<input type="checkbox" class="btn-check" id="gender_2" value="2" autocomplete="off">
+	         		<input type="checkbox" class="btn-check" name="GENDER" id="gender_2" value="2" autocomplete="off">
 					<label class="btn btn-outline-secondary ms-3" for="gender_2">女の子</label>
 				</div>
          		<!-- <div class="form-check mt-3">
