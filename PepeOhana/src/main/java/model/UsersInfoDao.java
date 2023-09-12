@@ -22,7 +22,7 @@ public class UsersInfoDao {
 
 		//接続するユーザー名
 		//※ユーザー名が「test_user」ない場合は該当の箇所を変更してください
-		String USER_ID     = "pepe_user";
+		String USER_ID     = "ip_user";
 
 		//接続するユーザーのパスワード
 		//※パスワードが「test_pass」でない場合は該当の箇所を変更してください
@@ -78,17 +78,19 @@ public class UsersInfoDao {
 
 				//発行するSQL文の生成（INSERT）
 				StringBuffer buf = new StringBuffer();
-				buf.append("INSERT INTO USERINFO (  ");
+				buf.append("INSERT INTO USERS_INFO (  ");
+//				buf.append("  ID,               ");
 				buf.append("  USERID,               ");
 				buf.append("  NAME,                ");
 				buf.append("  PASSWORD                ");
 				buf.append(") VALUES (            ");
+//				buf.append("  default                  ");
 				buf.append("  ?,                  ");
 				buf.append("  ?,                  ");
 				buf.append("  ?                  ");
 				buf.append(")                     ");
 				
-				System.out.println();
+				System.out.println("Name");
 
 				//PreparedStatementオブジェクトを生成＆発行するSQLをセット
 				ps = con.prepareStatement(buf.toString());
@@ -99,6 +101,10 @@ public class UsersInfoDao {
 				ps.setString(       3, dto.getPassWord()               ); //第3パラメータ：更新データ（性別）
 
 //			System.out.println(dto.getAge());
+				System.out.println(dto.getUserId());
+				System.out.println(dto.getUserName());
+				System.out.println(dto.getPassWord());
+				
 				
 				//SQL文の実行
 				ps.execute();
