@@ -55,7 +55,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		//ユーザー情報の作成
 		UsersInfoDto dto = new UsersInfoDto();
 		dto.setUserId(userId);
-		dto.setUserName( userName );
+		dto.setName( userName );
 		dto.setPassWord( passWord );
 		
 		

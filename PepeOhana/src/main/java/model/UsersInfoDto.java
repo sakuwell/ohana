@@ -13,7 +13,7 @@ public class UsersInfoDto {
 	//----------------------------------------------------------------
 //	private int ID;
 	private String userId;         //ユーザーID
-	private String userName;       //ユーザー名
+	private String Name;       //ユーザー名
 	private String passWord;       //ユーザーパスワード
 
 
@@ -26,8 +26,8 @@ public class UsersInfoDto {
 	public void setUserId(String userId) { this.userId = userId; }
 
 	//getter/setter（対象フィールド：userName）
-	public String getUserName() { return userName; }
-	public void setUserName(String userName) { this.userName = userName; }
+	public String getName() { return Name; }
+	public void setName(String userName) { this.Name = userName; }
 
 	//getter/setter（対象フィールド：passWord）
 	public String getPassWord() { return passWord; }

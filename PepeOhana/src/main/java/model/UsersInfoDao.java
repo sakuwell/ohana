@@ -97,12 +97,12 @@ public class UsersInfoDao {
 
 				//パラメータをセット
 				ps.setString(    1, dto.getUserId()              ); //第1パラメータ：更新データ（ユーザーID）
-				ps.setString(       2, dto.getUserName()               ); //第2パラメータ：更新データ（名前）
+				ps.setString(       2, dto.getName()               ); //第2パラメータ：更新データ（名前）
 				ps.setString(       3, dto.getPassWord()               ); //第3パラメータ：更新データ（性別）
 
 //			System.out.println(dto.getAge());
 				System.out.println(dto.getUserId());
-				System.out.println(dto.getUserName());
+				System.out.println(dto.getName());
 				System.out.println(dto.getPassWord());
 				
 				
@@ -201,7 +201,7 @@ public class UsersInfoDao {
 				StringBuffer buf = new StringBuffer();
 				buf.append(" SELECT             ");
 				buf.append("   USERID  ,       ");
-				buf.append("   USERNAME,       ");
+				buf.append("   NAME,       ");
 				buf.append("   PASSWORD         ");
 				buf.append(" FROM               ");
 				buf.append("   USER_INFO        ");
@@ -218,7 +218,7 @@ public class UsersInfoDao {
 				
 				if (rs.next()) {
 					dto.setUserId(rs.getString("USERID"));
-					dto.setUserName(rs.getString("USERNAME"));
+					dto.setName(rs.getString("NAME"));
 					dto.setPassWord(rs.getString("PASSWORD"));
 				}
 				
@@ -301,7 +301,7 @@ public class UsersInfoDao {
 
 				//発行するSQL文の生成（SELECT）
 				StringBuffer buf = new StringBuffer();
-				buf.append("SELECT ID, USERID, NAME, PASSWORD;");
+				buf.append("SELECT USERID, NAME, PASSWORD;");
 
 				ps = con.prepareStatement(buf.toString());
 				
@@ -311,9 +311,9 @@ public class UsersInfoDao {
 
 				//ResultSetオブジェクトからDTOリストに格納
 				while (rs.next()) {
-					dto.setUserId(rs.getString("ID"));
-					dto.setUserName(rs.getString("NAME"));
-					dto.setUserName(rs.getString("PASSWORD"));
+					dto.setUserId(rs.getString("USERID"));
+					dto.setName(rs.getString("NAME"));
+					dto.setPassWord(rs.getString("PASSWORD"));
 					
 
 				}
@@ -406,7 +406,7 @@ public class UsersInfoDao {
 				StringBuffer buf = new StringBuffer();
 				buf.append("INSERT INTO USERINFO (  ");
 				buf.append("  USERID,               ");
-				buf.append("  USERNAME,                ");
+				buf.append("  NAME,                ");
 				buf.append("  PASSWORD                ");
 				buf.append(") VALUES (            ");
 				buf.append("  ?,                  ");
@@ -421,7 +421,7 @@ public class UsersInfoDao {
 
 				//パラメータをセット
 				ps.setString(    1, dto.getUserId()              ); //第1パラメータ：更新データ（ユーザーID）
-				ps.setString(       2, dto.getUserName()               ); //第2パラメータ：更新データ（名前）
+				ps.setString(       2, dto.getName()               ); //第2パラメータ：更新データ（名前）
 				ps.setString(       3, dto.getPassWord()               ); //第3パラメータ：更新データ（性別）
 
 //			System.out.println(dto.getAge());
