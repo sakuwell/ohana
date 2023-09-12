@@ -58,7 +58,8 @@ public class ExeLogin extends HttpServlet {
 			UsersInfoDto   dto   = logic.executeSelectUserInfo(userId, passWord);
 			
 			if (dto.getUserId() != null) {
-				
+			
+				System.out.println(userId);
 
 				//DBから抽出したユーザデータをセッションにセット
 				session.setAttribute("USERINFO", dto);

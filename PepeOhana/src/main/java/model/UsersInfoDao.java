@@ -200,11 +200,11 @@ public class UsersInfoDao {
 
 				StringBuffer buf = new StringBuffer();
 				buf.append(" SELECT             ");
-				buf.append("   USERID  ,       ");
+				buf.append("   USERID,       ");
 				buf.append("   NAME,       ");
 				buf.append("   PASSWORD         ");
 				buf.append(" FROM               ");
-				buf.append("   USER_INFO        ");
+				buf.append("   USERS_INFO        ");
 				buf.append(" WHERE              ");
 				buf.append("   USER_ID  = ? AND ");  
 				buf.append("   PASSWORD = ?     ");
@@ -404,7 +404,7 @@ public class UsersInfoDao {
 
 				//発行するSQL文の生成（INSERT）
 				StringBuffer buf = new StringBuffer();
-				buf.append("INSERT INTO USERINFO (  ");
+				buf.append("INSERT INTO USERSINFO (  ");
 				buf.append("  USERID,               ");
 				buf.append("  NAME,                ");
 				buf.append("  PASSWORD                ");
