@@ -37,7 +37,8 @@ public class EditUser extends HttpServlet {
 		UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("USERINFO");
 		
 		if (userInfoOnSession != null) {
-			String id = request.getParameter("ID");
+			String userId = request.getParameter("ID");
+			String userName = request.getParameter("NAME");
 			SelectUserBL logic = new SelectUserBL();
 			
 			RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/edit.jsp");
