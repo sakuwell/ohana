@@ -157,7 +157,7 @@ public class UsersInfoDao {
 			//実行結果を返す
 			return isSuccess;
 		}
-		
+//--------------------------------------------------------------------------------		
 		public UsersInfoDto doSelect(String inputUserId, String inputPassWord) {
 			
 			//-------------------------------------------
@@ -205,6 +205,8 @@ public class UsersInfoDao {
 				ps.setString( 1, inputUserId   );  //第1パラメータ：ユーザーID（ユーザー入力）
 				ps.setString( 2, inputPassWord ); 
 				
+				rs = ps.executeQuery();
+				
 				if (rs.next()) {
 					dto.setUserId(rs.getString("USERID"));
 					dto.setUserName(rs.getString("USERNAME"));
@@ -221,29 +223,15 @@ public class UsersInfoDao {
 
 			} finally {
 				//-------------------------------------------
-				//トランザクションの終了
+				//接続の解除
 				//-------------------------------------------
-				if(rs != null){
-					//明示的にコミットを実施
+				if (rs != null) {    //接続が確認できている場合のみ実施
 					try {
-						con.commit();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-
-				}else{
-					//明示的にロールバックを実施
-					try {
-						con.rollback();
+						rs.close();  //接続の解除
 					} catch (SQLException e) {
 						e.printStackTrace();
 					}
 				}
-
-				//-------------------------------------------
-				//接続の解除
-				//-------------------------------------------
-
 				//PreparedStatementオブジェクトの接続解除
 				if (ps != null) {    //接続が確認できている場合のみ実施
 					try {
