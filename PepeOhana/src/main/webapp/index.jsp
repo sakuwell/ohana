@@ -88,10 +88,10 @@
 
     <!-- ここから下　ページごとの内容 -->
     <div class="container">
-        <div class="h4 pb-2 mb-4 text-black border-bottom border-black">
+        <div class="h4 pb-2 mb-4" style="border-bottom:solid 0.5px; border-color: #523F24;">
             ねこまっちんぐ
         </div>
-            <p>家族をさがしているネコがたくさんいます！</p>
+            <p>家族をさがしているねこがたくさんいます！</p>
         <!-- 猫カードエリア -->
         <div class="row">
            <!-- カードのコンテンツ1 -->
@@ -103,9 +103,6 @@
                         <p class="card-text text-right">描種 : アメリカンショートヘアー</p>
                         <p class="card-text text-right">年齢 : 1歳2ヵ月</p>
                         <p class="card-text text-right">性別 : 男の子</p>
-                        <div class="d-flex justify-content-center">
-                            <a href="#" class="stretched-link"></a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -118,9 +115,6 @@
                         <p class="card-text text-right">描種 : アメリカンショートヘアー</p>
                         <p class="card-text text-right">年齢 : 1歳2ヵ月</p>
                         <p class="card-text text-right">性別 : 男の子</p>
-                        <div class="d-flex justify-content-center">
-                            <a href="#" class="stretched-link"></a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -133,9 +127,6 @@
                         <p class="card-text text-right">描種 : アメリカンショートヘアー</p>
                         <p class="card-text text-right">年齢 : 1歳2ヵ月</p>
                         <p class="card-text text-right">性別 : 男の子</p>
-                        <div class="d-flex justify-content-center">
-                            <a href="#" class="stretched-link"></a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -148,9 +139,6 @@
                          <p class="card-text text-right">描種 : アメリカンショートヘアー</p>
                          <p class="card-text text-right">年齢 : 1歳2ヵ月</p>
                          <p class="card-text text-right">性別 : 男の子</p>
-                         <div class="d-flex justify-content-center">
-                             <a href="#" class="stretched-link"></a>
-                         </div>
                      </div>
                  </div>
             </div>
@@ -159,9 +147,9 @@
         <!-- 検索フォームエリア -->
         <div class="card mt-3 p-3">
          	<form action="ExeSearchCat">
-         		<h3 class="border-bottom pb-2" style="text-align:center;">まっちんぐ</h3>
+         		<h3 class="border-bottom pb-2" style="text-align:center; color:#523F24;">まっちんぐ</h3>
          		<div class="form-check mt-3">
-					<label for="" class="form-label">性別を選んでください(複数選択可)<span class="text-danger">　※必須</span></label><br>
+					<label for="" class="form-label">性別を選んでください(複数選択可)　<span class="badge text-bg-danger">必須</span></label><br>
 	         		<input type="checkbox" class="btn-check" name="GENDER1" id="gender_1" value="1" autocomplete="off">
 					<label class="btn btn-outline-secondary" for="gender_1">男の子</label>
 	         		<input type="checkbox" class="btn-check" name="GENDER2" id="gender_2" value="2" autocomplete="off">
