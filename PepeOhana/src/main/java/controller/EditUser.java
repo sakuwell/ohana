@@ -34,12 +34,16 @@ public class EditUser extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session           = request.getSession();
-		UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("USERINFO");
+		UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
 		
 		if (userInfoOnSession != null) {
-			String userId = request.getParameter("USERID");
-			String Name = request.getParameter("NAME");
+			String id = request.getParameter("ID");
+//			String userName = request.getParameter("userName");
 			SelectUserBL logic = new SelectUserBL();
+			
+			UsersInfoDto updateUser = logic.executeSelectUserInfo(Integer.parseInt(id)); 
+			
+			request.setAttribute("user" , updateUser );
 			
 			RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/edit.jsp");
 			dispatch.forward(request, response);

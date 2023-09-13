@@ -35,7 +35,7 @@
 
     // セッションが存在し、username属性もセットされている場合はログイン済み
     if (userInfoOnSession != null) {
-		userName = userInfoOnSession.getUserName();	
+		userName = userInfoOnSession.getUserName();
         isLoggedIn = true;
     }
 %>
@@ -97,7 +97,6 @@
 
     <!-- ヒーロー画像 -->
     <img class="img-fluid mb-4" src="images/hero_index.png"  alt="index画像" style="max-height:600px; width:100%; object-fit: cover;">
-
 
     <!-- ここから下　ページごとの内容 -->
     <div class="container">

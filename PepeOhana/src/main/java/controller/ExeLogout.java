@@ -39,7 +39,7 @@ public class ExeLogout extends HttpServlet {
 		
 		//セッションからユーザーデータを取得
 		HttpSession session           = request.getSession();
-		UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("USERINFO");
+		UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
 		
 		if (userInfoOnSession != null) {
 			

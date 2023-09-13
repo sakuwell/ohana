@@ -54,13 +54,13 @@ public class ExeLogin extends HttpServlet {
 			String userId   = request.getParameter("USERID");      
 			String passWord = request.getParameter("PASS");
 			
-			System.out.println(userId);
+//			System.out.println(userId);
 			
 			
 			LoginBL logic = new LoginBL ();
 			UsersInfoDto   dto   = logic.executeSelectUserInfo(userId, passWord);
 			
-			if (dto.getUserId() != null) {
+			if (dto.getUserName() != null) {
 			
 				System.out.println(userId);
 

@@ -45,18 +45,20 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		request.setCharacterEncoding("UTF-8"); 
 		
 		HttpSession session = request.getSession();
-		UsersInfoDto userInfoOnSession = (UsersInfoDto) session.getAttribute("USERINFO");
+		UsersInfoDto userInfoOnSession = (UsersInfoDto) session.getAttribute("LOGIN_INFO");
 		
 		//リクエストパラメータを取得　ユーザー名を取得userName
-		String userId              = request.getParameter("USERID");
-		String Name              = request.getParameter("NAME");
-		String passWord				= request.getParameter("PassWord");
+		int ID              = Integer.parseInt(request.getParameter("ID"));
+		String userId              = request.getParameter("userId");
+		String userName              = request.getParameter("userName");
+		String userPass				= request.getParameter("userPass");
 		
 		//ユーザー情報の作成
 		UsersInfoDto dto = new UsersInfoDto();
+		dto.setID(ID);
 		dto.setUserId(userId);
-		dto.setUserName( Name );
-		dto.setPassWord( passWord );
+		dto.setUserName( userName );
+		dto.setPassWord( userPass );
 		
 		
 		//データをDBに登録
