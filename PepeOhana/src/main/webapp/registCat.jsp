@@ -129,9 +129,9 @@
             </div>
             <div class="mb-3">
 				<label class="form-label">性別　<span class="badge text-bg-danger">必須</span></label><br>
-				<input type="radio" class="btn-check" name="GENDER" id="inputMale" autocomplete="off">
+				<input type="radio" class="btn-check" name="GENDER" value = 1 id="inputMale" autocomplete="off">
 				<label class="btn btn-outline-secondary" for="inputMale">男の子</label>
-				<input type="radio" class="btn-check" name="GENDER" id="inputFemale" autocomplete="off">
+				<input type="radio" class="btn-check" name="GENDER" value = 2 id="inputFemale" autocomplete="off">
 				<label class="btn btn-outline-secondary ms-3" for="inputFemale">女の子</label>
             </div>
             <div class="mb-3">
