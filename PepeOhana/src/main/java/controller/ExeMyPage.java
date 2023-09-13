@@ -1,11 +1,20 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import model.MyPageBL;
+import model.MyPageDto;
+import model.UsersInfoDto;
 
 /**
  * Servlet implementation class ExeMyPage
@@ -27,7 +36,32 @@ public class ExeMyPage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.setContentType("text/html;charset=UTF-8");
+		
+		HttpSession session           = request.getSession();
+		UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
+		
+		if (userInfoOnSession == null) {
+//			未ログインならトップページへ
+			response.sendRedirect("index.jsp");
+			
+		} else {
+			
+//			セッション情報から変数に代入
+			int id = userInfoOnSession.getID();
+			System.out.println(id);
+			
+			List<MyPageDto> myPageList = new ArrayList<MyPageDto>();
+			MyPageBL logic = new MyPageBL();
+			myPageList  = logic.executeSelectMyPageLists(id);
+			request.setAttribute("MYPAGE",myPageList);
+		
+			RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/mypage.jsp");
+			dispatch.forward(request, response);
+			
+		}
+
 	}
 
 	/**
