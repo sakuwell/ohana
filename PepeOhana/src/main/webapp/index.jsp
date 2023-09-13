@@ -66,7 +66,7 @@
                     <%=userName%>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="Mypage">マイページ</a></li>
+                    <li><a class="dropdown-item" href="ExeMypage">マイページ</a></li>
                     <li><a class="dropdown-item" href="ExeLogout">ログアウト</a></li>
                 </ul>
             </div>

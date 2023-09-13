@@ -50,12 +50,12 @@ public class ExeMyPage extends HttpServlet {
 			
 //			セッション情報から変数に代入
 			int id = userInfoOnSession.getID();
-			System.out.println(id);
 			
 			List<MyPageDto> myPageList = new ArrayList<MyPageDto>();
 			MyPageBL logic = new MyPageBL();
 			myPageList  = logic.executeSelectMyPageLists(id);
 			request.setAttribute("MYPAGE",myPageList);
+			System.out.println(myPageList);
 		
 			RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/mypage.jsp");
 			dispatch.forward(request, response);
