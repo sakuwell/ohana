@@ -66,8 +66,8 @@
                     <%=userName%>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="<%=request.getContextPath()%>/Mypage">マイページ</a></li>
-                    <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeLogout">ログアウト</a></li>
+                    <li><a class="dropdown-item" href="Mypage">マイページ</a></li>
+                    <li><a class="dropdown-item" href="ExeLogout">ログアウト</a></li>
                 </ul>
             </div>
         </div>
