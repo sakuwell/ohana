@@ -37,6 +37,7 @@ public class EditUser extends HttpServlet {
 		UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
 		
 		if (userInfoOnSession != null) {
+			
 			String id = request.getParameter("ID");
 //			String userName = request.getParameter("userName");
 			SelectUserBL logic = new SelectUserBL();
