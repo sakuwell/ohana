@@ -43,7 +43,7 @@ public class ExeLogin extends HttpServlet {
 		request.setCharacterEncoding("UTF-8"); 
 		
 		HttpSession session           = request.getSession();
-		UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("USERINFO");
+		UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
 		
 		if (userInfoOnSession != null) {
 			//ログイン済：トップページ
@@ -54,6 +54,9 @@ public class ExeLogin extends HttpServlet {
 			String userId   = request.getParameter("USERID");      
 			String passWord = request.getParameter("PASS");
 			
+			System.out.println(userId);
+			
+			
 			LoginBL logic = new LoginBL ();
 			UsersInfoDto   dto   = logic.executeSelectUserInfo(userId, passWord);
 			
@@ -62,7 +65,7 @@ public class ExeLogin extends HttpServlet {
 				System.out.println(userId);
 
 				//DBから抽出したユーザデータをセッションにセット
-				session.setAttribute("USERINFO", dto);
+				session.setAttribute("LOGIN_INFO", dto);
 
 				//トップページ画面へ転送
 				response.sendRedirect("index.jsp");

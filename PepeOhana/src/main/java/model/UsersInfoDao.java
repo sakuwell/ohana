@@ -206,7 +206,7 @@ public class UsersInfoDao {
 				buf.append(" FROM               ");
 				buf.append("   USERS_INFO        ");
 				buf.append(" WHERE              ");
-				buf.append("   USER_ID  = ? AND ");  
+				buf.append("   USERID  = ? AND ");  
 				buf.append("   PASSWORD = ?     ");
 				
 				ps = con.prepareStatement(buf.toString());
