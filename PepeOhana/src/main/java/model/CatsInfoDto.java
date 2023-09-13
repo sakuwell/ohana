@@ -9,14 +9,17 @@ public class CatsInfoDto {
 			//----------------------------------------------------------------
 			private int		catId;         //ネコID
 			private String	catName;       //ネコの名前
+			private String	userId;       //飼い主のID
 			private String	kind;		//ネコの種類
 			private Date	birth;		//ネコの誕生日
 			private String 	age;       //ネコの年齢
 			private int		gender;		//ネコの性別
-			private int		weight;		//ネコの体重
+			private Float		weight;		//ネコの体重
 			private byte[]	image;	//ネコの写真
 			private String 	comment;	//飼い主のコメント
-			private Timestamp 	update;	//飼い主のコメント
+			private Timestamp 	update;	//投稿日
+			private String	userName;	//飼い主の名前
+			private int		Id;	//飼い主の登録番号
 
 
 			//----------------------------------------------------------------
@@ -30,6 +33,10 @@ public class CatsInfoDto {
 			//getter/setter（対象フィールド：catName）
 			public String getCatName() { return catName; }
 			public void setCatName(String catName) { this.catName = catName; }
+			
+			//getter/setter（対象フィールド：userId）
+			public String getUserId() { return userId; }
+			public void setUserId(String userId) { this.userId = userId; }
 			
 			//getter/setter（対象フィールド：kind）
 			public String getKind() { return kind; }
@@ -48,8 +55,8 @@ public class CatsInfoDto {
 			public void setGender(int gender) { this.gender = gender; }
 			
 			//getter/setter（対象フィールド：weight）
-			public int getWeight() { return weight; }
-			public void setWeight(int weight) { this.weight = weight; }
+			public Float getWeight() { return weight; }
+			public void setWeight(Float weight) { this.weight = weight; }
 			
 			//getter/setter（対象フィールド：image）
 			public byte[] getImage() { return image; }
@@ -61,6 +68,14 @@ public class CatsInfoDto {
 			
 			public Timestamp getUpDate() { return update; }
 			public void setUpDate(Timestamp update) { this.update = update; }
+			
+			//getter/setter（対象フィールド：userName）
+			public String getUserName() { return userName; }
+			public void setUserName(String userName) { this.userName = userName; }
+			
+			//getter/setter（対象フィールド：userId）
+			public int getId() { return Id; }
+			public void setId(int Id) { this.Id = Id; }
 		
 
 }

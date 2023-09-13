@@ -187,20 +187,26 @@ public class CatsInfoDao {
 				//発行するSQL文の生成（SELECT）
 				StringBuffer buf = new StringBuffer();
 				buf.append("SELECT                ");
-				buf.append("  CATID,               ");
-				buf.append("  CATNAME,               ");
-				buf.append("  KIND,                ");
-				buf.append("  BIRTH,                ");
-				buf.append("  CONCAT(TIMESTAMPDIFF(YEAR,BIRTH,CURTIME()),'歳',MOD(TIMESTAMPDIFF(MONTH,BIRTH,CURTIME()),12),'ヶ月') AS AGE,                ");
-				buf.append("  GENDER,            	  ");
-				buf.append("  WEIGHT, ");
-				buf.append("  IMAGE,            ");
-				buf.append("  COMMENT,                  ");
-				buf.append("  UP_DATE                  ");
+				buf.append("  CI.CATID,               ");
+				buf.append("  CI.CATNAME,               ");
+				buf.append("  CI.USERID,               ");
+				buf.append("  CI.KIND,                ");
+				buf.append("  CI.BIRTH,                ");
+				buf.append("  CONCAT(TIMESTAMPDIFF(YEAR,CI.BIRTH,CURTIME()),'歳',MOD(TIMESTAMPDIFF(MONTH,CI.BIRTH,CURTIME()),12),'ヶ月') AS AGE,                ");
+				buf.append("  CI.GENDER,            	  ");
+				buf.append("  CI.WEIGHT, ");
+				buf.append("  CI.IMAGE,            ");
+				buf.append("  CI.COMMENT,                  ");
+				buf.append("  CI.UP_DATE,                  ");
+				buf.append("  UI.NAME  ,                ");
+				buf.append("  UI.ID                  ");
 				buf.append("FROM                  ");
-				buf.append("  CATS_INFO              ");
-				buf.append("  WHERE CATID =        ");
-				buf.append("  ?       ");
+				buf.append("  CATS_INFO AS CI              ");
+				buf.append("  INNER JOIN               ");
+				buf.append("  USER_INFO AS UI            ");
+				buf.append("  ON CI.USERID=UI.USERID              ");
+				buf.append("  WHERE  CI.CATID =    ?    ");
+				buf.append("  AND  CI.DEL =   0  ;");
 				
 				ps = con.prepareStatement(buf.toString());
 				ps.setInt(1, catId);
@@ -209,16 +215,19 @@ public class CatsInfoDao {
 
 				//ResultSetオブジェクトからDTOリストに格納
 				while (rs.next()) {
-					dto.setCatId(rs.getInt("CATID"));
-					dto.setCatName(  rs.getString(    "CATNAME"   ));
-					dto.setKind(  rs.getString(    "KIND"   ));
-					dto.setBirth(  rs.getDate(    "BIRTH"   ));
+					dto.setCatId(rs.getInt("CI.CATID"));
+					dto.setCatName(  rs.getString(    "CI.CATNAME"   ));
+					dto.setUserId(  rs.getString(    "CI.USERID"   ));
+					dto.setKind(  rs.getString(    "CI.KIND"   ));
+					dto.setBirth(  rs.getDate(    "CI.BIRTH"   ));
 					dto.setAge(  rs.getString(    "AGE"   ));
-					dto.setGender( rs.getInt( "GENDER"  ));
-					dto.setWeight( rs.getInt( "WEIGHT"  ));
-					dto.setImage( rs.getBytes( "IMAGE"  ));
-					dto.setComment( rs.getString( "COMMENT"  ));
-					dto.setUpDate( rs.getTimestamp( "UP_DATE"  ));
+					dto.setGender( rs.getInt( "CI.GENDER"  ));
+					dto.setWeight( rs.getFloat( "CI.WEIGHT"  ));
+					dto.setImage( rs.getBytes( "CI.IMAGE"  ));
+					dto.setComment( rs.getString( "CI.COMMENT"  ));
+					dto.setUpDate( rs.getTimestamp( "CI.UP_DATE"  ));
+					dto.setUserName( rs.getString( "UI.NAME"  ));
+					dto.setId( rs.getInt( "UI.ID"  ));
 
 				}
 

@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ page import="model.UsersInfoDto" %>
 <%@ page import="model.CatsInfoDto" %>
-
+<%@ page import="java.io.FileOutputStream" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -28,6 +29,15 @@
         isLoggedIn = true;
     }
 %>
+<script>
+	function validateForm() {
+		if(isLoggedIn){
+			return true;
+		}else{
+			alert("ログインしてください");
+			return false
+		}
+</script>
 
 <!--sessionから取得する内容
         userName,Id
@@ -99,6 +109,7 @@
 
     <!-- ねこ情報テーブル -->
     <% CatsInfoDto ShowCatInfo = (CatsInfoDto)request.getAttribute("showCatInfo"); %>
+    
     <div class="container">
         <div class="h3 pb-2 mt-3 mb-4 text-center">
             <%=ShowCatInfo.getCatName() %>
@@ -107,52 +118,65 @@
         <!-- カードのコンテンツ -->
         <div class="row mt-4">
             <div class="col-sm-4 col-md-3 mb-2">
-                <img src="images/cat_1.jpg" alt="" class="rounded" style="height:170px; width: 100%; object-fit: cover;">
+            <%String webContentPath = getServletContext().getRealPath("/img");
+		             		  String imageFileName = webContentPath + "/cat_" + ShowCatInfo.getCatId() + ".jpg";
+		             		  System.out.println(imageFileName);
+		             		  FileOutputStream outputStream = new FileOutputStream(imageFileName);
+		             		  outputStream.write(ShowCatInfo.getImage());
+		             		  outputStream.close();%>
+                <img src="<%=request.getContextPath()%>/img/cat_<%=ShowCatInfo.getCatId()%>.jpg" alt="" class="rounded" style="height:170px; width: 100%; object-fit: cover;">
             </div>
             <div class="col-sm-8 col-md-9">
                 <table class="table">
                     <tr>
                         <th><small>オーナーユーザー</small></th>
-                        <td>kato</td>
+                        <td><%=ShowCatInfo.getUserName() %></td>
                         <th><small>登録日</small></th>
-                        <td><%=ShowCatInfo.getUpDate() %></td>
+                        <td><%=new SimpleDateFormat("yyyy年MM月dd日").format(ShowCatInfo.getUpDate()) %></td>
 
                     </tr>
                     <tr>
                         <th style="width:30%;"><small>性別</small></th>
+                        <%int g = ShowCatInfo.getGender();
+                        if (g == 1){   %>
                         <td style="width:20%;">男の子</td>
+                        <%}else{ %>
+                        <td style="width:20%;">女の子</td>
+                        <%}; %>
                         <th style="width:20%;"><small>描種</small></th>
                         <td style="width:30%;"><%=ShowCatInfo.getKind() %></td>
                     </tr>
                     <tr>
                         <th><small>誕生日</small></th>
-                        <td><%=ShowCatInfo.getBirth() %><br>
+                        <td><%=new SimpleDateFormat("yyyy年MM月dd日").format(ShowCatInfo.getBirth())
+                        %><br>
                         	(<%=ShowCatInfo.getAge() %>)</td>
                         <th><small>体重</small></th>
-                        <td>1.5kg</td>
+                        <td><%=ShowCatInfo.getWeight() %>kg</td>
                     </tr>
                     <tr>
                         <th><small>コメント</small></th>
-                        <td colspan="3">ここにコメントが入ります。ここにコメントが入ります。ここにコメントが入ります。</td>
+                        <td colspan="3"><%=ShowCatInfo.getComment() %></td>
                     </tr>
                 </table>
             </div>
             <div class="text-center">
-	            <a href="<%= request.getContextPath() %>/Message.java" class="btn" style="width:200px; background-color:#E87B4C; color:#ffffff;">
+	            <a href="<%=request.getContextPath()%>/Message?CATID=<%=ShowCatInfo.getCatId() %>&RECIEVERID=<%=ShowCatInfo.getId() %>&RECIEVERNAME=<%=ShowCatInfo.getUserName() %>&CATNAME=<%=ShowCatInfo.getCatName() %>" class="btn" style="width:200px; background-color:#E87B4C; color:#ffffff;">
 	            	メッセージを送る
 	            </a>
             </div>
+            
         </div><!-- ネコテーブルループここまで -->
         
     </div><!-- ネコ情報テーブルここまで -->
     
 
     <!-- フッター -->
-    <div class="text-center mt-4">
+    <!--  <div class="text-center mt-4">
         <a class="icon-link icon-link-hover" href="#">
             ページトップへ
         </a>
-    </div>
+    </div>-->
     <img src="images/footer_cat.png" alt=""  class="img-fluid" style="width:100%;">
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-1">
         <div class="col-md-4 d-flex align-items-center ms-3">

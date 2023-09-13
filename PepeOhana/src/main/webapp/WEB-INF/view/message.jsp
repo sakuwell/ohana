@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="model.UsersInfoDto" %>
+<%@ page import="controller.Message" %>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -79,13 +80,15 @@
            	<div class="mb-3 row">
 		    	<label class="col-sm-4 col-form-label">対象ねこ</label>
 		    	<div class="col-sm-8">
-		      		<input type="text" readonly class="form-control-plaintext" name="CATID" id="catName" value="">
+		      		<input type="text" readonly class="form-control-plaintext" name="CATNAME" id="catName" value="<%=request.getAttribute("catName")%>">
+		      		<input type="hidden" name="CATID" id="catId" value="<%=request.getAttribute("catId")%>">
 		    	</div>
 		  	</div>
            	<div class="mb-3 row">
 	    		<label class="col-sm-4 col-form-label">送信先ユーザー</label>
 		    	<div class="col-sm-8">
-		      		<input type="text" readonly class="form-control-plaintext" name="RECIEVERID" id="ownerUser" value="">
+		      		<input type="text" readonly class="form-control-plaintext" name="RECIEVERNAME" id="ownerUser" value="<%=request.getAttribute("recieverName")%>">
+		      		<input type="hidden" name="RECIEVERID" id="recieverId" value="<%=request.getAttribute("recieverId")%>">
 		    	</div>
 		  	</div>
             <div class="mb-3">

@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,7 +29,21 @@ public class Message extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.setContentType("text/html;charset=UTF-8");
+		System.out.println("Hello");
+		int catId = Integer.parseInt(request.getParameter("CATID")); //リクエストパラメータ（CATID)
+		int recieverId = Integer.parseInt(request.getParameter("RECIEVERID")); //リクエストパラメータ（RECIEVERID)
+		String recieverName = request.getParameter("RECIEVERNAME"); //リクエストパラメータ（RECIEVERID)
+		String catName = request.getParameter("CATNAME"); //リクエストパラメータ（RECIEVERID)
+		
+		request.setAttribute("catId",catId );
+		request.setAttribute("recieverId",recieverId );
+		request.setAttribute("recieverName",recieverName );
+		request.setAttribute("catName",catName );
+		RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/message.jsp");
+		dispatch.forward(request, response);
+		
 	}
 
 	/**
