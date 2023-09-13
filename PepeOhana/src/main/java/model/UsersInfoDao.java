@@ -410,22 +410,24 @@ public class UsersInfoDao {
 
 				//発行するSQL文の生成（INSERT）
 				StringBuffer buf = new StringBuffer();
-				buf.append("UPDATE USERSINFO SET (  ");
+				buf.append("UPDATE USERSINFO SET   ");
+				buf.append("  ID = ?,               ");
 				buf.append("  USERID = ?,               ");
 				buf.append("  NAME = ?,                ");
 				buf.append("  PASSWORD = ?               ");
 				
-				System.out.println();
+//				System.out.println();
 
 				//PreparedStatementオブジェクトを生成＆発行するSQLをセット
 				ps = con.prepareStatement(buf.toString());
 
 				//パラメータをセット
-				ps.setString(    1, dto.getUserId()              ); //第1パラメータ：更新データ（ユーザーID）
-				ps.setString(       2, dto.getUserName()               ); //第2パラメータ：更新データ（名前）
-				ps.setString(       3, dto.getPassWord()               ); //第3パラメータ：更新データ（性別）
-				ps.setInt(4, dto.getID());
-//			System.out.println(dto.getAge());
+				ps.setInt(1, dto.getID());
+				ps.setString(2, dto.getUserId()              ); //第1パラメータ：更新データ（ユーザーID）
+				ps.setString(3, dto.getUserName()               ); //第2パラメータ：更新データ（名前）
+				ps.setString(4, dto.getPassWord()               ); //第3パラメータ：更新データ
+				
+
 				
 				//SQL文の実行
 				ps.executeUpdate();
