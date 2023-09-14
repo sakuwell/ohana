@@ -51,14 +51,14 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		int ID              = Integer.parseInt(request.getParameter("ID"));
 		String userId              = request.getParameter("userId");
 		String userName              = request.getParameter("userName");
-		String userPass				= request.getParameter("userPass");
+		String passWord				= request.getParameter("userPass");
 		
 		//ユーザー情報の作成
 		UsersInfoDto dto = new UsersInfoDto();
 		dto.setID(ID);
 		dto.setUserId(userId);
 		dto.setUserName( userName );
-		dto.setPassWord( userPass );
+		dto.setPassWord( passWord );
 		
 		
 		//データをDBに登録
@@ -68,6 +68,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		if (succesUpdate) {
 			
 			response.sendRedirect("/WEB-INF/view/mypage.jsp");
+			
 		} else {
 			response.sendRedirect("html/error.html");
 			
