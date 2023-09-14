@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="model.UsersInfoDto" %>
+<%@ page import="model.MyPageDto" %>
+<%@ page import="java.io.FileOutputStream" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -19,7 +23,15 @@
         ownerId,catName,kind,birth,weight,image,comment,c_date,catId,
         messageId,message,m_date,senderId,reciverId
 -->
-
+<%
+    // セッションを取得
+	UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");  
+	int id = userInfoOnSession.getID();
+	String userName = userInfoOnSession.getUserName();
+%>
+<%  // Dtoを取得
+	List<MyPageDto> list = (List<MyPageDto>)request.getAttribute("MYPAGE");
+%>
 
 <body style="background-color:beige; color:#523F24;">
     <!-- ナビゲーションボタンのカラー -->
@@ -43,7 +55,7 @@
             </a>
             <div class="btn-group">
                 <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    userName
+                    <%= userName %>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="<%=request.getContextPath()%>/Mypage">マイページ</a></li>
@@ -58,7 +70,7 @@
     <img src="images/hero_mypage.png"  alt="猫画像" style="max-height:600px; width: 100%; object-fit: cover;">
 
     <!-- ページごとのコンテンツ -->
-
+    
 
     <!-- ユーザー情報テーブル -->
     <div class="container">
@@ -67,12 +79,12 @@
         </div>
         <table class="table">
             <tr>
-                <th style="width:20%;"><small>ユーザー名</small></th>
-                <td style="width:80%;">pepe</td>
+                <th><small>ユーザーID</small></th>
+                <td><%= id %></td>
             </tr>
             <tr>
-                <th><small>ユーザーID</small></th>
-                <td>pepe@pepe.com</td>
+                <th style="width:20%;"><small>ユーザー名</small></th>
+                <td style="width:80%;"><%= userName %></td>
             </tr>
         </table>
         <div style="text-align: center;">
@@ -89,15 +101,35 @@
         </div>
 
         <!-- カードのコンテンツ -->
-        <div class="row mt-4">
-            <div class="col-sm-4 col-md-3 mb-2">
-                <img src="images/cat_1.jpg" alt="" class="rounded" style="height:170px; width: 100%; object-fit: cover;">
+		<div class="row mt-4">
+		
+		<!-- ネコ情報のループ -->
+		<% int oldCatId = 0; %>	
+		<% boolean catsFound = false; %>
+		<%  for (int i = 0; i < list.size(); i++) {
+		    MyPageDto dto = list.get(i);
+		    if (dto.getCatId() != 0) { // ねこ情報をチェック
+		        int newCatId = dto.getCatId();
+		        if (newCatId != oldCatId) {
+		            catsFound = true;
+		%>
+		<!-- 画像保存用 -->
+        <%
+        	String webContentPath = getServletContext().getRealPath("/img");
+	   		String imageFileName = webContentPath + "/cat_" + dto.getCatId() + ".jpg";
+	   		System.out.println(imageFileName);
+	   		FileOutputStream outputStream = new FileOutputStream(imageFileName);
+	   		outputStream.write(dto.getImage());
+	   		outputStream.close();
+   		 %>					
+        	<div class="col-sm-4 col-md-3 mb-2">
+                <img src="<%=request.getContextPath()%>/img/cat_<%=dto.getCatId()%>.jpg" alt="<%=dto.getCatName()%>画像" class="rounded" style="height:170px; width: 100%; object-fit: cover;">
             </div>
             <div class="col-sm-8 col-md-9">
                 <table class="table">
                     <tr>
                         <th><small>名前</small></th>
-                        <td colspan="2">pepe</td>
+                        <td colspan="2"><%= dto.getCatName() %></td>
                         <td style="text-align: right;">
                             <button type="submit" class="btn btn-sm" style=" width:120px; background-color:#E87B4C; color:#ffffff;"
                                 onclick="">編集/削除する
@@ -106,35 +138,40 @@
                     </tr>
                     <tr>
                         <th style="width:18%;"><small>性別</small></th>
-                        <td style="width:24%;">男の子</td>
+                        <td style="width:24%;"><%= dto.getGender() %></td>
                         <th style="width:18%;"><small>描種</small></th>
-                        <td style="width:40%;">アメリカンショートヘアー</td>
+                        <td style="width:40%;"><%= dto.getKind() %></td>
                     </tr>
                     <tr>
                         <th><small>誕生日</small></th>
-                        <td>2020/09/09<br>
-                        	(3歳2ヵ月)</td>
+                        <td><%= new SimpleDateFormat("yyyy年MM月dd日").format(dto.getBirth()) %><br>
+                        	(<%= dto.getAge() %>)</td>
                         <th><small>体重</small></th>
-                        <td>1.5kg</td>
+                        <td><%= dto.getWeight() %>kg</td>
                     </tr>
                     <tr>
                         <th><small>コメント</small></th>
-                        <td colspan="3">ここにコメントが入ります。ここにコメントが入ります。ここにコメントが入ります。</td>
+                        <td colspan="3"><%= dto.getComment() %></td>
                     </tr>
                 </table>
             </div>
-        </div><!-- ネコテーブルループここまで -->
+		
+		<%          oldCatId = dto.getCatId();
+		        }
+		    } 
+		} %>
+		<% if (!catsFound) { %>
+		    <p>募集中のねこ情報はありません</p>
+		<% } %>
+		
+		<!-- ネコテーブルループここまで -->
+       	</div>
         
     </div><!-- ネコ情報テーブルここまで -->
     
+    
     <!-- メッセージテーブル -->
     <div class="container">
-
-        <!-- まずDTOからメッセージ情報を全て取得する
-            受信と送信を区分しそれぞれ配列に代入
-            recieveMessages[]
-            sendMesseges[]
-            -->
 
         <div class="h4 pb-2 mt-4 mb-4" style="border-bottom:solid 0.5px; border-color: #523F24;">
             メッセージ一覧
@@ -142,23 +179,34 @@
 
         <p class="mt-4 mb-2">受信メッセージ</p>
         <div class="accordion accordion-flush" id="reciever">
+	        <div class="accordion-item">
+	            <!-- Rest of your code for displaying received messages -->
+	        </div>
+        
+	        <!-- 受信メッセージループ -->
+	        <% boolean receivedMessagesExist = false; %>
+			<% for (int i = 0; i < list.size(); i++) {
+	    		MyPageDto dto = list.get(i);
+	    		String messageType = dto.getMessageType();
+	    		if ("r".equals(messageType)) { // Check if messageType is "r"
+	        		receivedMessagesExist = true;
+			%>
 
-            <!-- 受信メッセージ1件分　ここをループで回す -->
             <div class="accordion-item">
                 <!-- メッセージヘッダー -->
                 <h2 class="accordion-header">
-                    <button class="p-2 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#reciever1" aria-expanded="false" aria-controls="reciever1">
+                    <button class="p-2 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#reciever<%= i %>" aria-expanded="false" aria-controls="reciever1">
                         <p style="line-height: 150%; margin:0;">
-                            <small>2023/09/11</small><br>
-                            対象ねこ&nbsp;<span class="badge rounded-pill text-bg-secondary">pepe</span>&ensp;
-                            送信ユーザー&nbsp;<span class="badge rounded-pill text-bg-secondary">kato</span>
+                            <small><%= dto.getSentDate() %></small><br>
+                            対象ねこ&nbsp;<span class="badge rounded-pill text-bg-secondary"><%= dto.getTargetCatName() %></span>&ensp;
+                            送信ユーザー&nbsp;<span class="badge rounded-pill text-bg-secondary"><%= dto.getTargetUserName() %></span>
                         </p>
                     </button>
                 </h2>
                 <!-- メッセージ内容コンテナ -->
-                <div id="reciever1" class="accordion-collapse collapse" data-bs-parent="#reciever">
+                <div id="reciever<%= i %>" class="accordion-collapse collapse" data-bs-parent="#reciever">
                     <div class="accordion-body p-3">
-                        メッセージの内容がここに表示されます。
+                        <%= dto.getMessage() %>
                         <!-- 返信ボタン -->
                         <div class="text-end mt-2">
                             <button type="submit" class="btn btn-sm" style="background-color:#E87B4C; color:#ffffff;"
@@ -168,32 +216,14 @@
                     </div>
                 </div>
             </div><!-- 受信メッセージループここまで -->
-
-            <!-- 受信メッセージ1件分　ここをループで回す -->
-            <div class="accordion-item">
-                <!-- メッセージヘッダー -->
-                <h2 class="accordion-header">
-                    <button class="p-2 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#reciever2" aria-expanded="false" aria-controls="reciever2">
-                        <p style="line-height: 150%; margin:0;">
-                            <small>2023/09/11</small><br>
-                            対象ねこ&nbsp;<span class="badge rounded-pill text-bg-secondary">pepe</span>&ensp;
-                            送信ユーザー&nbsp;<span class="badge rounded-pill text-bg-secondary">kato</span>
-                        </p>
-                    </button>
-                </h2>
-                <!-- メッセージ内容コンテナ -->
-                <div id="reciever2" class="accordion-collapse collapse" data-bs-parent="#reciever">
-                    <div class="accordion-body p-3">
-                        メッセージの内容がここに表示されます。
-                        <!-- 返信ボタン -->
-                        <div class="text-end mt-2">
-                            <button type="submit" class="btn btn-sm" style="background-color:#E87B4C; color:#ffffff;"
-                                onclick="">返信する
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- 受信メッセージループここまで -->
+            
+			<%	}
+			 } 
+			
+			 if (!receivedMessagesExist) { %>
+			    <p>受信メールはありません</p>
+			    
+			<% } %>
 
         </div><!-- 受信テーブルここまで -->
         

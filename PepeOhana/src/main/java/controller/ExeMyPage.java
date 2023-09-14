@@ -47,7 +47,6 @@ public class ExeMyPage extends HttpServlet {
 			response.sendRedirect("index.jsp");
 			
 		} else {
-			
 //			セッション情報から変数に代入
 			int id = userInfoOnSession.getID();
 			

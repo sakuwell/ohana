@@ -19,15 +19,15 @@ public class MyPageDao {
 
 	//接続先のデータベース
 	//※データベース名が「test_db」でない場合は該当の箇所を変更してください
-	String JDBC_URL    = "jdbc:mysql://localhost/keg_db?characterEncoding=UTF-8&useSSL=false";
+	String JDBC_URL    = "jdbc:mysql://192.168.1.35/pepe_db?characterEncoding=UTF-8&useSSL=false";
 
 	//接続するユーザー名
-	//※ユーザー名が「test_user」でない場合は該当の箇所を変更してください
-	String USER_ID     = "keg_user";
+	//※ユーザー名が「test_user」ない場合は該当の箇所を変更してください
+	String USER_ID     = "ip_user";
 
 	//接続するユーザーのパスワード
 	//※パスワードが「test_pass」でない場合は該当の箇所を変更してください
-	String USER_PASS   = "keg_pass";
+	String USER_PASS   = "23kkos";
 	
 	
 	
@@ -81,7 +81,7 @@ public class MyPageDao {
 					buf.append(" 	C.USERID AS OWNERID, ");
 					buf.append(" CASE ");
 					buf.append("	WHEN C.USERID = ? THEN C.CATID ELSE NULL ");
-					buf.append("	END AS CATID, ");
+					buf.append(" END AS CATID, ");
 					buf.append(" CASE ");
 					buf.append(" 	WHEN C.USERID = ? THEN C.CATNAME ELSE NULL ");
 					buf.append(" END AS CATNAME, ");
@@ -106,7 +106,7 @@ public class MyPageDao {
 					buf.append(" CASE ");
 					buf.append(" 	WHEN C.USERID = ? THEN C.REG_DATE ELSE NULL ");
 					buf.append(" END AS REG_DATE, ");
-					buf.append(" M.MESSAGEID, M.MESSAGE, M.S_DATE, ");
+					buf.append(" M.MESSAGEID, M.MESSAGE, M.SEND_DATE, ");
 					buf.append(" CASE ");
 					buf.append(" 	WHEN M.SENDERID = ? THEN 's' ");
 					buf.append(" 	WHEN M.RECIEVERID = ? THEN 'r' ");
@@ -117,15 +117,21 @@ public class MyPageDao {
 					buf.append(" END AS TARGETUSERID, ");
 					buf.append(" U.NAME AS TARGETUSERNAME, ");
 					buf.append(" M.CATID AS TARGETCATID, ");
-					buf.append(" (SELECT CATNAME FROM CATS WHERE CATID = M.CATID) AS TARGETCATNAME ");
-					buf.append("  	FROM CATS AS C ");
-					buf.append(" 	LEFT JOIN ");
-					buf.append(" 		MESSAGES AS M ON (C.CATID = M.CATID AND (M.SENDERID = ? OR M.RECIEVERID = ?)) ");
-					buf.append(" 	LEFT JOIN ");
-					buf.append(" 		USERS AS U ON U.USERID = CASE ");
-					buf.append(" 			WHEN M.SENDERID = ? THEN M.RECIEVERID ");
-					buf.append(" 			WHEN M.RECIEVERID = ? THEN M.SENDERID ");
-					buf.append(" 		END ");
+					buf.append(" (SELECT CATNAME FROM CATS_INFO WHERE CATID = M.CATID) AS TARGETCATNAME, ");
+					buf.append("  	CASE ");
+					buf.append("  	 	WHEN C.USERID = ? AND C.BIRTH IS NOT NULL THEN CONCAT( ");
+					buf.append("  	 		TIMESTAMPDIFF(YEAR, C.BIRTH, CURDATE()), '歳', ");
+					buf.append("  	 		TIMESTAMPDIFF(MONTH, C.BIRTH, CURDATE())%12, 'ヵ月') ");
+					buf.append("  	 	ELSE NULL");
+					buf.append("  	END AS AGE");
+					buf.append(" FROM CATS_INFO AS C ");
+					buf.append(" LEFT JOIN ");
+					buf.append(" 	MESSAGES AS M ON (C.CATID = M.CATID AND (M.SENDERID = ? OR M.RECIEVERID = ?)) ");
+					buf.append(" LEFT JOIN ");
+					buf.append(" 	USERS_INFO AS U ON U.USERID = CASE ");
+					buf.append(" 		WHEN M.SENDERID = ? THEN M.RECIEVERID ");
+					buf.append(" 		WHEN M.RECIEVERID = ? THEN M.SENDERID ");
+					buf.append(" 	END ");
 					buf.append(" WHERE ");
 					buf.append(" 	C.USERID = ? OR (M.SENDERID = ? OR M.RECIEVERID = ?); ");
      
@@ -134,28 +140,29 @@ public class MyPageDao {
 					ps = con.prepareStatement(buf.toString());
 
 					// PreparedStatementのSQL文をセットしたコード
-					for (int i = 1; i < 20; i++) {
+					for (int i = 1; i <= 21; i++) {
 					    ps.setInt(i, id);
 					}
 					rs = ps.executeQuery();
-
+					
 
 					//パラメータをセット
 					while (rs.next()) {
 						MyPageDto dto = new MyPageDto();
 						
 						dto.setOwnerId(rs.getInt("OWNERID"));
-						dto.setCatId(  rs.getInt("CATNAME"));
+						dto.setCatId(  rs.getInt("CATID"));
 						dto.setCatName(  rs.getString("CATNAME"));
 						dto.setKind( rs.getString( "KIND"  ));
 						dto.setBirth( rs.getDate( "BIRTH"  ));
+						dto.setAge( rs.getString( "AGE"  ));
 						dto.setGender( rs.getInt( "GENDER"  ));
 						dto.setWeight( rs.getFloat( "WEIGHT"  ));
 						dto.setImage( rs.getBytes( "IMAGE"  ));
 						dto.setComment( rs.getString( "COMMENT"  ));
 						dto.setRegDate( rs.getTimestamp( "REG_DATE"  ));
 						dto.setMessage( rs.getString( "MESSAGE"  ));
-						dto.setSentDate( rs.getTimestamp( "S_DATE"  ));
+						dto.setSentDate( rs.getTimestamp( "SEND_DATE"  ));
 						dto.setMessageType( rs.getString( "MESSAGETYPE"  ));
 						dto.setTargetUserId( rs.getInt( "TARGETUSERID"  ));
 						dto.setTargetUserName( rs.getString( "TARGETUSERNAME"  ));
@@ -163,6 +170,7 @@ public class MyPageDao {
 						dto.setTargetCatName( rs.getString( "TARGETCATNAME"  ));
 
 						dtoList.add(dto);
+						
 					}
 
 
