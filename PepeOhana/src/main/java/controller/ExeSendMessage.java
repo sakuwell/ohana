@@ -36,8 +36,8 @@ public class ExeSendMessage extends HttpServlet {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/html;charset=UTF-8");
-//		request.setCharacterEncoding("UTF-8");
-		System.out.println("Hello");
+		request.setCharacterEncoding("UTF-8");
+		
 		HttpSession session           = request.getSession();
 		UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
 		
@@ -57,8 +57,10 @@ public class ExeSendMessage extends HttpServlet {
 		SendMessageBL logic = new SendMessageBL();
 		boolean succesInsert = logic.executeInsertMessage(dto);
 		if (succesInsert) {
+			System.out.println("success");
 			response.sendRedirect("ExeMyPage.java");
 		} else {
+			System.out.println("success");
 			response.sendRedirect("Message.java");
 		}
 	}

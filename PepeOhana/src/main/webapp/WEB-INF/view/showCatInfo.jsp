@@ -131,7 +131,7 @@
                         <th><small>オーナーユーザー</small></th>
                         <td><%=ShowCatInfo.getUserName() %></td>
                         <th><small>登録日</small></th>
-                        <td><%=new SimpleDateFormat("yyyy年MM月dd日").format(ShowCatInfo.getUpDate()) %></td>
+                        <td><%=new SimpleDateFormat("yyyy年MM月dd日").format(ShowCatInfo.getUp_Date()) %></td>
 
                     </tr>
                     <tr>

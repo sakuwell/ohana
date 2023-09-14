@@ -225,7 +225,7 @@ public class CatsInfoDao {
 					dto.setWeight( rs.getFloat( "CI.WEIGHT"  ));
 					dto.setImage( rs.getBytes( "CI.IMAGE"  ));
 					dto.setComment( rs.getString( "CI.COMMENT"  ));
-					dto.setUpDate( rs.getTimestamp( "CI.UP_DATE"  ));
+					dto.setUp_Date( rs.getTimestamp( "CI.UP_DATE"  ));
 					dto.setUserName( rs.getString( "UI.NAME"  ));
 
 				}
