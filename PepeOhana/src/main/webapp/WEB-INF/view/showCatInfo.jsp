@@ -70,7 +70,7 @@
             </a>
             <div class="btn-group">
                 <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    userName
+                      <%=userName%>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="<%=request.getContextPath()%>/Mypage">マイページ</a></li>
@@ -120,7 +120,6 @@
             <div class="col-sm-4 col-md-3 mb-2">
             <%String webContentPath = getServletContext().getRealPath("/img");
 		             		  String imageFileName = webContentPath + "/cat_" + ShowCatInfo.getCatId() + ".jpg";
-		             		  System.out.println(imageFileName);
 		             		  FileOutputStream outputStream = new FileOutputStream(imageFileName);
 		             		  outputStream.write(ShowCatInfo.getImage());
 		             		  outputStream.close();%>
@@ -160,12 +159,24 @@
                     </tr>
                 </table>
             </div>
+            <% if (isLoggedIn) { %>
             <div class="text-center">
-	            <a href="<%=request.getContextPath()%>/Message?CATID=<%=ShowCatInfo.getCatId() %>&RECIEVERID=<%=ShowCatInfo.getId() %>&RECIEVERNAME=<%=ShowCatInfo.getUserName() %>&CATNAME=<%=ShowCatInfo.getCatName() %>" class="btn" style="width:200px; background-color:#E87B4C; color:#ffffff;">
+	            <a href="<%=request.getContextPath()%>/Message?CATID=<%=ShowCatInfo.getCatId() %>&RECIEVERID=<%=ShowCatInfo.getUserId() %>&RECIEVERNAME=<%=ShowCatInfo.getUserName() %>&CATNAME=<%=ShowCatInfo.getCatName() %>" class="btn" style="width:200px; background-color:#E87B4C; color:#ffffff;">
 	            	メッセージを送る
 	            </a>
             </div>
-            
+            <% } else { %>
+            <div class="text-center">
+	            <a href="<%=request.getContextPath()%>/Message" class="btn" style="width:200px; background-color:#E87B4C; color:#ffffff;">
+	            	メッセージを送る
+	            </a>
+	        </div>
+	        <div class="text-center mt-4">
+	            <a class="icon-link icon-link-hover" href="<%=request.getContextPath()%>/Message">
+            		メッセージを送る場合はログインしてください
+        		</a>
+            </div>
+            <%} %>
         </div><!-- ネコテーブルループここまで -->
         
     </div><!-- ネコ情報テーブルここまで -->
@@ -173,6 +184,7 @@
 
     <!-- フッター -->
     <!--  <div class="text-center mt-4">
+    
         <a class="icon-link icon-link-hover" href="#">
             ページトップへ
         </a>

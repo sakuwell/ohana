@@ -8,8 +8,8 @@ public class CatsInfoDto {
 			//フィールド
 			//----------------------------------------------------------------
 			private int		catId;         //ネコID
+			private int	userId;       //飼い主のID
 			private String	catName;       //ネコの名前
-			private String	userId;       //飼い主のID
 			private String	kind;		//ネコの種類
 			private Date	birth;		//ネコの誕生日
 			private String 	age;       //ネコの年齢
@@ -19,7 +19,6 @@ public class CatsInfoDto {
 			private String 	comment;	//飼い主のコメント
 			private Timestamp 	update;	//投稿日
 			private String	userName;	//飼い主の名前
-			private int		Id;	//飼い主の登録番号
 
 
 			//----------------------------------------------------------------
@@ -29,14 +28,15 @@ public class CatsInfoDto {
 			//getter/setter（対象フィールド：catId）
 			public int getCatId() { return catId; }
 			public void setCatId(int catId) { this.catId = catId; }
+			
+			//getter/setter（対象フィールド：userId）
+			public int getUserId() { return userId; }
+			public void setUserId(int userId) { this.userId = userId; }
 
 			//getter/setter（対象フィールド：catName）
 			public String getCatName() { return catName; }
 			public void setCatName(String catName) { this.catName = catName; }
-			
-			//getter/setter（対象フィールド：userId）
-			public String getUserId() { return userId; }
-			public void setUserId(String userId) { this.userId = userId; }
+		
 			
 			//getter/setter（対象フィールド：kind）
 			public String getKind() { return kind; }
@@ -73,9 +73,6 @@ public class CatsInfoDto {
 			public String getUserName() { return userName; }
 			public void setUserName(String userName) { this.userName = userName; }
 			
-			//getter/setter（対象フィールド：userId）
-			public int getId() { return Id; }
-			public void setId(int Id) { this.Id = Id; }
 		
 
 }

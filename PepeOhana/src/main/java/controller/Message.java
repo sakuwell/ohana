@@ -8,6 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import model.UsersInfoDto;
 
 /**
  * Servlet implementation class Message
@@ -30,8 +33,13 @@ public class Message extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
+		HttpSession session           = request.getSession();
+		UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
+		
+		if (userInfoOnSession != null) {
+			
 		response.setContentType("text/html;charset=UTF-8");
-		System.out.println("Hello");
+		
 		int catId = Integer.parseInt(request.getParameter("CATID")); //リクエストパラメータ（CATID)
 		int recieverId = Integer.parseInt(request.getParameter("RECIEVERID")); //リクエストパラメータ（RECIEVERID)
 		String recieverName = request.getParameter("RECIEVERNAME"); //リクエストパラメータ（RECIEVERID)
@@ -41,9 +49,13 @@ public class Message extends HttpServlet {
 		request.setAttribute("recieverId",recieverId );
 		request.setAttribute("recieverName",recieverName );
 		request.setAttribute("catName",catName );
+		
 		RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/message.jsp");
 		dispatch.forward(request, response);
 		
+		} else {
+			response.sendRedirect(request.getContextPath()+"/Login.jsp");
+		}
 	}
 
 	/**

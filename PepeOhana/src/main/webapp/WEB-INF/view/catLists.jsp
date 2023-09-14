@@ -52,7 +52,7 @@
             </a>
             <div class="btn-group">
                 <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    userName
+                    <%=userName%>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="<%=request.getContextPath()%>/Mypage">マイページ</a></li>
@@ -153,7 +153,6 @@
                 <div class="card mb-3">
                 <%String webContentPath = getServletContext().getRealPath("/img");
 		             		  String imageFileName = webContentPath + "/cat_" + dto.getCatId() + ".jpg";
-		             		  System.out.println(imageFileName);
 		             		  FileOutputStream outputStream = new FileOutputStream(imageFileName);
 		             		  outputStream.write(dto.getImage());
 		             		  outputStream.close();%>

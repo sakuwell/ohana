@@ -19,15 +19,16 @@ public class CatsInfoDao {
 
 		//接続先のデータベース
 		//※データベース名が「test_db」でない場合は該当の箇所を変更してください
-		String JDBC_URL    = "jdbc:mysql://localhost/keg_db?characterEncoding=UTF-8&useSSL=false";
-
+//		String JDBC_URL    = "jdbc:mysql://localhost/keg_db?characterEncoding=UTF-8&useSSL=false";
+		String JDBC_URL    = "jdbc:mysql://192.168.1.35/pepe_db?characterEncoding=UTF-8&useSSL=false";
 		//接続するユーザー名
 		//※ユーザー名が「test_user」でない場合は該当の箇所を変更してください
-		String USER_ID     = "keg_user";
-
+//		String USER_ID     = "keg_user";
+		String USER_ID     = "ip_user";
 		//接続するユーザーのパスワード
 		//※パスワードが「test_pass」でない場合は該当の箇所を変更してください
-		String USER_PASS   = "keg_pass";
+//		String USER_PASS   = "keg_pass";
+		String USER_PASS   = "23kkos";
 		
 		
 		//----------------------------------------------------------------
@@ -188,8 +189,8 @@ public class CatsInfoDao {
 				StringBuffer buf = new StringBuffer();
 				buf.append("SELECT                ");
 				buf.append("  CI.CATID,               ");
-				buf.append("  CI.CATNAME,               ");
 				buf.append("  CI.USERID,               ");
+				buf.append("  CI.CATNAME,               ");
 				buf.append("  CI.KIND,                ");
 				buf.append("  CI.BIRTH,                ");
 				buf.append("  CONCAT(TIMESTAMPDIFF(YEAR,CI.BIRTH,CURTIME()),'歳',MOD(TIMESTAMPDIFF(MONTH,CI.BIRTH,CURTIME()),12),'ヶ月') AS AGE,                ");
@@ -198,15 +199,14 @@ public class CatsInfoDao {
 				buf.append("  CI.IMAGE,            ");
 				buf.append("  CI.COMMENT,                  ");
 				buf.append("  CI.UP_DATE,                  ");
-				buf.append("  UI.NAME  ,                ");
-				buf.append("  UI.ID                  ");
+				buf.append("  UI.NAME                  ");
 				buf.append("FROM                  ");
 				buf.append("  CATS_INFO AS CI              ");
 				buf.append("  INNER JOIN               ");
-				buf.append("  USER_INFO AS UI            ");
-				buf.append("  ON CI.USERID=UI.USERID              ");
-				buf.append("  WHERE  CI.CATID =    ?    ");
-				buf.append("  AND  CI.DEL =   0  ;");
+				buf.append("  USERS_INFO AS UI            ");
+				buf.append("  ON CI.USERID=UI.ID              ");
+				buf.append("  WHERE  CI.CATID =    ?    ;");
+//				buf.append("  AND  CI.DEL =   0  ;");
 				
 				ps = con.prepareStatement(buf.toString());
 				ps.setInt(1, catId);
@@ -216,8 +216,8 @@ public class CatsInfoDao {
 				//ResultSetオブジェクトからDTOリストに格納
 				while (rs.next()) {
 					dto.setCatId(rs.getInt("CI.CATID"));
+					dto.setUserId(  rs.getInt(    "CI.USERID"   ));
 					dto.setCatName(  rs.getString(    "CI.CATNAME"   ));
-					dto.setUserId(  rs.getString(    "CI.USERID"   ));
 					dto.setKind(  rs.getString(    "CI.KIND"   ));
 					dto.setBirth(  rs.getDate(    "CI.BIRTH"   ));
 					dto.setAge(  rs.getString(    "AGE"   ));
@@ -227,7 +227,6 @@ public class CatsInfoDao {
 					dto.setComment( rs.getString( "CI.COMMENT"  ));
 					dto.setUpDate( rs.getTimestamp( "CI.UP_DATE"  ));
 					dto.setUserName( rs.getString( "UI.NAME"  ));
-					dto.setId( rs.getInt( "UI.ID"  ));
 
 				}
 

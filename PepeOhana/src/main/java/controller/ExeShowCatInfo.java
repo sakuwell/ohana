@@ -35,7 +35,7 @@ public class ExeShowCatInfo extends HttpServlet {
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/html;charset=UTF-8");
 		String catId = request.getParameter("CATID"); //リクエストパラメータ（CAT_ID)
-		System.out.println(catId);
+//		System.out.println(catId);
 
 		ShowCatInfoBL logic = new ShowCatInfoBL();
 		CatsInfoDto ShowCatInfo = logic.executeSelectShowCatInfo(Integer.parseInt(catId));

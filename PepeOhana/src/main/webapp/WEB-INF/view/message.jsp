@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="model.UsersInfoDto" %>
-<%@ page import="controller.Message" %>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -28,10 +27,11 @@
 
 <%
     // セッションを取得
+    String userName="";
 	UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
     if (userInfoOnSession != null) {
 		String userId = userInfoOnSession.getUserId();
-		String userName = userInfoOnSession.getUserName();
+		userName = userInfoOnSession.getUserName();
     }
 %>
 
@@ -58,7 +58,7 @@
             </a>
             <div class="btn-group">
                 <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    userName
+                    <%=userName%>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="<%=request.getContextPath()%>/Mypage">マイページ</a></li>
