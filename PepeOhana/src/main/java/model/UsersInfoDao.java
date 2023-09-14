@@ -423,9 +423,9 @@ public class UsersInfoDao {
 
 				//パラメータをセット
 				ps.setInt(1, dto.getID());
-				ps.setString(2, dto.getUserId()              ); //第1パラメータ：更新データ（ユーザーID）
-				ps.setString(3, dto.getUserName()               ); //第2パラメータ：更新データ（名前）
-				ps.setString(4, dto.getPassWord()               ); //第3パラメータ：更新データ
+				ps.setString(2, dto.getUserId()              ); //更新データ（ユーザーID）
+				ps.setString(3, dto.getUserName()               ); //更新データ（名前）
+				ps.setString(4, dto.getPassWord()               ); //
 				
 
 				

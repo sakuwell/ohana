@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="model.UsersInfoDto" %>
+<% UsersInfoDto user = (UsersInfoDto)request.getAttribute("user"); %>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -31,7 +32,7 @@
     // セッションを取得
 	UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
     if (userInfoOnSession != null) {
-		String userId = userInfoOnSession.getUserId();
+    	String userId = userInfoOnSession.getUserId();
 		String userName = userInfoOnSession.getUserName();
     }
 %>
@@ -80,11 +81,11 @@
             <p class="text-danger">エラーメッセージ</p>
             <div class="mb-3">
                 <label for="" class="form-label">ユーザーID　<span class="badge text-bg-danger">必須</span></label>
-                <input type="text" class="form-control" name="userId" id="inputID" value="">
+                <input type="text" class="form-control" name="userId" id="inputID" value="<%=user.getUserId() %>">
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">ユーザー名　<span class="badge text-bg-danger">必須</span></label>
-                <input type="text" class="form-control" name="userName" id="inputName" value="">
+                <input type="text" class="form-control" name="userName" id="inputName" value="<%=user.getUserName() %>">
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">パスワード　<span class="badge text-bg-danger">必須</span></label>
