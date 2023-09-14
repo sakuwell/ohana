@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -50,6 +51,7 @@ public class ExeSendMessage extends HttpServlet {
 		dto.setCatId(catId);
 		dto.setRecieverId(recieverId);
 		dto.setMessage(message);
+		dto.setSendDate(new Timestamp(System.currentTimeMillis()));
 		
 
 		SendMessageBL logic = new SendMessageBL();
@@ -57,7 +59,7 @@ public class ExeSendMessage extends HttpServlet {
 		if (succesInsert) {
 			response.sendRedirect("ExeMyPage.java");
 		} else {
-			response.sendRedirect("html/senderror.html");
+			response.sendRedirect("Message.java");
 		}
 	}
 

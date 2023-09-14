@@ -91,7 +91,7 @@ public class MessagesDao {
 				buf.append("  ?,                  ");
 				buf.append("  ?,                  ");
 				buf.append("  ?,                  ");
-				buf.append("  NOW()                  ");
+				buf.append("  ?                  ");
 				buf.append(")                     ");
 
 
@@ -100,10 +100,11 @@ public class MessagesDao {
 				ps = con.prepareStatement(buf.toString());
 
 				//パラメータをセット
-				ps.setInt(    1, dto.getSenderId()              ); //第1パラメータ：更新データ（名前）
-				ps.setInt(       2, dto.getCatId()               ); //第2パラメータ：更新データ（年齢）
-				ps.setInt(       3, dto.getRecieverId()               ); //第3パラメータ：更新データ（性別）
-				ps.setString(    4, dto.getMessage()              ); //第4パラメータ：更新データ（性別）
+				ps.setInt(    1, dto.getSenderId()              ); //第1パラメータ：更新データ（送信者ID）
+				ps.setInt(       2, dto.getCatId()               ); //第2パラメータ：更新データ（ネコID）
+				ps.setInt(       3, dto.getRecieverId()               ); //第3パラメータ：更新データ（受信者ID）
+				ps.setString(    4, dto.getMessage()              ); //第4パラメータ：更新データ（文章）
+				ps.setTimestamp(    5, dto.getSendDate()              ); //第5パラメータ：更新データ（メッセージ送信日）
 
 				//SQL文の実行
 				ps.executeUpdate();
