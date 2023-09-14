@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -10,8 +11,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import model.CatsInfoDto;
 import model.UsersInfoDto;
 
 /**
@@ -50,6 +53,8 @@ public class ExeRegistCat extends HttpServlet {
 //		リクエスト（受信データ）の文字コードを設定
 			request.setCharacterEncoding("UTF-8");
 			
+			HttpSession session           = request.getSession();
+			UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
 		
 //			リクエストパラメータを取得
 
@@ -66,7 +71,7 @@ public class ExeRegistCat extends HttpServlet {
 			java.sql.Date sqlDate = java.sql.Date.valueOf(birthDate);
 						
 //			(Birth)
-			int catWeight = Integer.parseInt(request.getParameter("WEIGHT"));
+			float catWeight = Float.parseFloat(request.getParameter("WEIGHT"));
 //			(Weight)
 			int catGender = Integer.parseInt(request.getParameter("GENDER"));
 //			(Gender)
@@ -74,10 +79,12 @@ public class ExeRegistCat extends HttpServlet {
 //			画像ファイルの受け取り方
 			Part filePart = request.getPart("IMAGE");
 			InputStream fileContent = filePart.getInputStream();
-			byte[] image = fileContent.readAllBytes();
+			byte[] catImage = fileContent.readAllBytes();
 			
 //			
-			String catComment = request.getParameter("COMMENT");
+			String catComment = request.getParameter("COMMENT");			
+			int userId = userInfoOnSession.getID(); 
+			
 //			(COMMENT)	
 			
 			System.out.println(sqlDate);
@@ -85,15 +92,17 @@ public class ExeRegistCat extends HttpServlet {
 			
 			
 			
-			
-			
-			
-			
 			//ユーザーデータ（UserInfoDto型）の作成
-			UsersInfoDto dto = new UsersInfoDto();
-			dto.setUserId( userId );
-			dto.setUserName( userName );
-			dto.setPassWord( userPass );
+			CatsInfoDto dto = new CatsInfoDto();
+			dto.setCatName( catName );
+			dto.setKind( catKind );
+			dto.setBirth( sqlDate );
+			dto.setGender( catGender );
+			dto.setWeight( catWeight );
+			dto.setImage( catImage );
+			dto.setComment( catComment );
+			dto.setReg_Date( new Timestamp(System.currentTimeMillis()) ); 
+			
 		
 		
 		
