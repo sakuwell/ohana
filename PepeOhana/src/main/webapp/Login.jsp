@@ -53,7 +53,7 @@
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
           <a class="navbar-brand" href="index.jsp">
-            <img src="../images/pepe_logo.png" alt="ページロゴ" width="auto" height="60">
+            <img src="images/pepe_logo.png" alt="ページロゴ" width="auto" height="60">
           </a>
           <div class="btn-group">
             <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
