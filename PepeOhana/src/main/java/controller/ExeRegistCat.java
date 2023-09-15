@@ -63,25 +63,63 @@ public class ExeRegistCat extends HttpServlet {
 			String catName = request.getParameter("CATNAME");
 //			(CATNAME)
 			String catKind = request.getParameter("KIND");
-//			(ID--Users_Info)
+//			(CATKIND)
+			
+			System.out.println(catName);
+			
 			String catBirth = request.getParameter("BIRTH");
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			// String を LocalDate に変換
-			LocalDate birthDate = LocalDate.parse(catBirth, formatter);
-			// LocalDate を java.sql.Date に変換
-			java.sql.Date sqlDate = java.sql.Date.valueOf(birthDate);
+			java.sql.Date sqlDate = null; 
+//			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+//			// String を LocalDate に変換
+//			LocalDate birthDate = LocalDate.parse(catBirth, formatter);
+//			// LocalDate を java.sql.Date に変換
+//			java.sql.Date sqlDate = java.sql.Date.valueOf(birthDate);
+			
+			if (catBirth != null) {
+			    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+			    // String を LocalDate に変換
+			    LocalDate birthDate = LocalDate.parse(catBirth, formatter);
+			    // LocalDate を java.sql.Date に変換
+			   sqlDate = java.sql.Date.valueOf(birthDate);
+			} else {
+			    // catBirth が null の場合のエラー処理を行うか、適切なデフォルト値を設定します。
+				System.out.println("誕生日が受け取れません");
+			}
+			
 						
 //			(Birth)
-			float catWeight = Float.parseFloat(request.getParameter("WEIGHT"));
+			
+			String weightParameter = request.getParameter("WEIGHT");
+			float catWeight = 0.0f; // デフォルト値を設定
+
+			if (weightParameter != null && !weightParameter.isEmpty()) {
+			    catWeight = Float.parseFloat(weightParameter);
+			} else {
+			    // エラーメッセージまたはデフォルト値を設定
+			    System.out.println("体重が不正です");
+			}
+			
+			
+			
+//			float catWeight = Float.parseFloat(request.getParameter("WEIGHT"));
 //			(Weight)
 			int catGender = Integer.parseInt(request.getParameter("GENDER"));
 //			(Gender)
 
-//			画像ファイルの受け取り方
-			Part filePart = request.getPart("IMAGE");
-			InputStream fileContent = filePart.getInputStream();
-			byte[] catImage = fileContent.readAllBytes();
+////			画像ファイルの受け取り方
+//			Part filePart = request.getPart("IMAGE");
+//			InputStream fileContent = filePart.getInputStream();
+//			byte[] catImage = fileContent.readAllBytes();
 			
+			// 画像ファイルの受け取り
+			Part filePart = request.getPart("IMAGE");
+			byte[] catImage = null;
+
+			if (filePart != null) {
+			    InputStream fileContent = filePart.getInputStream();
+			    catImage = fileContent.readAllBytes();
+			}			
+
 //			
 			String catComment = request.getParameter("COMMENT");			
 			int userId = userInfoOnSession.getID(); 
@@ -90,12 +128,13 @@ public class ExeRegistCat extends HttpServlet {
 			
 			System.out.println(sqlDate);
 			System.out.println(catName);
+			System.out.println(catBirth);
 			
 			int ownerId = userInfoOnSession.getID();
 			
 			
 			
-			//ユーザーデータ（UserInfoDto型）の作成
+			//ユーザーデータ（CatInfoDto型）の作成
 			CatsInfoDto dto = new CatsInfoDto();
 			dto.setId(ownerId);
 			dto.setCatName( catName );
@@ -116,7 +155,19 @@ public class ExeRegistCat extends HttpServlet {
 			boolean succesInsert = logic.exeInsertCatInfo(dto);
 			
 			
+			
+			if (succesInsert) {
+//				DBに成功した場合、ログイン後のtop画面(top.jsp)を表示する
+				response.sendRedirect("/WEB-INF/view/index.jsp");
+			} else {
+//				DBに失敗した場合、エラー画面(registusererror.html)を表示する
+				response.sendRedirect("htmls/registusererror.html");
+			}
 		
+		
+		
+		
+	}	
 		
 		
 		
@@ -124,4 +175,3 @@ public class ExeRegistCat extends HttpServlet {
 		
 	}
 
-}
