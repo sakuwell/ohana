@@ -201,7 +201,7 @@ public class UsersInfoDao {
 				StringBuffer buf = new StringBuffer();
 				buf.append(" SELECT             ");
 				buf.append("   ID,       ");
-//				buf.append("   USERID,       ");
+				buf.append("   USERID,       ");
 				buf.append("   NAME,       ");
 				buf.append("   PASSWORD         ");
 				buf.append(" FROM               ");
@@ -219,6 +219,7 @@ public class UsersInfoDao {
 				
 				if (rs.next()) {
 					dto.setID(rs.getInt("ID"));
+					dto.setUserId(rs.getString("USERID"));
 					dto.setUserName(rs.getString("NAME"));
 					dto.setPassWord(rs.getString("PASSWORD"));
 					
@@ -410,11 +411,11 @@ public class UsersInfoDao {
 
 				//発行するSQL文の生成（INSERT）
 				StringBuffer buf = new StringBuffer();
-				buf.append("UPDATE USERSINFO SET   ");
-				buf.append("  ID = ?,               ");
+				buf.append("UPDATE USERS_INFO SET   ");
 				buf.append("  USERID = ?,               ");
 				buf.append("  NAME = ?,                ");
 				buf.append("  PASSWORD = ?               ");
+				buf.append("  WHERE ID = ?               ");
 				
 //				System.out.println();
 
@@ -422,10 +423,11 @@ public class UsersInfoDao {
 				ps = con.prepareStatement(buf.toString());
 
 				//パラメータをセット
-				ps.setInt(1, dto.getID());
-				ps.setString(2, dto.getUserId()              ); //更新データ（ユーザーID）
-				ps.setString(3, dto.getUserName()               ); //更新データ（名前）
-				ps.setString(4, dto.getPassWord()               ); //
+				
+				ps.setString(1, dto.getUserId()              ); //更新データ（ユーザーID）
+				ps.setString(2, dto.getUserName()               ); //更新データ（名前）
+				ps.setString(3, dto.getPassWord()               ); //
+				ps.setInt(4, dto.getID()               ); //
 				
 
 				

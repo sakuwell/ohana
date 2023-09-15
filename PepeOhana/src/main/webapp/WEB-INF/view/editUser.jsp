@@ -32,6 +32,7 @@
     // セッションを取得
 	UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");  
 	int id = userInfoOnSession.getID();
+	String userId = userInfoOnSession.getUserId();
 	String userName = userInfoOnSession.getUserName();
 %>
 
@@ -78,8 +79,11 @@
             </div>
             <p class="text-danger">エラーメッセージ</p>
             <div class="mb-3">
+                <input type="hidden" class="form-control" name="ID" value="<%= id %>">
+            </div>
+            <div class="mb-3">
                 <label for="" class="form-label">ユーザーID　<span class="badge text-bg-danger">必須</span></label>
-                <input type="text" class="form-control" name="userId" id="inputID" value="<%= id %>">
+                <input type="text" class="form-control" name="userId" id="inputID" value="<%= userId %>">
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">ユーザー名　<span class="badge text-bg-danger">必須</span></label>
