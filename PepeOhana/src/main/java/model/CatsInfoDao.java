@@ -268,4 +268,165 @@ public class CatsInfoDao {
 			//抽出結果を返す
 			return dto;
 		}
+		
+
+		/**----------------------------------------------------------------------*
+		 *■doInsertメソッド
+		 *概要　：「cats_info」テーブルに対象のネコちゃん情報を挿入する
+		 *引数　：対象のネコちゃん情報（CatsInfoDto型）
+		 *戻り値：実行結果（真：成功、偽：例外発生）
+		 *----------------------------------------------------------------------**/
+		
+		public boolean doInsert(CatsInfoDto dto) {
+
+			//-------------------------------------------
+			//JDBCドライバのロード
+			//-------------------------------------------
+			try {
+				Class.forName(DRIVER_NAME);       //JDBCドライバをロード＆接続先として指定
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+
+			//-------------------------------------------
+			//SQL発行
+			//-------------------------------------------
+			
+			//JDBCの接続に使用するオブジェクトを宣言
+			//※finallyブロックでも扱うためtryブロック内で宣言してはいけないことに注意
+			Connection        con = null ;   // Connection（DB接続情報）格納用変数
+			PreparedStatement ps  = null ;   // PreparedStatement（SQL発行用オブジェクト）格納用変数
+
+			//実行結果（真：成功、偽：例外発生）格納用変数
+			//※最終的にreturnするため、tryブロック内で宣言してはいけないことに注意
+			boolean isSuccess = true ;
+
+			try {
+
+				//-------------------------------------------
+				//接続の確立（Connectionオブジェクトの取得）
+				//-------------------------------------------
+				con = DriverManager.getConnection(JDBC_URL, USER_ID, USER_PASS);
+
+				//-------------------------------------------
+				//トランザクションの開始
+				//-------------------------------------------
+				//オートコミットをオフにする（トランザクション開始）
+				con.setAutoCommit(false);
+
+				//-------------------------------------------
+				//SQL文の送信 ＆ 結果の取得
+				//-------------------------------------------
+
+				//発行するSQL文の生成（INSERT）
+				StringBuffer buf = new StringBuffer();
+				buf.append("INSERT INTO CATS_INFO (  ");
+//				buf.append("  ID,               ");
+				buf.append("  OWNERID,               ");
+				buf.append("  CATNAME,                ");
+				buf.append("  CATKIND,                ");
+				buf.append("  SQLDATE,                ");
+				buf.append("  CATGENDERE,                ");
+				buf.append("  CATWEIGHT,                ");
+				buf.append("  CATIMAGE,                ");
+				buf.append("  CATCOMMENT,                ");
+				buf.append("  NEW TIMSTAMP(SYSTEM.CURRENTTIMEMILLIS())                ");
+				buf.append(") VALUES (            ");
+//				buf.append("  default                  ");
+				buf.append("  ?,                  ");
+				buf.append("  ?,                  ");
+				buf.append("  ?,                  ");
+				buf.append("  ?,                  ");
+				buf.append("  ?,                  ");
+				buf.append("  ?,                  ");
+				buf.append("  ?,                  ");
+				buf.append("  ?,                  ");
+				buf.append("  ?                 ");
+				buf.append(")                     ");
+				
+				System.out.println("CATKIND");
+				System.out.println("CATWEIGHT");
+				System.out.println("SQLDATE");
+
+				//PreparedStatementオブジェクトを生成＆発行するSQLをセット
+				ps = con.prepareStatement(buf.toString());
+
+				//パラメータをセット
+				ps.setInt(    1, dto.getId()              ); //第1パラメータ：追加データ（ユーザーID）
+				ps.setString(       2, dto.getCatName()               ); //第2パラメータ：追加データ（名前）
+				ps.setString(       3, dto.getKind()               ); //第3パラメータ：追加データ（種類）
+				ps.setDate(       4, dto.getBirth()               ); //第4パラメータ：追加データ（誕生日）
+				ps.setInt(       5, dto.getGender()               ); //第5パラメータ：追加データ（性別）
+				ps.setFloat(       6, dto.getWeight()               ); //第6パラメータ：追加データ（体重）
+				ps.setBytes(       7, dto.getImage()               ); //第7パラメータ：追加データ（写真）
+				ps.setString(       8, dto.getComment()               ); //第8パラメータ：追加データ（コメント）
+				ps.setTimestamp(       9, dto.getReg_Date()               ); //第9パラメータ：追加データ（追加日）
+
+//			System.out.println(dto.getAge());
+				System.out.println(dto.getId());
+				System.out.println(dto.getGender());
+				System.out.println(dto.getReg_Date());
+				
+				
+				//SQL文の実行
+				ps.execute();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+
+				//実行結果を例外発生として更新
+				isSuccess = false ;
+
+			} finally {
+				//-------------------------------------------
+				//トランザクションの終了
+				//-------------------------------------------
+				if(isSuccess){
+					//明示的にコミットを実施
+					try {
+						con.commit();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+
+				}else{
+					//明示的にロールバックを実施
+					try {
+						con.rollback();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+
+				//-------------------------------------------
+				//接続の解除
+				//-------------------------------------------
+
+				//PreparedStatementオブジェクトの接続解除
+				if (ps != null) {    //接続が確認できている場合のみ実施
+					try {
+						ps.close();  //接続の解除
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+
+				//Connectionオブジェクトの接続解除
+				if (con != null) {    //接続が確認できている場合のみ実施
+					try {
+						con.close();  //接続の解除
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+
+			}
+
+			//実行結果を返す
+			return isSuccess;
+		}
+		
+		
+		
+		
 }
