@@ -67,7 +67,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		
 		if (succesUpdate) {
 			
-			response.sendRedirect("/WEB-INF/view/mypage.jsp");
+			response.sendRedirect("ExeMyPage");
 			
 		} else {
 			response.sendRedirect("html/EditUserError.html");
