@@ -70,7 +70,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			response.sendRedirect("/WEB-INF/view/mypage.jsp");
 			
 		} else {
-			response.sendRedirect("html/error.html");
+			response.sendRedirect("html/EditUserError.html");
 			
 		}
 	}

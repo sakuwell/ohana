@@ -10,6 +10,6 @@
 <body>
 	<h1>ログアウト完了画面</h1>
 	<p>ログアウトしました。</p>
-	<a herf="index">フォーム画面へ</a>
+	<a herf="index.jsp">フォーム画面へ</a>
 </body>
 </html>

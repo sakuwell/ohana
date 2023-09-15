@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.SelectUserBL;
 import model.UsersInfoDto;
 
 /**
@@ -38,23 +37,23 @@ public class EditUser extends HttpServlet {
 		
 		if (userInfoOnSession != null) {
 			
-			String id = request.getParameter("ID");
+//			String id = request.getParameter("ID");
 //			String userId   = request.getParameter("USERID");      
 //			String passWord = request.getParameter("PASS");
 			
-			SelectUserBL logic = new SelectUserBL();
-			
-			UsersInfoDto updateUser = logic.executeSelectUserInfo(Integer.parseInt(id)); 
-			
-			
-			
-			request.setAttribute("user" , updateUser );
+//			SelectUserBL logic = new SelectUserBL();
+//			
+//			UsersInfoDto updateUser = logic.executeSelectUserInfo(Integer.parseInt(id)); 
+//			
+//			
+//			
+//			request.setAttribute("user" , updateUser );
 			
 			RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/editUser.jsp");
 			dispatch.forward(request, response);
 			
 		}else{
-			response.sendRedirect("/WEB-INF/view/error.html");
+			response.sendRedirect("/WEB-INF/view/index.jsp");
 			
 			
 		}
