@@ -119,8 +119,8 @@
 		%>
 		<!-- 画像保存用 -->
         <%
-		        	String webContentPath = getServletContext().getRealPath("/img");
-			   		String imageFileName = webContentPath + "/cat_" + dto.getCatId() + ".jpg";
+		        	String webContentPath = getServletContext().getRealPath("/images");
+			   		String imageFileName = webContentPath + "/img_" + dto.getCatId() + ".jpg";
 			   		System.out.println(imageFileName);
 			   		FileOutputStream outputStream = new FileOutputStream(imageFileName);
 			   		outputStream.write(dto.getImage());

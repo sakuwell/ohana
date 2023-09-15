@@ -109,7 +109,7 @@
            <!-- カードのコンテンツ1 -->
            <div class="col-6 col-md-4 col-lg-3">
                 <div class="card mb-3">
-                	<img src="images/cat_2.jpg" style="height:180px; width: 100%; object-fit: cover;" class="card-img-top" alt="猫画像">
+                	<img src="images/cat_1.jpg" style="height:180px; width: 100%; object-fit: cover;" class="card-img-top" alt="猫画像">
                     <div class="card-body">
                         <h5 class="card-title text-center border-bottom pb-2">pepe<small> ちゃん</small></h5>
                         <p class="card-text text-right">描種 : アメリカンショートヘアー</p>
@@ -133,7 +133,7 @@
            <!-- カードのコンテンツ3 -->
            <div class="col-6 col-md-4 col-lg-3">
                 <div class="card mb-3">
-                	<img src="images/cat_2.jpg" style="height:180px; width: 100%; object-fit: cover;" class="card-img-top" alt="猫画像">
+                	<img src="images/cat_3.jpg" style="height:180px; width: 100%; object-fit: cover;" class="card-img-top" alt="猫画像">
                     <div class="card-body">
                         <h5 class="card-title text-center border-bottom pb-2">pepe<small> ちゃん</small></h5>
                         <p class="card-text text-right">描種 : アメリカンショートヘアー</p>
@@ -145,7 +145,7 @@
            <!-- カードのコンテンツ4 -->
            <div class="col-6 col-md-4 col-lg-3">
                 <div class="card mb-3">
-                	<img src="images/cat_2.jpg" style="height:180px; width: 100%; object-fit: cover;" class="card-img-top" alt="猫画像">
+                	<img src="images/cat_4.jpg" style="height:180px; width: 100%; object-fit: cover;" class="card-img-top" alt="猫画像">
                      <div class="card-body">
                          <h5 class="card-title text-center border-bottom pb-2">pepe<small> ちゃん</small></h5>
                          <p class="card-text text-right">描種 : アメリカンショートヘアー</p>
