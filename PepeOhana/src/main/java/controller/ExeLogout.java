@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,9 +33,6 @@ public class ExeLogout extends HttpServlet {
 		//レスポンス（出力データ）の文字コードを設定
 		response.setContentType("text/html;charset=UTF-8");
 		
-		//出力用のストリームの取得
-		PrintWriter out = response.getWriter();
-		
 		//セッションからユーザーデータを取得
 		HttpSession session           = request.getSession();
 		UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
@@ -45,18 +41,9 @@ public class ExeLogout extends HttpServlet {
 			
 			//ログアウトに伴いセッション情報を破棄
 			session.invalidate();
+			response.sendRedirect("html/logout.html");
 			
-			//HTML文書（ログアウト完了画面）の出力
-			out.println("<html>                                           ");
-			out.println("<head>                                           ");
-			out.println("  <title>ログアウト完了</title>                  ");
-			out.println("</head>                                          ");
-			out.println("<body>                                           ");
-			out.println(" <h1>(ログアウト完了画面）</h1> ");
-			out.println("  <p>ログアウトしました。</p>                    ");
-			out.println("  <a href=\"index\">トップ画面に戻る</a>       ");
-			out.println("</body>                                          ");
-			out.println("</html>                                          ");
+
 			
 		} else {
 			//未ログイン：ログイン画面へ転送
