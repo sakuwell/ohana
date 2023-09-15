@@ -136,7 +136,8 @@ public class MyPageDao {
 					buf.append("        WHEN M.RECIEVERID = ? THEN M.SENDERID ");
 					buf.append("    END ");
 					buf.append(" WHERE ");
-					buf.append(" 	C.USERID = ? OR (M.SENDERID = ? OR M.RECIEVERID = ?); ");
+					buf.append(" 	C.USERID = ? OR (M.SENDERID = ? OR M.RECIEVERID = ?) ");
+					buf.append(" ORDER BY SEND_DATE DESC	; ");
      
 
 					//PreparedStatement（SQL発行用オブジェクト）を生成＆発行するSQLをセット
