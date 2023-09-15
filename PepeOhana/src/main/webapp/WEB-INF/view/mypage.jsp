@@ -88,7 +88,7 @@
             </tr>
         </table>
         <div style="text-align: center;">
-            <a href="<%= request.getContextPath() %>/EditUser?ID=<%= id %>">
+            <a href="<%= request.getContextPath() %>/EditUser">
             	<button class="btn btn-sm" style=" width:120px; background-color:#E87B4C; color:#ffffff;"
                 	onclick="">編集する
             	</button>
@@ -109,12 +109,13 @@
 		<!-- ネコ情報のループ -->
 		<% int oldCatId = 0; %>	
 		<% boolean catsFound = false; %>
-		<% for (int i = 0; i < list.size(); i++) {
-		   	MyPageDto dto = list.get(i);
-		    if (dto.getCatId() != 0) { // ねこ情報をチェック
-		        int newCatId = dto.getCatId();
-		        if (newCatId != oldCatId) {
-		            catsFound = true;
+		<% if (!list.isEmpty()) { %>
+		<% 		for (int i = 0; i < list.size(); i++) {
+		   			MyPageDto dto = list.get(i);
+		    	if (dto.getCatId() != 0) { // ねこ情報をチェック
+		        	int newCatId = dto.getCatId();
+		        	if (newCatId != oldCatId) {
+		            	catsFound = true;
 		%>
 		<!-- 画像保存用 -->
         <%
@@ -162,15 +163,18 @@
                 </table>
             </div>
             <div style="text-align: center;">
-        		<button type="submit" class="btn btn-sm" style=" width:120px; background-color:#E87B4C; color:#ffffff;"
-            		onclick="">編集/削除する
-        		</button>
+            <a href="<%= request.getContextPath() %>/EditCat?ID=<%= dto.getCatId() %>">
+            	<button class="btn btn-sm" style=" width:120px; background-color:#E87B4C; color:#ffffff;"
+                	onclick="">編集・削除する
+            	</button>
+            </a>
        		</div>
 		
-		<%          oldCatId = dto.getCatId();
-		        }
-		    } 
-		} %>
+		<%          	oldCatId = dto.getCatId();
+		        	}
+		    	} 
+			} 
+		}%>
 		<% if (!catsFound) { %>
 		    <p>募集中のねこ情報はありません</p>
 		<% } %>
@@ -196,11 +200,12 @@
         
 	        <!-- 受信メッセージループ -->
 	        <% boolean receivedMessagesExist = false; %>
-			<% for (int i = 0; i < list.size(); i++) {
-	    		MyPageDto dto = list.get(i);
-	    		String messageType = dto.getMessageType();
-	    		if ("r".equals(messageType)) { // Check if messageType is "r"
-	        		receivedMessagesExist = true;
+       		<% if (!list.isEmpty()) { %>
+			<% 		for (int i = 0; i < list.size(); i++) {
+	    				MyPageDto dto = list.get(i);
+	    				String messageType = dto.getMessageType();
+	    				if ("r".equals(messageType)) { // Check if messageType is "r"
+	        				receivedMessagesExist = true;
 			%>
 
             <div class="accordion-item">
@@ -220,16 +225,19 @@
                         <%= dto.getMessage() %>
                         <!-- 返信ボタン -->
                         <div class="text-end mt-2">
-                            <button type="submit" class="btn btn-sm" style="background-color:#E87B4C; color:#ffffff;"
-                                onclick="">返信する
-                            </button>
+                            <a href="<%=request.getContextPath()%>/Message?CATID=<%=dto.getTargetCatId() %>&RECIEVERID=<%=dto.getTargetUserId() %>&RECIEVERNAME=<%=dto.getTargetUserName() %>&CATNAME=<%=dto.getTargetCatName() %>">
+	                            <button type="submit" class="btn btn-sm" style="background-color:#E87B4C; color:#ffffff;"
+	                                onclick="">返信する
+	                            </button>
+	                        </a>
                         </div>
                     </div>
                 </div>
             </div><!-- 受信メッセージループここまで -->
             
-			<%	}
-			 } 
+			<%		}
+			 	}
+       		}
 			
 			 if (!receivedMessagesExist) { %>
 			    <p>受信メールはありません</p>
@@ -243,11 +251,12 @@
 
           	<!-- 送信メッセージループ -->
 	        <% boolean sendMessagesExist = false; %>
-			<% for (int i = 0; i < list.size(); i++) {
-	    		MyPageDto dto = list.get(i);
-	    		String messageType = dto.getMessageType();
-	    		if ("s".equals(messageType)) { // Check if messageType is "r"
-	        		sendMessagesExist = true;
+       		<% if (!list.isEmpty()) { %>
+			<% 		for (int i = 0; i < list.size(); i++) {
+	    				MyPageDto dto = list.get(i);
+	    				String messageType = dto.getMessageType();
+	    				if ("s".equals(messageType)) { // Check if messageType is "r"
+	        				sendMessagesExist = true;
 			%>
             <div class="accordion-item">
                 <!-- メッセージヘッダー -->
@@ -268,8 +277,9 @@
                 </div>
             </div>
             
-   			<%	}
-			 } 
+   			<%		}
+				 }
+			}
 			
 			 if (!sendMessagesExist) { %>
 			    <p>送信メールはありません</p>
