@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import model.CatsInfoDto;
+import model.RegistCatBL;
 import model.UsersInfoDto;
 
 /**
@@ -90,10 +91,13 @@ public class ExeRegistCat extends HttpServlet {
 			System.out.println(sqlDate);
 			System.out.println(catName);
 			
+			int ownerId = userInfoOnSession.getID();
+			
 			
 			
 			//ユーザーデータ（UserInfoDto型）の作成
 			CatsInfoDto dto = new CatsInfoDto();
+			dto.setId(ownerId);
 			dto.setCatName( catName );
 			dto.setKind( catKind );
 			dto.setBirth( sqlDate );
@@ -102,6 +106,15 @@ public class ExeRegistCat extends HttpServlet {
 			dto.setImage( catImage );
 			dto.setComment( catComment );
 			dto.setReg_Date( new Timestamp(System.currentTimeMillis()) ); 
+			
+			System.out.println(catKind);
+			System.out.println(sqlDate);
+			
+			
+//			データをDBに登録
+			RegistCatBL logic = new RegistCatBL();
+			boolean succesInsert = logic.exeInsertCatInfo(dto);
+			
 			
 		
 		
