@@ -9,7 +9,7 @@ public class MessagesDto {
 	private int catId;       //ネコID
 	private int recieverId;       //受け取り主ID
 	private String message;       //メッセージ文
-	private Timestamp sendDate;       //メッセージ文
+	private Timestamp send_Date;       //メッセージ文
 
 
 	//----------------------------------------------------------------
@@ -33,6 +33,6 @@ public class MessagesDto {
 	public void setMessage(String message) { this.message = message; }
 	
 	//getter/setter（対象フィールド：sendDate）
-	public Timestamp getSendDate() { return sendDate; }
-	public void setSendDate(Timestamp sendDate) { this.sendDate = sendDate; }
+	public Timestamp getSend_Date() { return send_Date; }
+	public void setSend_Date(Timestamp send_Date) { this.send_Date = send_Date; }
 }
