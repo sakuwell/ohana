@@ -93,70 +93,18 @@
             ねこまっち検索結果
         </div>
         <div class="row">
-            <!-- カードのコンテンツ -->
-            <div class="col-6 col-md-4 col-lg-3">
-                <div class="card mb-3">
-                    <img src="images/cat_1.jpg" style="height:180px; width: 100%; object-fit: cover;" class="card-img-top" alt="猫画像">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">Card with stretched link</h5>
-                        <p class="card-text text-right">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <div class="d-flex justify-content-center">
-                            <a href="#" class="stretched-link"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- カードのコンテンツ -->
-            <div class="col-6 col-md-4 col-lg-3">
-                <div class="card mb-3">
-                    <img src="images/hero_index.jpg" style="height:180px; width: 100%; object-fit: cover;" class="card-img-top" alt="猫画像">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">Card with stretched link</h5>
-                        <p class="card-text text-right">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <div class="d-flex justify-content-center">
-                            <a href="#" class="stretched-link"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- カードのコンテンツ -->
-            <div class="col-6 col-md-4 col-lg-3">
-                <div class="card mb-3">
-                    <img src="images/cat_3.jpg" style="height:180px; width: 100% ; object-fit: cover;" class="card-img-top" alt="猫画像">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">Card with stretched link</h5>
-                        <p class="card-text text-right">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <div class="d-flex justify-content-center">
-                            <a href="#" class="stretched-link"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- カードのコンテンツ -->
-            <div class="col-6 col-md-4 col-lg-3">
-                <div class="card mb-3">
-                    <img src="images/cat_4.jpg" style="height:180px; width: 100%; object-fit: cover;" class="card-img-top" alt="猫画像">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">Card with stretched link</h5>
-                        <p class="card-text text-right">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <div class="d-flex justify-content-center">
-                            <a href="#" class="stretched-link"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-           <!-- カードのコンテンツ1 -->
+           <!-- カードのコンテンツ -->
            <% List<CatsInfoDto> list = (List<CatsInfoDto>)request.getAttribute("list");
 			  for (int i = 0; i < list.size(); i++) {
 			CatsInfoDto dto = list.get(i); %>
            <div class="col-6 col-md-4 col-lg-3">
                 <div class="card mb-3">
-                <%String webContentPath = getServletContext().getRealPath("/img");
-		             		  String imageFileName = webContentPath + "/cat_" + dto.getCatId() + ".jpg";
+                <%String webContentPath = getServletContext().getRealPath("/images");
+		             		  String imageFileName = webContentPath + "/img_" + dto.getCatId() + ".jpg";
 		             		  FileOutputStream outputStream = new FileOutputStream(imageFileName);
 		             		  outputStream.write(dto.getImage());
 		             		  outputStream.close();%>
-                	<img src="<%=request.getContextPath()%>/img/cat_<%=dto.getCatId()%>.jpg" style="height:180px; width: 100%; object-fit: cover;" class="card-img-top" alt="猫画像">
+                	<img src="<%=request.getContextPath()%>/images/img_<%=dto.getCatId()%>.jpg" style="height:180px; width: 100%; object-fit: cover;" class="card-img-top" alt="猫画像">
                     <div class="card-body">
                         <h5 class="card-title text-center border-bottom pb-2"><%=dto.getCatName() %><small> ちゃん</small></h5>
                         <p class="card-text text-right">描種 : <%=dto.getKind() %></p>

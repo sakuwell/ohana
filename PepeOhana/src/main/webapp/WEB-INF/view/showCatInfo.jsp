@@ -73,7 +73,7 @@
                       <%=userName%>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="<%=request.getContextPath()%>/Mypage">マイページ</a></li>
+                    <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeMypage">マイページ</a></li>
                     <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeLogout">ログアウト</a></li>
                 </ul>
             </div>
@@ -92,8 +92,8 @@
               未ログイン
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="jsp/Login.jsp">ログイン</a></li>
-              <li><a class="dropdown-item" href="jsp/registUser.jsp">新規ユーザー登録</a></li>
+              <li><a class="dropdown-item" href="Login.jsp">ログイン</a></li>
+              <li><a class="dropdown-item" href="registUser.jsp">新規ユーザー登録</a></li>
             </ul>
           </div>
         </div>
@@ -118,12 +118,12 @@
         <!-- カードのコンテンツ -->
         <div class="row mt-4">
             <div class="col-sm-4 col-md-3 mb-2">
-            <%String webContentPath = getServletContext().getRealPath("/img");
-		             		  String imageFileName = webContentPath + "/cat_" + ShowCatInfo.getCatId() + ".jpg";
+            <%String webContentPath = getServletContext().getRealPath("/images");
+		             		  String imageFileName = webContentPath + "/img_" + ShowCatInfo.getCatId() + ".jpg";
 		             		  FileOutputStream outputStream = new FileOutputStream(imageFileName);
 		             		  outputStream.write(ShowCatInfo.getImage());
 		             		  outputStream.close();%>
-                <img src="<%=request.getContextPath()%>/img/cat_<%=ShowCatInfo.getCatId()%>.jpg" alt="" class="rounded" style="height:170px; width: 100%; object-fit: cover;">
+                <img src="<%=request.getContextPath()%>/images/img_<%=ShowCatInfo.getCatId()%>.jpg" alt="" class="rounded" style="height:170px; width: 100%; object-fit: cover;">
             </div>
             <div class="col-sm-8 col-md-9">
                 <table class="table">
