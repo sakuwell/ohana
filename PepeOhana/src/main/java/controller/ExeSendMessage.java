@@ -49,6 +49,7 @@ public class ExeSendMessage extends HttpServlet {
 		UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
 		
 		int senderId=userInfoOnSession.getID();
+		
 		String catId=request.getParameter("CATID");
 		String recieverId=request.getParameter("RECIEVERID");
 		String message=request.getParameter("COMMENT");
