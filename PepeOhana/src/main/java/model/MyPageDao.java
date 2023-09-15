@@ -77,7 +77,7 @@ public class MyPageDao {
 
 					//発行するSQL文の生成（SELECT）
 					StringBuffer buf = new StringBuffer();
-					buf.append(" SELECT ");
+					buf.append(" SELECT DISTINCT");
 					buf.append(" 	C.USERID AS OWNERID, ");
 					buf.append(" CASE ");
 					buf.append("	WHEN C.USERID = ? THEN C.CATID ELSE NULL ");
@@ -115,7 +115,7 @@ public class MyPageDao {
 					buf.append(" 	WHEN M.SENDERID = ? THEN M.RECIEVERID ");
 					buf.append(" 	WHEN M.RECIEVERID = ? THEN M.SENDERID ");
 					buf.append(" END AS TARGETUSERID, ");
-					buf.append(" U.NAME AS TARGETUSERNAME, ");
+					buf.append(" (SELECT NAME FROM USERS_INFO WHERE ID = TARGETUSERID) AS TARGETUSERNAME, ");
 					buf.append(" M.CATID AS TARGETCATID, ");
 					buf.append(" (SELECT CATNAME FROM CATS_INFO WHERE CATID = M.CATID) AS TARGETCATNAME, ");
 					buf.append("  	CASE ");
@@ -126,12 +126,15 @@ public class MyPageDao {
 					buf.append("  	END AS AGE");
 					buf.append(" FROM CATS_INFO AS C ");
 					buf.append(" LEFT JOIN ");
-					buf.append(" 	MESSAGES AS M ON (C.CATID = M.CATID AND (M.SENDERID = ? OR M.RECIEVERID = ?)) ");
+					buf.append(" 	MESSAGES AS M ON ( ");
+					buf.append(" 		C.CATID = M.CATID AND (M.SENDERID = ? OR M.RECIEVERID = ?) ");
+					buf.append(" 	OR (C.USERID = M.SENDERID AND C.USERID = M.RECIEVERID)) ");
 					buf.append(" LEFT JOIN ");
-					buf.append(" 	USERS_INFO AS U ON U.USERID = CASE ");
-					buf.append(" 		WHEN M.SENDERID = ? THEN M.RECIEVERID ");
-					buf.append(" 		WHEN M.RECIEVERID = ? THEN M.SENDERID ");
-					buf.append(" 	END ");
+					buf.append(" 	USERS_INFO AS U ON U.USERID = ");
+					buf.append("    CASE ");
+					buf.append("        WHEN M.SENDERID = ? THEN M.RECIEVERID ");
+					buf.append("        WHEN M.RECIEVERID = ? THEN M.SENDERID ");
+					buf.append("    END ");
 					buf.append(" WHERE ");
 					buf.append(" 	C.USERID = ? OR (M.SENDERID = ? OR M.RECIEVERID = ?); ");
      
@@ -161,6 +164,7 @@ public class MyPageDao {
 						dto.setImage( rs.getBytes( "IMAGE"  ));
 						dto.setComment( rs.getString( "COMMENT"  ));
 						dto.setRegDate( rs.getTimestamp( "REG_DATE"  ));
+						dto.setMessageId( rs.getInt( "MESSAGEID"  ));
 						dto.setMessage( rs.getString( "MESSAGE"  ));
 						dto.setSentDate( rs.getTimestamp( "SEND_DATE"  ));
 						dto.setMessageType( rs.getString( "MESSAGETYPE"  ));

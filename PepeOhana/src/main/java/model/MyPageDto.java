@@ -18,6 +18,7 @@ public class MyPageDto {
 			private byte[]		image;			//ネコの写真
 			private String 		comment;		//飼い主のコメント
 			private Timestamp 	regDate;		//登録日
+			private int 		messageId;		//メッセージID
 			private String 		message;		//メッセージ
 			private Timestamp 	sentDate;		//送信日
 			private String 		messageType;	//送信・受信タイプ
@@ -64,6 +65,9 @@ public class MyPageDto {
 			
 			public Timestamp getRegDate() { return regDate; }
 			public void setRegDate(Timestamp regDate) { this.regDate = regDate; }
+			
+			public int getMessageId() { return messageId; }
+			public void setMessageId(int messageId) { this.messageId = messageId; }
 		
 			public String getMessage() { return message; }
 			public void setMessage(String message) { this.message = message; }

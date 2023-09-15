@@ -88,9 +88,11 @@
             </tr>
         </table>
         <div style="text-align: center;">
-            <button type="submit" class="btn btn-sm" style=" width:120px; background-color:#E87B4C; color:#ffffff;"
-                onclick="">編集する
-            </button>
+            <a href="<%= request.getContextPath() %>/EditUser?ID=<%= id %>">
+            	<button class="btn btn-sm" style=" width:120px; background-color:#E87B4C; color:#ffffff;"
+                	onclick="">編集する
+            	</button>
+            </a>
         </div>
     </div>
 
@@ -106,8 +108,8 @@
 		<!-- ネコ情報のループ -->
 		<% int oldCatId = 0; %>	
 		<% boolean catsFound = false; %>
-		<%  for (int i = 0; i < list.size(); i++) {
-		    MyPageDto dto = list.get(i);
+		<% for (int i = 0; i < list.size(); i++) {
+		   	MyPageDto dto = list.get(i);
 		    if (dto.getCatId() != 0) { // ねこ情報をチェック
 		        int newCatId = dto.getCatId();
 		        if (newCatId != oldCatId) {
@@ -115,39 +117,42 @@
 		%>
 		<!-- 画像保存用 -->
         <%
-        	String webContentPath = getServletContext().getRealPath("/img");
-	   		String imageFileName = webContentPath + "/cat_" + dto.getCatId() + ".jpg";
-	   		System.out.println(imageFileName);
-	   		FileOutputStream outputStream = new FileOutputStream(imageFileName);
-	   		outputStream.write(dto.getImage());
-	   		outputStream.close();
+		        	String webContentPath = getServletContext().getRealPath("/img");
+			   		String imageFileName = webContentPath + "/cat_" + dto.getCatId() + ".jpg";
+			   		System.out.println(imageFileName);
+			   		FileOutputStream outputStream = new FileOutputStream(imageFileName);
+			   		outputStream.write(dto.getImage());
+			   		outputStream.close();
    		 %>					
         	<div class="col-sm-4 col-md-3 mb-2">
-                <img src="<%=request.getContextPath()%>/img/cat_<%=dto.getCatId()%>.jpg" alt="<%=dto.getCatName()%>画像" class="rounded" style="height:170px; width: 100%; object-fit: cover;">
+                <img src="<%=request.getContextPath()%>/img/cat_<%=dto.getCatId()%>.jpg" alt="<%=dto.getCatName()%>画像" class="rounded" style="height:180px; width: 100%; object-fit: cover;">
             </div>
             <div class="col-sm-8 col-md-9">
                 <table class="table">
                     <tr>
                         <th><small>名前</small></th>
-                        <td colspan="2"><%= dto.getCatName() %></td>
-                        <td style="text-align: right;">
-                            <button type="submit" class="btn btn-sm" style=" width:120px; background-color:#E87B4C; color:#ffffff;"
-                                onclick="">編集/削除する
-                            </button>
-                        </td>
+                        <td ><%= dto.getCatName() %></td>
+                        <th><small>登録日</small></th>
+                        <td><%= new SimpleDateFormat("yyyy年MM月dd日").format(dto.getRegDate()) %></td>
                     </tr>
                     <tr>
                         <th style="width:18%;"><small>性別</small></th>
-                        <td style="width:24%;"><%= dto.getGender() %></td>
-                        <th style="width:18%;"><small>描種</small></th>
-                        <td style="width:40%;"><%= dto.getKind() %></td>
+                        <td style="width:24%;">
+                        	<% if(dto.getGender() == 1) {%>
+                        	男の子
+                        	<% } else { %>
+                        	女の子
+                        	<% } %>
+                        </td>
+                        <th><small>体重</small></th>
+                        <td><%= dto.getWeight() %>kg</td>
                     </tr>
                     <tr>
                         <th><small>誕生日</small></th>
                         <td><%= new SimpleDateFormat("yyyy年MM月dd日").format(dto.getBirth()) %><br>
                         	(<%= dto.getAge() %>)</td>
-                        <th><small>体重</small></th>
-                        <td><%= dto.getWeight() %>kg</td>
+                        <th style="width:18%;"><small>描種</small></th>
+                        <td style="width:40%;"><%= dto.getKind() %></td>
                     </tr>
                     <tr>
                         <th><small>コメント</small></th>
@@ -155,6 +160,11 @@
                     </tr>
                 </table>
             </div>
+            <div style="text-align: center;">
+        		<button type="submit" class="btn btn-sm" style=" width:120px; background-color:#E87B4C; color:#ffffff;"
+            		onclick="">編集/削除する
+        		</button>
+       		</div>
 		
 		<%          oldCatId = dto.getCatId();
 		        }
@@ -230,45 +240,40 @@
         <p class="mt-4 mb-2">送信メッセージ</p>
         <div class="accordion accordion-flush" id="sender">
 
-            <!-- 送信メッセージ1件分　ここをループで回す -->
+          	<!-- 送信メッセージループ -->
+	        <% boolean sendMessagesExist = false; %>
+			<% for (int i = 0; i < list.size(); i++) {
+	    		MyPageDto dto = list.get(i);
+	    		String messageType = dto.getMessageType();
+	    		if ("s".equals(messageType)) { // Check if messageType is "r"
+	        		sendMessagesExist = true;
+			%>
             <div class="accordion-item">
                 <!-- メッセージヘッダー -->
                 <h2 class="accordion-header">
-                    <button class="p-2 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sender1" aria-expanded="false" aria-controls="sender1">
+                    <button class="p-2 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sender<%= i %>" aria-expanded="false" aria-controls="sender1">
                         <p style="line-height: 150%; margin:0;">
-                            <small>2023/09/11</small><br>
-                            対象ねこ&nbsp;<span class="badge rounded-pill text-bg-secondary">pepe</span>&ensp;
-                            送信先ユーザー&nbsp;<span class="badge rounded-pill text-bg-secondary">kato</span>
+                            <small><%= dto.getSentDate() %></small><br>
+                            対象ねこ&nbsp;<span class="badge rounded-pill text-bg-secondary"><%= dto.getTargetCatName() %></span>&ensp;
+                            送信ユーザー&nbsp;<span class="badge rounded-pill text-bg-secondary"><%= dto.getTargetUserName() %></span>
                         </p>
                     </button>
                 </h2>
                 <!-- メッセージ内容コンテナ -->
-                <div id="sender1" class="accordion-collapse collapse" data-bs-parent="#sender">
+                <div id="sender<%= i %>" class="accordion-collapse collapse" data-bs-parent="#sender">
                     <div class="accordion-body p-3">
-                        メッセージの内容がここに表示されます。
+                        <%= dto.getMessage() %>
                     </div>
                 </div>
-            </div><!-- 送信メッセージループここまで -->
-
-            <!-- 送信メッセージ1件分　ここをループで回す -->
-            <div class="accordion-item">
-                <!-- メッセージヘッダー -->
-                <h2 class="accordion-header">
-                    <button class="p-2 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sender2" aria-expanded="false" aria-controls="sender2">
-                        <p style="line-height: 150%; margin:0;">
-                            <small>2023/09/11</small><br>
-                            対象ねこ&nbsp;<span class="badge rounded-pill text-bg-secondary">pepe</span>&ensp;
-                            送信先ユーザー&nbsp;<span class="badge rounded-pill text-bg-secondary">kato</span>
-                        </p>
-                    </button>
-                </h2>
-                <!-- メッセージ内容コンテナ -->
-                <div id="sender2" class="accordion-collapse collapse" data-bs-parent="#sender">
-                    <div class="accordion-body p-3">
-                        メッセージの内容がここに表示されます。
-                    </div>
-                </div>
-            </div><!-- 送信メッセージループここまで -->
+            </div>
+            
+   			<%	}
+			 } 
+			
+			 if (!sendMessagesExist) { %>
+			    <p>送信メールはありません</p>
+			    
+			<% } %><!-- 送信メッセージループここまで -->
 
         </div><!-- 送信テーブルここまで -->
 
