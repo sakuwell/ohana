@@ -97,6 +97,7 @@
     </div>
 
     <!-- ねこ情報テーブル -->
+    
     <div class="container">
         <div class="h4 pb-2 mt-4 mb-4" style="border-bottom:solid 0.5px; border-color: #523F24;">
             公開中ねこ情報

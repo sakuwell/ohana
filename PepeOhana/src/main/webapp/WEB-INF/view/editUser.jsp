@@ -30,11 +30,9 @@
 
 <%
     // セッションを取得
-	UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
-    if (userInfoOnSession != null) {
-    	int id = userInfoOnSession.getID();
-		String userName = userInfoOnSession.getUserName();
-    }
+	UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");  
+	int id = userInfoOnSession.getID();
+	String userName = userInfoOnSession.getUserName();
 %>
 
 
