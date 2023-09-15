@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="model.UsersInfoDto" %>
 <% UsersInfoDto user = (UsersInfoDto)request.getAttribute("user"); %>
+<% String error = (String) request.getAttribute("message"); %>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -22,7 +23,7 @@
 			if(inputID === "" || inputName === "" ||inputPass === ""){
 				alert("入力できていない項目があります");
 				return false; // フォームの送信を中止
-			} else {
+			}
 			return true; // フォームの送信を続行
 		}
 	</script>
@@ -59,10 +60,10 @@
             </a>
             <div class="btn-group">
                 <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    userName
+                    <%= userName %>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="<%=request.getContextPath()%>/Mypage">マイページ</a></li>
+                    <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeMypage">マイページ</a></li>
                     <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeLogout">ログアウト</a></li>
                 </ul>
             </div>
@@ -77,7 +78,9 @@
             <div class="h2 pb-2 mb-4 text-center">
                 ユーザー編集
             </div>
-            <p class="text-danger">エラーメッセージ</p>
+            <% if(error != null){ %>
+            	<p class="text-danger"><%= error %></p>
+            <% } %>
             <div class="mb-3">
                 <input type="hidden" class="form-control" name="ID" value="<%= id %>">
             </div>
@@ -91,7 +94,7 @@
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">パスワード　<span class="badge text-bg-danger">必須</span></label>
-                <input type="password" class="form-control" name="userPass" id="inputPass" value="">
+                <input type="password" class="form-control" name="userPass" id="inputPass">
             </div>
             <div style="text-align: center;">
                 <button type="submit" class="btn btn-lg mt-3" style="background-color:#E87B4C; color:#ffffff;">更新する</button>
@@ -104,11 +107,6 @@
 	
 	
     <!-- フッター -->
-    <div class="text-center mt-4">
-        <a class="icon-link icon-link-hover" href="#">
-            ページトップへ
-        </a>
-	</div>
 	<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
     	<div class="col-md-4 d-flex align-items-center ms-3">
           	<span class="mb-3 mb-md-0 text-body-secondary">© 2023 pepeohana, Inc</span>

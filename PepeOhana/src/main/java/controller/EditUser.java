@@ -53,6 +53,7 @@ public class EditUser extends HttpServlet {
 			dispatch.forward(request, response);
 			
 		}else{
+
 			response.sendRedirect("/WEB-INF/view/index.jsp");
 			
 			

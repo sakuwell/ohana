@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.LoginBL;
 import model.UpdateUserBL;
 import model.UsersInfoDto;
 
@@ -44,8 +45,8 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		
 		request.setCharacterEncoding("UTF-8"); 
 		
-		HttpSession session = request.getSession();
-		UsersInfoDto userInfoOnSession = (UsersInfoDto) session.getAttribute("LOGIN_INFO");
+//		HttpSession session = request.getSession();
+//		UsersInfoDto userInfoOnSession = (UsersInfoDto) session.getAttribute("LOGIN_INFO");
 		
 		//リクエストパラメータを取得　ユーザー名を取得userName
 		int ID              = Integer.parseInt(request.getParameter("ID"));
@@ -67,10 +68,33 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		
 		if (succesUpdate) {
 			
-			response.sendRedirect("ExeMyPage");
+//			System.out.println(userId);
+			
+			
+			LoginBL logic2 = new LoginBL ();
+			UsersInfoDto   dto2   = logic2.executeSelectUserInfo(userId, passWord);
+			
+			if (dto2.getUserName() != null) {
+
+				//DBから抽出したユーザデータをセッションにセット
+				HttpSession session           = request.getSession();
+				session.setAttribute("LOGIN_INFO", dto2);
+
+				//トップページ画面へ転送
+				response.sendRedirect("ExeMyPage");
+
+			} else {
+				//ユーザーデータの抽出に失敗：ログインNGとしてログイン画面へエラーメッセージを渡す
+				
+				response.sendRedirect("Login.jsp");
+
+			}
 			
 		} else {
-			response.sendRedirect("html/EditUserError.html");
+			
+			String error = "編集内容が更新できませんでした";
+			request.setAttribute("ErrMessage", error);
+			response.sendRedirect("EditUser");
 			
 		}
 	}
