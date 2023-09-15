@@ -322,15 +322,15 @@ public class CatsInfoDao {
 				StringBuffer buf = new StringBuffer();
 				buf.append("INSERT INTO CATS_INFO (  ");
 //				buf.append("  ID,               ");
-				buf.append("  OWNERID,               ");
+				buf.append("  userId,               ");
 				buf.append("  CATNAME,                ");
-				buf.append("  CATKIND,                ");
-				buf.append("  SQLDATE,                ");
-				buf.append("  CATGENDERE,                ");
-				buf.append("  CATWEIGHT,                ");
-				buf.append("  CATIMAGE,                ");
-				buf.append("  CATCOMMENT,                ");
-				buf.append("  NEW TIMSTAMP(SYSTEM.CURRENTTIMEMILLIS())                ");
+				buf.append("  KIND,                ");
+				buf.append("  BIRTH,                ");
+				buf.append("  GENDERE,                ");
+				buf.append("  WEIGHT,                ");
+				buf.append("  IMAGE,                ");
+				buf.append("  COMMENT,                ");
+				buf.append("  REG_DATE                ");
 				buf.append(") VALUES (            ");
 //				buf.append("  default                  ");
 				buf.append("  ?,                  ");
@@ -344,15 +344,15 @@ public class CatsInfoDao {
 				buf.append("  ?                 ");
 				buf.append(")                     ");
 				
-				System.out.println("CATKIND");
-				System.out.println("CATWEIGHT");
-				System.out.println("SQLDATE");
+//				System.out.println("CATKIND");
+//				System.out.println("CATWEIGHT");
+//				System.out.println("SQLDATE");
 
 				//PreparedStatementオブジェクトを生成＆発行するSQLをセット
 				ps = con.prepareStatement(buf.toString());
 
 				//パラメータをセット
-				ps.setInt(    1, dto.getId()              ); //第1パラメータ：追加データ（ユーザーID）
+				ps.setInt(    1, dto.getUserId()              ); //第1パラメータ：追加データ（ユーザーID）
 				ps.setString(       2, dto.getCatName()               ); //第2パラメータ：追加データ（名前）
 				ps.setString(       3, dto.getKind()               ); //第3パラメータ：追加データ（種類）
 				ps.setDate(       4, dto.getBirth()               ); //第4パラメータ：追加データ（誕生日）
