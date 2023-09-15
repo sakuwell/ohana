@@ -96,7 +96,7 @@
     
     <!-- ここから下　ページごとの内容 -->
 	<div class="p-5">
-        <form  action="ExeRegistCat" method="post" onsubmit="return validateForm()"  class="container bg-white p-4 rounded" style="max-width:500px;">
+        <form  action="ExeRegistCat" method="post" onsubmit="return validateForm()" enctype="multipart/form-data"  class="container bg-white p-4 rounded" style="max-width:500px;">
             <div class="h2 pb-2 mb-4 text-center">
                 ねこ新規登録
             </div>
@@ -121,7 +121,7 @@
 			</div>
             <div class="mb-3">
                 <label class="form-label">誕生日　※不明の場合は、コメント欄におおよそを記入してください</label>
-                <input type="date" class="form-control" name="BIRTH" placeholder="yyyy/mm/dd">
+                <input type="date" class="form-control" name="BIRTH" placeholder="yyyy-MM-dd">
             </div>
             <div class="mb-3">
                 <label class="form-label">体重　<span class="badge text-bg-danger">必須</span>　※0.1kg単位で、単位は入力不要です(例：2.5)</label>
