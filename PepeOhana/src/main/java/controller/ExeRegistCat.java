@@ -258,7 +258,7 @@ public class ExeRegistCat extends HttpServlet {
 			System.out.println(catComment);
 			
 			
-//			int Id = userInfoOnSession.getID(); 
+			int userId = userInfoOnSession.getID(); 
 			
 //			(COMMENT)	
 			
@@ -266,15 +266,15 @@ public class ExeRegistCat extends HttpServlet {
 			System.out.println(catName);
 			System.out.println(catBirth);
 			
-			int ownerId = userInfoOnSession.getID();
+//			int ownerId = userInfoOnSession.getID();
 			
-			System.out.println(ownerId);
+			System.out.println(userId);
 			
 			
 			
 			//ユーザーデータ（CatInfoDto型）の作成
 			CatsInfoDto dto = new CatsInfoDto();
-			dto.setUserId(ownerId);
+			dto.setUserId(userId);
 			dto.setCatName( catName );
 			dto.setKind( catKind );
 			dto.setBirth( sqlDate );
