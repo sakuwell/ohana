@@ -326,7 +326,7 @@ public class CatsInfoDao {
 				buf.append("  CATNAME,                ");
 				buf.append("  KIND,                ");
 				buf.append("  BIRTH,                ");
-				buf.append("  GENDERE,                ");
+				buf.append("  GENDER,                ");
 				buf.append("  WEIGHT,                ");
 				buf.append("  IMAGE,                ");
 				buf.append("  COMMENT,                ");
@@ -369,7 +369,7 @@ public class CatsInfoDao {
 				
 				
 				//SQL文の実行
-				ps.execute();
+				ps.executeQuery();
 
 			} catch (SQLException e) {
 				e.printStackTrace();
