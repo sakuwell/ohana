@@ -442,7 +442,125 @@ public class CatsInfoDao {
 			return isSuccess;
 		}
 		
+		/**----------------------------------------------------------------------*
+		 *■doselectoneメソッド
+		 *概要　：「cats_info」テーブルから対象のネコちゃん情報を抽出する
+		 *引数　：対象のネコちゃん情報（CatsInfoDto型）
+		 *戻り値：Cats_Infoから抽出したネコ情報
+		 *----------------------------------------------------------------------**/
 		
+		public List<CatsInfoDto> doSelectCatOne(int userId) {
+//
+			
+			//JDBCドライバのロード
+			//-------------------------------------------
+			try {
+				Class.forName(DRIVER_NAME);       //JDBCドライバをロード＆接続先として指定
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+
+			//-------------------------------------------
+			//SQL発行
+			//-------------------------------------------
+
+			//JDBCの接続に使用するオブジェクトを宣言
+			//※finallyブロックでも扱うためtryブロック内で宣言してはいけないことに注意
+			Connection        con = null ;   // Connection（DB接続情報）格納用変数
+			PreparedStatement ps  = null ;   // PreparedStatement（SQL発行用オブジェクト）格納用変数
+			ResultSet         rs  = null ;   // ResultSet（SQL抽出結果）格納用変数
+			
+			//抽出結果格納用DTOリスト
+			List<CatsInfoDto> dtoList = new ArrayList<CatsInfoDto>();
+
+			try {
+
+				//-------------------------------------------
+				//接続の確立（Connectionオブジェクトの取得）
+				//-------------------------------------------
+				con = DriverManager.getConnection(JDBC_URL, USER_ID, USER_PASS);
+
+
+
+				//発行するSQL文の生成（SELECT）
+				StringBuffer buf = new StringBuffer();
+				buf.append("SELECT                ");
+				buf.append("  USERID,               ");
+				buf.append("  CATID,               ");
+				buf.append("  CATNAME,               ");
+				buf.append("  KIND,                ");
+				buf.append("  BIRTH,                ");
+				buf.append("  GENDER,            	  ");
+				buf.append("  WEIGHT, ");
+				buf.append("  IMAGE,            ");
+				buf.append("  COMMENT,                  ");
+				buf.append("  UP_DATE                  ");
+				buf.append("FROM                  ");
+				buf.append("  CATS_INFO              ");
+				buf.append("  WHERE  USERID =    ?    ;");
+
+				
+				ps = con.prepareStatement(buf.toString());
+				
+				System.out.println(buf.toString());
+				
+				ps.setInt(1, userId);
+				rs = ps.executeQuery();
+				
+
+				//ResultSetオブジェクトからDTOリストに格納
+				while (rs.next()) {
+					dto.setCatId(rs.getInt("USERID"));
+					dto.setUserId(  rs.getInt(    "CATID"   ));
+					dto.setCatName(  rs.getString(    "CATNAME"   ));
+					dto.setKind(  rs.getString(    "KIND"   ));
+					dto.setBirth(  rs.getDate(    "BIRTH"   ));
+					dto.setGender( rs.getInt( "GENDER"  ));
+					dto.setWeight( rs.getFloat( "WEIGHT"  ));
+					dto.setImage( rs.getBytes( "IMAGE"  ));
+					dto.setComment( rs.getString( "COMMENT"  ));
+					dto.setUp_Date( rs.getTimestamp( "UP_DATE"  ));
+
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				//-------------------------------------------
+				//接続の解除
+				//-------------------------------------------
+
+				//ResultSetオブジェクトの接続解除
+				if (rs != null) {    //接続が確認できている場合のみ実施
+					try {
+						rs.close();  //接続の解除
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+
+				//PreparedStatementオブジェクトの接続解除
+				if (ps != null) {    //接続が確認できている場合のみ実施
+					try {
+						ps.close();  //接続の解除
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+
+				//Connectionオブジェクトの接続解除
+				if (con != null) {    //接続が確認できている場合のみ実施
+					try {
+						con.close();  //接続の解除
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+
+			//抽出結果を返す
+			return dto;
+		}
 		
-		
+		}
 }
