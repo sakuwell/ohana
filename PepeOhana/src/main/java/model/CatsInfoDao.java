@@ -322,20 +322,20 @@ public class CatsInfoDao {
 				StringBuffer buf = new StringBuffer();
 				buf.append("INSERT INTO CATS_INFO (  ");
 //				buf.append("  ID,               ");
-				buf.append("  userId,               ");
+				buf.append("  USERID,              ");
 				buf.append("  CATNAME,                ");
 				buf.append("  KIND,                ");
-				buf.append("  BIRTH,                ");
+//				buf.append("  BIRTH,                ");
 				buf.append("  GENDER,                ");
 				buf.append("  WEIGHT,                ");
-				buf.append("  IMAGE,                ");
-				buf.append("  COMMENT,                ");
-				buf.append("  REG_DATE                ");
+//				buf.append("  IMAGE,                ");
+				buf.append("  COMMENT                ");
+//				buf.append("  REG_DATE                ");
 				buf.append(") VALUES (            ");
 //				buf.append("  default                  ");
-				buf.append("  ?,                  ");
-				buf.append("  ?,                  ");
-				buf.append("  ?,                  ");
+//				buf.append("  ?,                  ");
+//				buf.append("  ?,                  ");
+//				buf.append("  ?,                  ");
 				buf.append("  ?,                  ");
 				buf.append("  ?,                  ");
 				buf.append("  ?,                  ");
@@ -355,21 +355,28 @@ public class CatsInfoDao {
 				ps.setInt(    1, dto.getUserId()              ); //第1パラメータ：追加データ（ユーザーID）
 				ps.setString(       2, dto.getCatName()               ); //第2パラメータ：追加データ（名前）
 				ps.setString(       3, dto.getKind()               ); //第3パラメータ：追加データ（種類）
-				ps.setDate(       4, dto.getBirth()               ); //第4パラメータ：追加データ（誕生日）
-				ps.setInt(       5, dto.getGender()               ); //第5パラメータ：追加データ（性別）
-				ps.setFloat(       6, dto.getWeight()               ); //第6パラメータ：追加データ（体重）
-				ps.setBytes(       7, dto.getImage()               ); //第7パラメータ：追加データ（写真）
-				ps.setString(       8, dto.getComment()               ); //第8パラメータ：追加データ（コメント）
-				ps.setTimestamp(       9, dto.getReg_Date()               ); //第9パラメータ：追加データ（追加日）
+//				ps.setDate(       4, dto.getBirth()               ); //第4パラメータ：追加データ（誕生日）
+				ps.setInt(       4, dto.getGender()               ); //第5パラメータ：追加データ（性別）
+				ps.setFloat(       5, dto.getWeight()               ); //第6パラメータ：追加データ（体重）
+//				ps.setBytes(       7, dto.getImage()               ); //第7パラメータ：追加データ（写真）
+				ps.setString(       6, dto.getComment()               ); //第8パラメータ：追加データ（コメント）
+//				ps.setTimestamp(       8, dto.getReg_Date()               ); //第9パラメータ：追加データ（追加日）
 
 //			System.out.println(dto.getAge());
-				System.out.println(dto.getId());
+				System.out.println(dto.getUserId());
 				System.out.println(dto.getGender());
 				System.out.println(dto.getReg_Date());
+				System.out.println(dto.getCatName());
+				System.out.println(dto.getBirth());
+				System.out.println(dto.getKind());
+				System.out.println(dto.getWeight());
+				System.out.println(dto.getComment());
 				
 				
 				//SQL文の実行
 				ps.executeQuery();
+				
+				System.out.println("あああああ");
 
 			} catch (SQLException e) {
 				e.printStackTrace();
