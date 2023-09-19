@@ -185,7 +185,7 @@
     <img src="images/footer_cat.png" alt=""  class="img-fluid" style="width:100%;">
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-1">
         <div class="col-md-4 d-flex align-items-center ms-3">
-          <span class="mb-3 mb-md-0 text-body-secondary">© 2023 Company, Inc</span>
+          <span class="mb-3 mb-md-0 text-body-secondary">© 2023 pepeohana, Inc</span>
         </div>
     
         <ul class="nav col-md-4 justify-content-end list-unstyled d-flex me-3">

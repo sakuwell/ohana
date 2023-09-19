@@ -54,7 +54,6 @@ public class ExeMyPage extends HttpServlet {
 			MyPageBL logic = new MyPageBL();
 			myPageList  = logic.executeSelectMyPageLists(id);
 			request.setAttribute("MYPAGE",myPageList);
-			System.out.println(myPageList);
 		
 			RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/mypage.jsp");
 			dispatch.forward(request, response);

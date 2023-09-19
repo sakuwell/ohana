@@ -32,8 +32,7 @@
 	</script>
 	
 </head>
-
-<% String error = (String) request.getAttribute("error"); %>
+<%String error = (String) request.getAttribute("message"); %>
 
 <body style="background-color:beige; color:#523F24;">
     <!-- ナビゲーションボタンのカラー -->
@@ -60,8 +59,8 @@
               未ログイン
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="jsp/Login.jsp">ログイン</a></li>
-              <li><a class="dropdown-item" href="jsp/registUser.jsp">新規ユーザー登録</a></li>
+              <li><a class="dropdown-item" href="Login.jsp">ログイン</a></li>
+              <li><a class="dropdown-item" href="registUser.jsp">新規ユーザー登録</a></li>
             </ul>
           </div>
         </div>
@@ -73,7 +72,9 @@
             <div class="h2 pb-2 mb-4 text-center">
                 ログイン
             </div>
-            <p class="text-danger"><%= error %></p>
+            <%if(error != null){ %>
+            	<p class="text-danger"><%= error %></p>
+            <% } %>
             <div class="mb-3">
                 <label for="" class="form-label">ユーザーID　<span class="badge text-bg-danger">必須</span></label>
                 <input type="text" class="form-control" name="USERID" id="inputID">
@@ -86,7 +87,7 @@
                 <button type="submit" class="btn btn-lg mt-3" style="background-color:#E87B4C; color:#ffffff;">ログイン</button>
             </div>
             <div class="text-end mt-4">
-       			<a class="icon-link icon-link-hover" href="#">
+       			<a class="icon-link icon-link-hover" href="registUser.jsp">
             		新規登録はこちら
         		</a>
 			</div>
@@ -99,9 +100,9 @@
           	<span class="mb-3 mb-md-0 text-body-secondary">© 2023 pepeohana, Inc</span>
         </div>
         <ul class="nav col-md-4 justify-content-end list-unstyled d-flex me-3">
-            <li><a href="#"><img src=../images/twitter_logo.png width="auto" height="25"></a></li>
-            <li class="ms-4"><a href="#"><img src=../images/insta_logo.png width="auto" height="25"></a></li>
-            <li class="ms-4"><a href="#"><img src=../images/facebook_logo.png width="auto" height="25"></a></li>
+            <li><a href="#"><img src=images/twitter_logo.png width="auto" height="25"></a></li>
+            <li class="ms-4"><a href="#"><img src=images/insta_logo.png width="auto" height="25"></a></li>
+            <li class="ms-4"><a href="#"><img src=images/facebook_logo.png width="auto" height="25"></a></li>
         </ul>
 	</footer>
     <!-- フッター　ここまで -->

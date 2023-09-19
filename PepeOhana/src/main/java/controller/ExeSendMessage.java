@@ -42,8 +42,8 @@ public class ExeSendMessage extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.setContentType("text/html;charset=UTF-8");
-//		request.setCharacterEncoding("UTF-8");
+//		response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
 		
 		HttpSession session           = request.getSession();
 		UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
@@ -61,18 +61,19 @@ public class ExeSendMessage extends HttpServlet {
 		dto.setMessage(message);
 		dto.setSend_Date(new Timestamp(System.currentTimeMillis()));
 		
-
 		SendMessageBL logic = new SendMessageBL();
 		boolean succesInsert = logic.executeInsertMessage(dto);
+		
 		if (succesInsert) {
-			System.out.println("success");
 			response.sendRedirect("ExeMyPage");
 		} else {
 			String recieverName = request.getParameter("RECIEVERNAME"); //リクエストパラメータ（RECIEVERID)
 			String catName = request.getParameter("CATNAME"); //リクエストパラメータ（RECIEVERID)
-			System.out.println(catName);
-			System.out.println("failed");
 			response.sendRedirect("Message?CATID="+catId+"&RECIEVERID="+recieverId+"&CATNAME="+catName+"&RECIEVERNAME="+recieverName);
+			// リクエストスコープにデータを設定
+			request.setAttribute("message", "ログインできませんでした。ユーザーIDかパスワードが間違っています。");
+			//トップページ画面へ転送
+	        request.getRequestDispatcher("Login.jsp").forward(request, response);
 		}
 					
 //		doGet(request, response);

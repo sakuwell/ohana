@@ -66,15 +66,13 @@ public class ExeLogin extends HttpServlet {
 				session.setAttribute("LOGIN_INFO", dto);
 
 				//トップページ画面へ転送
-				response.sendRedirect("index.jsp");
+		        request.getRequestDispatcher("index.jsp").forward(request, response);
 
-			} else {
-				//ユーザーデータの抽出に失敗：ログインNGとしてログイン画面へエラーメッセージを渡す
-				
-				String error = "ログインに失敗しました。ユーザー名とパスワードを確認してください。";
-				request.setAttribute("errorMessage", error);
-				response.sendRedirect("Login.jsp");
-
+			} else {			
+				// リクエストスコープにデータを設定
+				request.setAttribute("message", "ログインできませんでした。ユーザーIDかパスワードが間違っています。");
+				//トップページ画面へ転送
+		        request.getRequestDispatcher("Login.jsp").forward(request, response);
 			}
 		}
 	}

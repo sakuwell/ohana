@@ -35,6 +35,8 @@
     }
 %>
 
+<%String error = (String) request.getAttribute("message"); %>
+
 
 <body style="background-color:beige; color:#523F24;">
     <!-- ナビゲーションボタンのカラー -->
@@ -76,7 +78,9 @@
             <div class="h2 pb-2 mb-4 text-center">
                 メッセージ送信
             </div>
-            <p class="text-danger">エラーメッセージ</p>
+            <%if(error != null){ %>
+            	<p class="text-danger"><%= error %></p>
+            <% } %>
            	<div class="mb-3 row">
 		    	<label class="col-sm-4 col-form-label">対象ねこ</label>
 		    	<div class="col-sm-8">
@@ -106,11 +110,6 @@
 	
 	
     <!-- フッター -->
-    <div class="text-center mt-4">
-        <a class="icon-link icon-link-hover" href="#">
-            ページトップへ
-        </a>
-	</div>
 	<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
     	<div class="col-md-4 d-flex align-items-center ms-3">
           	<span class="mb-3 mb-md-0 text-body-secondary">© 2023 pepeohana, Inc</span>

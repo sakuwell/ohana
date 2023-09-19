@@ -26,7 +26,7 @@
 <%
     // セッションを取得
 	UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");  
-	int id = userInfoOnSession.getID();
+	String userId = userInfoOnSession.getUserId();
 	String userName = userInfoOnSession.getUserName();
 %>
 <%  // Dtoを取得
@@ -80,7 +80,7 @@
         <table class="table">
             <tr>
                 <th><small>ユーザーID</small></th>
-                <td><%= id %></td>
+                <td><%= userId %></td>
             </tr>
             <tr>
                 <th style="width:20%;"><small>ユーザー名</small></th>
@@ -192,11 +192,8 @@
             メッセージ一覧
         </div>
 
-        <p class="mt-4 mb-2">受信メッセージ</p>
+        <p class="h5 mt-4 mb-2">受信メッセージ</p>
         <div class="accordion accordion-flush" id="reciever">
-	        <div class="accordion-item">
-	            <!-- Rest of your code for displaying received messages -->
-	        </div>
         
 	        <!-- 受信メッセージループ -->
 	        <% boolean receivedMessagesExist = false; %>
@@ -222,7 +219,7 @@
                 <!-- メッセージ内容コンテナ -->
                 <div id="reciever<%= i %>" class="accordion-collapse collapse" data-bs-parent="#reciever">
                     <div class="accordion-body p-3">
-                        <%= dto.getMessage() %>
+                        	<%= dto.getMessage() %>
                         <!-- 返信ボタン -->
                         <div class="text-end mt-2">
                             <a href="<%=request.getContextPath()%>/Message?CATID=<%=dto.getTargetCatId() %>&RECIEVERID=<%=dto.getTargetUserId() %>&RECIEVERNAME=<%=dto.getTargetUserName() %>&CATNAME=<%=dto.getTargetCatName() %>">
@@ -246,7 +243,7 @@
 
         </div><!-- 受信テーブルここまで -->
         
-        <p class="mt-4 mb-2">送信メッセージ</p>
+        <p class="h5 mt-5 mb-2">送信メッセージ</p>
         <div class="accordion accordion-flush" id="sender">
 
           	<!-- 送信メッセージループ -->
@@ -299,7 +296,7 @@
     <img src="images/footer_cat.png" alt=""  class="img-fluid" style="width:100%;">
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-1">
         <div class="col-md-4 d-flex align-items-center ms-3">
-          <span class="mb-3 mb-md-0 text-body-secondary">© 2023 Company, Inc</span>
+          <span class="mb-3 mb-md-0 text-body-secondary">© 2023 pepeohana, Inc</span>
         </div>
     
         <ul class="nav col-md-4 justify-content-end list-unstyled d-flex me-3">
