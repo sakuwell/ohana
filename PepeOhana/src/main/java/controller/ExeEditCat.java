@@ -36,8 +36,11 @@ public class ExeEditCat extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	
+		System.out.println("OK");
 
 		response.setContentType("text/html;charset=UTF-8");
 	
@@ -48,29 +51,41 @@ public class ExeEditCat extends HttpServlet {
 		UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
 		
 
-		int userId = userInfoOnSession.getID(); 
-		
-		System.out.println(userId);
+//		int userId = userInfoOnSession.getID(); 
+//		
+//		System.out.println(userId);
 		
 //		int catId =request.getParameter("CATID");
-		int catId = Integer.parseInt(request.getParameter("CATID"));
+//		String catId = request.getParameter("ID"); 
+//		int catId = Integer.parseInt(catId);
 		
-		EditCatOneBL logic = new EditCatOneBL();
+		String catIdStr = request.getParameter("ID");
+		int catId = Integer.parseInt(catIdStr);
+		
+		
+		System.out.println(catId);
+		
+		EditCatOneBL logic = new EditCatOneBL();		
 		CatsInfoDto editCat = logic.exeSelectOneCatInfo(catId);
 		
+		if (editCat != null) {
+		    request.setAttribute("cat", editCat);
+		    RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/editCat.jsp");
+		    dispatch.forward(request, response);
+		} else {
+			System.out.println("ネコ情報はありません");
+		    // ネコちゃん情報が見つからない場合の処理を追加
+		}
 		
-		request.setAttribute("cat", editCat);
 		
-		RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/editCat.jsp");
-		dispatch.forward(request, response);
+////		request.setAttribute("cat", editCat);
+//		
+//		RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/editCat.jsp");
+////		RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/editCat.jsp");
+//
+//		dispatch.forward(request, response);
 
 		
-	
-	
-	
-	
-	
-	
 	
 	}
 
