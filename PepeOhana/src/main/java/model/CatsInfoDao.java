@@ -465,12 +465,9 @@ public class CatsInfoDao {
 			
 			//JDBCドライバのロード
 			//-------------------------------------------
-			try {
-				Class.forName(DRIVER_NAME);       //JDBCドライバをロード＆接続先として指定
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-
+//			try {
+//				Class.forName(DRIVER_NAME);       //JDBCドライバをロード＆接続先として指定
+//				con = DriverManager.getConnection(JDBC_URL, USER_ID, USER_PASS);
 			//-------------------------------------------
 			//SQL発行
 			//-------------------------------------------
@@ -479,7 +476,7 @@ public class CatsInfoDao {
 
 
 			try {
-
+				 Class.forName(DRIVER_NAME);
 				//-------------------------------------------
 				//接続の確立（Connectionオブジェクトの取得）
 				//-------------------------------------------
@@ -512,10 +509,10 @@ public class CatsInfoDao {
 				ps.setInt(1, catId);
 				rs = ps.executeQuery();
 				
-
+				if(rs.next()) {
 				//ResultSetオブジェクトからDTOリストに格納
-				while (rs.next()) {
-//					CatsInfoDto dto = new CatsInfoDto();
+//				while (rs.next()) {
+					dto = new CatsInfoDto();
 					dto.setCatId(rs.getInt("CATID"));
 					dto.setUserId(  rs.getInt(    "USERID"   ));
 					dto.setCatName(  rs.getString(    "CATNAME"   ));
@@ -527,42 +524,48 @@ public class CatsInfoDao {
 					dto.setComment( rs.getString( "COMMENT"  ));
 					dto.setUp_Date( rs.getTimestamp( "UP_DATE"  ));
 //					dtoList.add(dto);
+				}else {
+					System.out.println("ネコ情報が空です");
 				}
 
 			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch(ClassNotFoundException e){
 				e.printStackTrace();
 			} finally {
 				//-------------------------------------------
 				//接続の解除
 				//-------------------------------------------
-
-				//ResultSetオブジェクトの接続解除
-				if (rs != null) {    //接続が確認できている場合のみ実施
-					try {
-						rs.close();  //接続の解除
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
-
-				//PreparedStatementオブジェクトの接続解除
-				if (ps != null) {    //接続が確認できている場合のみ実施
-					try {
-						ps.close();  //接続の解除
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
-
-				//Connectionオブジェクトの接続解除
-				if (con != null) {    //接続が確認できている場合のみ実施
-					try {
-						con.close();  //接続の解除
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
 			}
+				
+
+//				//ResultSetオブジェクトの接続解除
+//				if (rs != null) {    //接続が確認できている場合のみ実施
+//					try {
+//						rs.close();  //接続の解除
+//					} catch (SQLException e) {
+//						e.printStackTrace();
+//					}
+//				}
+//
+//				//PreparedStatementオブジェクトの接続解除
+//				if (ps != null) {    //接続が確認できている場合のみ実施
+//					try {
+//						ps.close();  //接続の解除
+//					} catch (SQLException e) {
+//						e.printStackTrace();
+//					}
+//				}
+//
+//				//Connectionオブジェクトの接続解除
+//				if (con != null) {    //接続が確認できている場合のみ実施
+//					try {
+//						con.close();  //接続の解除
+//					} catch (SQLException e) {
+//						e.printStackTrace();
+//					}
+//				}
+//			}
 
 			//抽出結果を返す
 			return dto;
