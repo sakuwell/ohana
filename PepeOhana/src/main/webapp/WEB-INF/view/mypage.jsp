@@ -26,6 +26,7 @@
 <%
     // セッションを取得
 	UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");  
+	int id = userInfoOnSession.getID();
 	String userId = userInfoOnSession.getUserId();
 	String userName = userInfoOnSession.getUserName();
 %>
@@ -58,7 +59,7 @@
                     <%= userName %>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="<%=request.getContextPath()%>/Mypage">マイページ</a></li>
+                    <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeMyPage">マイページ</a></li>
                     <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeLogout">ログアウト</a></li>
                 </ul>
             </div>
@@ -102,6 +103,13 @@
         <div class="h4 pb-2 mt-4 mb-4" style="border-bottom:solid 0.5px; border-color: #523F24;">
             公開中ねこ情報
         </div>
+        <div class="text-end mb-4">
+	        <a href="<%= request.getContextPath() %>/RegistCat">
+	        	<button class="btn" style=" width:180px; background-color:#E87B4C; color:#ffffff;"
+	            	onclick="">ねこ情報を登録する
+	        	</button>
+	        </a>
+        </div>
 
         <!-- カードのコンテンツ -->
 		<div class="row mt-4">
@@ -127,7 +135,7 @@
 			   		outputStream.close();
    		 %>					
         	<div class="col-sm-4 col-md-3 mb-2">
-                <img src="<%=request.getContextPath()%>/img/cat_<%=dto.getCatId()%>.jpg" alt="<%=dto.getCatName()%>画像" class="rounded" style="height:180px; width: 100%; object-fit: cover;">
+                <img src="<%=request.getContextPath()%>/images/cat_<%=dto.getCatId()%>.jpg" alt="<%=dto.getCatName()%>画像" class="rounded" style="height:180px; width: 100%; object-fit: cover;">
             </div>
             <div class="col-sm-8 col-md-9">
                 <table class="table">
@@ -162,7 +170,7 @@
                     </tr>
                 </table>
             </div>
-            <div style="text-align: center;">
+            <div class="mb-4" style="text-align: center;">
             <a href="<%= request.getContextPath() %>/EditCat?ID=<%= dto.getCatId() %>">
             	<button class="btn btn-sm" style=" width:120px; background-color:#E87B4C; color:#ffffff;"
                 	onclick="">編集・削除する

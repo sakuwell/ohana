@@ -151,11 +151,13 @@ public class ExeRegistCat extends HttpServlet {
 			
 			
 			if (succesInsert) {
-//				DBに成功した場合、ログイン後のtop画面(top.jsp)を表示する
-				response.sendRedirect("/WEB-INF/view/index.jsp");
+//				DBに成功した場合、マイページを表示する
+				response.sendRedirect("ExeMyPage");
 			} else {
-//				DBに失敗した場合、エラー画面(registusererror.html)を表示する
-				response.sendRedirect("htmls/registusererror.html");
+				// リクエストスコープにデータを設定
+				request.setAttribute("message", "新規登録ができませんでした。やり直してください。");
+				//トップページ画面へ転送
+		        request.getRequestDispatcher("RegistCat").forward(request, response);
 			}
 		
 		

@@ -52,12 +52,13 @@
 
 <%
     // セッションを取得
-	UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
-    if (userInfoOnSession != null) {
-		String userId = userInfoOnSession.getUserId();
-		String userName = userInfoOnSession.getUserName();
-    }
+	UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");  
+	int id = userInfoOnSession.getID();
+	String userId = userInfoOnSession.getUserId();
+	String userName = userInfoOnSession.getUserName();
 %>
+
+<%String error = (String) request.getAttribute("message"); %>
 
 
 <body style="background-color:beige; color:#523F24;">
@@ -82,10 +83,10 @@
             </a>
             <div class="btn-group">
                 <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    userName
+                    <%= userName %>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="<%=request.getContextPath()%>/Mypage">マイページ</a></li>
+                    <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeMyPage">マイページ</a></li>
                     <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeLogout">ログアウト</a></li>
                 </ul>
             </div>
@@ -100,7 +101,9 @@
             <div class="h2 pb-2 mb-4 text-center">
                 ねこ新規登録
             </div>
-            <p class="text-danger">エラーメッセージ</p>
+            <%if(error != null){ %>
+            	<p class="text-danger"><%= error %></p>
+            <% } %>
             <div class="mb-3">
                 <label for="" class="form-label">名前　<span class="badge text-bg-danger">必須</span></label>
                 <input type="text" class="form-control" name="CATNAME" id="inputName" value="">
