@@ -198,7 +198,7 @@ public class CatsInfoDao {
 				buf.append("  CI.WEIGHT, ");
 				buf.append("  CI.IMAGE,            ");
 				buf.append("  CI.COMMENT,                  ");
-				buf.append("  CI.UP_DATE,                  ");
+				buf.append("  CI.REG_DATE,                  ");
 				buf.append("  UI.NAME                  ");
 				buf.append("FROM                  ");
 				buf.append("  CATS_INFO AS CI              ");
@@ -225,7 +225,7 @@ public class CatsInfoDao {
 					dto.setWeight( rs.getFloat( "CI.WEIGHT"  ));
 					dto.setImage( rs.getBytes( "CI.IMAGE"  ));
 					dto.setComment( rs.getString( "CI.COMMENT"  ));
-					dto.setUp_Date( rs.getTimestamp( "CI.UP_DATE"  ));
+					dto.setReg_Date( rs.getTimestamp( "CI.REG_DATE"  ));
 					dto.setUserName( rs.getString( "UI.NAME"  ));
 
 				}
