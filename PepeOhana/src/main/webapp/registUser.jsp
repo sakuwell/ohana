@@ -27,14 +27,7 @@
 	</script>
 </head>
 
-<%
-    // セッションを取得
-	UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
-    if (userInfoOnSession != null) {
-		String userId = userInfoOnSession.getUserId();
-		String userName = userInfoOnSession.getUserName();
-    }
-%>
+<%String error = (String) request.getAttribute("message"); %>
 
 
 <body style="background-color:beige; color:#523F24;">
@@ -62,8 +55,8 @@
               未ログイン
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="jsp/Login.jsp">ログイン</a></li>
-              <li><a class="dropdown-item" href="jsp/registUser.jsp">新規ユーザー登録</a></li>
+              <li><a class="dropdown-item" href="Login.jsp">ログイン</a></li>
+              <li><a class="dropdown-item" href="registUser.jsp">新規ユーザー登録</a></li>
             </ul>
           </div>
         </div>
@@ -77,7 +70,9 @@
             <div class="h2 pb-2 mb-4 text-center">
                 新規ユーザー登録
             </div>
-            <p class="text-danger">エラーメッセージ</p>
+            <%if(error != null){ %>
+            	<p class="text-danger"><%= error %></p>
+            <% } %>
             <div class="mb-3">
                 <label for="" class="form-label">ユーザーID　<span class="badge text-bg-danger">必須</span></label>
                 <input type="text" class="form-control" name="userId" id="inputID" value="">
@@ -93,6 +88,11 @@
             <div style="text-align: center;">
                 <button type="submit" class="btn btn-lg mt-3" style="background-color:#E87B4C; color:#ffffff;">新規登録する</button>
             </div>
+            <div class="text-end mt-4">
+       			<a class="icon-link icon-link-hover" href="Login.jsp">
+            		ログインはこちら
+        		</a>
+			</div>
         </form>
     </div>
 
@@ -101,11 +101,6 @@
 	
 	
     <!-- フッター -->
-    <div class="text-center mt-4">
-        <a class="icon-link icon-link-hover" href="#">
-            ページトップへ
-        </a>
-	</div>
 	<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
     	<div class="col-md-4 d-flex align-items-center ms-3">
           	<span class="mb-3 mb-md-0 text-body-secondary">© 2023 pepeohana, Inc</span>

@@ -42,11 +42,8 @@ public class ExeEditUser extends HttpServlet {
 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		response.setContentType("text/html;charset=UTF-8");
-		
 		request.setCharacterEncoding("UTF-8"); 
 		
-//		HttpSession session = request.getSession();
-//		UsersInfoDto userInfoOnSession = (UsersInfoDto) session.getAttribute("LOGIN_INFO");
 		
 		//リクエストパラメータを取得　ユーザー名を取得userName
 		int ID              = Integer.parseInt(request.getParameter("ID"));
@@ -68,33 +65,34 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		
 		if (succesUpdate) {
 			
-//			System.out.println(userId);
+//			ユーザー編集に伴い元のセッション情報を破棄
+			HttpSession session = request.getSession();
+//			UsersInfoDto userInfoOnSession = (UsersInfoDto) session.getAttribute("LOGIN_INFO");
+			session.invalidate();
 			
 			
+//			新しいユーザー情報をセッションにセットし直す
 			LoginBL logic2 = new LoginBL ();
 			UsersInfoDto   dto2   = logic2.executeSelectUserInfo(userId, passWord);
 			
 			if (dto2.getUserName() != null) {
 
 				//DBから抽出したユーザデータをセッションにセット
-				HttpSession session           = request.getSession();
+				session = request.getSession();
 				session.setAttribute("LOGIN_INFO", dto2);
-
 				//トップページ画面へ転送
 				response.sendRedirect("ExeMyPage");
 
 			} else {
 				//ユーザーデータの抽出に失敗：ログインNGとしてログイン画面へエラーメッセージを渡す
-				
 				response.sendRedirect("Login.jsp");
-
 			}
 			
 		} else {
 			
-			String error = "編集内容が更新できませんでした";
-			request.setAttribute("ErrMessage", error);
-			response.sendRedirect("EditUser");
+			request.setAttribute("message", "登録済みユーザーIDです。別のユーザーIDで更新し直してください。");
+			//トップページ画面へ転送
+	        request.getRequestDispatcher("EditUser").forward(request, response);
 			
 		}
 	}

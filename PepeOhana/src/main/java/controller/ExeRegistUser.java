@@ -77,11 +77,14 @@ public class ExeRegistUser extends HttpServlet {
 			//DB操作の成功/失敗に応じて表示させる画面を振り分ける
 			
 			if (succesInsert) {
-//				DBに成功した場合、ログイン後のtop画面(top.jsp)を表示する
-				response.sendRedirect("/WEB-INF/view/top.jsp");
+//				DBに成功した場合、ログイン後のtop画面(index.jsp)を表示する
+		        request.getRequestDispatcher("Login.jsp").forward(request, response);
 			} else {
 //				DBに失敗した場合、エラー画面(registusererror.html)を表示する
-				response.sendRedirect("htmls/registusererror.html");
+//				response.sendRedirect("htmls/registUser.html");
+				request.setAttribute("message", "登録済みユーザーIDです。別のユーザーIDで登録し直してください。");
+				//トップページ画面へ転送
+		        request.getRequestDispatcher("registUser.jsp").forward(request, response);
 			}
 		
 		

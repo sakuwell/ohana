@@ -37,34 +37,15 @@ public class EditUser extends HttpServlet {
 		
 		if (userInfoOnSession != null) {
 			
-//			String id = request.getParameter("ID");
-//			String userId   = request.getParameter("USERID");      
-//			String passWord = request.getParameter("PASS");
-			
-//			SelectUserBL logic = new SelectUserBL();
-//			
-//			UsersInfoDto updateUser = logic.executeSelectUserInfo(Integer.parseInt(id)); 
-//			
-//			
-//			
-//			request.setAttribute("user" , updateUser );
-			
 			RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/editUser.jsp");
 			dispatch.forward(request, response);
 			
-		}else{
+		} else {
 
-			response.sendRedirect("/WEB-INF/view/index.jsp");
-			
+			response.sendRedirect("index.jsp");
 			
 		}
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	
-		
-	}
+	}		
+}
 
 
