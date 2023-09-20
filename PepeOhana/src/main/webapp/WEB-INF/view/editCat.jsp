@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="model.UsersInfoDto" %>
+<%@ page import="model.CatsInfoDto" %>
+<% CatsInfoDto cat =(CatsInfoDto)request.getAttribute("cat"); %>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -101,11 +103,11 @@
             <p class="text-danger">エラーメッセージ</p>
             <div class="mb-3">
                 <label for="" class="form-label">名前　<span class="badge text-bg-danger">必須</span></label>
-                <input type="text" class="form-control" name="CATNAME" id="inputName" value="">
+                <input type="text" class="form-control" name="CATNAME" id="inputName" value="<%=cat.getCatName() %>">
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">描種　<span class="badge text-bg-danger">必須</span></label>
-	            <select class="form-select" name="KIND" id="inputKind">
+	            <select class="form-select" name="KIND" id="inputKind" value = "<%=cat.getKind() %>">
 				 	<option value="">選択してください</option>
 				 	<option value="スコティッシュ・フォールド">スコティッシュ・フォールド</option>
 					<option value="マンチカン">マンチカン</option>
@@ -119,27 +121,27 @@
 			</div>
             <div class="mb-3">
                 <label for="" class="form-label">誕生日　※不明の場合は、コメント欄におおよそを記入してください</label>
-                <input type="date" class="form-control" name="BIRTH" placeholder="yyyy/mm/dd" value="">
+                <input type="date" class="form-control" name="BIRTH" placeholder="yyyy/mm/dd" value="<%=cat.getBirth() %>">
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">体重　<span class="badge text-bg-danger">必須</span>　※0.1kg単位で、単位は入力不要です(例：2.5)</label>
-                <input type="text" class="form-control" name="WEIGHT" id="inputWeight" value="">
+                <input type="text" class="form-control" name="WEIGHT" id="inputWeight" value="<%=cat.getWeight() %>">
             </div>
             <div class="mb-3">
 				<label for="" class="form-label">性別　<span class="badge text-bg-danger">必須</span></label><br>
-				<input type="radio" class="btn-check" name="GENDER" id="inputMale" value="" autocomplete="off">
+				<input type="radio" class="btn-check" name="GENDER" id="inputMale" value="<%=cat.getGender() %>" autocomplete="off">
 				<label class="btn btn-outline-secondary" for="inputMale">男の子</label>
-				<input type="radio" class="btn-check" name="GENDER" id="inputFemale" value="" autocomplete="off">
+				<input type="radio" class="btn-check" name="GENDER" id="inputFemale" value="<%=cat.getGender() %>" autocomplete="off">
 				<label class="btn btn-outline-secondary ms-3" for="inputFemale">女の子</label>
             </div>
             <div class="mb-3">
                 <label for="inputImage" class="form-label">画像　<span class="badge text-bg-danger">必須</span></label>
-                <input type="file" class="form-control mb-2" name="IMAGE" id="inputImage" accept="image/png, image/jpeg" value=""><br>
+                <input type="file" class="form-control mb-2" name="IMAGE" id="inputImage" accept="image/png, image/jpeg" value="<%=cat.getImage() %>"><br>
                 <img id="setImage">
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">コメント　<span class="badge text-bg-danger">必須</span></label>
-                <textarea class="form-control" name="COMMENT" id="inputComment" cols="50" rows="4" maxlength="200"></textarea>
+                <textarea class="form-control" name="COMMENT" id="inputComment" cols="50" rows="4" maxlength="200">"<%=cat.getComment() %>"</textarea>
             </div>
             <div style="text-align: center;">
                 <button type="submit" class="btn btn-lg mt-3" style="background-color:#E87B4C; color:#ffffff;">更新する</button>
