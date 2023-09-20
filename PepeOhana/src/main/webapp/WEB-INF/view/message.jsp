@@ -27,15 +27,13 @@
 
 <%
     // セッションを取得
-    String userName="";
-	UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
-    if (userInfoOnSession != null) {
-		String userId = userInfoOnSession.getUserId();
-		userName = userInfoOnSession.getUserName();
-    }
+	UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");  
+	int id = userInfoOnSession.getID();
+	String userId = userInfoOnSession.getUserId();
+	String userName = userInfoOnSession.getUserName();
 %>
 
-<%String error = (String) request.getAttribute("message"); %>
+<% String error = (String) request.getAttribute("message"); %>
 
 
 <body style="background-color:beige; color:#523F24;">
@@ -60,10 +58,10 @@
             </a>
             <div class="btn-group">
                 <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <%=userName%>
+                    <%= userName %>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeMypage">マイページ</a></li>
+                    <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeMyPage">マイページ</a></li>
                     <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeLogout">ログアウト</a></li>
                 </ul>
             </div>

@@ -135,7 +135,7 @@
 			   		outputStream.close();
    		 %>					
         	<div class="col-sm-4 col-md-3 mb-2">
-                <img src="<%=request.getContextPath()%>/images/cat_<%=dto.getCatId()%>.jpg" alt="<%=dto.getCatName()%>画像" class="rounded" style="height:180px; width: 100%; object-fit: cover;">
+                <img src="<%=request.getContextPath()%>/images/img_<%=dto.getCatId()%>.jpg" alt="<%=dto.getCatName()%>画像" class="rounded" style="height:180px; width: 100%; object-fit: cover;">
             </div>
             <div class="col-sm-8 col-md-9">
                 <table class="table">
@@ -184,7 +184,7 @@
 			} 
 		}%>
 		<% if (!catsFound) { %>
-		    <p>募集中のねこ情報はありません</p>
+		    <p class="text-center">募集中のねこ情報はありません</p>
 		<% } %>
 		
 		<!-- ネコテーブルループここまで -->
@@ -245,7 +245,7 @@
        		}
 			
 			 if (!receivedMessagesExist) { %>
-			    <p>受信メールはありません</p>
+			    <p class="text-center">受信メッセージはありません</p>
 			    
 			<% } %>
 
@@ -287,7 +287,7 @@
 			}
 			
 			 if (!sendMessagesExist) { %>
-			    <p>送信メールはありません</p>
+			    <p class="text-center">送信メッセージはありません</p>
 			    
 			<% } %><!-- 送信メッセージループここまで -->
 
