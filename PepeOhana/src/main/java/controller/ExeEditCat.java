@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -51,21 +52,18 @@ public class ExeEditCat extends HttpServlet {
 		
 		System.out.println(userId);
 		
+//		int catId =request.getParameter("CATID");
+		int catId = Integer.parseInt(request.getParameter("CATID"));
+		
 		EditCatOneBL logic = new EditCatOneBL();
-		CatsInfoDto editCatOne = logic.exeSelectOneCatInfo(userId);
+		CatsInfoDto editCat = logic.exeSelectOneCatInfo(catId);
 		
 		
+		request.setAttribute("cat", editCat);
 		
-		request.setAttribute("cat", editCatOne);
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/editCat.jsp");
+		dispatch.forward(request, response);
+
 		
 	
 	
