@@ -449,7 +449,18 @@ public class CatsInfoDao {
 		 *戻り値：Cats_Infoから抽出したネコ情報
 		 *----------------------------------------------------------------------**/
 		
-		public List<CatsInfoDto> doSelectCatOne(int userId) {
+		public CatsInfoDto doSelectCatOne(int catId) {
+			
+//			List<CatsInfoDto> dtoList = new ArrayList<>();
+			
+
+			//JDBCの接続に使用するオブジェクトを宣言
+			//※finallyブロックでも扱うためtryブロック内で宣言してはいけないことに注意
+			CatsInfoDto dto = null;
+			Connection        con = null ;   // Connection（DB接続情報）格納用変数
+			PreparedStatement ps  = null ;   // PreparedStatement（SQL発行用オブジェクト）格納用変数
+			ResultSet         rs  = null ;   // ResultSet（SQL抽出結果）格納用変数
+			
 //
 			
 			//JDBCドライバのロード
@@ -464,14 +475,8 @@ public class CatsInfoDao {
 			//SQL発行
 			//-------------------------------------------
 
-			//JDBCの接続に使用するオブジェクトを宣言
-			//※finallyブロックでも扱うためtryブロック内で宣言してはいけないことに注意
-			Connection        con = null ;   // Connection（DB接続情報）格納用変数
-			PreparedStatement ps  = null ;   // PreparedStatement（SQL発行用オブジェクト）格納用変数
-			ResultSet         rs  = null ;   // ResultSet（SQL抽出結果）格納用変数
-			
 			//抽出結果格納用DTOリスト
-			List<CatsInfoDto> dtoList = new ArrayList<CatsInfoDto>();
+
 
 			try {
 
@@ -485,8 +490,8 @@ public class CatsInfoDao {
 				//発行するSQL文の生成（SELECT）
 				StringBuffer buf = new StringBuffer();
 				buf.append("SELECT                ");
-				buf.append("  USERID,               ");
 				buf.append("  CATID,               ");
+				buf.append("  USERID,               ");
 				buf.append("  CATNAME,               ");
 				buf.append("  KIND,                ");
 				buf.append("  BIRTH,                ");
@@ -497,21 +502,22 @@ public class CatsInfoDao {
 				buf.append("  UP_DATE                  ");
 				buf.append("FROM                  ");
 				buf.append("  CATS_INFO              ");
-				buf.append("  WHERE  USERID =    ?    ;");
+				buf.append("  WHERE  CATID =    ?    ;");
 
 				
 				ps = con.prepareStatement(buf.toString());
 				
 				System.out.println(buf.toString());
 				
-				ps.setInt(1, userId);
+				ps.setInt(1, catId);
 				rs = ps.executeQuery();
 				
 
 				//ResultSetオブジェクトからDTOリストに格納
 				while (rs.next()) {
-					dto.setCatId(rs.getInt("USERID"));
-					dto.setUserId(  rs.getInt(    "CATID"   ));
+//					CatsInfoDto dto = new CatsInfoDto();
+					dto.setCatId(rs.getInt("CATID"));
+					dto.setUserId(  rs.getInt(    "USERID"   ));
 					dto.setCatName(  rs.getString(    "CATNAME"   ));
 					dto.setKind(  rs.getString(    "KIND"   ));
 					dto.setBirth(  rs.getDate(    "BIRTH"   ));
@@ -520,7 +526,7 @@ public class CatsInfoDao {
 					dto.setImage( rs.getBytes( "IMAGE"  ));
 					dto.setComment( rs.getString( "COMMENT"  ));
 					dto.setUp_Date( rs.getTimestamp( "UP_DATE"  ));
-
+//					dtoList.add(dto);
 				}
 
 			} catch (SQLException e) {
@@ -563,4 +569,4 @@ public class CatsInfoDao {
 		}
 		
 		}
-}
+
