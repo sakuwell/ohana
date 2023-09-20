@@ -171,7 +171,7 @@
                 </table>
             </div>
             <div class="mb-4" style="text-align: center;">
-            <a href="<%= request.getContextPath() %>/EditCat?ID=<%= dto.getCatId() %>">
+            <a href="<%= request.getContextPath() %>/ExeEditCat?ID=<%= dto.getCatId() %>">
             	<button class="btn btn-sm" style=" width:120px; background-color:#E87B4C; color:#ffffff;"
                 	onclick="">編集・削除する
             	</button>
