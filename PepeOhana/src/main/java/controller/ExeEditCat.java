@@ -1,7 +1,10 @@
 package controller;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import javax.servlet.RequestDispatcher;
@@ -12,9 +15,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import model.CatsInfoDto;
 import model.EditCatOneBL;
+import model.UpdateCatBL;
 import model.UsersInfoDto;
 
 /**
@@ -129,68 +134,46 @@ public class ExeEditCat extends HttpServlet {
 //			(GENDER)
 			
 			float weight = Float.parseFloat("WEIGHT");
-
+			
+			// 1. クライアントから送信された画像ファイルを取得
+			Part filePart = request.getPart("IMAGE"); // IMAGEはフォームのinput要素のname属性
+			InputStream inputStream = filePart.getInputStream();
+			
+			// 2. 画像ファイルをバイト配列に変換
+			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+			byte[] buffer = new byte[1024];
+			int bytesRead;
+			while ((bytesRead = inputStream.read(buffer)) != -1) {
+			    outputStream.write(buffer, 0, bytesRead);
+			}
+			byte[] imageBytes = outputStream.toByteArray();
+			
+			String comment	=request.getParameter("CMMENT");
 			
 			
-			
-			
-			
-			
-			
-			String message 		=request.getParameter("MESSAGE");
-//			(MESSAGE)
-			String[] foods 		=request.getParameterValues("FOOD");
-			
-			String food =String.join(",", foods);
+//			(comment)
 			
 			//パラメータをセット
-			ps.setInt(1, dto.getUserId()); //第1パラメータ：更新データ（飼い主ID）
-			ps.setString(2, dto.getCatName()); //第2パラメータ：更新データ（ネコ名）
-			ps.setString(3, dto.getKind()); //第3パラメータ：更新データ（種類）
-			ps.setDate(4, dto.getBirth()); //第4パラメータ：更新データ（誕生日）
-			ps.setInt(5, dto.getGender()); //第5パラメータ：更新データ（性別）
-			ps.setFloat(6, dto.getWeight()); //第6パラメータ：更新データ（体重）
-			ps.setBytes(7, dto.getImage()); //第7パラメータ：更新データ（写真）
-			ps.setString(8, dto.getComment()); //第8パラメータ：更新データ（コメント）
-			ps.setTimestamp(9, dto.getUp_Date());//第9パラメータ：更新データ（更新日）
-			ps.setInt(10, dto.getCatId());//第10パラメータ：更新データ（CATID）
-
-			//アンケートデータ（SurveyDto型）の作成
-			SurveyDto dto = new SurveyDto();
-			dto.setId(id);
-			dto.setName( name );
-			dto.setAge( age );
-			dto.setSex( sex );
-			dto.setSatisfactionLevel( satisfactionLevel );
-			dto.setMessage( message );
-			dto.setTime( new Timestamp(System.currentTimeMillis()) );   //現在時刻を更新時刻として設定
-			dto.setFood( food );  
+			CatsInfoDto dto = new CatsInfoDto();
+			dto.setCatId(catId);
+			dto.setUserId(userId);
+			dto.setCatName(catName);
+			dto.setKind(kind);
+			dto.setBirth(sqlDate);
+			dto.setGender(gender);
+			dto.setWeight(weight);
+			dto.setImage(imageBytes);
+			dto.setComment(comment);
+			dto.setUp_Date(new Timestamp(System.currentTimeMillis())); 
 			
+			System.out.println(userId);
 			
-			
-			
-			
-//		アンケートデータをDBに登録
-			UpdateOneBL logic = new UpdateOneBL();
-			boolean succesInsert = logic.executeUpdateSurvey(dto);
-			
-			//DB操作の成功/失敗に応じて表示させる画面を振り分ける
-			
-			if (succesInsert) {
-//				DBに成功した場合、回答完了画面(finish.html)を表示する
-				response.sendRedirect("htmls/finish.html");
-			} else {
-//				DBに失敗した場合、エラー画面(erro.html)を表示する
-				response.sendRedirect("htmls/error.html");
-			}
-					
+			//ネコちゃん情報をDBに登録
+			UpdateCatBL logic = new UpdateCatBL();
+			boolean succesUpdate = logic.doUpdateCat(dto); 
 	}
-		
-		
-		
-		
 		
 		
 	}
 
-}
+
