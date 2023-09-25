@@ -170,7 +170,7 @@ public class ExeEditCat extends HttpServlet {
 			
 			//ネコちゃん情報をDBに登録
 			UpdateCatBL logic = new UpdateCatBL();
-			boolean succesUpdate = logic.doUpdateCat(dto); 
+			boolean succesUpdate = logic.exeUpdateCat(dto); 
 	}
 		
 		
