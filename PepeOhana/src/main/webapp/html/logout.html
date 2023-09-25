@@ -10,24 +10,25 @@
     
 </head>
 
+<!-- ナビゲーションボタンのカラー -->
+<style>
+    .custom-btn {
+        border-color: #523F24;
+        color: #523F24; /* テキストカラー */
+    }
+    .custom-btn:focus, .custom-btn:active {
+        background-color: #523F24;
+        color: #ffffff; /* テキストカラー */
+        border-color: #523F24; /* ボーダーカラー */
+    }
+</style>
+
 <body style="background-color:beige; color:#523F24;">
-    <!-- ナビゲーションボタンのカラー -->
-    <style>
-        .custom-btn {
-            border-color: #523F24;
-            color: #523F24; /* テキストカラー */
-        }
-        .custom-btn:focus, .custom-btn:active {
-            background-color: #523F24;
-            color: #ffffff; /* テキストカラー */
-            border-color: #523F24; /* ボーダーカラー */
-        }
-    </style>
     
     <!-- 未ログインヘッダー -->
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.jsp">
+          <a class="navbar-brand" href="../index.jsp">
             <img src="../images/pepe_logo.png" alt="ページロゴ" width="auto" height="60">
           </a>
           <div class="btn-group">
@@ -35,8 +36,8 @@
               未ログイン
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="jsp/Login.jsp">ログイン</a></li>
-              <li><a class="dropdown-item" href="jsp/registUser.jsp">新規ユーザー登録</a></li>
+              <li><a class="dropdown-item" href="../Login.jsp">ログイン</a></li>
+              <li><a class="dropdown-item" href="../registUser.jsp">新規ユーザー登録</a></li>
             </ul>
           </div>
         </div>
