@@ -212,11 +212,10 @@
 	    				if ("r".equals(messageType)) { // Check if messageType is "r"
 	        				receivedMessagesExist = true;
 			%>
-
             <div class="accordion-item">
                 <!-- メッセージヘッダー -->
                 <h2 class="accordion-header">
-                    <button class="p-2 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#reciever<%= i %>" aria-expanded="false" aria-controls="reciever1">
+                    <button class="p-2 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#reciever<%= i %>" aria-expanded="false" aria-controls="reciever<%= i %>">
                         <p style="line-height: 150%; margin:0;">
                             <small><%= dto.getSentDate() %></small><br>
                             対象ねこ&nbsp;<span class="badge rounded-pill text-bg-secondary"><%= dto.getTargetCatName() %></span>&ensp;
@@ -266,7 +265,7 @@
             <div class="accordion-item">
                 <!-- メッセージヘッダー -->
                 <h2 class="accordion-header">
-                    <button class="p-2 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sender<%= i %>" aria-expanded="false" aria-controls="sender1">
+                    <button class="p-2 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sender<%= i %>" aria-expanded="false" aria-controls="sender<%= i %>">
                         <p style="line-height: 150%; margin:0;">
                             <small><%= dto.getSentDate() %></small><br>
                             対象ねこ&nbsp;<span class="badge rounded-pill text-bg-secondary"><%= dto.getTargetCatName() %></span>&ensp;
@@ -278,6 +277,14 @@
                 <div id="sender<%= i %>" class="accordion-collapse collapse" data-bs-parent="#sender">
                     <div class="accordion-body p-3">
                         <%= dto.getMessage() %>
+                        <!-- 削除ボタン -->
+                        <div class="text-end mt-2">
+                            <a href="<%=request.getContextPath()%>/ExeDelMessage?MESSAGEID=<%=dto.getMessageId() %>">
+	                            <button type="submit" class="btn btn-sm" style="background-color:#E87B4C; color:#ffffff;"
+	                                onclick="">削除する
+	                            </button>
+	                        </a>
+                        </div>
                     </div>
                 </div>
             </div>
