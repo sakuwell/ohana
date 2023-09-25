@@ -143,6 +143,12 @@
                 <label for="" class="form-label">コメント　<span class="badge text-bg-danger">必須</span></label>
                 <textarea class="form-control" name="COMMENT" id="inputComment" cols="50" rows="4" maxlength="200">"<%=cat.getComment() %>"</textarea>
             </div>
+            <div class="form-check">
+				<input class="form-check-input" type="checkbox" name="DEL" value="1" id="flexCheckDefault">
+				<label class="form-check-label" for="flexCheckDefault">
+    				<span class="text-danger">「<%=cat.getCatName() %>」の情報を削除する　※削除後の復元不可</span>
+  				</label>
+			</div>
             <div style="text-align: center;">
                 <button type="submit" class="btn btn-lg mt-3" style="background-color:#E87B4C; color:#ffffff;">更新する</button>
             </div>
