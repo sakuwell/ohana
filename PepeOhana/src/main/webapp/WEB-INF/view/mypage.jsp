@@ -34,6 +34,8 @@
 	List<MyPageDto> list = (List<MyPageDto>)request.getAttribute("MYPAGE");
 %>
 
+<%  String error = (String) request.getAttribute("message"); %>
+
 <body style="background-color:beige; color:#523F24;">
     <!-- ナビゲーションボタンのカラー -->
     <style>
@@ -75,6 +77,9 @@
 
     <!-- ユーザー情報テーブル -->
     <div class="container">
+        <%if(error != null){ %>
+           	<p class="text-danger"><%= error %></p>
+        <% } %>
         <div class="h4 pb-2 mt-4 mb-4" style="border-bottom:solid 0.5px; border-color: #523F24;">
             ユーザー情報
         </div>
