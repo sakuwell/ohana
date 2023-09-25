@@ -537,7 +537,7 @@ public class CatsInfoDao {
 				//接続の解除
 				//-------------------------------------------
 			}
-				
+
 
 //				//ResultSetオブジェクトの接続解除
 //				if (rs != null) {    //接続が確認できている場合のみ実施
@@ -585,13 +585,14 @@ public class CatsInfoDao {
 			PreparedStatement ps  = null ;   // PreparedStatement（SQL発行用オブジェクト）格納用変数
 			ResultSet         rs  = null ;   // ResultSet（SQL抽出結果）格納用変数
 	
-			
+			boolean isSuccess = true;
+
 			try {
-				 Class.forName(DRIVER_NAME);
-				//-------------------------------------------
-				//接続の確立（Connectionオブジェクトの取得）
-				//-------------------------------------------
-				con = DriverManager.getConnection(JDBC_URL, USER_ID, USER_PASS);
+			    Class.forName(DRIVER_NAME);
+			    //-------------------------------------------
+			    //接続の確立（Connectionオブジェクトの取得）
+			    //-------------------------------------------
+			    con = DriverManager.getConnection(JDBC_URL, USER_ID, USER_PASS);
 				
 //				オートコミットをオフにする
 				con.setAutoCommit(false);
@@ -638,20 +639,58 @@ public class CatsInfoDao {
 				System.out.println(dto.getCatId());
 				
 				ps.executeUpdate();
-				
+			} catch (ClassNotFoundException e) {
+			    e.printStackTrace();
+			    // 例外処理を行う（エラーメッセージを表示したり、アプリケーションを終了したり、適切な処理を行う）
 			} catch (SQLException e) {
-				e.printStackTrace();
-			} catch(ClassNotFoundException e){
-				e.printStackTrace();
+			    e.printStackTrace();
+			    // 例外処理を行う（SQL実行時のエラー処理を行う）
+
 			} finally {
+
+				//-------------------------------------------
+				//トランザクションの終了
+				//-------------------------------------------
+				if (isSuccess) {
+					//明示的にコミットを実施
+					try {
+						con.commit();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+
+				} else {
+					//明示的にロールバックを実施
+					try {
+						con.rollback();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+
 				//-------------------------------------------
 				//接続の解除
 				//-------------------------------------------
+
+				//PreparedStatementオブジェクトの接続解除
+				if (ps != null) { //接続が確認できている場合のみ実施
+					try {
+						ps.close(); //接続の解除
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+
+				//Connectionオブジェクトの接続解除
+				if (con != null) { //接続が確認できている場合のみ実施
+					try {
+						con.close(); //接続の解除
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
 			}
-			
-
-
-
+			return isSuccess;
 		
 		}
 		
