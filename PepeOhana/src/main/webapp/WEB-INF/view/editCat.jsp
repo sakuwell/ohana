@@ -53,10 +53,8 @@
 <%
     // セッションを取得
 	UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
-    if (userInfoOnSession != null) {
-		String userId = userInfoOnSession.getUserId();
-		String userName = userInfoOnSession.getUserName();
-    }
+	String userId = userInfoOnSession.getUserId();
+	String userName = userInfoOnSession.getUserName();
 %>
 
 
@@ -82,10 +80,10 @@
             </a>
             <div class="btn-group">
                 <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    userName
+                    <%= userName %>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="<%=request.getContextPath()%>/Mypage">マイページ</a></li>
+                    <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeMyPage">マイページ</a></li>
                     <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeLogout">ログアウト</a></li>
                 </ul>
             </div>
@@ -141,7 +139,7 @@
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">コメント　<span class="badge text-bg-danger">必須</span></label>
-                <textarea class="form-control" name="COMMENT" id="inputComment" cols="50" rows="4" maxlength="200">"<%=cat.getComment() %>"</textarea>
+                <textarea class="form-control" name="COMMENT" id="inputComment" cols="50" rows="4" maxlength="200"><%=cat.getComment() %></textarea>
             </div>
             <div class="form-check">
 				<input class="form-check-input" type="checkbox" name="DEL" value="1" id="flexCheckDefault">
@@ -159,11 +157,6 @@
 	
 	
     <!-- フッター -->
-    <div class="text-center mt-4">
-        <a class="icon-link icon-link-hover" href="#">
-            ページトップへ
-        </a>
-	</div>
 	<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
     	<div class="col-md-4 d-flex align-items-center ms-3">
           	<span class="mb-3 mb-md-0 text-body-secondary">© 2023 pepeohana, Inc</span>
