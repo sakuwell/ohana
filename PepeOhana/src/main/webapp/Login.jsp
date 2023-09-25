@@ -85,7 +85,7 @@
             </div>
             <div style="text-align: center;">
                 <button type="submit" class="btn btn-lg mt-3" style="background-color:#E87B4C; color:#ffffff;">ログイン</button>
-            </div>
+			</div>
             <div class="text-end mt-4">
        			<a class="icon-link icon-link-hover" href="registUser.jsp">
             		新規登録はこちら

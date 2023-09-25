@@ -22,6 +22,7 @@
 				alert("入力できていない項目があります");
 				return false; // フォームの送信を中止
 			}
+			document.getElementById("btn").disabled = true;
 			return true; // フォームの送信を続行
 		}
 	</script>
@@ -86,7 +87,7 @@
                 <input type="password" class="form-control" name="userPass" id="inputPass">
             </div>
             <div style="text-align: center;">
-                <button type="submit" class="btn btn-lg mt-3" style="background-color:#E87B4C; color:#ffffff;">新規登録する</button>
+                <button type="submit" id="btn" class="btn btn-lg mt-3" style="background-color:#E87B4C; color:#ffffff;">新規登録する</button>
             </div>
             <div class="text-end mt-4">
        			<a class="icon-link icon-link-hover" href="Login.jsp">

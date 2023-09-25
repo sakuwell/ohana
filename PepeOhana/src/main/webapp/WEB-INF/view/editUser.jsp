@@ -24,6 +24,7 @@
 				alert("入力できていない項目があります");
 				return false; // フォームの送信を中止
 			}
+			document.getElementById("btn").disabled = true;
 			return true; // フォームの送信を続行
 		}
 	</script>
@@ -97,7 +98,7 @@
                 <input type="password" class="form-control" name="userPass" id="inputPass">
             </div>
             <div style="text-align: center;">
-                <button type="submit" class="btn btn-lg mt-3" style="background-color:#E87B4C; color:#ffffff;">更新する</button>
+                <button type="submit" id="btn" class="btn btn-lg mt-3" style="background-color:#E87B4C; color:#ffffff;">更新する</button>
             </div>
         </form>
     </div>

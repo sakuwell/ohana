@@ -20,6 +20,7 @@
 				alert("メッセージが入力されていません");
 				return false; // フォームの送信を中止
 			}
+			document.getElementById("btn").disabled = true;
 			return true; // フォームの送信を続行
 		}
 	</script>
@@ -98,7 +99,7 @@
                 <textarea class="form-control" name="COMMENT" id="inputComment" cols="50" rows="8" maxlength="500"></textarea>
             </div>
             <div style="text-align: center;">
-                <button type="submit" class="btn btn-lg mt-3" style="background-color:#E87B4C; color:#ffffff;">送信する</button>
+                <button type="submit" id="btn" class="btn btn-lg mt-3" style="background-color:#E87B4C; color:#ffffff;">送信する</button>
             </div>
         </form>
     </div>

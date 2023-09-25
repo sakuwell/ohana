@@ -25,6 +25,7 @@
 	            alert("入力できていない項目があります");
 	            return false;
 	        }
+	        	document.getElementById("btn").disabled = true;
 	            return true;
 	        
 	    }
@@ -147,7 +148,7 @@
                 <textarea class="form-control" name="COMMENT" id="inputComment" cols="50" rows="4" maxlength="200"></textarea>
             </div>
             <div style="text-align: center;">
-                <button type="submit" class="btn btn-lg mt-3" style="background-color:#E87B4C; color:#ffffff;">更新する</button>
+                <button type="submit" id="btn" class="btn btn-lg mt-3" style="background-color:#E87B4C; color:#ffffff;">更新する</button>
             </div>
         </form>
     </div>

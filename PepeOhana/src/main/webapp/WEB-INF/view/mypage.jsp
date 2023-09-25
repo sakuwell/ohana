@@ -105,8 +105,8 @@
         </div>
         <div class="text-end mb-4">
 	        <a href="<%= request.getContextPath() %>/RegistCat">
-	        	<button class="btn" style=" width:180px; background-color:#E87B4C; color:#ffffff;"
-	            	onclick="">ねこ情報を登録する
+	        	<button class="btn" style=" width:180px; background-color:#E87B4C; color:#ffffff;">
+	        	ねこ情報を登録する
 	        	</button>
 	        </a>
         </div>
