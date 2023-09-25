@@ -10,4 +10,5 @@ public class UpdateCatBL {
 		succesUpdate = dao.doUpdateCat(dto);
 		
 		return succesUpdate;
+	}
 }
