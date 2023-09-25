@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -100,6 +101,58 @@ public class ExeEditCat extends HttpServlet {
 		
 //		リクエスト（受信データ）の文字コードを設定
 		request.setCharacterEncoding("UTF-8");
+		
+//		リクエストパラメータを取得
+		
+		String catIdStr = request.getParameter("ID");
+		int catId = Integer.parseInt(catIdStr);
+		
+		int userId = Integer.parseInt( request.getParameter("USERID"));
+//		(飼い主ID:userId)
+		
+		String catName	=request.getParameter("CATNAME");
+//		(CATNAME)
+		
+		String kind	=request.getParameter("KIND");
+//		(KIND)
+		
+		
+		
+		int gender = Integer.parseInt( request.getParameter("GENDER"));
+//		(GENDER)
+		
+		float weight = Float.parseFloat(request.getParameter("WEIGHT"));
+//		(WEIGHT)
+				
+		
+		
+		
+		
+		String comment 	=request.getParameter("COMMENT");
+//		(MESSAGE)
+		
+//		private Timestamp 	up_Date;	//更新日
+		
+		//アンケートデータ（SurveyDto型）の作成
+		CatsInfoDto dto = new CatsInfoDto();
+		dto.setCatId(catId);
+		dto.setUserId(userId);
+		dto.setCatName(catName);
+		dto.setKind( kind );
+		dto.setBirth( birth );
+		dto.setGender( gender );
+		dto.setWeight( weight );
+		
+		dto.setComment( comment );
+		dto.setUp_Date( new Timestamp(System.currentTimeMillis()) );   //現在時刻を更新時刻として設定
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 
 }
