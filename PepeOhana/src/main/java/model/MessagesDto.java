@@ -10,7 +10,7 @@ public class MessagesDto {
 	private int recieverId;       //受け取り主ID
 	private String message;       //メッセージ文
 	private Timestamp send_Date;       //メッセージ文
-
+	private int messageId;			//メッセージID
 
 	//----------------------------------------------------------------
 	//getter/setter
@@ -35,4 +35,8 @@ public class MessagesDto {
 	//getter/setter（対象フィールド：sendDate）
 	public Timestamp getSend_Date() { return send_Date; }
 	public void setSend_Date(Timestamp send_Date) { this.send_Date = send_Date; }
+	
+	//getter/setter（対象フィールド：senderId）
+		public int getMessageId() { return messageId; }
+		public void setMessageId(int messageId) { this.messageId = messageId; }
 }
