@@ -9,6 +9,10 @@ public class UpdateCatBL {
 		CatsInfoDao dao = new CatsInfoDao();
 		succesUpdate = dao.doUpdateCat(dto);
 		
+		System.out.println("AAAA");
+		
 		return succesUpdate;
 	}
 }
+
+
