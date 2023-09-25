@@ -31,7 +31,7 @@ public class ExeDelMessage extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
-		response.setContentType("text/html;charset=UTF-8");
+//		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		
 		String messageId = request.getParameter("MESSAGEID");
@@ -41,11 +41,13 @@ public class ExeDelMessage extends HttpServlet {
 		DelMessageBL logic = new DelMessageBL();
 		boolean successDelete = logic.executeDeleteMessage(dto);
 		if(successDelete) {
-			response.sendRedirectDispatcher("ExeMyPage").forward(request, response);
+			response.sendRedirect("ExeMyPage");
+//			response.sendRedirectDispatcher("ExeMyPage").forward(request, response);
 			
 		}else {
-			request.setAttribute("message", "送信メッセージの削除に失敗しました");
-			response.sendRedirectDispatcher("ExeMyPage").forward(request, response);
+			response.sendRedirect("ExeMyPage");
+//			request.setAttribute("message", "送信メッセージの削除に失敗しました");
+//			response.sendRedirectDispatcher("ExeMyPage").forward(request, response);
 		}
 	}
 
