@@ -229,11 +229,16 @@
                         	<%= dto.getMessage() %>
                         <!-- 返信ボタン -->
                         <div class="text-end mt-2">
-                            <a href="<%=request.getContextPath()%>/Message?CATID=<%=dto.getTargetCatId() %>&RECIEVERID=<%=dto.getTargetUserId() %>&RECIEVERNAME=<%=dto.getTargetUserName() %>&CATNAME=<%=dto.getTargetCatName() %>">
-	                            <button type="submit" class="btn btn-sm" style="background-color:#E87B4C; color:#ffffff;"
-	                                onclick="">返信する
+	                        <form action="Message" method="post">
+	                        	<input type="hidden" name="CATID" value="<%= dto.getTargetCatId() %>">
+	                        	<input type="hidden" name="CATNAME" value="<%= dto.getTargetCatName() %>">
+	                        	<input type="hidden" name="USERID" value="<%= dto.getTargetUserId() %>">
+	                        	<input type="hidden" name="USERNAME" value="<%= dto.getTargetUserName() %>">
+	                        	<input type="hidden" name="MESSAGE" value="<%= dto.getMessage() %>">
+	                        	<button type="submit" class="btn btn-sm" style="background-color:#E87B4C; color:#ffffff;">
+	                        		返信する
 	                            </button>
-	                        </a>
+	                        </form>
                         </div>
                     </div>
                 </div>

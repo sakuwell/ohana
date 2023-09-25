@@ -36,20 +36,20 @@
 
 <% String error = (String) request.getAttribute("message"); %>
 
+<!-- ナビゲーションボタンのカラー -->
+<style>
+    .custom-btn {
+        border-color: #523F24;
+        color: #523F24;
+    }
+    .custom-btn:focus, .custom-btn:active {
+        background-color: #523F24;
+        color: #ffffff;
+        border-color: #523F24;
+    }
+</style>
 
 <body style="background-color:beige; color:#523F24;">
-    <!-- ナビゲーションボタンのカラー -->
-    <style>
-        .custom-btn {
-            border-color: #523F24;
-            color: #523F24;
-        }
-        .custom-btn:focus, .custom-btn:active {
-            background-color: #523F24;
-            color: #ffffff;
-            border-color: #523F24;
-        }
-    </style>
     
     <!-- ログイン済ヘッダー -->
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -83,17 +83,23 @@
            	<div class="mb-3 row">
 		    	<label class="col-sm-4 col-form-label">対象ねこ</label>
 		    	<div class="col-sm-8">
-		      		<input type="text" readonly class="form-control-plaintext" name="CATNAME" id="catName" value="<%=request.getAttribute("catName")%>">
-		      		<input type="hidden" name="CATID" id="catId" value="<%=request.getAttribute("catId")%>">
+		      		<input type="text" readonly class="form-control-plaintext" name="CATNAME" id="catName" value="<%=request.getAttribute("CATNAME")%>">
+		      		<input type="hidden" name="CATID" id="catId" value="<%=request.getAttribute("CATID")%>">
 		    	</div>
 		  	</div>
            	<div class="mb-3 row">
 	    		<label class="col-sm-4 col-form-label">送信先ユーザー</label>
 		    	<div class="col-sm-8">
-		      		<input type="text" readonly class="form-control-plaintext" name="RECIEVERNAME" id="ownerUser" value="<%=request.getAttribute("recieverName")%>">
-		      		<input type="hidden" name="RECIEVERID" id="recieverId" value="<%=request.getAttribute("recieverId")%>">
+		      		<input type="text" readonly class="form-control-plaintext" name="RECIEVERNAME" id="ownerUser" value="<%=request.getAttribute("RECIEVERNAME")%>">
+		      		<input type="hidden" name="RECIEVERID" id="recieverId" value="<%=request.getAttribute("RECIEVERID")%>">
 		    	</div>
 		  	</div>
+		  	<% if(request.getAttribute("MESSAGE") != null){ %>
+		  	<div class="mb-3">
+	    		<label class="form-label">受信メッセージ</label>
+                <textarea class="form-control" cols="50" maxlength="500" readonly><%=request.getAttribute("MESSAGE")%></textarea>
+		  	</div>
+		  	<%} %>
             <div class="mb-3">
                 <label class="form-label">メッセージ　<span class="badge text-bg-danger">必須</span></label>
                 <textarea class="form-control" name="COMMENT" id="inputComment" cols="50" rows="8" maxlength="500"></textarea>

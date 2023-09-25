@@ -161,9 +161,15 @@
             </div>
             <% if (isLoggedIn) { %>
             <div class="text-center">
-	            <a href="<%=request.getContextPath()%>/Message?CATID=<%=ShowCatInfo.getCatId() %>&RECIEVERID=<%=ShowCatInfo.getUserId() %>&RECIEVERNAME=<%=ShowCatInfo.getUserName() %>&CATNAME=<%=ShowCatInfo.getCatName() %>" class="btn" style="width:200px; background-color:#E87B4C; color:#ffffff;">
-	            	メッセージを送る
-	            </a>
+           		<form action="Message" method="post">
+                	<input type="hidden" name="CATID" value="<%=ShowCatInfo.getCatId() %>">
+	                <input type="hidden" name="CATNAME" value="<%= ShowCatInfo.getCatName() %>">
+	                <input type="hidden" name="USERID" value="<%=ShowCatInfo.getUserId() %>">
+	                <input type="hidden" name="USERNAME" value="<%=ShowCatInfo.getUserName() %>">
+	            	<button type="submit" class="btn" style="background-color:#E87B4C; color:#ffffff;">
+	                 	メッセージを送る
+	                </button>
+	            </form>
             </div>
             <% } else { %>
             <div class="text-center">
