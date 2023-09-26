@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="model.UsersInfoDto" %>
 <%@ page import="model.CatsInfoDto" %>
+<%@ page import="java.io.FileOutputStream" %>
 <% CatsInfoDto cat =(CatsInfoDto)request.getAttribute("cat"); %>
 
 <!DOCTYPE html>
@@ -48,6 +49,14 @@
 	            reader.readAsDataURL(file);
 	        }
 	    });
+	    
+	    function Image(obj){
+		    var fileReader = new FileReader();
+		    fileReader.onload =(function(){
+			    document.getElementById('setImage').src = fileReader.result;
+			    });
+		    fileReader.readAsDataURL(obj.files[0]);
+		    }
 	</script>
 </head>
 
@@ -137,11 +146,16 @@
             
 
 			
-            
+            <%String webContentPath = getServletContext().getRealPath("/images");
+		             		  String imageFileName = webContentPath + "/img_" + cat.getCatId() + ".jpg";
+		             		  FileOutputStream outputStream = new FileOutputStream(imageFileName);
+		             		  outputStream.write(cat.getImage());
+		             		  outputStream.close();%>
             <div class="mb-3">
                 <label for="inputImage" class="form-label">画像　<span class="badge text-bg-danger">必須</span></label>
-                <input type="file" class="form-control mb-2" name="IMAGE" id="inputImage" accept="image/png, image/jpeg" value="<%=cat.getImage() %>"><br>
-                <img id="setImage">
+                <input type="file" class="form-control mb-2" name="IMAGE" id="inputImage" accept="image/png, image/jpeg" value="<%=cat.getImage() %>" onchange="Image(this)"><br>
+                <img src="<%=request.getContextPath()%>/images/img_<%=cat.getCatId()%>.jpg"style="max-width:100px;">
+                <img id="setImage"src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="max-width:100px;">
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">コメント　<span class="badge text-bg-danger">必須</span></label>
