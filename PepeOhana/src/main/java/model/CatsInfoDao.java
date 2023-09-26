@@ -602,7 +602,7 @@ public class CatsInfoDao {
 
 				//発行するSQL文の生成（SELECT）
 				StringBuffer buf = new StringBuffer();
-				buf.append("UPDATE CatsInfo SET  ");
+				buf.append("UPDATE Cats_Info SET  ");
 				buf.append("  USERID = ? ,               ");
 				buf.append("  CATNAME = ? ,               ");
 				buf.append("  KIND = ? ,               ");
