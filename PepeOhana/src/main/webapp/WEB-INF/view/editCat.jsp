@@ -105,17 +105,17 @@
                 <input type="text" class="form-control" name="CATNAME" id="inputName" value="<%=cat.getCatName() %>">
             </div>
             <div class="mb-3">            
-            	<label for="inputKind" class="form-label">描種<span class="badge text-danger">必須</span></label>
+            	<label for="inputKind" class="form-label">描種　<span class="badge text-bg-danger">必須</span></label>
 				<select class="form-select" name="KIND" id="inputKind">
     				<option value="">選択してください</option>
-    				<option value=1 <% if (Integer.parseInt (cat.getKind() == 1)) { %>selected<% } %>>スコティッシュ・フォールド</option>
-    				<option value=2 <% if (Integer.parseInt(cat.getKind() == 2)) { %>selected<% } %>>マンチカン</option>
-    				<option value=3 <% if (Integer.parseInt(cat.getKind() == 3)) { %>selected<% } %>>アメリカンショートヘアー</option>
-    				<option value=4 <% if (Integer.parseInt(cat.getKind() == 4)) { %>selected<% } %>>ノルウェージャン・フォレスト・キャット</option>
-    				<option value=5 <% if (Integer.parseInt(cat.getKind() == 5)) { %>selected<% } %>>ブリティッシュ・ショートヘア</option>
-    				<option value=6 <% if (Integer.parseInt(cat.getKind() == 6)) { %>selected<% } %>>混血種</option>
-    				<option value=7 <% if (Integer.parseInt(cat.getKind() == 7)) { %>selected<% } %>>その他</option>    				
-     				<option value=8 <% if (Integer.parseInt(cat.getKind() == 8)) { %>selected<% } %>>不明</option>
+    				<option value="1" <%= Integer.parseInt(cat.getKind()) == 1 ? "selected" : "" %>>スコティッシュ・フォールド</option>
+    				<option value="2" <%= Integer.parseInt(cat.getKind()) == 2 ? "selected" : "" %>>マンチカン</option>
+    				<option value="3" <%= Integer.parseInt(cat.getKind()) == 3 ? "selected" : "" %>>アメリカンショートヘアー</option>
+    				<option value="4" <%= Integer.parseInt(cat.getKind()) == 4 ? "selected" : "" %>>ノルウェージャン・フォレスト・キャット</option>
+    				<option value="5" <%= Integer.parseInt(cat.getKind()) == 5 ? "selected" : "" %>>ブリティッシュ・ショートヘア</option>
+    				<option value="6" <%= Integer.parseInt(cat.getKind()) == 6 ? "selected" : "" %>>混血種</option>
+    				<option value="7" <%= Integer.parseInt(cat.getKind()) == 7 ? "selected" : "" %>>その他</option>    				
+     				<option value="8" <%= Integer.parseInt(cat.getKind()) == 8 ? "selected" : "" %>>不明</option>
 				</select>
 			</div>
             <div class="mb-3">

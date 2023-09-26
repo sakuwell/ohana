@@ -167,7 +167,14 @@
                         <td><%= new SimpleDateFormat("yyyy年MM月dd日").format(dto.getBirth()) %><br>
                         	(<%= dto.getAge() %>)</td>
                         <th style="width:18%;"><small>描種</small></th>
-                        <td style="width:40%;"><%= dto.getKind() %></td>
+                        <% if(Integer.parseInt(dto.getKind()) == 1){ %><td style="width:40%;">スコティッシュ・フォールド</td><% } %>
+                      	<% if(Integer.parseInt(dto.getKind()) == 2){ %><td style="width:40%;">マンチカン</td><% } %>
+                        <% if(Integer.parseInt(dto.getKind()) == 3){ %><td style="width:40%;">アメリカンショートヘアー</td><% } %>
+                        <% if(Integer.parseInt(dto.getKind()) == 4){ %><td style="width:40%;">ノルウェージャン・フォレスト・キャット</td><% } %>
+                        <% if(Integer.parseInt(dto.getKind()) == 5){ %><td style="width:40%;">ブリティッシュ・ショートヘア</td><% } %>
+                        <% if(Integer.parseInt(dto.getKind()) == 6){ %><td style="width:40%;">混血種</td><% } %>
+                        <% if(Integer.parseInt(dto.getKind()) == 7){ %><td style="width:40%;">その他</td><% } %>
+                        <% if(Integer.parseInt(dto.getKind()) == 8){ %><td style="width:40%;">不明</td><% } %>
                     </tr>
                     <tr>
                         <th><small>コメント</small></th>

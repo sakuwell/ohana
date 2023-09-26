@@ -151,7 +151,14 @@
                         %><br>
                         	(<%=ShowCatInfo.getAge() %>)</td>
                         <th style="width:20%;"><small>描種</small></th>
-                        <td style="width:30%;"><%=ShowCatInfo.getKind() %></td>
+                        <% if(Integer.parseInt(ShowCatInfo.getKind()) == 1){ %><td style="width:30%;">スコティッシュ・フォールド</td><% } %>
+                        <% if(Integer.parseInt(ShowCatInfo.getKind()) == 2){ %><td style="width:30%;">マンチカン</td><% } %>
+                        <% if(Integer.parseInt(ShowCatInfo.getKind()) == 3){ %><td style="width:30%;">アメリカンショートヘアー</td><% } %>
+                        <% if(Integer.parseInt(ShowCatInfo.getKind()) == 4){ %><td style="width:30%;">ノルウェージャン・フォレスト・キャット</td><% } %>
+                        <% if(Integer.parseInt(ShowCatInfo.getKind()) == 5){ %><td style="width:30%;">ブリティッシュ・ショートヘア</td><% } %>
+                        <% if(Integer.parseInt(ShowCatInfo.getKind()) == 6){ %><td style="width:30%;">混血種</td><% } %>
+                        <% if(Integer.parseInt(ShowCatInfo.getKind()) == 7){ %><td style="width:30%;">その他</td><% } %>
+                        <% if(Integer.parseInt(ShowCatInfo.getKind()) == 8){ %><td style="width:30%;">不明</td><% } %>
                     </tr>
                     <tr>
                         <th><small>コメント</small></th>
