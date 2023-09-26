@@ -87,9 +87,12 @@ public class CatsInfoDao {
 						buf.append("  IMAGE ");
 						buf.append("FROM                  ");
 						buf.append("  CATS_INFO              ");
-						buf.append("  WHERE GENDER = ?       ");
+						buf.append("  WHERE DEL = 0   AND    ");
+						buf.append("   (GENDER = ?       ");
 						if(gender1 != null) {
-							buf.append("OR   ?       ;");
+							buf.append("OR   ?      ) ;");
+						}else {
+							buf.append("    ) ;");
 						}
 						//PreparedStatement（SQL発行用オブジェクト）を生成＆発行するSQLをセット
 						ps = con.prepareStatement(buf.toString());
