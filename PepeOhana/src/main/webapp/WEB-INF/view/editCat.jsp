@@ -104,7 +104,7 @@
     
     <!-- ここから下　ページごとの内容 -->
 	<div class="p-5">
-        <form  action="ExeEditCat" method="post" onsubmit="return validateForm()"  class="container bg-white p-4 rounded" style="max-width:500px;">
+        <form  action="ExeEditCat" method="post" onsubmit="return validateForm()" enctype="multipart/form-data" class="container bg-white p-4 rounded" style="max-width:500px;">
             <div class="h2 pb-2 mb-4 text-center">
                 ねこ情報編集
             </div>
@@ -138,13 +138,15 @@
           
             <div class="mb-3">
     			<label for="" class="form-label">性別 <span class="badge text-bg-danger">必須</span></label><br>
-            	<input type="radio" class="btn-check" name="GENDER" id="inputMale" <% if (cat.getGender() == 1) { %>checked<% } %>>
+            	<input type="radio" class="btn-check" name="GENDER" id="inputMale" value ="1" <% if (cat.getGender() == 1) { %>checked<% } %>>
     			<label class="btn btn-outline-secondary" for="inputMale">男の子</label>
-    			<input type="radio" class="btn-check" name="GENDER" id="inputFemale" <% if (cat.getGender() == 2) { %>checked<% } %>>
+    			<input type="radio" class="btn-check" name="GENDER" id="inputFemale"  value ="2"<% if (cat.getGender() == 2) { %>checked<% } %>>
     			<label class="btn btn-outline-secondary ms-3" for="inputFemale">女の子</label>
 			</div>
             
 
+			<input type="hidden" name="CATID" value="<%=cat.getCatId() %>"> 
+			<input type="hidden" name="USERID" value="<%=cat.getUserId() %>"> 
 			
             <%String webContentPath = getServletContext().getRealPath("/images");
 		             		  String imageFileName = webContentPath + "/img_" + cat.getCatId() + ".jpg";
