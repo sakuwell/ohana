@@ -148,7 +148,7 @@ public class ExeEditCat extends HttpServlet {
 			}
 			byte[] imageBytes = outputStream.toByteArray();
 			
-			String comment	=request.getParameter("CMMENT");
+			String comment	=request.getParameter("COMMENT");
 			
 			System.out.println(catId);
 			System.out.println(userId);
