@@ -113,14 +113,14 @@
                 <label for="" class="form-label">描種　<span class="badge text-bg-danger">必須</span></label>
 	            <select class="form-select" name="KIND" id="inputKind">
 				 	<option value="">選択してください</option>
-				 	<option value="スコティッシュ・フォールド">スコティッシュ・フォールド</option>
-					<option value="マンチカン">マンチカン</option>
-					<option value="アメリカンショートヘアー">アメリカンショートヘアー</option>
-					<option value="ノルウェージャン・フォレスト・キャット">ノルウェージャン・フォレスト・キャット</option>
-					<option value="	ブリティッシュ・ショートヘア">ブリティッシュ・ショートヘア</option>
-					<option value="	混血種">混血種</option>
-					<option value="	その他">その他</option>
-					<option value="	不明">不明</option>
+				 	<option value="1">スコティッシュ・フォールド</option>
+					<option value="2">マンチカン</option>
+					<option value="3">アメリカンショートヘアー</option>
+					<option value="4">ノルウェージャン・フォレスト・キャット</option>
+					<option value="5">ブリティッシュ・ショートヘア</option>
+					<option value="	6">混血種</option>
+					<option value="	7">その他</option>
+					<option value="	8">不明</option>
 				</select>
 			</div>
             <div class="mb-3">
