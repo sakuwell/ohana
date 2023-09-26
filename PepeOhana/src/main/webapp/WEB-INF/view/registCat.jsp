@@ -31,6 +31,7 @@
 	    }
 	    
 	   //画像選択後のサムネイル表示はまだうまく動作してません
+	   
 	    const photo = document.getElementById("inputImage");
 	    photo.addEventListener("change", function (e) {
 	        const file = e.target.files[0];
@@ -46,8 +47,16 @@
 
 	        if (file) {
 	            reader.readAsDataURL(file);
+	            console.log("Hello")
 	        }
 	    });
+	    function Image(obj){
+		    var fileReader = new FileReader();
+		    fileReader.onload =(function(){
+			    document.getElementById('setImage').src = fileReader.result;
+			    });
+		    fileReader.readAsDataURL(obj.files[0]);
+		    }
 	</script>
 </head>
 
@@ -140,8 +149,8 @@
             </div>
             <div class="mb-3">
                 <label for="inputImage" class="form-label">画像　<span class="badge text-bg-danger">必須</span></label>
-                <input type="file" class="form-control mb-2" name="IMAGE" id="inputImage" accept="image/png, image/jpeg"><br>
-                <img id="setImage">
+                <input type="file" class="form-control mb-2" name="IMAGE" id="inputImage" accept="image/png, image/jpeg" onchange="Image(this)"><br>
+                <img id="setImage" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="max-width:100px;">
             </div>
             <div class="mb-3">
                 <label class="form-label">コメント　<span class="badge text-bg-danger">必須</span></label>
