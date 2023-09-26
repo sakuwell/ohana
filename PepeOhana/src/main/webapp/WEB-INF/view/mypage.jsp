@@ -145,10 +145,10 @@
             <div class="col-sm-8 col-md-9">
                 <table class="table">
                     <tr>
-                        <th><small>名前</small></th>
-                        <td ><%= dto.getCatName() %></td>
-                        <th><small>登録日</small></th>
-                        <td><%= new SimpleDateFormat("yyyy年MM月dd日").format(dto.getRegDate()) %></td>
+                        <th style="width:20%;"><small>ねこID</small></th>
+                        <td style="width:20%;" ><%= dto.getCatId() %></td>
+                        <th style="width:20%;"><small>名前</small></th>
+                        <td style="width:40%;" ><%= dto.getCatName() %></td>
                     </tr>
                     <tr>
                         <th style="width:18%;"><small>性別</small></th>
@@ -159,22 +159,27 @@
                         	女の子
                         	<% } %>
                         </td>
-                        <th><small>体重</small></th>
-                        <td><%= dto.getWeight() %>kg</td>
+                        <th style="width:18%;"><small>描種</small></th>
+                        <% if(dto.getKind() == 1){ %><td>スコティッシュ・フォールド</td><% } %>
+                      	<% if(dto.getKind() == 2){ %><td>マンチカン</td><% } %>
+                        <% if(dto.getKind() == 3){ %><td>アメリカンショートヘアー</td><% } %>
+                        <% if(dto.getKind() == 4){ %><td>ノルウェージャン・フォレスト・キャット</td><% } %>
+                        <% if(dto.getKind() == 5){ %><td>ブリティッシュ・ショートヘア</td><% } %>
+                        <% if(dto.getKind() == 6){ %><td>混血種</td><% } %>
+                        <% if(dto.getKind() == 7){ %><td>その他</td><% } %>
+                        <% if(dto.getKind() == 8){ %><td>不明</td><% } %>
                     </tr>
                     <tr>
+                        <th><small>年齢</small></th>
+                       	<td><%= dto.getAge() %></td>
                         <th><small>誕生日</small></th>
                         <td><%= new SimpleDateFormat("yyyy年MM月dd日").format(dto.getBirth()) %><br>
-                        	(<%= dto.getAge() %>)</td>
-                        <th style="width:18%;"><small>描種</small></th>
-                        <% if(Integer.parseInt(dto.getKind()) == 1){ %><td style="width:40%;">スコティッシュ・フォールド</td><% } %>
-                      	<% if(Integer.parseInt(dto.getKind()) == 2){ %><td style="width:40%;">マンチカン</td><% } %>
-                        <% if(Integer.parseInt(dto.getKind()) == 3){ %><td style="width:40%;">アメリカンショートヘアー</td><% } %>
-                        <% if(Integer.parseInt(dto.getKind()) == 4){ %><td style="width:40%;">ノルウェージャン・フォレスト・キャット</td><% } %>
-                        <% if(Integer.parseInt(dto.getKind()) == 5){ %><td style="width:40%;">ブリティッシュ・ショートヘア</td><% } %>
-                        <% if(Integer.parseInt(dto.getKind()) == 6){ %><td style="width:40%;">混血種</td><% } %>
-                        <% if(Integer.parseInt(dto.getKind()) == 7){ %><td style="width:40%;">その他</td><% } %>
-                        <% if(Integer.parseInt(dto.getKind()) == 8){ %><td style="width:40%;">不明</td><% } %>
+                    </tr>
+                    <tr>
+                        <th><small>体重</small></th>
+                        <td><%= dto.getWeight() %>kg</td>
+                        <th><small>登録日</small></th>
+                        <td><%= new SimpleDateFormat("yyyy年MM月dd日").format(dto.getRegDate()) %></td>
                     </tr>
                     <tr>
                         <th><small>コメント</small></th>

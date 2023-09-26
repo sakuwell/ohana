@@ -119,7 +119,7 @@ public class ExeEditCat extends HttpServlet {
 			String catName			=request.getParameter("CATNAME");
 //			(CATNAME)
 			
-			String kind =request.getParameter("KIND");
+			int kind =Integer.parseInt(request.getParameter("KIND"));
 //			(KIND)
 			
 			String catBirth = request.getParameter("BIRTH");
@@ -150,6 +150,15 @@ public class ExeEditCat extends HttpServlet {
 			
 			String comment	=request.getParameter("CMMENT");
 			
+			System.out.println(catId);
+			System.out.println(userId);
+			System.out.println(catName);
+			System.out.println(kind);
+			System.out.println(sqlDate);
+			System.out.println(gender);
+			System.out.println(weight);
+			System.out.println(imageBytes);
+			System.out.println(comment);
 			
 //			(comment)
 			
