@@ -108,14 +108,14 @@
             	<label for="inputKind" class="form-label">描種　<span class="badge text-bg-danger">必須</span></label>
 				<select class="form-select" name="KIND" id="inputKind">
     				<option value="">選択してください</option>
-					<option value="1" <%= Integer.parseInt(cat.getKind()) == 1 ? "selected" : "" %>>スコティッシュ・フォールド</option>
-    				<option value="2" <%= Integer.parseInt(cat.getKind()) == 2 ? "selected" : "" %>>マンチカン</option>
-    				<option value="3" <%= Integer.parseInt(cat.getKind()) == 3 ? "selected" : "" %>>アメリカンショートヘアー</option>
-    				<option value="4" <%= Integer.parseInt(cat.getKind()) == 4 ? "selected" : "" %>>ノルウェージャン・フォレスト・キャット</option>
-    				<option value="5" <%= Integer.parseInt(cat.getKind()) == 5 ? "selected" : "" %>>ブリティッシュ・ショートヘア</option>
-    				<option value="6" <%= Integer.parseInt(cat.getKind()) == 6 ? "selected" : "" %>>混血種</option>
-    				<option value="7" <%= Integer.parseInt(cat.getKind()) == 7 ? "selected" : "" %>>その他</option>    				
-     				<option value="8" <%= Integer.parseInt(cat.getKind()) == 8 ? "selected" : "" %>>不明</option> 
+					<option value="1" <%= (cat.getKind()) == 1 ? "selected" : "" %>>スコティッシュ・フォールド</option>
+    				<option value="2" <%= (cat.getKind()) == 2 ? "selected" : "" %>>マンチカン</option>
+    				<option value="3" <%= (cat.getKind()) == 3 ? "selected" : "" %>>アメリカンショートヘアー</option>
+    				<option value="4" <%= (cat.getKind()) == 4 ? "selected" : "" %>>ノルウェージャン・フォレスト・キャット</option>
+    				<option value="5" <%= (cat.getKind()) == 5 ? "selected" : "" %>>ブリティッシュ・ショートヘア</option>
+    				<option value="6" <%= (cat.getKind()) == 6 ? "selected" : "" %>>混血種</option>
+    				<option value="7" <%= (cat.getKind()) == 7 ? "selected" : "" %>>その他</option>    				
+     				<option value="8" <%= (cat.getKind()) == 8 ? "selected" : "" %>>不明</option> 
 				</select>
 			</div>
             <div class="mb-3">
@@ -126,22 +126,17 @@
                 <label for="" class="form-label">体重　<span class="badge text-bg-danger">必須</span>　※0.1kg単位で、単位は入力不要です(例：2.5)</label>
                 <input type="text" class="form-control" name="WEIGHT" id="inputWeight" value="<%=cat.getWeight() %>">
             </div>
-   <!--        <div class="mb-3">
-				<label for="" class="form-label">性別　<span class="badge text-bg-danger">必須</span></label><br>
-				<input type="radio" class="btn-check" name="GENDER" id="inputMale" checked>
-				<label class="btn btn-outline-secondary" for="inputMale">男の子</label>
-				<input type="radio" class="btn-check" name="GENDER" id="inputFemale">
-				<label class="btn btn-outline-secondary ms-3" for="inputFemale">女の子</label>
-       		 </div>
-       -->          
+          
             <div class="mb-3">
     			<label for="" class="form-label">性別 <span class="badge text-bg-danger">必須</span></label><br>
-    			<input type="radio" class="btn-check" name="GENDER" id="inputMale" <% if (cat.getGender() == 1) { %>checked<% } %>>
+            	<input type="radio" class="btn-check" name="GENDER" id="inputMale" <% if (cat.getGender() == 1) { %>checked<% } %>>
     			<label class="btn btn-outline-secondary" for="inputMale">男の子</label>
     			<input type="radio" class="btn-check" name="GENDER" id="inputFemale" <% if (cat.getGender() == 2) { %>checked<% } %>>
     			<label class="btn btn-outline-secondary ms-3" for="inputFemale">女の子</label>
 			</div>
             
+
+			
             
             <div class="mb-3">
                 <label for="inputImage" class="form-label">画像　<span class="badge text-bg-danger">必須</span></label>
