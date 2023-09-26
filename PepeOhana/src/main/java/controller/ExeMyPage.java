@@ -51,8 +51,18 @@ public class ExeMyPage extends HttpServlet {
 			int id = userInfoOnSession.getID();
 			
 			List<MyPageDto> myPageList = new ArrayList<MyPageDto>();
+			List<MyPageDto> myPageList2 = new ArrayList<MyPageDto>();
 			MyPageBL logic = new MyPageBL();
-			myPageList  = logic.executeSelectMyPageLists(id);
+			myPageList  = logic.executeSelectMyPageLists(id).get(0);
+			myPageList2  = logic.executeSelectMyPageLists(id).get(1);
+			
+	        // MyPageDaoから2つのリストを取得
+	        List<MyPageDto> dtoList1 = myPageDao.doSelectMyInfo(userId).get(0); // 1つ目のリスト
+	        List<MyPageDto> dtoList2 = myPageDao.doSelectMyInfo(userId).get(1); // 2つ目のリスト
+
+	        // リクエストスコープにリストをセット
+	        request.setAttribute("dtoList1", dtoList1);
+	        request.setAttribute("dtoList2", dtoList2);
 			request.setAttribute("MYPAGE",myPageList);
 		
 			RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/mypage.jsp");
