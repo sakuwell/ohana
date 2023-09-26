@@ -6,6 +6,8 @@ public class UpdateCatBL {
 		
 		boolean   succesUpdate = false ; 
 		
+		System.out.println("BBBB");
+		
 		CatsInfoDao dao = new CatsInfoDao();
 		succesUpdate = dao.doUpdateCat(dto);
 		
