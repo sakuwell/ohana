@@ -167,17 +167,25 @@
                 </table>
             </div>
             <% if (isLoggedIn) { %>
-            <div class="text-center">
-           		<form action="Message" method="post">
-                	<input type="hidden" name="CATID" value="<%=ShowCatInfo.getCatId() %>">
-	                <input type="hidden" name="CATNAME" value="<%= ShowCatInfo.getCatName() %>">
-	                <input type="hidden" name="USERID" value="<%=ShowCatInfo.getUserId() %>">
-	                <input type="hidden" name="USERNAME" value="<%=ShowCatInfo.getUserName() %>">
-	            	<button type="submit" class="btn" style="background-color:#E87B4C; color:#ffffff;">
-	                 	メッセージを送る
-	                </button>
-	            </form>
+            	<%if(userInfoOnSession.getID() == ShowCatInfo.getUserId()){ %>
+            		<div class="text-center mt-4">
+	            <a class="icon-link icon-link-hover" href="#">
+            		ご自身で登録したねこにメッセージは送れません
+        		</a>
             </div>
+	            <%}else{ %>
+            		<div class="text-center">
+           				<form action="Message" method="post">
+                		<input type="hidden" name="CATID" value="<%=ShowCatInfo.getCatId() %>">
+	                	<input type="hidden" name="CATNAME" value="<%= ShowCatInfo.getCatName() %>">
+	                	<input type="hidden" name="USERID" value="<%=ShowCatInfo.getUserId() %>">
+	                	<input type="hidden" name="USERNAME" value="<%=ShowCatInfo.getUserName() %>">
+	            			<button type="submit" class="btn" style="background-color:#E87B4C; color:#ffffff;">
+	                 		メッセージを送る
+	                		</button>
+	            		</form>
+            		</div>
+            	<%} %>
             <% } else { %>
             <div class="text-center">
 	            <a href="<%=request.getContextPath()%>/Message" class="btn" style="width:200px; background-color:#E87B4C; color:#ffffff;">
