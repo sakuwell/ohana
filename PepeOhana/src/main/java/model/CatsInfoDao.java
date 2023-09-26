@@ -109,7 +109,7 @@ public class CatsInfoDao {
 							CatsInfoDto dto = new CatsInfoDto();
 							dto.setCatId(rs.getInt("CATID"));
 							dto.setCatName(  rs.getString("CATNAME"));
-							dto.setKind(  rs.getString("KIND"));
+							dto.setKind(  rs.getInt("KIND"));
 							dto.setAge( rs.getString( "AGE"  ));
 							dto.setGender( rs.getInt( "GENDER"  ));
 							dto.setImage( rs.getBytes( "IMAGE"  ));
@@ -221,7 +221,7 @@ public class CatsInfoDao {
 					dto.setCatId(rs.getInt("CI.CATID"));
 					dto.setUserId(  rs.getInt(    "CI.USERID"   ));
 					dto.setCatName(  rs.getString(    "CI.CATNAME"   ));
-					dto.setKind(  rs.getString(    "CI.KIND"   ));
+					dto.setKind(  rs.getInt(    "CI.KIND"   ));
 					dto.setBirth(  rs.getDate(    "CI.BIRTH"   ));
 					dto.setAge(  rs.getString(    "AGE"   ));
 					dto.setGender( rs.getInt( "CI.GENDER"  ));
@@ -361,7 +361,7 @@ public class CatsInfoDao {
 				//パラメータをセット
 				ps.setInt(    1, dto.getUserId()              ); //第1パラメータ：追加データ（ユーザーID）
 				ps.setString(       2, dto.getCatName()               ); //第2パラメータ：追加データ（名前）
-				ps.setString(       3, dto.getKind()               ); //第3パラメータ：追加データ（種類）
+				ps.setInt(       3, dto.getKind()               ); //第3パラメータ：追加データ（種類）
 				ps.setDate(       4, dto.getBirth()               ); //第4パラメータ：追加データ（誕生日）
 				ps.setInt(       5, dto.getGender()               ); //第5パラメータ：追加データ（性別）
 				ps.setFloat(       6, dto.getWeight()               ); //第6パラメータ：追加データ（体重）
@@ -519,7 +519,7 @@ public class CatsInfoDao {
 					dto.setCatId(rs.getInt("CATID"));
 					dto.setUserId(  rs.getInt(    "USERID"   ));
 					dto.setCatName(  rs.getString(    "CATNAME"   ));
-					dto.setKind(  rs.getString(    "KIND"   ));
+					dto.setKind(  rs.getInt(    "KIND"   ));
 					dto.setBirth(  rs.getDate(    "BIRTH"   ));
 					dto.setGender( rs.getInt( "GENDER"  ));
 					dto.setWeight( rs.getFloat( "WEIGHT"  ));
@@ -621,7 +621,7 @@ public class CatsInfoDao {
 				//パラメータをセット
 				ps.setInt(1, dto.getUserId()); //第1パラメータ：更新データ（飼い主ID）
 				ps.setString(2, dto.getCatName()); //第2パラメータ：更新データ（ネコ名）
-				ps.setString(3, dto.getKind()); //第3パラメータ：更新データ（種類）
+				ps.setInt(3, dto.getKind()); //第3パラメータ：更新データ（種類）
 				ps.setDate(4, dto.getBirth()); //第4パラメータ：更新データ（誕生日）
 				ps.setInt(5, dto.getGender()); //第5パラメータ：更新データ（性別）
 				ps.setFloat(6, dto.getWeight()); //第6パラメータ：更新データ（体重）
