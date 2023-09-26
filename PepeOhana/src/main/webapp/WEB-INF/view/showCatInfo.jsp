@@ -128,29 +128,20 @@
             <div class="col-sm-8 col-md-9">
                 <table class="table">
                     <tr>
-                        <th><small>オーナーユーザー</small></th>
-                        <td><%=ShowCatInfo.getUserName() %></td>
-                        <th><small>登録日</small></th>
-                        <td><%=new SimpleDateFormat("yyyy年MM月dd日").format(ShowCatInfo.getReg_Date()) %></td>
-
+                        <th style="width:20%;"><small>ねこID</small></th>
+                        <td style="width:20%;"><%= ShowCatInfo.getCatId() %></td>
+                        <th style="width:30%;"><small>オーナーユーザー名</small></th>
+                        <td style="width:30%;"><%= ShowCatInfo.getUserName() %></td>
                     </tr>
                     <tr>
-                        <th style="width:30%;"><small>性別</small></th>
+                        <th><small>性別</small></th>
                         <%int g = ShowCatInfo.getGender();
                         if (g == 1){   %>
-                        <td style="width:20%;">男の子</td>
+                        <td>男の子</td>
                         <%}else{ %>
-                        <td style="width:20%;">女の子</td>
+                        <td>女の子</td>
                         <%}; %>
-                        <th><small>体重</small></th>
-                        <td><%=ShowCatInfo.getWeight() %>kg</td>
-                    </tr>
-                    <tr>
-                        <th><small>誕生日</small></th>
-                        <td><%=new SimpleDateFormat("yyyy年MM月dd日").format(ShowCatInfo.getBirth())
-                        %><br>
-                        	(<%=ShowCatInfo.getAge() %>)</td>
-                        <th style="width:20%;"><small>描種</small></th>
+                        <th><small>描種</small></th>
                         <% if(Integer.parseInt(ShowCatInfo.getKind()) == 1){ %><td style="width:30%;">スコティッシュ・フォールド</td><% } %>
                         <% if(Integer.parseInt(ShowCatInfo.getKind()) == 2){ %><td style="width:30%;">マンチカン</td><% } %>
                         <% if(Integer.parseInt(ShowCatInfo.getKind()) == 3){ %><td style="width:30%;">アメリカンショートヘアー</td><% } %>
@@ -159,6 +150,19 @@
                         <% if(Integer.parseInt(ShowCatInfo.getKind()) == 6){ %><td style="width:30%;">混血種</td><% } %>
                         <% if(Integer.parseInt(ShowCatInfo.getKind()) == 7){ %><td style="width:30%;">その他</td><% } %>
                         <% if(Integer.parseInt(ShowCatInfo.getKind()) == 8){ %><td style="width:30%;">不明</td><% } %>
+                    </tr>
+                    <tr>
+                        <th><small>年齢</small></th>
+                       	<td><%=ShowCatInfo.getAge() %></td>
+                        <th><small>誕生日</small></th>
+                        <td><%=new SimpleDateFormat("yyyy年MM月dd日").format(ShowCatInfo.getBirth()) %>
+                    </tr>
+                    <tr>
+                        <th><small>体重</small></th>
+                        <td><%=ShowCatInfo.getWeight() %>kg</td>
+                        <th><small>登録日</small></th>
+                        <td><%=new SimpleDateFormat("yyyy年MM月dd日").format(ShowCatInfo.getReg_Date()) %></td>
+                       	
                     </tr>
                     <tr>
                         <th><small>コメント</small></th>

@@ -10,7 +10,7 @@ public class MyPageDto {
 			private int			ownerId;    	//オーナーユーザーID
 			private int			catId;      	//ネコID
 			private String		catName;    	//ネコの名前
-			private String		kind;			//ネコの種類
+			private int			kind;			//ネコの種類
 			private Date		birth;			//ネコの誕生日
 			private String 		age;       		//ネコの年齢
 			private int			gender;			//ネコの性別
@@ -42,8 +42,8 @@ public class MyPageDto {
 			public String getCatName() { return catName; }
 			public void setCatName(String catName) { this.catName = catName; }
 			
-			public String getKind() { return kind; }
-			public void setKind(String kind) { this.kind = kind; }
+			public int getKind() { return kind; }
+			public void setKind(int kind) { this.kind = kind; }
 			
 			public Date getBirth() { return birth; }
 			public void setBirth(Date birth) { this.birth = birth; }

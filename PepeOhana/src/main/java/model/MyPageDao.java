@@ -157,7 +157,7 @@ public class MyPageDao {
 						dto.setOwnerId(rs.getInt("OWNERID"));
 						dto.setCatId(  rs.getInt("CATID"));
 						dto.setCatName(  rs.getString("CATNAME"));
-						dto.setKind( rs.getString( "KIND"  ));
+						dto.setKind( rs.getInt( "KIND"  ));
 						dto.setBirth( rs.getDate( "BIRTH"  ));
 						dto.setAge( rs.getString( "AGE"  ));
 						dto.setGender( rs.getInt( "GENDER"  ));
