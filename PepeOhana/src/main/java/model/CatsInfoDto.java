@@ -10,7 +10,7 @@ public class CatsInfoDto {
 			private int		catId;         //ネコID
 			private int	userId;       //飼い主のID
 			private String	catName;       //ネコの名前
-			private String	kind;		//ネコの種類
+			private int	kind;		//ネコの種類
 			private Date	birth;		//ネコの誕生日
 			private String 	age;       //ネコの年齢
 			private int		gender;		//ネコの性別
@@ -41,8 +41,8 @@ public class CatsInfoDto {
 		
 			
 			//getter/setter（対象フィールド：kind）
-			public String getKind() { return kind; }
-			public void setKind(String kind) { this.kind = kind; }
+			public int getKind() { return kind; }
+			public void setKind(int kind) { this.kind = kind; }
 			
 			//getter/setter (対象フィールド:birth)
 			public Date getBirth() { return birth; }
