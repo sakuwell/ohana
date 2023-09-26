@@ -21,6 +21,7 @@ public class CatsInfoDto {
 			private Timestamp 	reg_Date;	//投稿日
 			private String	userName;	//飼い主の名前
 			private int		Id;	//飼い主の登録番号
+			private int del;//削除フラグ
 
 
 			//----------------------------------------------------------------
@@ -83,6 +84,11 @@ public class CatsInfoDto {
 			//getter/setter（対象フィールド：userId）
 			public int getId() { return Id; }
 			public void setId(int Id) { this.Id = Id; }
+			
+			//getter/setter（対象フィールド：Del:削除フラグ）
+			public int getDel() { return del; }
+			public void setDel(int del) { this.del = del; }
+			
 		
 
 }
