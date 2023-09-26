@@ -108,12 +108,24 @@ public class ExeEditCat extends HttpServlet {
 //		リクエスト（受信データ）の文字コードを設定
 		request.setCharacterEncoding("UTF-8");
 		
+//		HttpSession session           = request.getSession();
+//		UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
+//		
+
+		
+		
+		System.out.println("SSSSS");
+		
 		
 //		リクエストパラメータを取得
-			String catIdStr = request.getParameter("ID");
+			String catIdStr = request.getParameter("CATID");
+			
+			System.out.println(catIdStr);
+			
 			int catId = Integer.parseInt(catIdStr);
-		
-			int userId = Integer.parseInt( request.getParameter("USERID"));
+			
+			String userIdStr = request.getParameter("USERID");
+			int userId = Integer.parseInt(userIdStr);
 //			(USERID)
 			
 			String catName			=request.getParameter("CATNAME");
@@ -123,7 +135,7 @@ public class ExeEditCat extends HttpServlet {
 //			(KIND)
 			
 			String catBirth = request.getParameter("BIRTH");
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			// String を LocalDate に変換
 			LocalDate birthDate = LocalDate.parse(catBirth, formatter);
 			// LocalDate を java.sql.Date に変換
@@ -133,7 +145,7 @@ public class ExeEditCat extends HttpServlet {
 			int gender = Integer.parseInt(request.getParameter("GENDER"));
 //			(GENDER)
 			
-			float weight = Float.parseFloat("WEIGHT");
+			float weight = Float.parseFloat(request.getParameter("WEIGHT"));
 			
 			// 1. クライアントから送信された画像ファイルを取得
 			Part filePart = request.getPart("IMAGE"); // IMAGEはフォームのinput要素のname属性
