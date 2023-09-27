@@ -56,7 +56,8 @@ public class ExeRegistCat extends HttpServlet {
 			
 			String catName = request.getParameter("CATNAME");
 //			(CATNAME)
-			int catKind = Integer.parseInt(request.getParameter("KIND"));
+			String catKindstr = request.getParameter("KIND");
+			int catKind = Integer.parseInt(catKindstr);
 //			(CATKIND)
 			
 			System.out.println(catName);
@@ -190,7 +191,9 @@ public class ExeRegistCat extends HttpServlet {
 			
 			String catName = request.getParameter("CATNAME");
 //			(CATNAME)
-			int catKind = Integer.parseInt(request.getParameter("KIND"));
+			String catKindstr = request.getParameter("KIND");
+			int catKind = Integer.parseInt(catKindstr);
+			
 //			(CATKIND)
 			
 			System.out.println(catName);

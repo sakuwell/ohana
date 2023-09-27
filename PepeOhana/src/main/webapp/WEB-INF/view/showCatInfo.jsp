@@ -151,14 +151,14 @@
                         <td>女の子</td>
                         <%}; %>
                         <th><small>描種</small></th>
-                        <% if(Integer.parseInt(ShowCatInfo.getKind()) == 1){ %><td style="width:30%;">スコティッシュ・フォールド</td><% } %>
-                        <% if(Integer.parseInt(ShowCatInfo.getKind()) == 2){ %><td style="width:30%;">マンチカン</td><% } %>
-                        <% if(Integer.parseInt(ShowCatInfo.getKind()) == 3){ %><td style="width:30%;">アメリカンショートヘアー</td><% } %>
-                        <% if(Integer.parseInt(ShowCatInfo.getKind()) == 4){ %><td style="width:30%;">ノルウェージャン・フォレスト・キャット</td><% } %>
-                        <% if(Integer.parseInt(ShowCatInfo.getKind()) == 5){ %><td style="width:30%;">ブリティッシュ・ショートヘア</td><% } %>
-                        <% if(Integer.parseInt(ShowCatInfo.getKind()) == 6){ %><td style="width:30%;">混血種</td><% } %>
-                        <% if(Integer.parseInt(ShowCatInfo.getKind()) == 7){ %><td style="width:30%;">その他</td><% } %>
-                        <% if(Integer.parseInt(ShowCatInfo.getKind()) == 8){ %><td style="width:30%;">不明</td><% } %>
+                        <% if(ShowCatInfo.getKind() == 1){ %><td style="width:30%;">スコティッシュ・フォールド</td><% } %>
+                        <% if(ShowCatInfo.getKind() == 2){ %><td style="width:30%;">マンチカン</td><% } %>
+                        <% if(ShowCatInfo.getKind() == 3){ %><td style="width:30%;">アメリカンショートヘアー</td><% } %>
+                        <% if(ShowCatInfo.getKind() == 4){ %><td style="width:30%;">ノルウェージャン・フォレスト・キャット</td><% } %>
+                        <% if(ShowCatInfo.getKind() == 5){ %><td style="width:30%;">ブリティッシュ・ショートヘア</td><% } %>
+                        <% if(ShowCatInfo.getKind() == 6){ %><td style="width:30%;">混血種</td><% } %>
+                        <% if(ShowCatInfo.getKind() == 7){ %><td style="width:30%;">その他</td><% } %>
+                        <% if(ShowCatInfo.getKind() == 8){ %><td style="width:30%;">不明</td><% } %>
                     </tr>
                     <tr>
                         <th><small>年齢</small></th>

@@ -12,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <title>トップページ | pepeohana</title>
     <script>
-    	function validateForm() {
+    	function validateGenderForm() {
     		var Gender1 = document.getElementById("gender_1").checked; // ラジオボタンのチェック状態を取得
     		var Gender2 = document.getElementById("gender_2").checked; // ラジオボタンのチェック状態を取得
 
@@ -21,7 +21,15 @@
 	            return false;
 	        }
 	            return true;
-	        
+	    }
+    	function validateIdForm() {
+    		var catId = document.getElementById("inputCatId").value;
+
+    		if  (catId == "") {
+	            alert("ねこIDを入力してください");
+	            return false;
+	        }
+	            return true;
 	    }
     </script>
 </head>
@@ -47,7 +55,9 @@
 		charAfterEscape = charAfterEscape.replace(">", "&gt;");
 		charAfterEscape = charAfterEscape.replace("\"", " &quot; ");
 		charAfterEscape = charAfterEscape.replace(" ' ", "&#039;");
-		return charAfterEscape;}%>
+		return charAfterEscape;}
+%>
+<% String error = (String) request.getAttribute("message"); %>
 		
 <body style="background-color:beige; color:#523F24;">
     <!-- ナビゲーションボタンのカラー -->
@@ -112,7 +122,7 @@
         <div class="h4 pb-2 mb-4" style="border-bottom:solid 0.5px; border-color: #523F24;">
             ねこまっちんぐ
         </div>
-            <p>家族をさがしているねこがたくさんいます！</p>
+            <p>家族をさがしているねこがたくさんいます！※まっちねこの一例</p>
         <!-- 猫カードエリア -->
         <div class="row">
            <!-- カードのコンテンツ1 -->
@@ -166,21 +176,44 @@
 		</div>
              
         <!-- 検索フォームエリア -->
-        <div class="card mt-3 p-3">
-         	<form action="ExeSearchCat" onsubmit="return validateForm()">
-         		<h3 class="border-bottom pb-2" style="text-align:center; color:#523F24;">まっちんぐ</h3>
-         		<div class="form-check mt-3">
-					<label for="" class="form-label">性別を選んでください(複数選択可)　<span class="badge text-bg-danger">必須</span></label><br>
-	         		<input type="checkbox" class="btn-check" name="GENDER1" id="gender_1" value="1" autocomplete="off">
-					<label class="btn btn-outline-secondary" for="gender_1">男の子</label>
-	         		<input type="checkbox" class="btn-check" name="GENDER2" id="gender_2" value="2" autocomplete="off">
-					<label class="btn btn-outline-secondary ms-3" for="gender_2">女の子</label>
+        <div class="row mt-5">
+           <div class="col-md-6 mt-3">
+                <div class="card mb-3 p-3">
+		         	<form action="ExeSearchCat" onsubmit="return validateGenderForm()">
+		         		<h3 class="border-bottom pb-2" style="text-align:center; color:#523F24;">条件まっち</h3>
+		         		<div class="form-check mt-3">
+							<label for="" class="form-label">性別を選んでください(複数選択可)　<span class="badge text-bg-danger">必須</span></label><br>
+			         		<input type="checkbox" class="btn-check" name="GENDER1" id="gender_1" value="1" autocomplete="off">
+							<label class="btn btn-outline-secondary" for="gender_1">男の子</label>
+			         		<input type="checkbox" class="btn-check" name="GENDER2" id="gender_2" value="2" autocomplete="off">
+							<label class="btn btn-outline-secondary ms-3" for="gender_2">女の子</label>
+						</div>
+						<p style="text-align:center; margin-bottom:0;">
+							<button type="submit" class="btn btn-lg mt-4" style="background-color:#E87B4C; color:#ffffff;">まっちんぐ</button>
+						</p>
+					</form>
 				</div>
-				<p style="text-align:center; margin-bottom:0;">
-					<button type="submit" class="btn btn-lg mt-4" style="background-color:#E87B4C; color:#ffffff;">まっちんぐ</button>
-				</p>
-			</form>
+			</div>
+           <div class="col-md-6 mt-3">
+                <div class="card mb-3 p-3">
+		         	<form action="ExeShowCatInfo" onsubmit="return validateIdForm()">
+		         		<h3 class="border-bottom pb-2" style="text-align:center; color:#523F24;">IDまっち</h3>
+		         		<div class="form-check mt-3">
+       			            <%if(error != null){ %>
+            					<p class="text-danger"><%= error %></p>
+            				<% } %>
+							<label class="form-label">ねこIDを入力してください　<span class="badge text-bg-danger">必須</span></label><br>
+       		                <input type="text" class="form-control" style="width:100px;" name="CATID" id="inputCatId">
+						</div>
+						<p style="text-align:center; margin-bottom:0;">
+							<button type="submit" class="btn btn-lg mt-4" style="background-color:#E87B4C; color:#ffffff;">まっちんぐ</button>
+						</p>
+					</form>
+				</div>
+			</div>
+
 		</div>
+
 		
 	</div>
     <!-- ここまで　ページごとの内容 -->

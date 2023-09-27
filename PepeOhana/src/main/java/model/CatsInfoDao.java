@@ -611,7 +611,8 @@ public class CatsInfoDao {
 				buf.append("  WEIGHT = ? ,                ");
 				buf.append("  IMAGE = ? ,                ");
 				buf.append("  COMMENT = ? ,                ");
-				buf.append("  UP_DATE = ?  ");
+				buf.append("  UP_DATE = ?,  ");
+				buf.append("  DEL = ?  ");
 				buf.append("  WHERE CATID = ?                ");
 
 				
@@ -628,7 +629,8 @@ public class CatsInfoDao {
 				ps.setBytes(7, dto.getImage()); //第7パラメータ：更新データ（写真）
 				ps.setString(8, dto.getComment()); //第8パラメータ：更新データ（コメント）
 				ps.setTimestamp(9, dto.getUp_Date());//第9パラメータ：更新データ（更新日）
-				ps.setInt(10, dto.getCatId());//第10パラメータ：更新データ（CATID）
+				ps.setInt(10, dto.getDel());//第10パラメータ：更新データ（更新日）
+				ps.setInt(11, dto.getCatId());//第11パラメータ：更新データ（CATID）
 				
 				System.out.println(dto.getUserId());
 				System.out.println(dto.getCatName());
@@ -639,6 +641,7 @@ public class CatsInfoDao {
 				System.out.println(dto.getImage());
 				System.out.println(dto.getComment());
 				System.out.println(dto.getUp_Date());
+				System.out.println(dto.getDel());
 				System.out.println(dto.getCatId());
 				
 				ps.executeUpdate();

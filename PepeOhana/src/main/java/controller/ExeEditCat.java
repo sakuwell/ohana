@@ -162,6 +162,10 @@ public class ExeEditCat extends HttpServlet {
 			
 			String comment	=request.getParameter("COMMENT");
 			
+			String delStr = request.getParameter("DEL");			
+			int del =Integer.parseInt(delStr);
+			 
+			
 			System.out.println(catId);
 			System.out.println(userId);
 			System.out.println(catName);
@@ -171,6 +175,7 @@ public class ExeEditCat extends HttpServlet {
 			System.out.println(weight);
 			System.out.println(imageBytes);
 			System.out.println(comment);
+			System.out.println(del);
 			
 //			(comment)
 			
@@ -186,6 +191,8 @@ public class ExeEditCat extends HttpServlet {
 			dto.setImage(imageBytes);
 			dto.setComment(comment);
 			dto.setUp_Date(new Timestamp(System.currentTimeMillis())); 
+			dto.setDel(del);
+			
 			
 			System.out.println(userId);
 			
