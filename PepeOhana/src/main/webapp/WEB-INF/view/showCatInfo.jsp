@@ -201,12 +201,12 @@
             	<%} %>
             <% } else { %>
             <div class="text-center">
-	            <a href="<%=request.getContextPath()%>/Message" class="btn" style="width:200px; background-color:#E87B4C; color:#ffffff;">
+	            <a href="Login.jsp" class="btn" style="width:200px; background-color:#E87B4C; color:#ffffff;">
 	            	メッセージを送る
 	            </a>
 	        </div>
 	        <div class="text-center mt-4">
-	            <a class="icon-link icon-link-hover" href="<%=request.getContextPath()%>/Message">
+	            <a class="icon-link icon-link-hover" href="Login.jsp">
             		メッセージを送る場合はログインしてください
         		</a>
             </div>
