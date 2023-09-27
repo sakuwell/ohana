@@ -38,7 +38,15 @@
 	String userName = userInfoOnSession.getUserName();
 %>
 
-
+<%!  String replaceEscapeChar(String inputText) {
+		String charAfterEscape = inputText;
+		charAfterEscape = charAfterEscape.replace("&", "&amp;");
+		charAfterEscape = charAfterEscape.replace("<", "&lt;");
+		charAfterEscape = charAfterEscape.replace(">", "&gt;");
+		charAfterEscape = charAfterEscape.replace("\"", " &quot; ");
+		charAfterEscape = charAfterEscape.replace(" ' ", "&#039;");
+		return charAfterEscape;}%>
+		
 <body style="background-color:beige; color:#523F24;">
     <!-- ナビゲーションボタンのカラー -->
     <style>
@@ -61,7 +69,7 @@
             </a>
             <div class="btn-group">
                 <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <%= userName %>
+                    <%= replaceEscapeChar(userName) %>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeMyPage">マイページ</a></li>
@@ -87,11 +95,11 @@
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">ユーザーID　<span class="badge text-bg-danger">必須</span></label>
-                <input type="text" class="form-control" name="userId" id="inputID" value="<%= userId %>">
+                <input type="text" class="form-control" name="userId" id="inputID" value="<%= replaceEscapeChar(userId) %>">
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">ユーザー名　<span class="badge text-bg-danger">必須</span></label>
-                <input type="text" class="form-control" name="userName" id="inputName" value="<%= userName %>">
+                <input type="text" class="form-control" name="userName" id="inputName" value="<%= replaceEscapeChar(userName) %>">
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">パスワード　<span class="badge text-bg-danger">必須</span></label>

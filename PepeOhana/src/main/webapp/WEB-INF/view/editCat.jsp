@@ -32,23 +32,6 @@
 	            return true;
 	        
 	    }
-	    const photo = document.getElementById("inputImage");
-	    photo.addEventListener("change", function (e) {
-	        const file = e.target.files[0];
-	        const reader = new FileReader();
-	        const image = document.getElementById("setImage");
-
-	        setImage.style.height = "100px";
-	        setImage.style.width = "auto";
-
-	        reader.addEventListener("load", function () {
-	            image.src = reader.result;
-	        }, false);
-
-	        if (file) {
-	            reader.readAsDataURL(file);
-	        }
-	    });
 	    
 	    function Image(obj){
 		    var fileReader = new FileReader();
@@ -67,6 +50,14 @@
 	String userName = userInfoOnSession.getUserName();
 %>
 
+<%!  String replaceEscapeChar(String inputText) {
+		String charAfterEscape = inputText;
+		charAfterEscape = charAfterEscape.replace("&", "&amp;");
+		charAfterEscape = charAfterEscape.replace("<", "&lt;");
+		charAfterEscape = charAfterEscape.replace(">", "&gt;");
+		charAfterEscape = charAfterEscape.replace("\"", " &quot; ");
+		charAfterEscape = charAfterEscape.replace(" ' ", "&#039;");
+		return charAfterEscape;}%>
 
 <body style="background-color:beige; color:#523F24;">
     <!-- ナビゲーションボタンのカラー -->
@@ -90,7 +81,7 @@
             </a>
             <div class="btn-group">
                 <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <%= userName %>
+                    <%= replaceEscapeChar(userName) %>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeMyPage">マイページ</a></li>
@@ -111,7 +102,7 @@
             <p class="text-danger">エラーメッセージ</p>
             <div class="mb-3">
                 <label for="" class="form-label">名前　<span class="badge text-bg-danger">必須</span></label>
-                <input type="text" class="form-control" name="CATNAME" id="inputName" value="<%=cat.getCatName() %>">
+                <input type="text" class="form-control" name="CATNAME" id="inputName" value="<%=replaceEscapeChar(cat.getCatName()) %>">
             </div>
              <div class="mb-3">            
             	<label for="inputKind" class="form-label">描種　<span class="badge text-bg-danger">必須</span></label>
@@ -156,17 +147,16 @@
             <div class="mb-3">
                 <label for="inputImage" class="form-label">画像　<span class="badge text-bg-danger">必須</span></label>
                 <input type="file" class="form-control mb-2" name="IMAGE" id="inputImage" accept="image/png, image/jpeg" value="<%=cat.getImage() %>" onchange="Image(this)"><br>
-                <img src="<%=request.getContextPath()%>/images/img_<%=cat.getCatId()%>.jpg"style="max-width:100px;">
-                <img id="setImage"src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="max-width:100px;">
+                <img id="setImage"src="<%=request.getContextPath()%>/images/img_<%=cat.getCatId()%>.jpg" style="max-width:100px;">
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">コメント　<span class="badge text-bg-danger">必須</span></label>
-                <textarea class="form-control" name="COMMENT" id="inputComment" cols="50" rows="4" maxlength="200"><%=cat.getComment() %></textarea>
+                <textarea class="form-control" name="COMMENT" id="inputComment" cols="50" rows="4" maxlength="200"><%=replaceEscapeChar(cat.getComment()) %></textarea>
             </div>
             <div class="form-check">
 				<input class="form-check-input" type="checkbox" name="DEL" value="1" id="flexCheckDefault">
 				<label class="form-check-label" for="flexCheckDefault">
-    				<span class="text-danger">「<%=cat.getCatName() %>」の情報を削除する　※削除後の復元不可</span>
+    				<span class="text-danger">「<%=replaceEscapeChar(cat.getCatName()) %>」の情報を削除する　※削除後の復元不可</span>
   				</label>
 			</div>
             <div style="text-align: center;">

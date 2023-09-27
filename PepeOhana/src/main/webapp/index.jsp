@@ -40,6 +40,15 @@
     }
 %>
 
+<%!  String replaceEscapeChar(String inputText) {
+		String charAfterEscape = inputText;
+		charAfterEscape = charAfterEscape.replace("&", "&amp;");
+		charAfterEscape = charAfterEscape.replace("<", "&lt;");
+		charAfterEscape = charAfterEscape.replace(">", "&gt;");
+		charAfterEscape = charAfterEscape.replace("\"", " &quot; ");
+		charAfterEscape = charAfterEscape.replace(" ' ", "&#039;");
+		return charAfterEscape;}%>
+		
 <body style="background-color:beige; color:#523F24;">
     <!-- ナビゲーションボタンのカラー -->
     <style>
@@ -63,7 +72,7 @@
             </a>
             <div class="btn-group">
                 <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <%=userName%>
+                    <%=replaceEscapeChar(userName)%>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeMyPage">マイページ</a></li>

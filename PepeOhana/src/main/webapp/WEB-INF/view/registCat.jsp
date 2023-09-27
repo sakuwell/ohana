@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="model.UsersInfoDto" %>
-
+		
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -30,26 +30,8 @@
 	        
 	    }
 	    
-	   //画像選択後のサムネイル表示はまだうまく動作してません
+	   //画像選択後のサムネイル表示
 	   
-	    const photo = document.getElementById("inputImage");
-	    photo.addEventListener("change", function (e) {
-	        const file = e.target.files[0];
-	        const reader = new FileReader();
-	        const image = document.getElementById("setImage");
-
-	        setImage.style.height = "100px";
-	        setImage.style.width = "auto";
-
-	        reader.addEventListener("load", function () {
-	            image.src = reader.result;
-	        }, false);
-
-	        if (file) {
-	            reader.readAsDataURL(file);
-	            console.log("Hello")
-	        }
-	    });
 	    function Image(obj){
 		    var fileReader = new FileReader();
 		    fileReader.onload =(function(){
@@ -70,7 +52,16 @@
 
 <%String error = (String) request.getAttribute("message"); %>
 
-
+<%!  String replaceEscapeChar(String inputText) {
+		String charAfterEscape = inputText;
+		charAfterEscape = charAfterEscape.replace("&", "&amp;");
+		charAfterEscape = charAfterEscape.replace("<", "&lt;");
+		charAfterEscape = charAfterEscape.replace(">", "&gt;");
+		charAfterEscape = charAfterEscape.replace("\"", " &quot; ");
+		charAfterEscape = charAfterEscape.replace(" ' ", "&#039;");
+		return charAfterEscape;}%>
+		
+		
 <body style="background-color:beige; color:#523F24;">
     <!-- ナビゲーションボタンのカラー -->
     <style>
@@ -93,7 +84,7 @@
             </a>
             <div class="btn-group">
                 <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <%= userName %>
+                    <%= replaceEscapeChar(userName) %>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeMyPage">マイページ</a></li>
