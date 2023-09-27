@@ -237,7 +237,7 @@
                 <h2 class="accordion-header">
                     <button class="p-2 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#reciever<%= i %>" aria-expanded="false" aria-controls="reciever<%= i %>">
                         <p style="line-height: 150%; margin:0;">
-                            <small><%= dto.getSentDate() %></small><br>
+                            <small><%= new SimpleDateFormat("yyyy年MM月dd日hh時mm分").format(dto.getSentDate()) %></small><br>
                             対象ねこ&nbsp;<span class="badge rounded-pill text-bg-secondary"><%= dto.getTargetCatName() %></span>&ensp;
                             送信ユーザー&nbsp;<span class="badge rounded-pill text-bg-secondary"><%= dto.getTargetUserName() %></span>
                         </p>
@@ -245,17 +245,24 @@
                 </h2>
                 <!-- メッセージ内容コンテナ -->
                 <div id="reciever<%= i %>" class="accordion-collapse collapse" data-bs-parent="#reciever">
-                    <div class="accordion-body p-3">
-                        	<%= replaceEscapeChar(dto.getMessage()) %>
+                    <div class="row accordion-body p-3">
+                        <div class="col-8 col-md-10 pe-0">
+                       		<%= replaceEscapeChar(dto.getMessage()) %>
+                       	</div>
                         <!-- 返信ボタン -->
-                        <div class="text-end mt-2">
+                        <div class="col-4 col-md-2 text-end text-btm align-self-end">
+                            <a href="<%=request.getContextPath()%>/ExeShowCatInfo?CATID=<%=dto.getTargetCatId() %>">
+	                            <button type="submit" class="btn btn-sm btn-secondary mb-2" style="width:100%;">
+	                            	ねこ詳細
+	                            </button>
+	                        </a><br>
 	                        <form action="Message" method="post">
 	                        	<input type="hidden" name="CATID" value="<%= dto.getTargetCatId() %>">
 	                        	<input type="hidden" name="CATNAME" value="<%= replaceEscapeChar(dto.getTargetCatName()) %>">
 	                        	<input type="hidden" name="USERID" value="<%= dto.getTargetUserId() %>">
 	                        	<input type="hidden" name="USERNAME" value="<%= replaceEscapeChar(dto.getTargetUserName()) %>">
 	                        	<input type="hidden" name="MESSAGE" value="<%= replaceEscapeChar(dto.getMessage()) %>">
-	                        	<button type="submit" class="btn btn-sm" style="background-color:#E87B4C; color:#ffffff;">
+	                        	<button type="submit" class="btn btn-sm" style="width:100%; background-color:#E87B4C; color:#ffffff;">
 	                        		返信する
 	                            </button>
 	                        </form>
@@ -292,7 +299,7 @@
                 <h2 class="accordion-header">
                     <button class="p-2 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sender<%= i %>" aria-expanded="false" aria-controls="sender<%= i %>">
                         <p style="line-height: 150%; margin:0;">
-                            <small><%= dto.getSentDate() %></small><br>
+                             <small><%= new SimpleDateFormat("yyyy年MM月dd日hh時mm分").format(dto.getSentDate()) %></small><br>
                             対象ねこ&nbsp;<span class="badge rounded-pill text-bg-secondary"><%= dto.getTargetCatName() %></span>&ensp;
                             送信ユーザー&nbsp;<span class="badge rounded-pill text-bg-secondary"><%= dto.getTargetUserName() %></span>
                         </p>
@@ -300,16 +307,23 @@
                 </h2>
                 <!-- メッセージ内容コンテナ -->
                 <div id="sender<%= i %>" class="accordion-collapse collapse" data-bs-parent="#sender">
-                    <div class="accordion-body p-3">
-                        <%= replaceEscapeChar(dto.getMessage()) %>
-                        <!-- 削除ボタン -->
-                        <div class="text-end mt-2">
-                            <a href="<%=request.getContextPath()%>/ExeDelMessage?MESSAGEID=<%=dto.getMessageId() %>">
-	                            <button type="submit" class="btn btn-sm" style="background-color:#E87B4C; color:#ffffff;"
-	                                onclick="">削除する
-	                            </button>
-	                        </a>
+                    <div class="row accordion-body p-3">
+                    	<div class="col-8 col-md-10 pe-0">
+                        	<%= replaceEscapeChar(dto.getMessage()) %>
                         </div>
+                        <div class="col-4 col-md-2 text-end text-btm align-self-end">
+                            <a href="<%=request.getContextPath()%>/ExeShowCatInfo?CATID=<%=dto.getTargetCatId() %>">
+	                            <button type="submit" class="btn btn-sm btn-secondary mb-2" style="width:100%;">
+	                            	ねこ詳細
+	                            </button>
+	                        </a><br>
+	                        <!-- 削除ボタン -->
+	                        <a href="<%=request.getContextPath()%>/ExeDelMessage?MESSAGEID=<%=dto.getMessageId() %>">
+	                            <button type="submit" class="btn btn-sm" style="width:100%; background-color:#E87B4C; color:#ffffff;">
+	                            	削除
+		                        </button>
+	                        </a>
+	                     </div>
                     </div>
                 </div>
             </div>
