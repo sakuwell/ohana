@@ -154,7 +154,7 @@
                 <textarea class="form-control" name="COMMENT" id="inputComment" cols="50" rows="4" maxlength="200"><%=replaceEscapeChar(cat.getComment()) %></textarea>
             </div>
             <div class="form-check">
-				<input class="form-check-input" type="checkbox" name="DEL" value="1" id="flexCheckDefault">
+				<input class="form-check-input" type="checkbox" name="DEL" id="flexCheckDefault" value="1">
 				<label class="form-check-label" for="flexCheckDefault">
     				<span class="text-danger">「<%=replaceEscapeChar(cat.getCatName()) %>」の情報を削除する　※削除後の復元不可</span>
   				</label>
