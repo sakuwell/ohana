@@ -39,12 +39,27 @@ public class ExeShowCatInfo extends HttpServlet {
 
 		ShowCatInfoBL logic = new ShowCatInfoBL();
 		CatsInfoDto ShowCatInfo = logic.executeSelectShowCatInfo(Integer.parseInt(catId));
-		System.out.println(ShowCatInfo.getCatId());
 		
-		request.setAttribute("showCatInfo",ShowCatInfo);
+		if (ShowCatInfo.getCatName() != null) {
+
+			request.setAttribute("showCatInfo",ShowCatInfo);
+			
+			RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/showCatInfo.jsp");
+			dispatch.forward(request, response);
+
+		} else {			
+			// リクエストスコープにデータを設定
+			request.setAttribute("message", "ご指定のIDのねこが見つかりませんでした");
+			
+			RequestDispatcher dispatch = request.getRequestDispatcher("index.jsp");
+			dispatch.forward(request, response);
+			//トップページ画面へ転送
+//	        request.getRequestDispatcher("Login.jsp").forward(request, response);
+		}
 		
-		RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/showCatInfo.jsp");
-		dispatch.forward(request, response);
+
+		
+
 	}
 
 	/**
