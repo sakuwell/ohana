@@ -24,10 +24,13 @@
 	        var inputImage = document.getElementById("inputImage").value;
 	        var inputComment = document.getElementById("inputComment").value;
 	
-	        if (inputName === "" || inputKind === "" || inputWeight === "" || inputImage === "" || inputComment === "" || (!inputMale && !inputFemale)) {
+	        if (inputName === "" || inputKind === "" || inputWeight === "" || inputComment === "" || (!inputMale && !inputFemale)) {
 	            alert("入力できていない項目があります");
 	            return false;
-	        }
+	        } else if(inputImage === ""){
+	        	alert("画像を選択してください");
+	        	return false;
+		    }
 	        	document.getElementById("btn").disabled = true;
 	            return true;
 	        
@@ -57,7 +60,10 @@
 		charAfterEscape = charAfterEscape.replace(">", "&gt;");
 		charAfterEscape = charAfterEscape.replace("\"", " &quot; ");
 		charAfterEscape = charAfterEscape.replace(" ' ", "&#039;");
-		return charAfterEscape;}%>
+		return charAfterEscape;}
+%>
+
+<% String error = (String) request.getAttribute("message"); %>
 
 <body style="background-color:beige; color:#523F24;">
     <!-- ナビゲーションボタンのカラー -->
@@ -99,7 +105,9 @@
             <div class="h2 pb-2 mb-4 text-center">
                 ねこ情報編集
             </div>
-            <p class="text-danger">エラーメッセージ</p>
+            <%if(error != null){ %>
+            	<p class="text-danger"><%= error %></p>
+            <% } %>
             <div class="mb-3">
                 <label for="" class="form-label">名前　<span class="badge text-bg-danger">必須</span></label>
                 <input type="text" class="form-control" name="CATNAME" id="inputName" value="<%=replaceEscapeChar(cat.getCatName()) %>">
