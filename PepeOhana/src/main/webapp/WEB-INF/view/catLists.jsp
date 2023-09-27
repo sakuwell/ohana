@@ -116,14 +116,14 @@
                 	<img src="<%=request.getContextPath()%>/images/img_<%=dto.getCatId()%>.jpg" style="height:180px; width: 100%; object-fit: cover;" class="card-img-top" alt="猫画像">
                     <div class="card-body">
                         <h5 class="card-title text-center border-bottom pb-2"><%=replaceEscapeChar(dto.getCatName()) %><small> ちゃん</small></h5>
-                        <% if(Integer.parseInt(dto.getKind()) == 1){ %><p class="card-text text-right">描種 : スコティッシュ・フォールド</p><% } %>
-                        <% if(Integer.parseInt(dto.getKind()) == 2){ %><p class="card-text text-right">描種 : マンチカン</p><% } %>
-                        <% if(Integer.parseInt(dto.getKind()) == 3){ %><p class="card-text text-right">描種 : アメリカンショートヘアー</p><% } %>
-                        <% if(Integer.parseInt(dto.getKind()) == 4){ %><p class="card-text text-right">描種 : ノルウェージャン・フォレスト・キャット</p><% } %>
-                        <% if(Integer.parseInt(dto.getKind()) == 5){ %><p class="card-text text-right">描種 : ブリティッシュ・ショートヘア</p><% } %>
-                        <% if(Integer.parseInt(dto.getKind()) == 6){ %><p class="card-text text-right">描種 : 混血種</p><% } %>
-                        <% if(Integer.parseInt(dto.getKind()) == 7){ %><p class="card-text text-right">描種 : その他</p><% } %>
-                        <% if(Integer.parseInt(dto.getKind()) == 8){ %><p class="card-text text-right">描種 : 不明</p><% } %>
+                        <% if(dto.getKind() == 1){ %><p class="card-text text-right">描種 : スコティッシュ・フォールド</p><% } %>
+                        <% if(dto.getKind() == 2){ %><p class="card-text text-right">描種 : マンチカン</p><% } %>
+                        <% if(dto.getKind() == 3){ %><p class="card-text text-right">描種 : アメリカンショートヘアー</p><% } %>
+                        <% if(dto.getKind() == 4){ %><p class="card-text text-right">描種 : ノルウェージャン・フォレスト・キャット</p><% } %>
+                        <% if(dto.getKind() == 5){ %><p class="card-text text-right">描種 : ブリティッシュ・ショートヘア</p><% } %>
+                        <% if(dto.getKind() == 6){ %><p class="card-text text-right">描種 : 混血種</p><% } %>
+                        <% if(dto.getKind() == 7){ %><p class="card-text text-right">描種 : その他</p><% } %>
+                        <% if(dto.getKind() == 8){ %><p class="card-text text-right">描種 : 不明</p><% } %>
                         <p class="card-text text-right">年齢 : <%=dto.getAge() %></p>
                         <%int g = dto.getGender();
                         if (g == 1){   %>
