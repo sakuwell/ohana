@@ -244,12 +244,11 @@ public class MyPageDao {
                 messageDto.setMessageType(rs.getString("MESSAGETYPE"));
                 messageDto.setTargetUserId(rs.getInt("TARGETUSERID"));
                 messageDto.setTargetUserName(rs.getString("TARGETUSERNAME"));
-                messageDto.setCatId(rs.getInt("TARGETCATID"));
-                messageDto.setCatName(rs.getString("TARGETCATNAME"));
+                messageDto.setTargetCatId(rs.getInt("TARGETCATID"));
+                messageDto.setTargetCatName(rs.getString("TARGETCATNAME"));
                 messageDto.setSentDate(rs.getTimestamp("SEND_DATE"));
 
                 dtoList.add(messageDto);
-                System.out.println(dtoList);
             }
 
 			
