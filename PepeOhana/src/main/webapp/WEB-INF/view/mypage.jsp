@@ -31,7 +31,8 @@
 	String userName = userInfoOnSession.getUserName();
 %>
 <%  // Dtoを取得
-	List<MyPageDto> list = (List<MyPageDto>)request.getAttribute("MYPAGE");
+	List<MyPageDto> catList = (List<MyPageDto>)request.getAttribute("CATLIST");
+	List<MyPageDto> messageList = (List<MyPageDto>)request.getAttribute("MESSAGELIST");
 %>
 
 <%  String error = (String) request.getAttribute("message"); %>
@@ -120,15 +121,11 @@
 		<div class="row mt-4">
 		
 		<!-- ネコ情報のループ -->
-		<% int oldCatId = 0; %>	
 		<% boolean catsFound = false; %>
-		<% if (!list.isEmpty()) { %>
-		<% 		for (int i = 0; i < list.size(); i++) {
-		   			MyPageDto dto = list.get(i);
-		    	if (dto.getCatId() != 0) { // ねこ情報をチェック
-		        	int newCatId = dto.getCatId();
-		        	if (newCatId != oldCatId) {
-		            	catsFound = true;
+		<% if (!catList.isEmpty()) { %>
+		<% 		for (int i = 0; i < catList.size(); i++) {
+		   			MyPageDto dto = catList.get(i);
+	            	catsFound = true;
 		%>
 		<!-- 画像保存用 -->
         <%
@@ -195,10 +192,7 @@
             </a>
        		</div>
 		
-		<%          	oldCatId = dto.getCatId();
-		        	}
-		    	} 
-			} 
+		<%	} 
 		}%>
 		<% if (!catsFound) { %>
 		    <p class="text-center">募集中のねこ情報はありません</p>
@@ -222,9 +216,9 @@
         
 	        <!-- 受信メッセージループ -->
 	        <% boolean receivedMessagesExist = false; %>
-       		<% if (!list.isEmpty()) { %>
-			<% 		for (int i = 0; i < list.size(); i++) {
-	    				MyPageDto dto = list.get(i);
+       		<% if (!messageList.isEmpty()) { %>
+			<% 		for (int i = 0; i < messageList.size(); i++) {
+	    				MyPageDto dto = messageList.get(i);
 	    				String messageType = dto.getMessageType();
 	    				if ("r".equals(messageType)) { // Check if messageType is "r"
 	        				receivedMessagesExist = true;
@@ -277,9 +271,9 @@
 
           	<!-- 送信メッセージループ -->
 	        <% boolean sendMessagesExist = false; %>
-       		<% if (!list.isEmpty()) { %>
-			<% 		for (int i = 0; i < list.size(); i++) {
-	    				MyPageDto dto = list.get(i);
+       		<% if (!messageList.isEmpty()) { %>
+			<% 		for (int i = 0; i < messageList.size(); i++) {
+	    				MyPageDto dto = messageList.get(i);
 	    				String messageType = dto.getMessageType();
 	    				if ("s".equals(messageType)) { // Check if messageType is "r"
 	        				sendMessagesExist = true;

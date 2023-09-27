@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -50,20 +49,12 @@ public class ExeMyPage extends HttpServlet {
 //			セッション情報から変数に代入
 			int id = userInfoOnSession.getID();
 			
-			List<MyPageDto> myPageList = new ArrayList<MyPageDto>();
-			List<MyPageDto> myPageList2 = new ArrayList<MyPageDto>();
 			MyPageBL logic = new MyPageBL();
-			myPageList  = logic.executeSelectMyPageLists(id).get(0);
-			myPageList2  = logic.executeSelectMyPageLists(id).get(1);
-			
-	        // MyPageDaoから2つのリストを取得
-	        List<MyPageDto> dtoList1 = myPageDao.doSelectMyInfo(userId).get(0); // 1つ目のリスト
-	        List<MyPageDto> dtoList2 = myPageDao.doSelectMyInfo(userId).get(1); // 2つ目のリスト
+			List<MyPageDto> catList  = logic.executeSelectCatLists(id);
+			List<MyPageDto> messageList = logic.executeSelectMessageLists(id);
 
-	        // リクエストスコープにリストをセット
-	        request.setAttribute("dtoList1", dtoList1);
-	        request.setAttribute("dtoList2", dtoList2);
-			request.setAttribute("MYPAGE",myPageList);
+			request.setAttribute("CATLIST" , catList);
+			request.setAttribute("MESSAGELIST" , messageList);
 		
 			RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/mypage.jsp");
 			dispatch.forward(request, response);

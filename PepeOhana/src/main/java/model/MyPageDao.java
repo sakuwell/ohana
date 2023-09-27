@@ -24,206 +24,274 @@ public class MyPageDao {
     String USER_PASS = "23kkos";
 
     // メソッド
+    
+    
+	public List<MyPageDto> doSelectCatInfo(int id) {
+		//-------------------------------------------
+		//JDBCドライバのロード
+		//-------------------------------------------
+		try {
+				Class.forName(DRIVER_NAME);       //JDBCドライバをロード＆接続先として指定
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
 
-    /**
-     * ----------------------------------------------------------------------
-     * ■doSelectメソッド 概要：引数のユーザー情報に紐づくユーザーデータを「usersinfo」「catsinfo」「messages」テーブルから抽出する 引数：ユーザーID（session） 戻り値：「usersinfo」「catsinfo」「messages」テーブルから抽出したマイページデータ（MyPageDto型）
-     * ----------------------------------------------------------------------
-     **/
-    public List<MyPageDto> doSelectMyInfo(int id) {
-        // JDBCドライバのロード
-        try {
-            Class.forName(DRIVER_NAME); // JDBCドライバをロード＆接続先として指定
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+		//-------------------------------------------
+		//SQL発行
+		//-------------------------------------------
 
-        // SQL発行
-        Connection con = null; // Connection（DB接続情報）格納用変数
+		//JDBCの接続に使用するオブジェクトを宣言
+		//※finallyブロックでも扱うためtryブロック内で宣言してはいけないことに注意
+		Connection        con = null ;   // Connection（DB接続情報）格納用変数
+		PreparedStatement ps  = null ;   // PreparedStatement（SQL発行用オブジェクト）格納用変数
+		ResultSet         rs  = null ;   // ResultSet（SQL抽出結果）格納用変数
+		
+		//抽出結果格納用DTOリスト
+		List<MyPageDto> dtoList = new ArrayList<MyPageDto>();
 
-        // 抽出結果格納用DTOリスト
-        List<MyPageDto> dtoList = new ArrayList<MyPageDto>();
+		try {
 
-        try {
-            // 接続の確立（Connectionオブジェクトの取得）
-            con = DriverManager.getConnection(JDBC_URL, USER_ID, USER_PASS);
+			//-------------------------------------------
+			//接続の確立（Connectionオブジェクトの取得）
+			//-------------------------------------------
+			con = DriverManager.getConnection(JDBC_URL, USER_ID, USER_PASS);
 
-            PreparedStatement ps1 = null;
-            ResultSet rs1 = null;
+			//-------------------------------------------
+			//SQL文の送信 ＆ 結果の取得
+			//-------------------------------------------
 
-            // 1つ目のSQLクエリの生成
-            StringBuffer buf1 = new StringBuffer();
-            buf1.append("SELECT ");
-            buf1.append("    C.USERID AS OWNERID, ");
-            buf1.append("    C.CATID, ");
-            buf1.append("    C.CATNAME, ");
-            buf1.append("    C.KIND, ");
-            buf1.append("    C.BIRTH, ");
-            buf1.append("    C.GENDER, ");
-            buf1.append("    C.WEIGHT, ");
-            buf1.append("    C.IMAGE, ");
-            buf1.append("    C.COMMENT, ");
-            buf1.append("    C.REG_DATE, ");
-            buf1.append("    CASE ");
-            buf1.append("        WHEN C.BIRTH IS NOT NULL THEN CONCAT( ");
-            buf1.append("            TIMESTAMPDIFF(YEAR, C.BIRTH, CURDATE()), '歳', ");
-            buf1.append("            TIMESTAMPDIFF(MONTH, C.BIRTH, CURDATE()) % 12, 'ヵ月' ");
-            buf1.append("        ) ");
-            buf1.append("        ELSE NULL ");
-            buf1.append("    END AS AGE ");
-            buf1.append("FROM CATS_INFO AS C ");
-            buf1.append("WHERE C.USERID = ? AND C.DEL = 0;");
+			//発行するSQL文の生成（SELECT）
+            StringBuffer buf = new StringBuffer();
+            buf.append("SELECT ");
+            buf.append("    C.USERID AS OWNERID, ");
+            buf.append("    C.CATID, ");
+            buf.append("    C.CATNAME, ");
+            buf.append("    C.KIND, ");
+            buf.append("    C.BIRTH, ");
+            buf.append("    C.GENDER, ");
+            buf.append("    C.WEIGHT, ");
+            buf.append("    C.IMAGE, ");
+            buf.append("    C.COMMENT, ");
+            buf.append("    C.REG_DATE, ");
+            buf.append("    CASE ");
+            buf.append("        WHEN C.BIRTH IS NOT NULL THEN CONCAT( ");
+            buf.append("            TIMESTAMPDIFF(YEAR, C.BIRTH, CURDATE()), '歳', ");
+            buf.append("            TIMESTAMPDIFF(MONTH, C.BIRTH, CURDATE()) % 12, 'ヵ月' ");
+            buf.append("        ) ");
+            buf.append("        ELSE NULL ");
+            buf.append("    END AS AGE ");
+            buf.append("FROM CATS_INFO AS C ");
+            buf.append("WHERE C.USERID = ? AND C.DEL = 0;");
 
-            try {
-                // PreparedStatement（SQL発行用オブジェクト）を生成＆発行するSQLをセット
-                ps1 = con.prepareStatement(buf1.toString());
+            // PreparedStatement（SQL発行用オブジェクト）を生成＆発行するSQLをセット
+            ps = con.prepareStatement(buf.toString());
+            // PreparedStatementのSQL文をセット
+            ps.setInt(1, id);
+            // 1つ目のSQLクエリを実行し、結果を取得
+            rs = ps.executeQuery();
 
-                // PreparedStatementのSQL文をセット
-                ps1.setInt(1, id);
+			//パラメータをセット
+			while (rs.next()) {
+                MyPageDto catDto = new MyPageDto();
+                catDto.setOwnerId(rs.getInt("OWNERID"));
+                catDto.setCatId(rs.getInt("CATID"));
+                catDto.setCatName(rs.getString("CATNAME"));
+                catDto.setKind(rs.getInt("KIND"));
+                catDto.setBirth(rs.getDate("BIRTH"));
+                catDto.setAge(rs.getString("AGE"));
+                catDto.setGender(rs.getInt("GENDER"));
+                catDto.setWeight(rs.getFloat("WEIGHT"));
+                catDto.setImage(rs.getBytes("IMAGE"));
+                catDto.setComment(rs.getString("COMMENT"));
+                catDto.setRegDate(rs.getTimestamp("REG_DATE"));
 
-                // 1つ目のSQLクエリを実行し、結果を取得
-                rs1 = ps1.executeQuery();
+                dtoList.add(catDto);
+			}
 
-                // パラメータをセット
-                while (rs1.next()) {
-                    MyPageDto catDto = new MyPageDto();
-                    catDto.setOwnerId(rs1.getInt("OWNERID"));
-                    catDto.setCatId(rs1.getInt("CATID"));
-                    catDto.setCatName(rs1.getString("CATNAME"));
-                    catDto.setKind(rs1.getInt("KIND"));
-                    catDto.setBirth(rs1.getDate("BIRTH"));
-                    catDto.setAge(rs1.getString("AGE"));
-                    catDto.setGender(rs1.getInt("GENDER"));
-                    catDto.setWeight(rs1.getFloat("WEIGHT"));
-                    catDto.setImage(rs1.getBytes("IMAGE"));
-                    catDto.setComment(rs1.getString("COMMENT"));
-                    catDto.setRegDate(rs1.getTimestamp("REG_DATE"));
 
-                    dtoList.add(catDto);
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                // ResultSetオブジェクトとPreparedStatementオブジェクトの接続解除
-                if (rs1 != null) {
-                    try {
-                        rs1.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
+		} catch (SQLException e) {
+			e.printStackTrace();
 
-                if (ps1 != null) {
-                    try {
-                        ps1.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
+		} finally {
+			//-------------------------------------------
+			//接続の解除
+			//-------------------------------------------
+
+			//ResultSetオブジェクトの接続解除
+			if (rs != null) {    //接続が確認できている場合のみ実施
+				try {
+					rs.close();  //接続の解除
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+
+			//PreparedStatementオブジェクトの接続解除
+			if (ps != null) {    //接続が確認できている場合のみ実施
+				try {
+					ps.close();  //接続の解除
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+
+			//Connectionオブジェクトの接続解除
+			if (con != null) {    //接続が確認できている場合のみ実施
+				try {
+					con.close();  //接続の解除
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		//抽出したユーザーデータを戻す
+		return dtoList;
+	}
+	
+	
+	public List<MyPageDto> doSelectMessageInfo(int id) {
+		//-------------------------------------------
+		//JDBCドライバのロード
+		//-------------------------------------------
+		try {
+			Class.forName(DRIVER_NAME);       //JDBCドライバをロード＆接続先として指定
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		//-------------------------------------------
+		//SQL発行
+		//-------------------------------------------
+		
+		//JDBCの接続に使用するオブジェクトを宣言
+		//※finallyブロックでも扱うためtryブロック内で宣言してはいけないことに注意
+		Connection        con = null ;   // Connection（DB接続情報）格納用変数
+		PreparedStatement ps  = null ;   // PreparedStatement（SQL発行用オブジェクト）格納用変数
+		ResultSet         rs  = null ;   // ResultSet（SQL抽出結果）格納用変数
+		
+		//抽出結果格納用DTOリスト
+		List<MyPageDto> dtoList = new ArrayList<MyPageDto>();
+		
+		try {
+			
+			//-------------------------------------------
+			//接続の確立（Connectionオブジェクトの取得）
+			//-------------------------------------------
+			con = DriverManager.getConnection(JDBC_URL, USER_ID, USER_PASS);
+			
+			//-------------------------------------------
+			//SQL文の送信 ＆ 結果の取得
+			//-------------------------------------------
+			
+			//発行するSQL文の生成（SELECT）
+			StringBuffer buf = new StringBuffer();
+
+            buf.append("SELECT ");
+            buf.append("    M.MESSAGEID, ");
+            buf.append("    M.MESSAGE, ");
+            buf.append("    CASE ");
+            buf.append("        WHEN M.SENDERID = ? THEN 's' ");
+            buf.append("        WHEN M.RECIEVERID = ? THEN 'r' ");
+            buf.append("        ELSE NULL ");
+            buf.append("    END AS MESSAGETYPE, ");
+            buf.append("    CASE ");
+            buf.append("        WHEN M.SENDERID = ? THEN M.RECIEVERID ");
+            buf.append("        WHEN M.RECIEVERID = ? THEN M.SENDERID ");
+            buf.append("        ELSE NULL ");
+            buf.append("    END AS TARGETUSERID, ");
+            buf.append("    ( ");
+            buf.append("        SELECT NAME ");
+            buf.append("        FROM USERS_INFO AS U2 ");
+            buf.append("        WHERE U2.ID = ( ");
+            buf.append("            CASE ");
+            buf.append("                WHEN M.SENDERID = ? THEN M.RECIEVERID ");
+            buf.append("                WHEN M.RECIEVERID = ? THEN M.SENDERID ");
+            buf.append("                ELSE NULL ");
+            buf.append("            END ");
+            buf.append("        ) ");
+            buf.append("    ) AS TARGETUSERNAME, ");
+            buf.append("    M.CATID AS TARGETCATID, ");
+            buf.append("    C.CATNAME AS TARGETCATNAME, ");
+            buf.append("    M.SEND_DATE ");
+            buf.append("FROM MESSAGES AS M ");
+            buf.append("LEFT JOIN CATS_INFO AS C ON M.CATID = C.CATID ");
+            buf.append("WHERE ");
+            buf.append("    M.DEL = 0 ");
+            buf.append("    AND (M.SENDERID = ? OR M.RECIEVERID = ?) ");
+            buf.append("ORDER BY M.SEND_DATE DESC;");
+
+			
+			// PreparedStatement（SQL発行用オブジェクト）を生成＆発行するSQLをセット
+			ps = con.prepareStatement(buf.toString());
+			// PreparedStatementのSQL文をセット
+			ps.setInt(1, id);
+			ps.setInt(2, id);
+			ps.setInt(3, id);
+			ps.setInt(4, id);
+			ps.setInt(5, id);
+			ps.setInt(6, id);
+			ps.setInt(7, id);
+			ps.setInt(8, id);
+			// 1つ目のSQLクエリを実行し、結果を取得
+			rs = ps.executeQuery();
+			
+			//パラメータをセット
+            while (rs.next()) {
+                MyPageDto messageDto = new MyPageDto();
+                messageDto.setMessageId(rs.getInt("MESSAGEID"));
+                messageDto.setMessage(rs.getString("MESSAGE"));
+                messageDto.setMessageType(rs.getString("MESSAGETYPE"));
+                messageDto.setTargetUserId(rs.getInt("TARGETUSERID"));
+                messageDto.setTargetUserName(rs.getString("TARGETUSERNAME"));
+                messageDto.setCatId(rs.getInt("TARGETCATID"));
+                messageDto.setCatName(rs.getString("TARGETCATNAME"));
+                messageDto.setSentDate(rs.getTimestamp("SEND_DATE"));
+
+                dtoList.add(messageDto);
+                System.out.println(dtoList);
             }
 
-            // 2つ目のSQLクエリの生成
-            PreparedStatement ps2 = null;
-            ResultSet rs2 = null;
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			//-------------------------------------------
+			//接続の解除
+			//-------------------------------------------
+			
+			//ResultSetオブジェクトの接続解除
+			if (rs != null) {    //接続が確認できている場合のみ実施
+				try {
+					rs.close();  //接続の解除
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			//PreparedStatementオブジェクトの接続解除
+			if (ps != null) {    //接続が確認できている場合のみ実施
+				try {
+					ps.close();  //接続の解除
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			//Connectionオブジェクトの接続解除
+			if (con != null) {    //接続が確認できている場合のみ実施
+				try {
+					con.close();  //接続の解除
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		//抽出したユーザーデータを戻す
+		return dtoList;
+	}
 
-            StringBuffer buf2 = new StringBuffer();
-            buf2.append("SELECT ");
-            buf2.append("    M.MESSAGEID, ");
-            buf2.append("    M.MESSAGE, ");
-            buf2.append("    CASE ");
-            buf2.append("        WHEN M.SENDERID = 18 THEN 's' ");
-            buf2.append("        WHEN M.RECIEVERID = 18 THEN 'r' ");
-            buf2.append("        ELSE NULL ");
-            buf2.append("    END AS MESSAGETYPE, ");
-            buf2.append("    CASE ");
-            buf2.append("        WHEN M.SENDERID = 18 THEN M.RECIEVERID ");
-            buf2.append("        WHEN M.RECIEVERID = 18 THEN M.SENDERID ");
-            buf2.append("        ELSE NULL ");
-            buf2.append("    END AS TARGETUSERID, ");
-            buf2.append("    ( ");
-            buf2.append("        SELECT NAME ");
-            buf2.append("        FROM USERS_INFO U2 ");
-            buf2.append("        WHERE U2.ID = ( ");
-            buf2.append("            CASE ");
-            buf2.append("                WHEN M.SENDERID = 18 THEN M.RECIEVERID ");
-            buf2.append("                WHEN M.RECIEVERID = 18 THEN M.SENDERID ");
-            buf2.append("                ELSE NULL ");
-            buf2.append("            END ");
-            buf2.append("        ) ");
-            buf2.append("    ) AS TARGETUSERNAME, ");
-            buf2.append("    M.CATID AS TARGETCATID, ");
-            buf2.append("    C.CATNAME AS TARGETCATNAME, ");
-            buf2.append("    M.SEND_DATE ");
-            buf2.append("FROM MESSAGES AS M ");
-            buf2.append("LEFT JOIN CATS_INFO AS C ON M.CATID = C.CATID ");
-            buf2.append("WHERE ");
-            buf2.append("    M.DEL = 0 ");
-            buf2.append("    AND (M.SENDERID = 18 OR M.RECIEVERID = 18) ");
-            buf2.append("ORDER BY M.SEND_DATE DESC;");
-
-
-            try {
-                // PreparedStatement（SQL発行用オブジェクト）を生成＆発行するSQLをセット
-                ps2 = con.prepareStatement(buf2.toString());
-
-                // PreparedStatementのSQL文をセット（必要に応じてパラメータをセット）
-                // ps2.setInt(1, ...);
-                // ps2.setString(2, ...);
-
-                // 2つ目のSQLクエリを実行し、結果を取得
-                rs2 = ps2.executeQuery();
-
-                // 2つ目のSQLクエリの結果を処理
-                while (rs2.next()) {
-                    MyPageDto messageDto = new MyPageDto();
-                    messageDto.setMessageId(rs2.getInt("MESSAGEID"));
-                    messageDto.setMessage(rs2.getString("MESSAGE"));
-                    messageDto.setMessageType(rs2.getString("MESSAGETYPE"));
-                    messageDto.setTargetUserId(rs2.getInt("TARGETUSERID"));
-                    messageDto.setTargetUserName(rs2.getString("TARGETUSERNAME"));
-                    messageDto.setCatId(rs2.getInt("TARGETCATID"));
-                    messageDto.setCatName(rs2.getString("TARGETCATNAME"));
-                    messageDto.setSentDate(rs2.getTimestamp("SENTDATE"));
-
-                    dtoList.add(messageDto);
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                // ResultSetオブジェクトとPreparedStatementオブジェクトの接続解除
-                if (rs2 != null) {
-                    try {
-                        rs2.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                if (ps2 != null) {
-                    try {
-                        ps2.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            // Connectionオブジェクトの接続解除
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        // 1つ目と2つ目のSQLクエリの結果を処理した後のコードを書くことができます
-
-        // 抽出したユーザーデータを戻す
-        return dtoList;
-    }
 }
