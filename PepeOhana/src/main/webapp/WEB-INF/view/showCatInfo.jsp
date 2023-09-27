@@ -39,6 +39,15 @@
 		}
 </script>
 
+<%!  String replaceEscapeChar(String inputText) {
+		String charAfterEscape = inputText;
+		charAfterEscape = charAfterEscape.replace("&", "&amp;");
+		charAfterEscape = charAfterEscape.replace("<", "&lt;");
+		charAfterEscape = charAfterEscape.replace(">", "&gt;");
+		charAfterEscape = charAfterEscape.replace("\"", " &quot; ");
+		charAfterEscape = charAfterEscape.replace(" ' ", "&#039;");
+		return charAfterEscape;}%>
+		
 <!--sessionから取得する内容
         userName,Id
     Dtoから取得する内容
@@ -70,7 +79,7 @@
             </a>
             <div class="btn-group">
                 <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                      <%=userName%>
+                      <%=replaceEscapeChar(userName)%>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeMyPage">マイページ</a></li>
@@ -112,7 +121,7 @@
     
     <div class="container">
         <div class="h3 pb-2 mt-3 mb-4 text-center">
-            <%=ShowCatInfo.getCatName() %>
+            <%=replaceEscapeChar(ShowCatInfo.getCatName()) %>
         </div>
 
         <!-- カードのコンテンツ -->
@@ -181,9 +190,9 @@
             		<div class="text-center">
            				<form action="Message" method="post">
                 		<input type="hidden" name="CATID" value="<%=ShowCatInfo.getCatId() %>">
-	                	<input type="hidden" name="CATNAME" value="<%= ShowCatInfo.getCatName() %>">
+	                	<input type="hidden" name="CATNAME" value="<%= replaceEscapeChar(ShowCatInfo.getCatName()) %>">
 	                	<input type="hidden" name="USERID" value="<%=ShowCatInfo.getUserId() %>">
-	                	<input type="hidden" name="USERNAME" value="<%=ShowCatInfo.getUserName() %>">
+	                	<input type="hidden" name="USERNAME" value="<%=replaceEscapeChar(ShowCatInfo.getUserName()) %>">
 	            			<button type="submit" class="btn" style="background-color:#E87B4C; color:#ffffff;">
 	                 		メッセージを送る
 	                		</button>
