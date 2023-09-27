@@ -162,8 +162,15 @@ public class ExeEditCat extends HttpServlet {
 			
 			String comment	=request.getParameter("COMMENT");
 			
-			String delStr = request.getParameter("DEL");			
-			int del =Integer.parseInt(delStr);
+			String delParam = request.getParameter("DEL");
+			int del = 0; // チェックがされていない場合、デフォルトで0を設定
+
+			if (delParam != null && delParam.equals("1")) {
+			    del = 1; // チェックがされている場合、1を設定
+			}
+			
+//			String delStr = request.getParameter("DEL");			
+//			int del =Integer.parseInt(delStr);
 			 
 			
 			System.out.println(catId);
