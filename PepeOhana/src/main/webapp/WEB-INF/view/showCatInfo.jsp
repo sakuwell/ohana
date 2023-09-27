@@ -140,7 +140,7 @@
                         <th style="width:20%;"><small>ねこID</small></th>
                         <td style="width:20%;"><%= ShowCatInfo.getCatId() %></td>
                         <th style="width:30%;"><small>オーナーユーザー名</small></th>
-                        <td style="width:30%;"><%= ShowCatInfo.getUserName() %></td>
+                        <td style="width:30%;"><%= replaceEscapeChar(ShowCatInfo.getUserName()) %></td>
                     </tr>
                     <tr>
                         <th><small>性別</small></th>

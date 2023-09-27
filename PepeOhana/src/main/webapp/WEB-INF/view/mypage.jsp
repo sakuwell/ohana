@@ -37,6 +37,15 @@
 
 <%  String error = (String) request.getAttribute("message"); %>
 
+<%!  String replaceEscapeChar(String inputText) {
+		String charAfterEscape = inputText;
+		charAfterEscape = charAfterEscape.replace("&", "&amp;");
+		charAfterEscape = charAfterEscape.replace("<", "&lt;");
+		charAfterEscape = charAfterEscape.replace(">", "&gt;");
+		charAfterEscape = charAfterEscape.replace("\"", " &quot; ");
+		charAfterEscape = charAfterEscape.replace(" ' ", "&#039;");
+		return charAfterEscape;}%>
+
 <body style="background-color:beige; color:#523F24;">
     <!-- ナビゲーションボタンのカラー -->
     <style>
@@ -59,7 +68,7 @@
             </a>
             <div class="btn-group">
                 <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <%= userName %>
+                    <%= replaceEscapeChar(userName) %>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeMyPage">マイページ</a></li>
@@ -91,7 +100,7 @@
             </tr>
             <tr>
                 <th style="width:20%;"><small>ユーザー名</small></th>
-                <td style="width:80%;"><%= userName %></td>
+                <td style="width:80%;"><%= replaceEscapeChar(userName) %></td>
             </tr>
         </table>
         <div style="text-align: center;">
@@ -145,7 +154,7 @@
                         <th style="width:20%;"><small>ねこID</small></th>
                         <td style="width:20%;" ><%= dto.getCatId() %></td>
                         <th style="width:20%;"><small>名前</small></th>
-                        <td style="width:40%;" ><%= dto.getCatName() %></td>
+                        <td style="width:40%;" ><%= replaceEscapeChar(dto.getCatName()) %></td>
                     </tr>
                     <tr>
                         <th style="width:18%;"><small>性別</small></th>
@@ -180,7 +189,7 @@
                     </tr>
                     <tr>
                         <th><small>コメント</small></th>
-                        <td colspan="3"><%= dto.getComment() %></td>
+                        <td colspan="3"><%= replaceEscapeChar(dto.getComment()) %></td>
                     </tr>
                 </table>
             </div>
@@ -237,15 +246,15 @@
                 <!-- メッセージ内容コンテナ -->
                 <div id="reciever<%= i %>" class="accordion-collapse collapse" data-bs-parent="#reciever">
                     <div class="accordion-body p-3">
-                        	<%= dto.getMessage() %>
+                        	<%= replaceEscapeChar(dto.getMessage()) %>
                         <!-- 返信ボタン -->
                         <div class="text-end mt-2">
 	                        <form action="Message" method="post">
 	                        	<input type="hidden" name="CATID" value="<%= dto.getTargetCatId() %>">
-	                        	<input type="hidden" name="CATNAME" value="<%= dto.getTargetCatName() %>">
+	                        	<input type="hidden" name="CATNAME" value="<%= replaceEscapeChar(dto.getTargetCatName()) %>">
 	                        	<input type="hidden" name="USERID" value="<%= dto.getTargetUserId() %>">
-	                        	<input type="hidden" name="USERNAME" value="<%= dto.getTargetUserName() %>">
-	                        	<input type="hidden" name="MESSAGE" value="<%= dto.getMessage() %>">
+	                        	<input type="hidden" name="USERNAME" value="<%= replaceEscapeChar(dto.getTargetUserName()) %>">
+	                        	<input type="hidden" name="MESSAGE" value="<%= replaceEscapeChar(dto.getMessage()) %>">
 	                        	<button type="submit" class="btn btn-sm" style="background-color:#E87B4C; color:#ffffff;">
 	                        		返信する
 	                            </button>
@@ -292,7 +301,7 @@
                 <!-- メッセージ内容コンテナ -->
                 <div id="sender<%= i %>" class="accordion-collapse collapse" data-bs-parent="#sender">
                     <div class="accordion-body p-3">
-                        <%= dto.getMessage() %>
+                        <%= replaceEscapeChar(dto.getMessage()) %>
                         <!-- 削除ボタン -->
                         <div class="text-end mt-2">
                             <a href="<%=request.getContextPath()%>/ExeDelMessage?MESSAGEID=<%=dto.getMessageId() %>">
