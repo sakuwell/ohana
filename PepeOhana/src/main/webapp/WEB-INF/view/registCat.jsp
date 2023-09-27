@@ -20,15 +20,17 @@
 	        var inputFemale = document.getElementById("inputFemale").checked; // ラジオボタンのチェック状態を取得
 	        var inputImage = document.getElementById("inputImage").value;
 	        var inputComment = document.getElementById("inputComment").value;
-	
+				
 	        if (inputName === "" || inputKind === "" || inputWeight === "" || inputImage === "" || inputComment === "" || (!inputMale && !inputFemale)) {
 	            alert("入力できていない項目があります");
 	            return false;
 	        }
+	        	
 	        	document.getElementById("btn").disabled = true;
 	            return true;
 	        
 	    }
+	    
 	    
 	   //画像選択後のサムネイル表示
 	   
@@ -39,6 +41,7 @@
 			    });
 		    fileReader.readAsDataURL(obj.files[0]);
 		    }
+
 	</script>
 </head>
 
@@ -145,7 +148,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">コメント　<span class="badge text-bg-danger">必須</span></label>
-                <textarea class="form-control" name="COMMENT" id="inputComment" cols="50" rows="4" maxlength="200"></textarea>
+                <textarea class="form-control" name="COMMENT" id="inputComment" cols="50" rows="4" maxlength="200" ></textarea>
             </div>
             <div style="text-align: center;">
                 <button type="submit" id="btn" class="btn btn-lg mt-3" style="background-color:#E87B4C; color:#ffffff;">登録する</button>

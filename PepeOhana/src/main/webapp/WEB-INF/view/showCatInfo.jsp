@@ -190,7 +190,7 @@
             		<div class="text-center">
            				<form action="Message" method="post">
                 		<input type="hidden" name="CATID" value="<%=ShowCatInfo.getCatId() %>">
-	                	<input type="hidden" name="CATNAME" value="<%= replaceEscapeChar(ShowCatInfo.getCatName()) %>">
+	                	<input type="hidden" name="CATNAME" value="<%=replaceEscapeChar(ShowCatInfo.getCatName()) %>">
 	                	<input type="hidden" name="USERID" value="<%=ShowCatInfo.getUserId() %>">
 	                	<input type="hidden" name="USERNAME" value="<%=replaceEscapeChar(ShowCatInfo.getUserName()) %>">
 	            			<button type="submit" class="btn" style="background-color:#E87B4C; color:#ffffff;">

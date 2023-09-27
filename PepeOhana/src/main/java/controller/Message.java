@@ -72,6 +72,7 @@ public class Message extends HttpServlet {
 		HttpSession session           = request.getSession();
 		UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
 		
+		System.out.println("test");
 		if (userInfoOnSession != null) {
 			
 			String catId = request.getParameter("CATID"); //リクエストパラメータ（CATID)
