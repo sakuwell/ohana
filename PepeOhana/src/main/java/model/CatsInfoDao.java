@@ -192,7 +192,7 @@ public class CatsInfoDao {
 				StringBuffer buf = new StringBuffer();
 				buf.append("SELECT                ");
 				buf.append("  CI.CATID,               ");
-				buf.append("  CI.USERID,               ");
+				buf.append("  CI.OWNERID,               ");
 				buf.append("  CI.CATNAME,               ");
 				buf.append("  CI.KIND,                ");
 				buf.append("  CI.BIRTH,                ");
@@ -207,7 +207,7 @@ public class CatsInfoDao {
 				buf.append("  CATS_INFO AS CI              ");
 				buf.append("  INNER JOIN               ");
 				buf.append("  USERS_INFO AS UI            ");
-				buf.append("  ON CI.USERID=UI.ID              ");
+				buf.append("  ON CI.OWNERID=UI.ID              ");
 				buf.append("  WHERE  CI.CATID =    ?    ;");
 //				buf.append("  AND  CI.DEL =   0  ;");
 				
@@ -219,7 +219,7 @@ public class CatsInfoDao {
 				//ResultSetオブジェクトからDTOリストに格納
 				while (rs.next()) {
 					dto.setCatId(rs.getInt("CI.CATID"));
-					dto.setUserId(  rs.getInt(    "CI.USERID"   ));
+					dto.setOwnerId(  rs.getInt(    "CI.OWNERID"   ));
 					dto.setCatName(  rs.getString(    "CI.CATNAME"   ));
 					dto.setKind(  rs.getInt(    "CI.KIND"   ));
 					dto.setBirth(  rs.getDate(    "CI.BIRTH"   ));
@@ -325,7 +325,7 @@ public class CatsInfoDao {
 				StringBuffer buf = new StringBuffer();
 				buf.append("INSERT INTO CATS_INFO (  ");
 //				buf.append("  ID,               ");
-				buf.append("  USERID,              ");
+				buf.append("  OWNERID,              ");
 				buf.append("  CATNAME,                ");
 				buf.append("  KIND,                ");
 				buf.append("  BIRTH,                ");
@@ -359,7 +359,7 @@ public class CatsInfoDao {
 				System.out.println("実行するSQL文: " + buf.toString());
 
 				//パラメータをセット
-				ps.setInt(    1, dto.getUserId()              ); //第1パラメータ：追加データ（ユーザーID）
+				ps.setInt(    1, dto.getOwnerId()              ); //第1パラメータ：追加データ（ユーザーID）
 				ps.setString(       2, dto.getCatName()               ); //第2パラメータ：追加データ（名前）
 				ps.setInt(       3, dto.getKind()               ); //第3パラメータ：追加データ（種類）
 				ps.setDate(       4, dto.getBirth()               ); //第4パラメータ：追加データ（誕生日）
@@ -370,7 +370,7 @@ public class CatsInfoDao {
 				ps.setTimestamp(       9, dto.getReg_Date()               ); //第9パラメータ：追加データ（追加日）
 
 //			System.out.println(dto.getAge());
-				System.out.println(dto.getUserId());
+				System.out.println(dto.getOwnerId());
 				System.out.println(dto.getGender());
 				System.out.println(dto.getReg_Date());
 				System.out.println(dto.getCatName());
@@ -491,7 +491,7 @@ public class CatsInfoDao {
 				StringBuffer buf = new StringBuffer();
 				buf.append("SELECT                ");
 				buf.append("  CATID,               ");
-				buf.append("  USERID,               ");
+				buf.append("  OWNERID,               ");
 				buf.append("  CATNAME,               ");
 				buf.append("  KIND,                ");
 				buf.append("  BIRTH,                ");
@@ -517,7 +517,7 @@ public class CatsInfoDao {
 //				while (rs.next()) {
 					dto = new CatsInfoDto();
 					dto.setCatId(rs.getInt("CATID"));
-					dto.setUserId(  rs.getInt(    "USERID"   ));
+					dto.setOwnerId(  rs.getInt(    "OWNERID"   ));
 					dto.setCatName(  rs.getString(    "CATNAME"   ));
 					dto.setKind(  rs.getInt(    "KIND"   ));
 					dto.setBirth(  rs.getDate(    "BIRTH"   ));
@@ -603,7 +603,7 @@ public class CatsInfoDao {
 				//発行するSQL文の生成（SELECT）
 				StringBuffer buf = new StringBuffer();
 				buf.append("UPDATE Cats_Info SET  ");
-				buf.append("  USERID = ? ,               ");
+				buf.append("  OWNERID = ? ,               ");
 				buf.append("  CATNAME = ? ,               ");
 				buf.append("  KIND = ? ,               ");
 				buf.append("  BIRTH = ? ,               ");
@@ -620,7 +620,7 @@ public class CatsInfoDao {
 				ps = con.prepareStatement(buf.toString());
 				
 				//パラメータをセット
-				ps.setInt(1, dto.getUserId()); //第1パラメータ：更新データ（飼い主ID）
+				ps.setInt(1, dto.getOwnerId()); //第1パラメータ：更新データ（飼い主ID）
 				ps.setString(2, dto.getCatName()); //第2パラメータ：更新データ（ネコ名）
 				ps.setInt(3, dto.getKind()); //第3パラメータ：更新データ（種類）
 				ps.setDate(4, dto.getBirth()); //第4パラメータ：更新データ（誕生日）
@@ -632,7 +632,7 @@ public class CatsInfoDao {
 //				ps.setInt(10, dto.getDel());//第10パラメータ：更新データ（更新日）
 				ps.setInt(10, dto.getCatId());//第11パラメータ：更新データ（CATID）
 				
-				System.out.println(dto.getUserId());
+				System.out.println(dto.getOwnerId());
 				System.out.println(dto.getCatName());
 				System.out.println(dto.getKind());
 				System.out.println(dto.getBirth());
