@@ -117,7 +117,7 @@ public class ExeRegistCat extends HttpServlet {
 
 //			
 			String catComment = request.getParameter("COMMENT");			
-			int userId = userInfoOnSession.getID(); 
+			int ownerId = userInfoOnSession.getID(); 
 			
 //			(COMMENT)	
 			
@@ -131,7 +131,7 @@ public class ExeRegistCat extends HttpServlet {
 			
 			//ユーザーデータ（CatInfoDto型）の作成
 			CatsInfoDto dto = new CatsInfoDto();
-			dto.setUserId(userId);
+			dto.setOwnerId(ownerId);
 			dto.setCatName( catName );
 			dto.setKind( catKind );
 			dto.setBirth( sqlDate );
@@ -160,13 +160,8 @@ public class ExeRegistCat extends HttpServlet {
 				//トップページ画面へ転送
 		        request.getRequestDispatcher("RegistCat").forward(request, response);
 			}
-		
-		
-		
-		
-	}	
-		
-		
+		}	
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -191,8 +186,8 @@ public class ExeRegistCat extends HttpServlet {
 			
 			String catName = request.getParameter("CATNAME");
 //			(CATNAME)
-			String catKindstr = request.getParameter("KIND");
-			int catKind = Integer.parseInt(catKindstr);
+			int catKind =Integer.parseInt(request.getParameter("KIND"));
+
 			
 //			(CATKIND)
 			
@@ -280,7 +275,7 @@ public class ExeRegistCat extends HttpServlet {
 			
 			//ユーザーデータ（CatInfoDto型）の作成
 			CatsInfoDto dto = new CatsInfoDto();
-			dto.setUserId(loginId);
+			dto.setOwnerId(loginId);
 			dto.setCatName( catName );
 			dto.setKind( catKind );
 			dto.setBirth( sqlDate );
