@@ -238,7 +238,7 @@
                 <h2 class="accordion-header">
                     <button class="p-2 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#reciever<%= i %>" aria-expanded="false" aria-controls="reciever<%= i %>">
                         <p style="line-height: 150%; margin:0;">
-                            <small><%= new SimpleDateFormat("yyyy年MM月dd日hh時mm分").format(dto.getSentDate()) %></small><br>
+                            <small><%= new SimpleDateFormat("yyyy年MM月dd日HH時mm分").format(dto.getSentDate()) %></small><br>
                             対象ねこ&nbsp;<span class="badge rounded-pill text-bg-secondary"><%= dto.getTargetCatName() %></span>&ensp;
                             送信ユーザー&nbsp;<span class="badge rounded-pill text-bg-secondary"><%= dto.getTargetUserName() %></span>
                         </p>
@@ -300,7 +300,7 @@
                 <h2 class="accordion-header">
                     <button class="p-2 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sender<%= i %>" aria-expanded="false" aria-controls="sender<%= i %>">
                         <p style="line-height: 150%; margin:0;">
-                             <small><%= new SimpleDateFormat("yyyy年MM月dd日hh時mm分").format(dto.getSentDate()) %></small><br>
+                             <small><%= new SimpleDateFormat("yyyy年MM月dd日HH時mm分").format(dto.getSentDate()) %></small><br>
                             対象ねこ&nbsp;<span class="badge rounded-pill text-bg-secondary"><%= dto.getTargetCatName() %></span>&ensp;
                             送信ユーザー&nbsp;<span class="badge rounded-pill text-bg-secondary"><%= dto.getTargetUserName() %></span>
                         </p>

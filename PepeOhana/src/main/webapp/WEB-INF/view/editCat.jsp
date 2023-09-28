@@ -32,8 +32,7 @@
 	        	return false;
 		    }
 	        	document.getElementById("btn").disabled = true;
-	            return true;
-	        
+	            return true; 
 	    }
 	    
 	    function Image(obj){
@@ -161,15 +160,14 @@
                 <label for="" class="form-label">コメント　<span class="badge text-bg-danger">必須</span></label>
                 <textarea class="form-control" name="COMMENT" id="inputComment" cols="50" rows="4" maxlength="200"><%=replaceEscapeChar(cat.getComment()) %></textarea>
             </div>
-            <div class="form-check">
-				<input class="form-check-input" type="checkbox" name="DEL" id="flexCheckDefault" value="1">
-				<label class="form-check-label" for="flexCheckDefault">
-    				<span class="text-danger">「<%=replaceEscapeChar(cat.getCatName()) %>」の情報を削除する　※削除後の復元不可</span>
-  				</label>
-			</div>
-            <div style="text-align: center;">
+            <div class="text-center">
                 <button type="submit" id="btn" class="btn btn-lg mt-3" style="background-color:#E87B4C; color:#ffffff;">更新する</button>
             </div>
+            <div class="text-end mt-4">
+                <a href="ExeEditCat?CATID=<%=cat.getCatId() %>" class="link-danger">「<%=replaceEscapeChar(cat.getCatName()) %>」の情報を削除する</a><br>
+                <small class="text-secondary">※削除後の復元はできません</small>
+            </div>
+            
         </form>
     </div>
 	<!-- ここまで　ページごとの内容 -->

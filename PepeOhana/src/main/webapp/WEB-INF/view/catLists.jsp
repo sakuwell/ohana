@@ -145,7 +145,10 @@
 
     <!-- フッター -->
     <div class="text-center mt-4">
-        <a class="icon-link icon-link-hover" href="#">
+        <a class="icon-link icon-link-hover me-5" href="index.jsp#search">
+            ねこまっちんぐに戻る
+        </a>
+        <a class="icon-link icon-link-hover ms-5" href="#">
             ページトップへ
         </a>
     </div>
