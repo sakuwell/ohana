@@ -175,7 +175,7 @@
                     </tr>
                     <tr>
                         <th><small>コメント</small></th>
-                        <td colspan="3"><%=ShowCatInfo.getComment() %></td>
+                        <td colspan="3"><%=replaceEscapeChar(ShowCatInfo.getComment()) %></td>
                     </tr>
                 </table>
             </div>

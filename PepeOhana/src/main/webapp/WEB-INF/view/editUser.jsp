@@ -95,7 +95,7 @@
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">ユーザーID　<span class="badge text-bg-danger">必須</span></label>
-                <input type="text" class="form-control" name="userId" id="inputID" value="<%= replaceEscapeChar(userId) %>">
+                <input type="text" class="form-control" name="userId" id="inputID" value="<%= userId %>">
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">ユーザー名　<span class="badge text-bg-danger">必須</span></label>
