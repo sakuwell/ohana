@@ -126,12 +126,12 @@ public class ExeEditCat extends HttpServlet {
 			
 			String comment	=request.getParameter("COMMENT");
 			
-			String delParam = request.getParameter("DEL");
-			int del = 0; // チェックがされていない場合、デフォルトで0を設定
-
-			if (delParam != null && delParam.equals("1")) {
-			    del = 1; // チェックがされている場合、1を設定
-			}
+//			String delParam = request.getParameter("DEL");
+//			int del = 0; // チェックがされていない場合、デフォルトで0を設定
+//
+//			if (delParam != null && delParam.equals("1")) {
+//			    del = 1; // チェックがされている場合、1を設定
+//			}
 			
 //			String delStr = request.getParameter("DEL");			
 //			int del =Integer.parseInt(delStr);
@@ -146,7 +146,7 @@ public class ExeEditCat extends HttpServlet {
 			System.out.println(weight);
 			System.out.println(imageBytes);
 			System.out.println(comment);
-			System.out.println(del);
+//			System.out.println(del);
 			
 //			(comment)
 			
@@ -162,7 +162,7 @@ public class ExeEditCat extends HttpServlet {
 			dto.setImage(imageBytes);
 			dto.setComment(comment);
 			dto.setUp_Date(new Timestamp(System.currentTimeMillis())); 
-			dto.setDel(del);
+//			dto.setDel(del);
 			
 			
 			System.out.println(userId);
@@ -183,12 +183,7 @@ public class ExeEditCat extends HttpServlet {
 	    request.getRequestDispatcher(request.getContextPath() + "/ExeEditCat").forward(request, response);
 		
 	
-	
-	
 	}
-	
-
-
 		
 	}
 }
