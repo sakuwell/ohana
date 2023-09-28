@@ -32,8 +32,7 @@
 	        	return false;
 		    }
 	        	document.getElementById("btn").disabled = true;
-	            return true;
-	        
+	            return true; 
 	    }
 	    
 	    function Image(obj){

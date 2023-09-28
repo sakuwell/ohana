@@ -176,7 +176,7 @@
 		</div>
              
         <!-- 検索フォームエリア -->
-        <div class="row mt-5">
+        <div class="row mt-5" id="search">
            <div class="col-md-6 mt-3">
                 <div class="card mb-3 p-3">
 		         	<form action="ExeSearchCat" onsubmit="return validateGenderForm()">

@@ -64,7 +64,6 @@ public class ExeLogin extends HttpServlet {
 
 				//DBから抽出したユーザデータをセッションにセット
 				session.setAttribute("LOGIN_INFO", dto);
-
 				//トップページ画面へ転送
 		        request.getRequestDispatcher("index.jsp").forward(request, response);
 
