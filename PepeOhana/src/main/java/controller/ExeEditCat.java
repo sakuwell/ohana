@@ -206,19 +206,21 @@ public class ExeEditCat extends HttpServlet {
 			//ネコちゃん情報をDBに登録
 			UpdateCatBL logic = new UpdateCatBL();
 			boolean succesUpdate = logic.exeUpdateCat(dto); 
-	
-		
-	
-	if (succesUpdate) {
-//		DBに成功した場合、ログイン後のtop画面(top.jsp)を表示する
-		
-		response.sendRedirect("ExeMyPage");
-	} else {
-//		DBに失敗した場合、エラー画面(registusererror.html)を表示する
-		request.setAttribute("message", "登録に失敗しました。入力された内容をご確認ください。");
-		request.getRequestDispatcher("/WEB-INF/view/registCat.jsp").forward(request,response);
-	}
-		
-	}
+			
 
+	if (succesUpdate) {
+	    // 更新に成功した場合Mypage画面へ転送
+		response.sendRedirect("ExeMyPage");
+	    
+	} else {
+	    // 更新に失敗した場合、editCat.jspへ戻す
+	    request.setAttribute("message", "更新に失敗しました。入力された内容をご確認ください。");
+	    request.getRequestDispatcher("ExeEditCat").forward(request, response);
+	}
+	
+
+
+		
+	}
+}
 
