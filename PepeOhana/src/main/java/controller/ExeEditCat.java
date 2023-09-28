@@ -7,20 +7,16 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import model.CatsInfoDto;
-import model.EditCatOneBL;
 import model.UpdateCatBL;
-import model.UsersInfoDto;
 
 /**
  * Servlet implementation class ExeEditCat
@@ -46,43 +42,7 @@ public class ExeEditCat extends HttpServlet {
 		
 		
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
-	
-		System.out.println("OK");
 
-		response.setContentType("text/html;charset=UTF-8");
-	
-//	リクエスト（受信データ）の文字コードを設定
-		request.setCharacterEncoding("UTF-8");
-		
-		HttpSession session           = request.getSession();
-		UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
-		
-
-//		int userId = userInfoOnSession.getID(); 
-//		
-//		System.out.println(userId);
-		
-//		int catId =request.getParameter("CATID");
-//		String catId = request.getParameter("ID"); 
-//		int catId = Integer.parseInt(catId);
-		
-		String catIdStr = request.getParameter("ID");
-		int catId = Integer.parseInt(catIdStr);
-		
-		
-		System.out.println(catId);
-		
-		EditCatOneBL logic = new EditCatOneBL();		
-		CatsInfoDto editCat = logic.exeSelectOneCatInfo(catId);
-		
-		if (editCat != null) {
-		    request.setAttribute("cat", editCat);
-		    RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/editCat.jsp");
-		    dispatch.forward(request, response);
-		} else {
-			System.out.println("ネコ情報はありません");
-		    // ネコちゃん情報が見つからない場合の処理を追加
-		}
 		
 		
 ////		request.setAttribute("cat", editCat);
@@ -145,7 +105,11 @@ public class ExeEditCat extends HttpServlet {
 			int gender = Integer.parseInt(request.getParameter("GENDER"));
 //			(GENDER)
 			
+			System.out.println(gender);
+			
 			float weight = Float.parseFloat(request.getParameter("WEIGHT"));
+			
+			System.out.println(weight);
 			
 			// 1. クライアントから送信された画像ファイルを取得
 			Part filePart = request.getPart("IMAGE"); // IMAGEはフォームのinput要素のname属性
@@ -215,7 +179,12 @@ public class ExeEditCat extends HttpServlet {
 	} else {
 	    // 更新に失敗した場合、editCat.jspへ戻す
 	    request.setAttribute("message", "更新に失敗しました。入力された内容をご確認ください。");
-	    request.getRequestDispatcher("ExeEditCat").forward(request, response);
+//	    request.getRequestDispatcher("EditCat").forward(request, response);
+	    request.getRequestDispatcher(request.getContextPath() + "/ExeEditCat").forward(request, response);
+		
+	
+	
+	
 	}
 	
 
