@@ -28,7 +28,7 @@ public class ExeDelCat extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
 		response.setContentType("text/html;charset=UTF-8");
@@ -47,17 +47,19 @@ public class ExeDelCat extends HttpServlet {
 		//削除のためDELに１を登録
 		UpdateDelCatBL logic = new UpdateDelCatBL();
 		boolean succesUpdate = logic.exeUpdateDelCat(catId); 
-
 		
+		if (succesUpdate) {
+		    // 更新に成功した場合Mypage画面へ転送
+			response.sendRedirect("ExeMyPage");
+		    
+		} else {
+		    // 更新に失敗した場合、editCat.jspへ戻す
+		    request.setAttribute("message", "更新に失敗しました。入力された内容をご確認ください。");
+//		    request.getRequestDispatcher("EditCat").forward(request, response);
+		    request.getRequestDispatcher(request.getContextPath() + "/EditCat").forward(request, response);
+		}
 		
-
-		
-		
-		
-		
-		
-		
+	}
 		
 	}
 
-}
