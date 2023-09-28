@@ -127,7 +127,7 @@
 				</select>
 			</div>
             <div class="mb-3">
-                <label class="form-label">誕生日　※不明の場合は、コメント欄におおよそを記入してください</label>
+                <label class="form-label">誕生日　※不明の場合は、入力不要</label>
                 <input type="date" class="form-control" name="BIRTH" placeholder="yyyy-MM-dd">
             </div>
             <div class="mb-3">
