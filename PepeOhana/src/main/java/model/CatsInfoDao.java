@@ -612,7 +612,7 @@ public class CatsInfoDao {
 				buf.append("  IMAGE = ? ,                ");
 				buf.append("  COMMENT = ? ,                ");
 				buf.append("  UP_DATE = ?,  ");
-				buf.append("  DEL = ?  ");
+//				buf.append("  DEL = ?  ");
 				buf.append("  WHERE CATID = ?                ");
 
 				
@@ -629,8 +629,8 @@ public class CatsInfoDao {
 				ps.setBytes(7, dto.getImage()); //第7パラメータ：更新データ（写真）
 				ps.setString(8, dto.getComment()); //第8パラメータ：更新データ（コメント）
 				ps.setTimestamp(9, dto.getUp_Date());//第9パラメータ：更新データ（更新日）
-				ps.setInt(10, dto.getDel());//第10パラメータ：更新データ（更新日）
-				ps.setInt(11, dto.getCatId());//第11パラメータ：更新データ（CATID）
+//				ps.setInt(10, dto.getDel());//第10パラメータ：更新データ（更新日）
+				ps.setInt(10, dto.getCatId());//第11パラメータ：更新データ（CATID）
 				
 				System.out.println(dto.getUserId());
 				System.out.println(dto.getCatName());
@@ -641,7 +641,7 @@ public class CatsInfoDao {
 				System.out.println(dto.getImage());
 				System.out.println(dto.getComment());
 				System.out.println(dto.getUp_Date());
-				System.out.println(dto.getDel());
+//				System.out.println(dto.getDel());
 				System.out.println(dto.getCatId());
 				
 				ps.executeUpdate();
@@ -700,5 +700,108 @@ public class CatsInfoDao {
 		
 		}
 		
+	
+
+/**----------------------------------------------------------------------*
+ *■doUpdateDelCatメソッド
+ *概要　：「CatsInfo」テーブルから対象のネコちゃん情報を削除する
+ *引数　：対象のネコちゃんId（int型）
+ *戻り値：実行結果（真：成功、偽：例外発生）
+ *----------------------------------------------------------------------**/
+
+
+public boolean doUpdateDelCat(int catId) {
+
+
+	Connection        con = null ;   // Connection（DB接続情報）格納用変数
+	PreparedStatement ps  = null ;   // PreparedStatement（SQL発行用オブジェクト）格納用変数
+	ResultSet         rs  = null ;   // ResultSet（SQL抽出結果）格納用変数
+
+	boolean isSuccess = true;
+
+	try {
+	    Class.forName(DRIVER_NAME);
+	    //-------------------------------------------
+	    //接続の確立（Connectionオブジェクトの取得）
+	    //-------------------------------------------
+	    con = DriverManager.getConnection(JDBC_URL, USER_ID, USER_PASS);
+		
+//		オートコミットをオフにする
+		con.setAutoCommit(false);
+
+		//発行するSQL文の生成（SELECT）
+		StringBuffer buf = new StringBuffer();
+		buf.append("UPDATE Cats_Info SET  ");
+		buf.append("  DEL = 1  ");
+		buf.append("  WHERE CATID = ?      ");
+
+		
+		//PreparedStatementオブジェクトを生成＆発行するSQLをセット
+		ps = con.prepareStatement(buf.toString());
+		
+		System.out.println(buf);
+		
+		//パラメータをセット
+		ps.setInt(1, catId);//第10パラメータ：更新データ（更新日）
+//		ps.setInt(2, dto.get);//第11パラメータ：更新データ（CATID）
+//		
+//		System.out.println(dto.getDel());
+//		System.out.println(dto.getCatId());
+		
+		ps.executeUpdate();
+	} catch (ClassNotFoundException e) {
+	    e.printStackTrace();
+	    // 例外処理を行う（エラーメッセージを表示したり、アプリケーションを終了したり、適切な処理を行う）
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	    // 例外処理を行う（SQL実行時のエラー処理を行う）
+
+	} finally {
+
+		//-------------------------------------------
+		//トランザクションの終了
+		//-------------------------------------------
+		if (isSuccess) {
+			//明示的にコミットを実施
+			try {
+				con.commit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		} else {
+			//明示的にロールバックを実施
+			try {
+				con.rollback();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
+		//-------------------------------------------
+		//接続の解除
+		//-------------------------------------------
+
+		//PreparedStatementオブジェクトの接続解除
+		if (ps != null) { //接続が確認できている場合のみ実施
+			try {
+				ps.close(); //接続の解除
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		//Connectionオブジェクトの接続解除
+		if (con != null) { //接続が確認できている場合のみ実施
+			try {
+				con.close(); //接続の解除
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	return isSuccess;
+
+}
+
+}
