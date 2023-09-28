@@ -106,7 +106,7 @@
 		  	<% if(request.getAttribute("MESSAGE") != null){ %>
 		  	<div class="mb-3">
 	    		<label class="form-label">受信メッセージ</label>
-                <textarea class="form-control" cols="50" maxlength="500" readonly><%=request.getAttribute("MESSAGE")%></textarea>
+                <p><small><%=request.getAttribute("MESSAGE")%></small></p>
 		  	</div>
 		  	<%} %>
             <div class="mb-3">
