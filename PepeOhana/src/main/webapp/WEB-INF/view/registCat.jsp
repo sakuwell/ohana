@@ -121,13 +121,13 @@
 					<option value="3">アメリカンショートヘアー</option>
 					<option value="4">ノルウェージャン・フォレスト・キャット</option>
 					<option value="5">ブリティッシュ・ショートヘア</option>
-					<option value="	6">混血種</option>
-					<option value="	7">その他</option>
-					<option value="	8">不明</option>
+					<option value="6">混血種</option>
+					<option value="7">その他</option>
+					<option value="8">不明</option>
 				</select>
 			</div>
             <div class="mb-3">
-                <label class="form-label">誕生日　※不明の場合は、入力不要</label>
+                <label class="form-label">誕生日　※不明の場合は、コメント欄におおよそを記入してください</label>
                 <input type="date" class="form-control" name="BIRTH" placeholder="yyyy-MM-dd">
             </div>
             <div class="mb-3">
