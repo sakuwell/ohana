@@ -63,6 +63,9 @@ public class ExeRegistCat extends HttpServlet {
 			System.out.println(catName);
 			
 			String catBirth = request.getParameter("BIRTH");
+			if (catBirth == "yyyy/mm/dd") {
+				catBirth = null;
+			}
 			java.sql.Date sqlDate = null; 
 //			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 //			// String を LocalDate に変換
@@ -77,6 +80,7 @@ public class ExeRegistCat extends HttpServlet {
 			    // LocalDate を java.sql.Date に変換
 			   sqlDate = java.sql.Date.valueOf(birthDate);
 			} else {
+				sqlDate = null;
 			    // catBirth が null の場合のエラー処理を行うか、適切なデフォルト値を設定します。
 				System.out.println("誕生日が受け取れません");
 			}
@@ -195,21 +199,25 @@ public class ExeRegistCat extends HttpServlet {
 			System.out.println(catKind);
 			
 			String catBirth = request.getParameter("BIRTH");
+			
+			System.out.println(catBirth);
+			
 			java.sql.Date sqlDate = null; 
 //			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 //			// String を LocalDate に変換
 //			LocalDate birthDate = LocalDate.parse(catBirth, formatter);
 //			// LocalDate を java.sql.Date に変換
 //			java.sql.Date sqlDate = java.sql.Date.valueOf(birthDate);
-			System.out.println(catBirth);
 			
-			if (catBirth != null) {
+			
+			if (catBirth != null && !catBirth.isEmpty()) {
 			    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			    // String を LocalDate に変換
 			    LocalDate birthDate = LocalDate.parse(catBirth, formatter);
 			    // LocalDate を java.sql.Date に変換
 			   sqlDate = java.sql.Date.valueOf(birthDate);
 			} else {
+				sqlDate = null;
 			    // catBirth が null の場合のエラー処理を行うか、適切なデフォルト値を設定します。
 				System.out.println("誕生日が受け取れません");
 			}
