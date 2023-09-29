@@ -63,7 +63,7 @@ public class MyPageDao {
 			//発行するSQL文の生成（SELECT）
             StringBuffer buf = new StringBuffer();
             buf.append("SELECT ");
-            buf.append("    C.USERID AS OWNERID, ");
+            buf.append("    C.OWNERID, ");
             buf.append("    C.CATID, ");
             buf.append("    C.CATNAME, ");
             buf.append("    C.KIND, ");
