@@ -81,7 +81,7 @@ public class MyPageDao {
             buf.append("        ELSE NULL ");
             buf.append("    END AS AGE ");
             buf.append("FROM CATS_INFO AS C ");
-            buf.append("WHERE C.USERID = ? AND C.DEL = 0;");
+            buf.append("WHERE C.OWNERID = ? AND C.DEL = 0;");
 
             // PreparedStatement（SQL発行用オブジェクト）を生成＆発行するSQLをセット
             ps = con.prepareStatement(buf.toString());
