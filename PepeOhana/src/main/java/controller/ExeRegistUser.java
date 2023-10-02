@@ -77,7 +77,7 @@ public class ExeRegistUser extends HttpServlet {
 			//DB操作の成功/失敗に応じて表示させる画面を振り分ける
 			
 			if (succesInsert) {
-//				DBに成功した場合、ログイン後のtop画面(index.jsp)を表示する
+//				DBに成功した場合、ログイン後のログイン画面(Login.jsp)を表示する
 		        request.getRequestDispatcher("Login.jsp").forward(request, response);
 			} else {
 //				DBに失敗した場合、エラー画面(registusererror.html)を表示する
