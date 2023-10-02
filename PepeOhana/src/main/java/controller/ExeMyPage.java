@@ -52,7 +52,6 @@ public class ExeMyPage extends HttpServlet {
 			MyPageBL logic = new MyPageBL();
 			List<MyPageDto> catList  = logic.executeSelectCatLists(id);
 			List<MyPageDto> messageList = logic.executeSelectMessageLists(id);
-
 			request.setAttribute("CATLIST" , catList);
 			request.setAttribute("MESSAGELIST" , messageList);
 		

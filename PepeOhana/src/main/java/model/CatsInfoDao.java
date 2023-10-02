@@ -36,11 +36,11 @@ public class CatsInfoDao {
 		//----------------------------------------------------------------
 		
 		/**----------------------------------------------------------------------*
-		 *■doSelectメソッド
-		 *概要　：引数のユーザー情報に紐づくユーザーデータを「user_info」テーブルから抽出する
-		 *引数①：ユーザーID（ユーザー入力）
-		 *引数②：ユーザーパスワード（ユーザー入力）
-		 *戻り値：「user_info」テーブルから抽出したユーザーデータ（UserInfoDto型）
+		 *■doSelectCatListsメソッド
+		 *概要　：引数のCat情報に紐づくCatデータを「cats_info」テーブルから抽出する
+		 *引数①：性別1（ユーザー選択）
+		 *引数②：性別2（ユーザー選択）
+		 *戻り値：「cats_info」テーブルから抽出したCatデータリスト（CatsInfoDto型）
 		 *----------------------------------------------------------------------**/
 		public List<CatsInfoDto> doSelectCatLists(String gender1,String gender2) {
 			//-------------------------------------------
@@ -157,6 +157,13 @@ public class CatsInfoDao {
 					//抽出したユーザーデータを戻す
 					return dtoList;
 				}
+		
+		/**----------------------------------------------------------------------*
+		 *■doSelectCatInfoメソッド
+		 *概要　：引数のCat情報に紐づくCatデータを「cats_info」テーブルと「users_info」テーブルから抽出する
+		 *引数①：ねこのID（ユーザー選択）
+		 *戻り値：「cats_info」テーブルと「users_info」テーブルから抽出したCatデータ（CatsInfoDto型）
+		 *----------------------------------------------------------------------**/
 		public CatsInfoDto doSelectCatInfo(int catId) {
 			CatsInfoDto dto = new CatsInfoDto();
 			//-------------------------------------------
@@ -208,8 +215,8 @@ public class CatsInfoDao {
 				buf.append("  INNER JOIN               ");
 				buf.append("  USERS_INFO AS UI            ");
 				buf.append("  ON CI.OWNERID=UI.ID              ");
-				buf.append("  WHERE  CI.CATID =    ?    ;");
-//				buf.append("  AND  CI.DEL =   0  ;");
+				buf.append("  WHERE  CI.CATID =    ?    ");
+				buf.append("  AND  CI.DEL =   0  ;");
 				
 				ps = con.prepareStatement(buf.toString());
 				ps.setInt(1, catId);

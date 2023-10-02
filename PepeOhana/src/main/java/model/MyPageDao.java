@@ -151,6 +151,7 @@ public class MyPageDao {
 	
 	
 	public List<MyPageDto> doSelectMessageInfo(int id) {
+		System.out.println(id);
 		//-------------------------------------------
 		//JDBCドライバのロード
 		//-------------------------------------------
@@ -218,6 +219,7 @@ public class MyPageDao {
             buf.append("LEFT JOIN CATS_INFO AS C ON M.CATID = C.CATID ");
             buf.append("WHERE ");
             buf.append("    M.DEL = 0 ");
+            buf.append("    AND C.DEL = 0 ");
             buf.append("    AND (M.SENDERID = ? OR M.RECIEVERID = ?) ");
             buf.append("ORDER BY M.SEND_DATE DESC;");
 
