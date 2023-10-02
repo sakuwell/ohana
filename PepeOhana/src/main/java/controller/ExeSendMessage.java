@@ -42,19 +42,25 @@ public class ExeSendMessage extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		//レスポンス（出力データ）の文字コードを設定
 		response.setContentType("text/html;charset=UTF-8");
+		//リクエスト（受信データ）の文字コードを設定
 		request.setCharacterEncoding("UTF-8");
+		//レスポンス(出力データ)の文字コードを設定
 		response.setCharacterEncoding("UTF-8");
 		
+		//セッション情報の取得
 		HttpSession session           = request.getSession();
 		UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
 		
+		//セッション情報から「ID」情報を取得し変数「senderId」に格納
 		int senderId=userInfoOnSession.getID();
 		
-		String catId=request.getParameter("CATID");
-		String recieverId=request.getParameter("RECIEVERID");
-		String message=request.getParameter("COMMENT");
+		String catId=request.getParameter("CATID");//リクエストパラメーター(CATID)
+		String recieverId=request.getParameter("RECIEVERID");//リクエストパラメーター(RECIEVERID)
+		String message=request.getParameter("COMMENT");//リクエストパラメーター(COMMENT)
 		
+		//「messages」テーブルに取得した情報を登録
 		MessagesDto dto = new MessagesDto();
 		dto.setSenderId(senderId);
 		dto.setRecieverId(Integer.parseInt(recieverId));
@@ -65,9 +71,12 @@ public class ExeSendMessage extends HttpServlet {
 		SendMessageBL logic = new SendMessageBL();
 		boolean succesInsert = logic.executeInsertMessage(dto);
 		
+		//登録の登録成功/失敗に応じて画面を振り分ける
 		if (succesInsert) {
+			//成功時:マイページ表示
 			response.sendRedirect("ExeMyPage");
 		} else {
+			//失敗時
 			String recieverName = request.getParameter("RECIEVERNAME"); //リクエストパラメータ（RECIEVERID)
 			String catName = request.getParameter("CATNAME"); //リクエストパラメータ（RECIEVERID)
 			response.sendRedirect("Message?CATID="+catId+"&RECIEVERID="+recieverId+"&CATNAME="+catName+"&RECIEVERNAME="+recieverName);

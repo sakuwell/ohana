@@ -38,6 +38,7 @@ public class ExeMyPage extends HttpServlet {
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/html;charset=UTF-8");
 		
+		//セッション情報の取得
 		HttpSession session           = request.getSession();
 		UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
 		
@@ -49,12 +50,16 @@ public class ExeMyPage extends HttpServlet {
 //			セッション情報から変数に代入
 			int id = userInfoOnSession.getID();
 			
+			//変数と合致する情報を抽出
 			MyPageBL logic = new MyPageBL();
 			List<MyPageDto> catList  = logic.executeSelectCatLists(id);
 			List<MyPageDto> messageList = logic.executeSelectMessageLists(id);
+			
+			//抽出した情報をリクエストスコープにセット
 			request.setAttribute("CATLIST" , catList);
 			request.setAttribute("MESSAGELIST" , messageList);
-		
+			
+			//マイページへ画面を切り替え
 			RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/mypage.jsp");
 			dispatch.forward(request, response);
 			

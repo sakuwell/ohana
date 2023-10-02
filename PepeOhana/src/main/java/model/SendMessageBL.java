@@ -2,9 +2,9 @@ package model;
 
 public class SendMessageBL {
 	/**----------------------------------------------------------------------*
-	 *■executeInsertSurveyメソッド
-	 *概要　：対象のアンケートデータを登録する
-	 *引数　：対象のアンケートデータ（SurveyDto型）
+	 *■executeInsertMessageメソッド
+	 *概要　：対象のメッセージデータを登録する
+	 *引数　：対象のメッセージデータ（MessagesDto型）
 	 *戻り値：DB操作成功フラグ（true:成功/false:失敗）
 	 *----------------------------------------------------------------------**/
 	public boolean executeInsertMessage(MessagesDto dto) {

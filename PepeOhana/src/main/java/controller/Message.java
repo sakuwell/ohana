@@ -46,11 +46,13 @@ public class Message extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		
+		//セッション情報の取得
 		HttpSession session           = request.getSession();
 		UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
 		
+		
 		if (userInfoOnSession != null) {
-			
+			//ログイン済み:メッセージ作成画面を出力
 			String catId = request.getParameter("CATID"); //リクエストパラメータ（CATID)
 			String recieverId = request.getParameter("USERID"); //リクエストパラメータ（RECIEVERID)
 			String recieverName = request.getParameter("USERNAME"); //リクエストパラメータ（RECIEVERID)
@@ -66,7 +68,9 @@ public class Message extends HttpServlet {
 			RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/message.jsp");
 			dispatch.forward(request, response);
 		
+		
 		} else {
+			//未ログイン:ログイン画面を出力
 			response.sendRedirect(request.getContextPath()+"/Login.jsp");
 		}
 	}

@@ -34,16 +34,21 @@ public class ExeSearchCat extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		//レスポンス（出力データ）の文字コードを設定
 		response.setContentType("text/html;charset=UTF-8");
 		
-		String gender1=request.getParameter("GENDER1");
-		String gender2=request.getParameter("GENDER2");
+		String gender1=request.getParameter("GENDER1");//リクエストパラメーター(GENDER1)
+		String gender2=request.getParameter("GENDER2");//リクエストパラメーター(GENDER2)
 
+		//ユーザーの選択した情報(性別)と合致する「cats_info」テーブルの情報を全て抽出しリストに格納
 		List<CatsInfoDto> list = new ArrayList<CatsInfoDto>();
 		SearchCatBL logic = new SearchCatBL();
 		list = logic.executeSelectCatLists(gender1,gender2);
+		
+		//抽出した情報をlistにセット
 		request.setAttribute("list",list);
 		
+		//catListへ転送
 		RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/catLists.jsp");
 		dispatch.forward(request, response);
 	}

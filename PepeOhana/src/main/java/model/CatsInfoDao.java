@@ -41,6 +41,7 @@ public class CatsInfoDao {
 		 *引数①：性別1（ユーザー選択）
 		 *引数②：性別2（ユーザー選択）
 		 *戻り値：「cats_info」テーブルから抽出したCatデータリスト（CatsInfoDto型）
+		 *作成者: 加藤 大輝
 		 *----------------------------------------------------------------------**/
 		public List<CatsInfoDto> doSelectCatLists(String gender1,String gender2) {
 			//-------------------------------------------
@@ -163,6 +164,7 @@ public class CatsInfoDao {
 		 *概要　：引数のCat情報に紐づくCatデータを「cats_info」テーブルと「users_info」テーブルから抽出する
 		 *引数①：ねこのID（ユーザー選択）
 		 *戻り値：「cats_info」テーブルと「users_info」テーブルから抽出したCatデータ（CatsInfoDto型）
+		 *作成者: 加藤 大輝
 		 *----------------------------------------------------------------------**/
 		public CatsInfoDto doSelectCatInfo(int catId) {
 			CatsInfoDto dto = new CatsInfoDto();

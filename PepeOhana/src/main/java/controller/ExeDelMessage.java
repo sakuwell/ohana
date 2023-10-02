@@ -30,22 +30,29 @@ public class ExeDelMessage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		response.setContentType("text/html;charset=UTF-8");
+		//レスポンス（出力データ）の文字コードを設定
+		response.setContentType("text/html;charset=UTF-8");
+		//リクエスト（受信データ）の文字コードを設定
 		request.setCharacterEncoding("UTF-8");
 		
-		String messageId = request.getParameter("MESSAGEID");
 		
+		String messageId = request.getParameter("MESSAGEID");//リクエストパラメーター(MESSAGEID)
+		//「messages」テーブルから取得情報と合致するメッセージデータを検索し削除フラグを立てる
 		MessagesDto dto = new MessagesDto();
 		dto.setMessageId(Integer.parseInt(messageId));
 		DelMessageBL logic = new DelMessageBL();
 		boolean successDelete = logic.executeDeleteMessage(dto);
+		
+		//該当メッセージの削除成功/失敗に応じて表示する画面を振り分ける
 		if(successDelete) {
+			//成功時:マイページ表示
 			response.sendRedirect("ExeMyPage");
 			
 		}else {
-			response.sendRedirect("ExeMyPage");
-//			request.setAttribute("message", "送信メッセージの削除に失敗しました");
-//			response.sendRedirectDispatcher("ExeMyPage").forward(request, response);
+			//失敗時:リクエストスコープにデータをセット
+			request.setAttribute("message", "送信メッセージの削除に失敗しました");
+			//マイページを表示
+			request.getRequestDispatcher(request.getContextPath()+"/ExeMyPage").forward(request, response);
 		}
 	}
 

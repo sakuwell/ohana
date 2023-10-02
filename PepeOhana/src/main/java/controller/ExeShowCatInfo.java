@@ -32,21 +32,25 @@ public class ExeShowCatInfo extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//レスポンス（出力データ）の文字コードを設定
 		response.setContentType("text/html;charset=UTF-8");
-		String catId = request.getParameter("CATID"); //リクエストパラメータ（CAT_ID)
-
+		
+		String catId = request.getParameter("CATID"); //リクエストパラメータ（CATID)
+		
+		//「cats_info」テーブルから取得したIDと合致するネコ情報を抽出
 		ShowCatInfoBL logic = new ShowCatInfoBL();
 		CatsInfoDto ShowCatInfo = logic.executeSelectShowCatInfo(Integer.parseInt(catId));
 		
+		//ネコ情報の抽出成功/失敗に応じて表示させる画面を切り替える
 		if (ShowCatInfo.getCatName() != null) {
-
+			//ネコ情報の抽出成功:リクエストスコープにネコ情報をセット
 			request.setAttribute("showCatInfo",ShowCatInfo);
-			
+			//showCatInfo.jspを表示
 			RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/showCatInfo.jsp");
 			dispatch.forward(request, response);
 
-		} else {			
+		} else {
+			//失敗時:
 			// リクエストスコープにデータを設定
 			request.setAttribute("message", "ご指定のIDのねこが見つかりませんでした");
 			
