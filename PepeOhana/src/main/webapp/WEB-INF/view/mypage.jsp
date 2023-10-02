@@ -72,7 +72,7 @@
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeMyPage">マイページ</a></li>
-                    <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeLogout">ログアウト</a></li>
+                    <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeLogout" onClick="return confirm('ログアウトしますか?');">ログアウト</a></li>
                 </ul>
             </div>
         </div>

@@ -83,7 +83,7 @@
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeMyPage">マイページ</a></li>
-                    <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeLogout">ログアウト</a></li>
+                    <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeLogout" onClick="return confirm('ログアウトしますか?');">ログアウト</a></li>
                 </ul>
             </div>
         </div>
@@ -162,9 +162,13 @@
                     </tr>
                     <tr>
                         <th><small>年齢</small></th>
-                       	<td><%=ShowCatInfo.getAge() %></td>
+                       	<% if (ShowCatInfo.getBirth() != null){ %><td><%=ShowCatInfo.getAge() %></td>
+                       	<% }else{ %><td>不明</td>
+                       	<%} %>
                         <th><small>誕生日</small></th>
-                        <td><%=new SimpleDateFormat("yyyy年MM月dd日").format(ShowCatInfo.getBirth()) %>
+                        <% if (ShowCatInfo.getBirth() != null){ %><td><%=new SimpleDateFormat("yyyy年MM月dd日").format(ShowCatInfo.getBirth()) %>
+                        <% }else{ %><td>不明</td>
+                        <% } %>
                     </tr>
                     <tr>
                         <th><small>体重</small></th>
@@ -180,7 +184,7 @@
                 </table>
             </div>
             <% if (isLoggedIn) { %>
-            	<%if(userInfoOnSession.getID() == ShowCatInfo.getUserId()){ %>
+            	<%if(userInfoOnSession.getID() == ShowCatInfo.getOwnerId()){ %>
             		<div class="text-center mt-4">
 	            <a class="icon-link icon-link-hover" href="#">
             		ご自身で登録したねこにメッセージは送れません
@@ -191,7 +195,7 @@
            				<form action="Message" method="post">
                 		<input type="hidden" name="CATID" value="<%=ShowCatInfo.getCatId() %>">
 	                	<input type="hidden" name="CATNAME" value="<%=replaceEscapeChar(ShowCatInfo.getCatName()) %>">
-	                	<input type="hidden" name="USERID" value="<%=ShowCatInfo.getUserId() %>">
+	                	<input type="hidden" name="USERID" value="<%=ShowCatInfo.getOwnerId() %>">
 	                	<input type="hidden" name="USERNAME" value="<%=replaceEscapeChar(ShowCatInfo.getUserName()) %>">
 	            			<button type="submit" class="btn" style="background-color:#E87B4C; color:#ffffff;">
 	                 		メッセージを送る

@@ -76,7 +76,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			UsersInfoDto   dto2   = logic2.executeSelectUserInfo(userId, passWord);
 			
 			if (dto2.getUserName() != null) {
-
+				
 				//DBから抽出したユーザデータをセッションにセット
 				session = request.getSession();
 				session.setAttribute("LOGIN_INFO", dto2);
@@ -92,7 +92,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			
 			request.setAttribute("message", "登録済みユーザーIDです。別のユーザーIDで更新し直してください。");
 			//トップページ画面へ転送
-	        request.getRequestDispatcher("EditUser").forward(request, response);
+	        request.getRequestDispatcher("/EditUser").forward(request, response);
 			
 		}
 	}
