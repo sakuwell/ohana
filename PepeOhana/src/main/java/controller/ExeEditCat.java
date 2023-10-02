@@ -80,12 +80,12 @@ public class ExeEditCat extends HttpServlet {
 //		リクエストパラメータを取得
 			String catIdStr = request.getParameter("CATID");
 			
-			System.out.println(catIdStr);
+//			System.out.println(catIdStr);
 			
 			int catId = Integer.parseInt(catIdStr);
 			
-			String userIdStr = request.getParameter("USERID");
-			int userId = Integer.parseInt(userIdStr);
+			String ownerIdStr = request.getParameter("OWNERID");
+			int ownerId = Integer.parseInt(ownerIdStr);
 //			(USERID)
 			
 			String catName			=request.getParameter("CATNAME");
@@ -95,21 +95,26 @@ public class ExeEditCat extends HttpServlet {
 //			(KIND)
 			
 			String catBirth = request.getParameter("BIRTH");
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			// String を LocalDate に変換
-			LocalDate birthDate = LocalDate.parse(catBirth, formatter);
-			// LocalDate を java.sql.Date に変換
-			java.sql.Date sqlDate = java.sql.Date.valueOf(birthDate);
+			java.sql.Date sqlDate = null;
+			if(catBirth != null && !catBirth.isEmpty()) {
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+				// String を LocalDate に変換
+				LocalDate birthDate = LocalDate.parse(catBirth, formatter);
+				// LocalDate を java.sql.Date に変換
+				sqlDate = java.sql.Date.valueOf(birthDate);
+			}else {
+				 sqlDate=null;
+			}
 //			(BIRTH)
 			
 			int gender = Integer.parseInt(request.getParameter("GENDER"));
 //			(GENDER)
 			
-			System.out.println(gender);
+//			System.out.println(gender);
 			
 			float weight = Float.parseFloat(request.getParameter("WEIGHT"));
 			
-			System.out.println(weight);
+//			System.out.println(weight);
 			
 			// 1. クライアントから送信された画像ファイルを取得
 			Part filePart = request.getPart("IMAGE"); // IMAGEはフォームのinput要素のname属性
@@ -137,15 +142,15 @@ public class ExeEditCat extends HttpServlet {
 //			int del =Integer.parseInt(delStr);
 			 
 			
-			System.out.println(catId);
-			System.out.println(userId);
-			System.out.println(catName);
-			System.out.println(kind);
-			System.out.println(sqlDate);
-			System.out.println(gender);
-			System.out.println(weight);
-			System.out.println(imageBytes);
-			System.out.println(comment);
+//			System.out.println(catId);
+//			System.out.println(ownerId);
+//			System.out.println(catName);
+//			System.out.println(kind);
+//			System.out.println(sqlDate);
+//			System.out.println(gender);
+//			System.out.println(weight);
+//			System.out.println(imageBytes);
+//			System.out.println(comment);
 //			System.out.println(del);
 			
 //			(comment)
@@ -153,7 +158,7 @@ public class ExeEditCat extends HttpServlet {
 			//パラメータをセット
 			CatsInfoDto dto = new CatsInfoDto();
 			dto.setCatId(catId);
-			dto.setUserId(userId);
+			dto.setOwnerId(ownerId);
 			dto.setCatName(catName);
 			dto.setKind(kind);
 			dto.setBirth(sqlDate);
@@ -165,7 +170,7 @@ public class ExeEditCat extends HttpServlet {
 //			dto.setDel(del);
 			
 			
-			System.out.println(userId);
+//			System.out.println(ownerId);
 			
 			//ネコちゃん情報をDBに登録
 			UpdateCatBL logic = new UpdateCatBL();

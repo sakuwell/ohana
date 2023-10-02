@@ -611,7 +611,7 @@ public class CatsInfoDao {
 				buf.append("  WEIGHT = ? ,                ");
 				buf.append("  IMAGE = ? ,                ");
 				buf.append("  COMMENT = ? ,                ");
-				buf.append("  UP_DATE = ?,  ");
+				buf.append("  UP_DATE = ?  ");
 //				buf.append("  DEL = ?  ");
 				buf.append("  WHERE CATID = ?                ");
 
@@ -632,17 +632,17 @@ public class CatsInfoDao {
 //				ps.setInt(10, dto.getDel());//第10パラメータ：更新データ（更新日）
 				ps.setInt(10, dto.getCatId());//第11パラメータ：更新データ（CATID）
 				
-				System.out.println(dto.getOwnerId());
-				System.out.println(dto.getCatName());
-				System.out.println(dto.getKind());
-				System.out.println(dto.getBirth());
-				System.out.println(dto.getGender());
-				System.out.println(dto.getWeight());
-				System.out.println(dto.getImage());
-				System.out.println(dto.getComment());
-				System.out.println(dto.getUp_Date());
-//				System.out.println(dto.getDel());
-				System.out.println(dto.getCatId());
+//				System.out.println(dto.getOwnerId());
+//				System.out.println(dto.getCatName());
+//				System.out.println(dto.getKind());
+//				System.out.println(dto.getBirth());
+//				System.out.println(dto.getGender());
+//				System.out.println(dto.getWeight());
+//				System.out.println(dto.getImage());
+//				System.out.println(dto.getComment());
+//				System.out.println(dto.getUp_Date());
+////				System.out.println(dto.getDel());
+//				System.out.println(dto.getCatId());
 				
 				ps.executeUpdate();
 			} catch (ClassNotFoundException e) {

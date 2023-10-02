@@ -144,7 +144,7 @@
             
 
 			<input type="hidden" name="CATID" value="<%=cat.getCatId() %>"> 
-			<input type="hidden" name="USERID" value="<%=cat.getUserId() %>"> 
+			<input type="hidden" name="OWNERID" value="<%=cat.getOwnerId() %>"> 
 			
             <%String webContentPath = getServletContext().getRealPath("/images");
 		             		  String imageFileName = webContentPath + "/img_" + cat.getCatId() + ".jpg";

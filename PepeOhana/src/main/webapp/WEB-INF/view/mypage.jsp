@@ -177,9 +177,11 @@
                     </tr>
                     <tr>
                         <th><small>年齢</small></th>
-                       	<td><%= dto.getAge() %></td>
+                        <% if(dto.getBirth() != null){ %><td><%= dto.getAge() %></td>
+                        <% }else{ %><td>不明</td><%} %>
                         <th><small>誕生日</small></th>
-                        <td><%= new SimpleDateFormat("yyyy年MM月dd日").format(dto.getBirth()) %><br>
+                        <% if(dto.getBirth() !=null){ %><td><%= new SimpleDateFormat("yyyy年MM月dd日").format(dto.getBirth()) %><br>
+                        <% }else{ %><td>不明</td><%} %>
                     </tr>
                     <tr>
                         <th><small>体重</small></th>
