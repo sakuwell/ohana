@@ -90,7 +90,7 @@
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeMyPage">マイページ</a></li>
-                    <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeLogout">ログアウト</a></li>
+                    <li><a class="dropdown-item" href="<%=request.getContextPath()%>/ExeLogout"onClick="return confirm('ログアウトしますか?');">ログアウト</a></li>
                 </ul>
             </div>
         </div>
@@ -164,7 +164,7 @@
                 <button type="submit" id="btn" class="btn btn-lg mt-3" style="background-color:#E87B4C; color:#ffffff;">更新する</button>
             </div>
             <div class="text-end mt-4">
-                <a href="ExeDelCat?CATID=<%=cat.getCatId() %>" class="link-danger">「<%=replaceEscapeChar(cat.getCatName()) %>」の情報を削除する</a><br>
+                <a href="ExeDelCat?CATID=<%=cat.getCatId() %>" class="link-danger" onClick="return confirm('本当に削除しますか?');">「<%=replaceEscapeChar(cat.getCatName()) %>」の情報を削除する</a><br>
                 <small class="text-secondary">※削除後の復元はできません</small>
             </div>
             
