@@ -15,6 +15,21 @@ import model.MyPageBL;
 import model.MyPageDto;
 import model.UsersInfoDto;
 
+/**----------------------------------------------------------------------*
+ *Filename:ExeMyPage.java
+ *
+ *Description:
+ *	このクラスは、ユーザーのログアウト機能を提供するためのものです。
+ *	セッション情報を取得し、セッション情報が存在する場合は
+ *	セッション情報と合致する情報を抽出し、リクエストスコープにセットし、
+ *	マイページ画面へ遷移する
+ *	セッション情報が無い場合は、ログイン画面へ遷移する
+ *	
+ *Author:櫻井
+ *Creation Date:2023-09-15
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved.
+ *----------------------------------------------------------------------**/
 /**
  * Servlet implementation class ExeMyPage
  */
@@ -35,7 +50,7 @@ public class ExeMyPage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
+//		レスポンス（出力データ）の文字コードを設定
 		response.setContentType("text/html;charset=UTF-8");
 		
 		//セッション情報の取得

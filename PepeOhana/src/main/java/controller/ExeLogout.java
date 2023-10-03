@@ -11,6 +11,20 @@ import javax.servlet.http.HttpSession;
 
 import model.UsersInfoDto;
 
+/**----------------------------------------------------------------------*
+ *Filename:ExeLogout.java
+ *
+ *Description:
+ *	このクラスは、ユーザーのログアウト機能を提供するためのものです。
+ *	セッション情報を取得し、セッション情報が存在する場合は
+ *	セッション情報を破棄し、ログアウト画面へ遷移する
+ *	セッション情報が無い場合は、ログイン画面へ遷移する
+ *	
+ *Author:上月
+ *Creation Date:2023-09-07
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved.
+ *----------------------------------------------------------------------**/
 /**
  * Servlet implementation class ExeLogout
  */

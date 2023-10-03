@@ -13,6 +13,23 @@ import model.LoginBL;
 import model.UpdateUserBL;
 import model.UsersInfoDto;
 
+/**----------------------------------------------------------------------*
+ *Filename:ExeEditUser.java
+ *
+ *Description:
+ *	このクラスは、ユーザー情報の編集機能を提供するためのものです。
+ *	対象のユーザー情報の登録内容を、リクエストパラメータで所得してきた内容に、
+ *	更新してマイページ画面に遷移します。更新の際にセッション情報を一度破棄し、
+ *	更新されたユーザー情報をセッションにセットしなおす
+ *	更新に失敗した場合は、失敗時メッセージをリクエストスコープにセットしユーザー情報編集画面へ再度遷移します
+ *	ユーザー情報の抽出に失敗した場合はログイン画面へ遷移する
+ *	
+ *
+ *Author:大久保
+ *Creation Date:2023-09-26
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved.
+ *----------------------------------------------------------------------**/
 /**
  * Servlet implementation class ExeEditUser
  */
@@ -39,9 +56,11 @@ public class ExeEditUser extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//レスポンス(送信データ)の文字コードを設定
 		response.setContentType("text/html;charset=UTF-8");
+		//リクエスト（受信データ）の文字コードを設定
 		request.setCharacterEncoding("UTF-8"); 
 		
 		
@@ -67,7 +86,6 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			
 //			ユーザー編集に伴い元のセッション情報を破棄
 			HttpSession session = request.getSession();
-//			UsersInfoDto userInfoOnSession = (UsersInfoDto) session.getAttribute("LOGIN_INFO");
 			session.invalidate();
 			
 			

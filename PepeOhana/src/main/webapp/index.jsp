@@ -182,6 +182,7 @@
 		         	<form action="ExeSearchCat" onsubmit="return validateGenderForm()">
 		         		<h3 class="border-bottom pb-2" style="text-align:center; color:#523F24;">条件まっち</h3>
 		         		<div class="form-check mt-3">
+		         			<p class="text-danger">はじめての方はこちらから</p>
 							<label class="form-label">性別を選んでください(複数選択可)</label><br>
 			         		<input type="checkbox" class="btn-check" name="GENDER1" id="gender_1" value="1" autocomplete="off">
 							<label class="btn btn-outline-secondary" for="gender_1">男の子</label>
@@ -201,8 +202,11 @@
 		         		<div class="form-check mt-3">
        			            <%if(error != null){ %>
             					<p class="text-danger"><%= error %></p>
+            				<% }else{ %>
+            					<p class="text-danger">以前検索したネコをもう一度検索したい方はこちら</p>
             				<% } %>
 							<label class="form-label">ねこIDを入力してください</label>
+							<label class="form-label">※ねこIDは、ねこの詳細画面に記載しています</label>
        		                <input type="text" class="form-control" style="width:100px;" name="CATID" id="inputCatId">
 						</div>
 						<p style="text-align:center; margin-bottom:0;">

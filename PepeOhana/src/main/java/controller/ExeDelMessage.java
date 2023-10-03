@@ -10,6 +10,22 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.DelMessageBL;
 import model.MessagesDto;
+
+/**----------------------------------------------------------------------*
+ *Filename:ExeDelMessage.java
+ *
+ *Description:
+ *	このクラスは、メッセージ情報の削除機能を提供するためのものです。
+ *	リクエストパラメータで所得してきたネコメッセージのIDと合致するメッセージの
+ *	削除フラグのカラム「DEL」の値を1に更新しマイページ画面へ遷移します。
+ *	更新に失敗した場合は失敗時メッセージをリクエストスコープにセットし、マイページ画面へ戻す
+ *	
+ *
+ *Author:櫻井、加藤
+ *Creation Date:2023-09-26
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved.
+ *----------------------------------------------------------------------**/
 /**
  * Servlet implementation class ExeDelMessage
  */

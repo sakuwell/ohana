@@ -12,13 +12,9 @@ public class EditCatOneBL {
 	public CatsInfoDto exeSelectOneCatInfo(int catId) {
 		CatsInfoDao dao = new CatsInfoDao();
 		CatsInfoDto dto = dao.doSelectCatOne(catId);
-
-
-		    // 抽出したネコちゃん情報を戻す
-		    return dto;
-		    
-		    
 		
+		// 抽出したネコちゃん情報を戻す
+		return dto;
 	}
 
 }

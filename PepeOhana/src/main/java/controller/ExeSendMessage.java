@@ -13,6 +13,22 @@ import javax.servlet.http.HttpSession;
 import model.MessagesDto;
 import model.SendMessageBL;
 import model.UsersInfoDto;
+
+/**----------------------------------------------------------------------*
+ *Filename:ExeSendMessage.java
+ *
+ *Description:
+ *	このクラスは、メッセージ送信機能を提供するためのものです。
+ *	セッション情報とリクエストパラメータから登録に必要な情報を取得し、
+ *	データベースに登録し、マイページ画面へ遷移する
+ *	データベース登録に失敗した場合は失敗時メッセージをリクエストスコープにセットし、
+ *	メッセージ作成画面に戻る
+ *	
+ *Author:櫻井
+ *Creation Date:2023-09-15
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved.
+ *----------------------------------------------------------------------**/
 /**
  * Servlet implementation class SendMessage
  */
@@ -79,14 +95,12 @@ public class ExeSendMessage extends HttpServlet {
 			//失敗時
 			String recieverName = request.getParameter("RECIEVERNAME"); //リクエストパラメータ（RECIEVERID)
 			String catName = request.getParameter("CATNAME"); //リクエストパラメータ（RECIEVERID)
-			response.sendRedirect("Message?CATID="+catId+"&RECIEVERID="+recieverId+"&CATNAME="+catName+"&RECIEVERNAME="+recieverName);
 			// リクエストスコープにデータを設定
-			request.setAttribute("message", "ログインできませんでした。ユーザーIDかパスワードが間違っています。");
-			//トップページ画面へ転送
-	        request.getRequestDispatcher("Login.jsp").forward(request, response);
+			request.setAttribute("message", "メッセージの送信が出来ませんでした。内容をご確認ください。");
+			response.sendRedirect("Message?CATID="+catId+"&RECIEVERID="+recieverId+"&CATNAME="+catName+"&RECIEVERNAME="+recieverName);
+
 		}
-					
-//		doGet(request, response);
+
 	}
 	
 

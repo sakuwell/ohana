@@ -32,7 +32,7 @@ public class UsersInfoDto {
 	//getter/setter（対象フィールド：passWord）
 	public String getPassWord() { return passWord; }
 	public void setPassWord(String passWord) { this.passWord = passWord; }
-	
+
 	public int getID() {return ID;}
 	public void setID(int iD) {ID = iD;}
 

@@ -18,6 +18,21 @@ import javax.servlet.http.Part;
 import model.CatsInfoDto;
 import model.UpdateCatBL;
 
+/**----------------------------------------------------------------------*
+ *Filename:ExeEditCat.java
+ *
+ *Description:
+ *	このクラスは、ネコ情報の編集機能を提供するためのものです。
+ *	リクエストパラメータで所得してきた内容に、
+ *	対象のネコ情報の登録内容を更新してマイページ画面に遷移します。
+ *	更新に失敗した場合は、失敗時メッセージをリクエストスコープにセットしネコ情報編集画面へ再度遷移します
+ *	
+ *
+ *Author:大久保
+ *Creation Date:2023-09-26
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved.
+ *----------------------------------------------------------------------**/
 /**
  * Servlet implementation class ExeEditCat
  */
@@ -39,21 +54,7 @@ public class ExeEditCat extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-
-		
-		
-////		request.setAttribute("cat", editCat);
-//		
-//		RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/editCat.jsp");
-////		RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/editCat.jsp");
-//
-//		dispatch.forward(request, response);
-
-		
-	
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -61,41 +62,32 @@ public class ExeEditCat extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		doGet(request, response);
 		
+		//レスポンス(送信データ)の文字コードを設定
 		response.setContentType("text/html;charset=UTF-8");
 		
 //		リクエスト（受信データ）の文字コードを設定
 		request.setCharacterEncoding("UTF-8");
 		
-//		HttpSession session           = request.getSession();
-//		UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
-//		
-
-		
-		
-		System.out.println("SSSSS");
-		
 		
 //		リクエストパラメータを取得
-			String catIdStr = request.getParameter("CATID");
+		String catIdStr = request.getParameter("CATID");
 			
-//			System.out.println(catIdStr);
 			
-			int catId = Integer.parseInt(catIdStr);
+		int catId = Integer.parseInt(catIdStr);
 			
-			String ownerIdStr = request.getParameter("OWNERID");
-			int ownerId = Integer.parseInt(ownerIdStr);
-//			(USERID)
+		String ownerIdStr = request.getParameter("OWNERID");
+		int ownerId = Integer.parseInt(ownerIdStr);
+//		(USERID)
 			
-			String catName			=request.getParameter("CATNAME");
-//			(CATNAME)
+		String catName			=request.getParameter("CATNAME");
+//		(CATNAME)
 			
-			int kind =Integer.parseInt(request.getParameter("KIND"));
-//			(KIND)
+		int kind =Integer.parseInt(request.getParameter("KIND"));
+//		(KIND)
 			
-			String catBirth = request.getParameter("BIRTH");
-			java.sql.Date sqlDate = null;
+		String catBirth = request.getParameter("BIRTH");
+		java.sql.Date sqlDate = null;
 			if(catBirth != null && !catBirth.isEmpty()) {
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 				// String を LocalDate に変換
@@ -105,90 +97,58 @@ public class ExeEditCat extends HttpServlet {
 			}else {
 				 sqlDate=null;
 			}
-//			(BIRTH)
+//		(BIRTH)
 			
-			int gender = Integer.parseInt(request.getParameter("GENDER"));
-//			(GENDER)
+		int gender = Integer.parseInt(request.getParameter("GENDER"));
+//		(GENDER)
 			
-//			System.out.println(gender);
+		float weight = Float.parseFloat(request.getParameter("WEIGHT"));
+//		(WEIGHT)
 			
-			float weight = Float.parseFloat(request.getParameter("WEIGHT"));
+		// 1. クライアントから送信された画像ファイルを取得
+		Part filePart = request.getPart("IMAGE"); // IMAGEはフォームのinput要素のname属性
+		InputStream inputStream = filePart.getInputStream();
 			
-//			System.out.println(weight);
+		// 2. 画像ファイルをバイト配列に変換
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		byte[] buffer = new byte[1024];
+		int bytesRead;
+		while ((bytesRead = inputStream.read(buffer)) != -1) {
+		    outputStream.write(buffer, 0, bytesRead);
+		}
+		byte[] imageBytes = outputStream.toByteArray();
 			
-			// 1. クライアントから送信された画像ファイルを取得
-			Part filePart = request.getPart("IMAGE"); // IMAGEはフォームのinput要素のname属性
-			InputStream inputStream = filePart.getInputStream();
+		String comment	=request.getParameter("COMMENT");	
+//		(comment)
 			
-			// 2. 画像ファイルをバイト配列に変換
-			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-			byte[] buffer = new byte[1024];
-			int bytesRead;
-			while ((bytesRead = inputStream.read(buffer)) != -1) {
-			    outputStream.write(buffer, 0, bytesRead);
-			}
-			byte[] imageBytes = outputStream.toByteArray();
-			
-			String comment	=request.getParameter("COMMENT");
-			
-//			String delParam = request.getParameter("DEL");
-//			int del = 0; // チェックがされていない場合、デフォルトで0を設定
-//
-//			if (delParam != null && delParam.equals("1")) {
-//			    del = 1; // チェックがされている場合、1を設定
-//			}
-			
-//			String delStr = request.getParameter("DEL");			
-//			int del =Integer.parseInt(delStr);
-			 
-			
-//			System.out.println(catId);
-//			System.out.println(ownerId);
-//			System.out.println(catName);
-//			System.out.println(kind);
-//			System.out.println(sqlDate);
-//			System.out.println(gender);
-//			System.out.println(weight);
-//			System.out.println(imageBytes);
-//			System.out.println(comment);
-//			System.out.println(del);
-			
-//			(comment)
-			
-			//パラメータをセット
-			CatsInfoDto dto = new CatsInfoDto();
-			dto.setCatId(catId);
-			dto.setOwnerId(ownerId);
-			dto.setCatName(catName);
-			dto.setKind(kind);
-			dto.setBirth(sqlDate);
-			dto.setGender(gender);
-			dto.setWeight(weight);
-			dto.setImage(imageBytes);
-			dto.setComment(comment);
-			dto.setUp_Date(new Timestamp(System.currentTimeMillis())); 
-//			dto.setDel(del);
+		//パラメータをセット
+		CatsInfoDto dto = new CatsInfoDto();
+		dto.setCatId(catId);
+		dto.setOwnerId(ownerId);
+		dto.setCatName(catName);
+		dto.setKind(kind);
+		dto.setBirth(sqlDate);
+		dto.setGender(gender);
+		dto.setWeight(weight);
+		dto.setImage(imageBytes);
+		dto.setComment(comment);
+		dto.setUp_Date(new Timestamp(System.currentTimeMillis())); 
 			
 			
-//			System.out.println(ownerId);
-			
-			//ネコちゃん情報をDBに登録
-			UpdateCatBL logic = new UpdateCatBL();
-			boolean succesUpdate = logic.exeUpdateCat(dto); 
+		//ネコちゃん情報をDBに登録
+		UpdateCatBL logic = new UpdateCatBL();
+		boolean succesUpdate = logic.exeUpdateCat(dto); 
 			
 
-	if (succesUpdate) {
-	    // 更新に成功した場合Mypage画面へ転送
-		response.sendRedirect("ExeMyPage");
+		if (succesUpdate) {
+			// 更新に成功した場合Mypage画面へ転送
+			response.sendRedirect("ExeMyPage");
 	    
-	} else {
-	    // 更新に失敗した場合、editCat.jspへ戻す
-	    request.setAttribute("message", "更新に失敗しました。入力された内容をご確認ください。");
-//	    request.getRequestDispatcher("EditCat").forward(request, response);
-	    request.getRequestDispatcher(request.getContextPath() + "/ExeEditCat").forward(request, response);
-		
-	
-	}
+		} else {
+			// 更新に失敗した場合、editCat.jspへ戻す
+			request.setAttribute("message", "更新に失敗しました。入力された内容をご確認ください。");
+			request.getRequestDispatcher(request.getContextPath() + "/ExeEditCat").forward(request, response);
+		}
 		
 	}
 }

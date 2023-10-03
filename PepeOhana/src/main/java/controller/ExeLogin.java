@@ -12,6 +12,23 @@ import javax.servlet.http.HttpSession;
 import model.LoginBL;
 import model.UsersInfoDto;
 
+/**----------------------------------------------------------------------*
+ *Filename:ExeLogin.java
+ *
+ *Description:
+ *	このクラスは、ユーザーのログイン機能を提供するためのものです。
+ *	セッション情報を取得し、セッション情報が存在する場合はトップページへ遷移する
+ *	セッション情報が空の場合は、リクエストパラメータで入力された内容を所得し、
+ *	データベースと照合し、合致するユーザーデータがあれば抽出、
+ *	セッションにセット後、トップページへ遷移する
+ *	ユーザー情報の抽出に失敗した場合はログイン画面へ遷移する
+ *	
+ *
+ *Author:上月
+ *Creation Date:2023-09-07
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved.
+ *----------------------------------------------------------------------**/
 /**
  * Servlet implementation class ExeLogin
  */
@@ -39,9 +56,12 @@ public class ExeLogin extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8"); 
+		//レスポンス(送信データ)の文字コードを設定
+		response.setContentType("text/html;charset=UTF-8");
+		//リクエスト（受信データ）の文字コードを設定
 		request.setCharacterEncoding("UTF-8"); 
 		
+		//セッション情報の取得
 		HttpSession session           = request.getSession();
 		UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
 		
@@ -50,24 +70,26 @@ public class ExeLogin extends HttpServlet {
 			response.sendRedirect("index.jsp");
 			
 		} else {
+			//ログイン状態で無い場合
 			
-			String userId   = request.getParameter("USERID");      
-			String passWord = request.getParameter("PASS");
+			String userId   = request.getParameter("USERID");//リクエストパラメータ(USERID)
+			String passWord = request.getParameter("PASS");//リクエストパラメータ(PASS)
 			
-//			System.out.println(userId);
-			
-			
+			//「users_info」テーブルからユーザー入力値と合致するユーザーデータ（UsersInfoDto型）を抽出
+			// ※合致するデータがなかった場合、各フィールドがnullのDTOを得る
 			LoginBL logic = new LoginBL ();
 			UsersInfoDto   dto   = logic.executeSelectUserInfo(userId, passWord);
 			
+			//ユーザーデータの抽出成功/失敗に応じて表示させる画面を振り分ける
 			if (dto.getUserName() != null) {
-
+				//ユーザーデータの抽出成功
 				//DBから抽出したユーザデータをセッションにセット
 				session.setAttribute("LOGIN_INFO", dto);
 				//トップページ画面へ転送
 		        request.getRequestDispatcher("index.jsp").forward(request, response);
 
-			} else {			
+			} else {
+				//ユーザーデータの抽出失敗
 				// リクエストスコープにデータを設定
 				request.setAttribute("message", "ログインできませんでした。ユーザーIDかパスワードが間違っています。");
 				//トップページ画面へ転送

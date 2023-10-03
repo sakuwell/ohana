@@ -10,6 +10,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.RegistUserBL;
 import model.UsersInfoDto;
+
+/**----------------------------------------------------------------------*
+ *Filename:ExeRegistUser.java
+ *
+ *Description:
+ *	このクラスは、ユーザー情報の新規登録機能を提供するためのものです。
+ *	入力された内容をリクエストパラメータで取得し、
+ *	データをデータベースに登録し、ログイン画面へ遷移する
+ *	登録が失敗した場合は、失敗時メッセージをリクエストスコープにセットし、登録画面へ戻る
+ *	
+ *Author:大久保
+ *Creation Date:2023-09-19
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved.
+ *----------------------------------------------------------------------**/
 /**
  * Servlet implementation class ExeRegistUser
  */
@@ -41,55 +56,43 @@ public class ExeRegistUser extends HttpServlet {
 //		doGet(request, response);
 		
 //		レスポンス（出力データ）の文字コードを設定
-			response.setContentType("text/html;charset=UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
 		
 //		リクエスト（受信データ）の文字コードを設定
-			request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
 			
 		
 //		リクエストパラメータを取得
 
 			
-			String userId			=request.getParameter("userId");
-//			(USERID)
-			String userName			=request.getParameter("userName");
-//			(USERNAME)
+		String userId			=request.getParameter("userId");
+//		(USERID)
+		String userName			=request.getParameter("userName");
+//		(USERNAME)
 			
-			String userPass		=request.getParameter("userPass");
+		String userPass		=request.getParameter("userPass");
 						
 			
-			//ユーザーデータ（UserInfoDto型）の作成
-			UsersInfoDto dto = new UsersInfoDto();
-			dto.setUserId( userId );
-			dto.setUserName( userName );
-			dto.setPassWord( userPass );
-			
-			System.out.println(userId);
-			System.out.println(userName);
-			System.out.println(userPass);
-
-			
+		//ユーザーデータ（UserInfoDto型）の作成
+		UsersInfoDto dto = new UsersInfoDto();
+		dto.setUserId( userId );
+		dto.setUserName( userName );
+		dto.setPassWord( userPass );
 			
 //		データをDBに登録
-			RegistUserBL logic = new RegistUserBL();
-			boolean succesInsert = logic.exeInsertUserInfo(dto);
+		RegistUserBL logic = new RegistUserBL();
+		boolean succesInsert = logic.exeInsertUserInfo(dto);
 			
-			//DB操作の成功/失敗に応じて表示させる画面を振り分ける
-			
-			if (succesInsert) {
-//				DBに成功した場合、ログイン後のログイン画面(Login.jsp)を表示する
-		        request.getRequestDispatcher("Login.jsp").forward(request, response);
-			} else {
-//				DBに失敗した場合、エラー画面(registusererror.html)を表示する
-//				response.sendRedirect("htmls/registUser.html");
-				request.setAttribute("message", "登録済みユーザーIDです。別のユーザーIDで登録し直してください。");
-				//トップページ画面へ転送
-		        request.getRequestDispatcher("registUser.jsp").forward(request, response);
-			}
+		//DB操作の成功/失敗に応じて表示させる画面を振り分ける
 		
-		
-		
-		
+		if (succesInsert) {
+//			DBに成功した場合、ログイン後のログイン画面(Login.jsp)を表示する
+			request.getRequestDispatcher("Login.jsp").forward(request, response);
+		} else {
+//		DBに失敗した場合、失敗時メッセージをリクエストスコープにセットし、ユーザー情報新規登録画面へ戻す
+			request.setAttribute("message", "登録済みユーザーIDです。別のユーザーIDで登録し直してください。");
+	        request.getRequestDispatcher("registUser.jsp").forward(request, response);
+		}
 	}
 
 }

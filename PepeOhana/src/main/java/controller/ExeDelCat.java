@@ -10,6 +10,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.UpdateDelCatBL;
 
+/**----------------------------------------------------------------------*
+ *Filename:ExeDelCat.java
+ *
+ *Description:
+ *	このクラスは、ネコ情報の削除機能を提供するためのものです。
+ *	リクエストパラメータで所得してきたネコのIDと合致するネコの情報の
+ *	削除フラグのカラム「DEL」の値を1に更新しマイページ画面へ遷移します。
+ *	更新に失敗した場合は失敗時メッセージをリクエストスコープにセットし、ネコ情報編集画面へ戻す
+ *	
+ *
+ *Author:大久保
+ *Creation Date:2023-09-26
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved.
+ *----------------------------------------------------------------------**/
 /**
  * Servlet implementation class ExeDelCat
  */
@@ -30,18 +45,16 @@ public class ExeDelCat extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		//レスポンス（出力データ）の文字コードを設定
 		response.setContentType("text/html;charset=UTF-8");
 		
 //		リクエスト（受信データ）の文字コードを設定
 		request.setCharacterEncoding("UTF-8");
 		
-		System.out.println("doPostUTF-8の下");
-		
 //		パラメータ取得
 		
-		String catIdStr = request.getParameter("CATID");		
-		System.out.println(catIdStr);		
+		String catIdStr = request.getParameter("CATID");//リクエストパラメータ(CATID)
+		//取得してきたパラメータをint型へ変換
 		int catId = Integer.parseInt(catIdStr);
 		
 		//削除のためDELに１を登録
@@ -60,6 +73,14 @@ public class ExeDelCat extends HttpServlet {
 		}
 		
 	}
-		
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
+
+
+}
 

@@ -14,6 +14,20 @@ import javax.servlet.http.HttpServletResponse;
 import model.CatsInfoDto;
 import model.SearchCatBL;
 
+/**----------------------------------------------------------------------*
+ *Filename:ExeSearchCat.java
+ *
+ *Description:
+ *	このクラスは、ネコ情報の検索機能を提供するためのものです。
+ *	リクエストパラメータから性別の値を取得し、
+ *	選択した性別と合致するネコ情報を抽出し、リストにセットし、
+ *	検索結果表示画面へ遷移する
+ *	
+ *Author:櫻井
+ *Creation Date:2023-09-15
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved.
+ *----------------------------------------------------------------------**/
 /**
  * Servlet implementation class SearchCat
  */

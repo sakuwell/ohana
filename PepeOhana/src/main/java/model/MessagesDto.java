@@ -27,16 +27,16 @@ public class MessagesDto {
 	//getter/setter（対象フィールド：recieverId）
 	public int getRecieverId() { return recieverId; }
 	public void setRecieverId(int recieverId) { this.recieverId = recieverId; }
-	
+
 	//getter/setter（対象フィールド：message）
 	public String getMessage() { return message; }
 	public void setMessage(String message) { this.message = message; }
-	
+
 	//getter/setter（対象フィールド：sendDate）
 	public Timestamp getSend_Date() { return send_Date; }
 	public void setSend_Date(Timestamp send_Date) { this.send_Date = send_Date; }
-	
+
 	//getter/setter（対象フィールド：senderId）
-		public int getMessageId() { return messageId; }
-		public void setMessageId(int messageId) { this.messageId = messageId; }
+	public int getMessageId() { return messageId; }
+	public void setMessageId(int messageId) { this.messageId = messageId; }
 }

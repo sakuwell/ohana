@@ -59,6 +59,7 @@ public class Message extends HttpServlet {
 			String catName = request.getParameter("CATNAME"); //リクエストパラメータ（RECIEVERID)
 			String message = request.getParameter("MESSAGE"); //リクエストパラメータ（MESSAGE)
 			
+			//取得してきたリクエストパラメータをセット
 			request.setAttribute("CATID",catId );
 			request.setAttribute("RECIEVERID",recieverId );
 			request.setAttribute("RECIEVERNAME",recieverName );

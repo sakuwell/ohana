@@ -11,6 +11,22 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.CatsInfoDto;
 import model.ShowCatInfoBL;
+/**----------------------------------------------------------------------*
+ *Filename:ExeShoeCatInfo.java
+ *
+ *Description:
+ *	このクラスは、ネコ情報の詳細表示機能を提供するためのものです。
+ *	リクエストパラメータで所得してきたネコのIDと合致するネコの情報をデータベースから抽出し、
+ *	showCatInfo.jspで表示させるためにリクエストスコープにセットして画面を遷移します。
+ *	何らかの原因で、ネコの情報の抽出に失敗した場合は、
+ *	失敗時メッセージをリクエストスコープにセットし、トップページに遷移します
+ *	
+ *
+ *Author:加藤
+ *Creation Date:2023-09-12
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved.
+ *----------------------------------------------------------------------**/
 
 /**
  * Servlet implementation class ShowCatInfo

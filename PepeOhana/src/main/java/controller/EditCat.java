@@ -8,11 +8,26 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import model.CatsInfoDto;
 import model.EditCatOneBL;
-import model.UsersInfoDto;
+
+/**----------------------------------------------------------------------*
+ *Filename:EditCat.java
+ *
+ *Description:
+ *	このクラスは、ネコ情報の編集機能を提供するためのものです。
+ *	リクエストパラメータで所得してきたネコのIDと合致するネコの情報をデータベースから抽出し、
+ *	editCat.jspで表示させるためにリクエストスコープにセットして画面を遷移します。
+ *	何らかの原因で、ネコの情報の抽出に失敗した場合は、
+ *	失敗時メッセージをリクエストスコープにセットし、マイページへ遷移します
+ *	
+ *
+ *Author:大久保
+ *Creation Date:2023-09-26
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved.
+ *----------------------------------------------------------------------**/
 
 /**
  * Servlet implementation class EditCat
@@ -34,44 +49,35 @@ public class EditCat extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-	
-		
-		System.out.println("OK");
-
+		//レスポンス(送信データ)の文字コードを設定
 		response.setContentType("text/html;charset=UTF-8");
 	
-//	リクエスト（受信データ）の文字コードを設定
+		//リクエスト（受信データ）の文字コードを設定
 		request.setCharacterEncoding("UTF-8");
 		
-		HttpSession session           = request.getSession();
-		UsersInfoDto userInfoOnSession = (UsersInfoDto)session.getAttribute("LOGIN_INFO");
 		
-
-//		int userId = userInfoOnSession.getID(); 
-//		
-//		System.out.println(userId);
-		
-//		int catId =request.getParameter("CATID");
-//		String catId = request.getParameter("ID"); 
-//		int catId = Integer.parseInt(catId);
-		
-		String catIdStr = request.getParameter("ID");
+		String catIdStr = request.getParameter("ID");//リクエストパラメータ(ID)
+		//リクエストパラメータで取得してきた内容をint型に変換
 		int catId = Integer.parseInt(catIdStr);
 		
-		
-		System.out.println(catId);
-		
+		//「cats_info」テーブルから該当するネコ情報を抽出
 		EditCatOneBL logic = new EditCatOneBL();		
 		CatsInfoDto editCat = logic.exeSelectOneCatInfo(catId);
 		
+		//ネコ情報の抽出成功/失敗に応じて画面を切り替える
 		if (editCat != null) {
+			//ネコ情報抽出成功:抽出したネコ情報をセット
 		    request.setAttribute("cat", editCat);
+		    //editCat.jspへ画面を切り替える
 		    RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/editCat.jsp");
 		    dispatch.forward(request, response);
 		} else {
-			System.out.println("ネコ情報はありません");
-		    // ネコちゃん情報が見つからない場合の処理を追加
+			//失敗時:エラーメッセージをリクエストスコープにセット
+			request.setAttribute("message", "ねこの情報の所得に失敗しました");
+			//マイページへ画面を切り替える
+			RequestDispatcher dispatch = request.getRequestDispatcher("/ExeMyPage");
+			dispatch.forward(request, response);
+			
 		}
 	
 	
