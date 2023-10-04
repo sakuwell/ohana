@@ -8,6 +8,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**----------------------------------------------------------------------*
+ *Filename:CatsInfoDao.java
+ *
+ *Description:
+ *	このクラスは、データベースの「cats_info」テーブルに接続し、処理を行うためのものです。
+ *	各メソッドに応じた処理を行っています
+ *	
+ *Author:加藤、大久保
+ *Creation Date:2023-09-04
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved.
+ *----------------------------------------------------------------------**/
+
 public class CatsInfoDao {
 	//-------------------------------------------
 	//データベースへの接続情報
@@ -434,15 +447,13 @@ public class CatsInfoDao {
 
 	public CatsInfoDto doSelectCatOne(int catId) {
 
-
-
 		//JDBCの接続に使用するオブジェクトを宣言
 		//※finallyブロックでも扱うためtryブロック内で宣言してはいけないことに注意
-		CatsInfoDto dto = null;
+		CatsInfoDto dto = new CatsInfoDto();;
 		Connection        con = null ;   // Connection（DB接続情報）格納用変数
 		PreparedStatement ps  = null ;   // PreparedStatement（SQL発行用オブジェクト）格納用変数
 		ResultSet         rs  = null ;   // ResultSet（SQL抽出結果）格納用変数
-
+		
 		//抽出結果格納用DTOリスト
 
 		try {
@@ -475,13 +486,13 @@ public class CatsInfoDao {
 
 
 			ps = con.prepareStatement(buf.toString());
-
+			
 			ps.setInt(1, catId);
 			rs = ps.executeQuery();
 
 
-			//ResultSetオブジェクトからDTOリストに格納
-			dto = new CatsInfoDto();
+			//ResultSetオブジェクトからDTOリストに格納 
+			while (rs.next()) {
 			dto.setCatId(rs.getInt("CATID")					);//第1パラメータ:ネコID
 			dto.setOwnerId(  rs.getInt(    "OWNERID"   )	);//第2パラメータ:飼い主ID
 			dto.setCatName(  rs.getString(    "CATNAME"   )	);//第3パラメータ:ネコ名前
@@ -492,7 +503,7 @@ public class CatsInfoDao {
 			dto.setImage( rs.getBytes( "IMAGE"  )			);//第8パラメータ:画像
 			dto.setComment( rs.getString( "COMMENT"  )		);//第9パラメータ:飼い主コメント
 			dto.setUp_Date( rs.getTimestamp( "UP_DATE"  )	);//第10パラメータ:更新日
-
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();

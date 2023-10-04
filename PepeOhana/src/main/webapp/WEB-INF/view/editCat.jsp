@@ -52,14 +52,15 @@
 	String userName = userInfoOnSession.getUserName();
 %>
 
-<%!  String replaceEscapeChar(String inputText) {
+  <%!  String replaceEscapeChar(String inputText) {
 		String charAfterEscape = inputText;
-		charAfterEscape = charAfterEscape.replace("&", "&amp;");
-		charAfterEscape = charAfterEscape.replace("<", "&lt;");
-		charAfterEscape = charAfterEscape.replace(">", "&gt;");
-		charAfterEscape = charAfterEscape.replace("\"", " &quot; ");
-		charAfterEscape = charAfterEscape.replace(" ' ", "&#039;");
-		return charAfterEscape;}
+			charAfterEscape = charAfterEscape.replace("&", "&amp;");
+			charAfterEscape = charAfterEscape.replace("<", "&lt;");
+			charAfterEscape = charAfterEscape.replace(">", "&gt;");
+			charAfterEscape = charAfterEscape.replace("\"", " &quot; ");
+			charAfterEscape = charAfterEscape.replace(" ' ", "&#039;");
+			return charAfterEscape;
+		}
 %>
 
 <% String error = (String) request.getAttribute("message"); %>
@@ -108,7 +109,7 @@
             	<p class="text-danger"><%= error %></p>
             <% } %>
             <div class="mb-3">
-                <label for="" class="form-label">名前　<span class="badge text-bg-danger">必須</span></label>
+                <label for="" class="form-label">名前　<span class="badge text-bg-danger" >必須</span></label>
                 <input type="text" class="form-control" name="CATNAME" id="inputName" value="<%=replaceEscapeChar(cat.getCatName()) %>">
             </div>
              <div class="mb-3">            
@@ -127,7 +128,11 @@
 			</div>
             <div class="mb-3">
                 <label for="" class="form-label">誕生日　※不明の場合は、コメント欄におおよそを記入してください</label>
+                <% if (cat.getBirth() != null){ %>
                 <input type="date" class="form-control" name="BIRTH" placeholder="yyyy/mm/dd" value="<%=cat.getBirth() %>">
+                <% }else{ %>
+                <input type="date" class="form-control" name="BIRTH" placeholder="yyyy/mm/dd">
+                <% } %>
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">体重　<span class="badge text-bg-danger">必須</span>　※0.1kg単位で、単位は入力不要です(例：2.5)</label>

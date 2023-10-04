@@ -12,6 +12,21 @@ import javax.servlet.http.HttpSession;
 
 import model.UsersInfoDto;
 
+/**----------------------------------------------------------------------*
+ *Filename:Message.java
+ *
+ *Description:
+ *	このクラスは、メッセージ作成画面を提供するためのものです。
+ *	セッション情報を取得し、ログイン状態であれば、
+ *	リクエストパラメータから所得した内容と合致する情報をデータベースから抽出し、
+ *	リクエストスコープに抽出した情報をセットし、メッセージ作成画面へ遷移する
+ *	ログイン状態でなければ、ログイン画面へ遷移する
+ *	
+ *Author:加藤
+ *Creation Date:2023-09-15
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved.
+ *----------------------------------------------------------------------**/
 /**
  * Servlet implementation class Message
  */

@@ -37,14 +37,14 @@
 
 <%  String error = (String) request.getAttribute("message"); %>
 
-<%!  String replaceEscapeChar(String inputText) {
+<!--  <%!  String replaceEscapeChar(String inputText) {
 		String charAfterEscape = inputText;
 		charAfterEscape = charAfterEscape.replace("&", "&amp;");
 		charAfterEscape = charAfterEscape.replace("<", "&lt;");
 		charAfterEscape = charAfterEscape.replace(">", "&gt;");
 		charAfterEscape = charAfterEscape.replace("\"", " &quot; ");
 		charAfterEscape = charAfterEscape.replace(" ' ", "&#039;");
-		return charAfterEscape;}%>
+		return charAfterEscape;}%>-->
 
 <body style="background-color:beige; color:#523F24;">
     <!-- ナビゲーションボタンのカラー -->
@@ -195,7 +195,6 @@
                 </table>
             </div>
             <div class="mb-4" style="text-align: center;">
-            <!--<a href="<%= request.getContextPath() %>/ExeEditCat?ID=<%= dto.getCatId() %>">-->
             <a href="<%= request.getContextPath() %>/EditCat?ID=<%= dto.getCatId() %>">
             	<button class="btn btn-sm" style=" width:120px; background-color:#E87B4C; color:#ffffff;"
                 	onclick="">編集・削除する

@@ -6,6 +6,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**----------------------------------------------------------------------*
+ *Filename:UsersInfoDao.java
+ *
+ *Description:
+ *	このクラスは、データベースの「users_info」テーブルに接続し、処理を行うためのものです。
+ *	各メソッドに応じた処理を行っています
+ *	
+ *Author:大久保、上月
+ *Creation Date:2023-09-04
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved.
+ *----------------------------------------------------------------------**/
+
 public class UsersInfoDao {
 
 	//-------------------------------------------

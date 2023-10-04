@@ -4,6 +4,20 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+/**----------------------------------------------------------------------*
+ *Filename:MessagesDao.java
+ *
+ *Description:
+ *	このクラスは、データベースの「messages」テーブルに接続し、処理を行うためのものです。
+ *	各メソッドに応じた処理を行っています
+ *	
+ *Author:加藤、櫻井
+ *Creation Date:2023-09-13
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved.
+ *----------------------------------------------------------------------**/
+
 public class MessagesDao {
 	//-------------------------------------------
 	//データベースへの接続情報

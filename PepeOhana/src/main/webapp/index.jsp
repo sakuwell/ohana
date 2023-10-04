@@ -1,7 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="model.UsersInfoDto" %>
-
+<%--
+ *Filename:index.jsp
+ *
+ *Description:
+ *	このクラスは、トップページ機能を提供するためのものです。
+ *	セッション情報を取得し、ログイン状態と非ログイン状態で
+ *	ヘッダーの内容を変更する
+ *	検索機能は「性別」と「ネコID」どちらかの検索フォームから
+ *	要素を選択または入力しそれぞれのボタンをクリックする
+ *	性別が選択またはIDが入力されていないままボタンがクリックされた場合はエラーメッセージが表示される
+ *
+ *Author:櫻井
+ *Creation Date:2023-09-26
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved. --%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>

@@ -11,7 +11,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.UsersInfoDto;
-
+/**----------------------------------------------------------------------*
+ *Filename:RegistCat.java
+ *
+ *Description:
+ *	このクラスは、ネコ情報登録機能を提供するためのものです。
+ *	セッション情報を取得し、ログイン状態であれば
+ *	ネコ情報登録画面へ遷移する
+ *	ログイン状態でなければ、トップ画面へ遷移する
+ *	
+ *Author:大久保
+ *Creation Date:2023-09-11
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved.
+ *----------------------------------------------------------------------**/
 /**
  * Servlet implementation class RegistCat
  */

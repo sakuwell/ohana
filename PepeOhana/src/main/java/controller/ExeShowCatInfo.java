@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.CatsInfoDto;
 import model.ShowCatInfoBL;
 /**----------------------------------------------------------------------*
- *Filename:ExeShoeCatInfo.java
+ *Filename:ExeShowCatInfo.java
  *
  *Description:
  *	このクラスは、ネコ情報の詳細表示機能を提供するためのものです。
@@ -27,6 +27,7 @@ import model.ShowCatInfoBL;
  *
  *Copyright © 2023 KEG Sakura All rights reserved.
  *----------------------------------------------------------------------**/
+
 
 /**
  * Servlet implementation class ShowCatInfo

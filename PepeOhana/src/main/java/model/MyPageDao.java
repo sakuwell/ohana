@@ -8,6 +8,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**----------------------------------------------------------------------*
+ *Filename:MyPageDao.java
+ *
+ *Description:
+ *	このクラスは、マイページ機能の表示内容を取得するために
+ *	「cats_info」テーブルと「messages」テーブルに接続し、処理を行うためのものです。
+ *	各メソッドで内容に応じた処理を行っています
+ *	
+ *Author:櫻井
+ *Creation Date:2023-09-13
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved.
+ *----------------------------------------------------------------------**/
+
 public class MyPageDao {
 	// データベースへの接続情報
 

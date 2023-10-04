@@ -3,6 +3,19 @@ package model;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+/**----------------------------------------------------------------------*
+ *Filename:MyPageDto.java
+ *
+ *Description:
+ *	このクラスは、マイページ機能の表示内容に対応した
+ *	データ受け渡し用のクラスです。
+ *	
+ *	
+ *Author:櫻井
+ *Creation Date:2023-09-11
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved.
+ *----------------------------------------------------------------------**/
 public class MyPageDto {
 	//----------------------------------------------------------------
 	//フィールド

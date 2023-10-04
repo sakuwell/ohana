@@ -1,6 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<%--
+ *Filename:Login.jsp
+ *
+ *Description:
+ *	このクラスは、ログイン機能を提供するためのものです。
+ *	入力フォーム
+ *	
+ *
+ *Author:櫻井
+ *Creation Date:2023-09-26
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved. --%>
+ 
 <!DOCTYPE html>
 <html lang="ja">
 <head>

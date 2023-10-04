@@ -3,6 +3,19 @@ package model;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+/**----------------------------------------------------------------------*
+ *Filename:CatsInfoDto.java
+ *
+ *Description:
+ *	このクラスは、データベースの「cats_info」テーブルに対応した
+ *	データ受け渡し用のクラスです。
+ *	
+ *	
+ *Author:加藤、大久保
+ *Creation Date:2023-09-04
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved.
+ *----------------------------------------------------------------------**/
 public class CatsInfoDto {
 	//----------------------------------------------------------------
 	//フィールド

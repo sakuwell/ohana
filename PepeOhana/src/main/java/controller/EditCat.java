@@ -63,7 +63,6 @@ public class EditCat extends HttpServlet {
 		//「cats_info」テーブルから該当するネコ情報を抽出
 		EditCatOneBL logic = new EditCatOneBL();		
 		CatsInfoDto editCat = logic.exeSelectOneCatInfo(catId);
-		
 		//ネコ情報の抽出成功/失敗に応じて画面を切り替える
 		if (editCat != null) {
 			//ネコ情報抽出成功:抽出したネコ情報をセット
