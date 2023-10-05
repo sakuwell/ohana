@@ -2,6 +2,25 @@
     pageEncoding="UTF-8"%>
 <%@ page import="model.UsersInfoDto" %>
 
+<%--
+ *Filename:message.jsp
+ *
+ *Description:
+ *	このクラスは、メッセージ機能を提供するためのものです。
+ *	前ページで抽出した情報を入力フォームに表示する
+ *	入力フォームに送信したいメッセージを入力し「送信する」をクリックすると
+ *	入力した内容をデータベースに登録し、マイページ画面へ遷移する
+ *	メッセージの登録に失敗した場合は、画面を遷移せずエラーメッセージを表示する
+ *	メッセージが入力されていない状態で「送信する」をクリックするとアラートを表示する
+ *	マイページ画面の「返信する」からの遷移の場合
+ *	受信したメッセージを表示させる
+ *	
+ *
+ *Author:櫻井
+ *Creation Date:2023-09-03
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved. --%>
+ 
 <!DOCTYPE html>
 <html lang="ja">
 <head>

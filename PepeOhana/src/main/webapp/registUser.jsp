@@ -2,6 +2,21 @@
     pageEncoding="UTF-8"%>
 <%@ page import="model.UsersInfoDto" %>
 
+<%--
+ *Filename:registUser.jsp
+ *
+ *Description:
+ *	このクラスは、ユーザー登録機能を提供するためのものです。
+ *	入力フォームにユーザーID、ユーザー名、パスワードを入力し、
+ *	ユーザー登録処理を行う
+ *	全ての入力フォームに入力されていないとアラームを表示する
+ *	ログインはこちらをクリックするとログインフォームへ遷移する
+ *
+ *Author:櫻井
+ *Creation Date:2023-09-03
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved. --%>
+ 
 <!DOCTYPE html>
 <html lang="ja">
 <head>

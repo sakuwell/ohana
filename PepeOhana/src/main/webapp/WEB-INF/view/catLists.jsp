@@ -5,6 +5,24 @@
 <%@ page import="java.io.FileOutputStream" %>
 <%@ page import="java.util.List" %>
 
+<%--
+ *Filename:catLists.jsp
+ *
+ *Description:
+ *	このクラスは、ネコ検索機能を提供するためのものです。
+ *	セッション情報を取得し、ログイン状態と非ログイン状態で
+ *	ExeSearchCat.javaで抽出したネコ情報のリストを表示する
+ *	表示されているネコ情報をクリックするとネコ詳細表示画面へ遷移する
+ *	セッション情報を取得し、ログイン状態と非ログイン状態で
+ *	ヘッダーの内容を変更する
+ *	ヘッダーのロゴか、ページ下部の「ねこまっちんぐに戻る」をクリックすると
+ *	トップページへ遷移する
+ *
+ *Author:櫻井
+ *Creation Date:2023-09-03
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved. --%>
+ 
 <!DOCTYPE html>
 <html lang="ja">
 <head>

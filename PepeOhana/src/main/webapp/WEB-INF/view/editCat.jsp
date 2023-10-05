@@ -5,6 +5,25 @@
 <%@ page import="java.io.FileOutputStream" %>
 <% CatsInfoDto cat =(CatsInfoDto)request.getAttribute("cat"); %>
 
+<%--
+ *Filename:editCat.jsp
+ *
+ *Description:
+ *	このクラスは、ネコ情報編集、削除機能を提供するためのものです。
+ *	EditCat.javaで抽出したネコの情報を入力フォームに表示する
+ *	入力フォームに変更したい情報をそれぞれ入力し「更新する」をクリックすると
+ *	入力した内容を登録し、マイページ画面へ遷移する
+ *	「削除する」をクリックすると確認メッセージが表示され、OKをクリックすると
+ *	対象のネコ情報の削除フラグを1に切り替え、マイページ画面へ遷移する
+ *	誕生日以外の項目が入力されず「更新する」をクリックするとアラートを表示する
+ *	ネコ情報の更新に失敗した場合は、画面が遷移されずエラーメッセージを表示する
+ *	
+ *
+ *Author:櫻井
+ *Creation Date:2023-09-03
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved. --%>
+ 
 <!DOCTYPE html>
 <html lang="ja">
 <head>

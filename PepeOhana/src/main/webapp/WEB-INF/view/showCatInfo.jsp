@@ -5,6 +5,21 @@
 <%@ page import="java.io.FileOutputStream" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 
+<%--
+ *Filename:showCatInfo.jsp
+ *
+ *Description:
+ *	このクラスは、ネコ詳細表示機能を提供するためのものです。
+ *	ExeShowCatInfo.javaから抽出したネコ情報を表示する
+ *	ログイン状態であれば「メッセージを送る」をクリックするとメッセージ作成画面へ遷移する
+ *	非ログイン状態であれば「メッセージを送る」または下部に表示されているテキストをクリックすると、
+ *	ログイン画面へ遷移する
+ *
+ *Author:櫻井
+ *Creation Date:2023-09-03
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved. --%>
+ 
 <!DOCTYPE html>
 <html lang="ja">
 <head>

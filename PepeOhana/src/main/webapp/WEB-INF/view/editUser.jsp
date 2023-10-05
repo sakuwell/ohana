@@ -4,6 +4,23 @@
 <% UsersInfoDto user = (UsersInfoDto)request.getAttribute("user"); %>
 <% String error = (String) request.getAttribute("message"); %>
 
+<%--
+ *Filename:editUser.jsp
+ *
+ *Description:
+ *	このクラスは、ユーザー情報編集機能を提供するためのものです。
+ *	EditUser.javaで抽出したユーザーの情報を入力フォームに表示する
+ *	入力フォームに変更したい情報をそれぞれ入力し「更新する」をクリックすると
+ *	入力した内容を登録し、マイページ画面へ遷移する
+ *	いずれかの項目が入力されず「更新する」をクリックするとアラートを表示する
+ *	ユーザー情報の更新に失敗した場合は、画面が遷移されずエラーメッセージを表示する
+ *	
+ *
+ *Author:櫻井
+ *Creation Date:2023-09-03
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved. --%>
+ 
 <!DOCTYPE html>
 <html lang="ja">
 <head>

@@ -1,7 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="model.UsersInfoDto" %>
-		
+
+<%--
+ *Filename:registCat.jsp
+ *
+ *Description:
+ *	このクラスは、ネコ登録機能を提供するためのものです。
+ *	入力フォームに名前、猫種、誕生日、体重、性別、画像、コメントを選択または入力し、
+ *	ネコ情報登録処理を行う
+ *	全ての入力フォームに入力されていないとアラームを表示する
+ *	ネコ情報登録に失敗した場合は、画面は戻りエラーメッセージを表示させる
+ *
+ *Author:櫻井
+ *Creation Date:2023-09-03
+ *
+ *Copyright © 2023 KEG Sakura All rights reserved. --%>
+ 		
 <!DOCTYPE html>
 <html lang="ja">
 <head>
