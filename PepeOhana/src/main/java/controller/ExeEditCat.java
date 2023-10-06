@@ -3,6 +3,7 @@ package controller;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URLEncoder;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -138,7 +139,7 @@ public class ExeEditCat extends HttpServlet {
 		//ネコちゃん情報をDBに登録
 		UpdateCatBL logic = new UpdateCatBL();
 		boolean succesUpdate = logic.exeUpdateCat(dto); 
-			
+		
 
 		if (succesUpdate) {
 			// 更新に成功した場合Mypage画面へ転送
@@ -146,9 +147,9 @@ public class ExeEditCat extends HttpServlet {
 	    
 		} else {
 			// 更新に失敗した場合、editCat.jspへ戻す
-			request.setAttribute("ID", catId);
-			request.setAttribute("message", "更新に失敗しました。入力された内容をご確認ください。");
-			request.getRequestDispatcher("EditCat").forward(request, response);
+			String text = "更新に失敗しました。入力された内容をご確認ください。";
+			String message = URLEncoder.encode(text,"UTF-8");
+			response.sendRedirect("EditCat?message="+message+"&ID="+catId);
 		}
 		
 	}

@@ -60,6 +60,7 @@ public class EditCat extends HttpServlet {
 		//リクエストパラメータで取得してきた内容をint型に変換
 		int catId = Integer.parseInt(catIdStr);
 		
+		String message= request.getParameter("message");
 		//「cats_info」テーブルから該当するネコ情報を抽出
 		EditCatOneBL logic = new EditCatOneBL();		
 		CatsInfoDto editCat = logic.exeSelectOneCatInfo(catId);
@@ -67,6 +68,7 @@ public class EditCat extends HttpServlet {
 		if (editCat != null) {
 			//ネコ情報抽出成功:抽出したネコ情報をセット
 		    request.setAttribute("cat", editCat);
+		    request.setAttribute("message", message);
 		    //editCat.jspへ画面を切り替える
 		    RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/view/editCat.jsp");
 		    dispatch.forward(request, response);
