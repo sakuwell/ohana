@@ -129,7 +129,7 @@
             <% } %>
             <div class="mb-3">
                 <label for="" class="form-label">名前　<span class="badge text-bg-danger" >必須</span></label>
-                <input type="text" class="form-control" name="CATNAME" id="inputName" value="<%=replaceEscapeChar(cat.getCatName()) %>">
+                <input type="text" class="form-control" name="CATNAME" id="inputName"  value="<%=replaceEscapeChar(cat.getCatName()) %>">
             </div>
              <div class="mb-3">            
             	<label for="inputKind" class="form-label">描種　<span class="badge text-bg-danger">必須</span></label>
@@ -155,7 +155,7 @@
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">体重　<span class="badge text-bg-danger">必須</span>　※0.1kg単位で、単位は入力不要です(例：2.5)</label>
-                <input type="text" class="form-control" name="WEIGHT" id="inputWeight" value="<%=cat.getWeight() %>">
+                <input type="text" class="form-control" name="WEIGHT" id="inputWeight"  value="<%=cat.getWeight() %>">
             </div>
           
             <div class="mb-3">

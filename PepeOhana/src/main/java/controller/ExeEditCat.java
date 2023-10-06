@@ -146,8 +146,9 @@ public class ExeEditCat extends HttpServlet {
 	    
 		} else {
 			// 更新に失敗した場合、editCat.jspへ戻す
+			request.setAttribute("ID", catId);
 			request.setAttribute("message", "更新に失敗しました。入力された内容をご確認ください。");
-			request.getRequestDispatcher(request.getContextPath() + "/ExeEditCat").forward(request, response);
+			request.getRequestDispatcher("EditCat").forward(request, response);
 		}
 		
 	}

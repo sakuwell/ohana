@@ -142,7 +142,9 @@
                         <% if(dto.getKind() == 6){ %><p class="card-text text-right">描種 : 混血種</p><% } %>
                         <% if(dto.getKind() == 7){ %><p class="card-text text-right">描種 : その他</p><% } %>
                         <% if(dto.getKind() == 8){ %><p class="card-text text-right">描種 : 不明</p><% } %>
-                        <p class="card-text text-right">年齢 : <%=dto.getAge() %></p>
+                        
+                        <% if(dto.getAge() != null) {%><p class="card-text text-right">年齢 : <%=dto.getAge() %></p>
+                        <% }else{ %><p class="card-text text-right">年齢 : 不明</p><% } %>
                         <%int g = dto.getGender();
                         if (g == 1){   %>
                         <p class="card-text text-right">性別 : 男の子</p>

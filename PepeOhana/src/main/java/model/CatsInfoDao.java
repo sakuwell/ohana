@@ -381,7 +381,6 @@ public class CatsInfoDao {
 			//SQL文の実行
 			ps.executeUpdate();
 
-			//	int rowsAffected = ps.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -528,15 +527,19 @@ public class CatsInfoDao {
 	 *----------------------------------------------------------------------**/
 
 	public boolean doUpdateCat(CatsInfoDto dto) {
-
-
+		
+		try {
+			Class.forName(DRIVER_NAME);
+		}catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 		Connection        con = null ;   // Connection（DB接続情報）格納用変数
 		PreparedStatement ps  = null ;   // PreparedStatement（SQL発行用オブジェクト）格納用変数
 
 		boolean isSuccess = true;
 
 		try {
-			Class.forName(DRIVER_NAME);
+			
 			//-------------------------------------------
 			//接続の確立（Connectionオブジェクトの取得）
 			//-------------------------------------------
@@ -545,7 +548,7 @@ public class CatsInfoDao {
 			//				オートコミットをオフにする
 			con.setAutoCommit(false);
 
-			//発行するSQL文の生成（SELECT）
+			//発行するSQL文の生成（UPDATE）
 			StringBuffer buf = new StringBuffer();
 			buf.append("UPDATE Cats_Info SET  	");
 			buf.append("  OWNERID = ? ,         ");
@@ -559,7 +562,7 @@ public class CatsInfoDao {
 			buf.append("  UP_DATE = ?  			");
 			buf.append("  WHERE CATID = ?       ");
 
-
+			
 			//PreparedStatementオブジェクトを生成＆発行するSQLをセット
 			ps = con.prepareStatement(buf.toString());
 
@@ -576,13 +579,13 @@ public class CatsInfoDao {
 			ps.setInt(10, dto.getCatId()	   );//第10パラメータ：更新データ（CATID）
 
 			ps.executeUpdate();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			
 			// 例外処理を行う（エラーメッセージを表示したり、アプリケーションを終了したり、適切な処理を行う）
 		} catch (SQLException e) {
 			e.printStackTrace();
 			// 例外処理を行う（SQL実行時のエラー処理を行う）
-
+			//実行結果を例外発生として更新
+			isSuccess = false ;
 		} finally {
 
 			//-------------------------------------------
