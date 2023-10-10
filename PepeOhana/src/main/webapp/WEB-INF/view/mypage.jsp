@@ -343,7 +343,7 @@
 	                            </button>
 	                        </a><br>
 	                        <!-- 削除ボタン -->
-	                        <a href="<%=request.getContextPath()%>/ExeDelMessage?MESSAGEID=<%=dto.getMessageId() %>">
+	                        <a href="<%=request.getContextPath()%>/ExeDelMessage?MESSAGEID=<%=dto.getMessageId() %>" onClick="return confirm('メッセージを削除しますか?');">
 	                            <button type="submit" class="btn btn-sm" style="width:100%; background-color:#E87B4C; color:#ffffff;">
 	                            	削除
 		                        </button>
