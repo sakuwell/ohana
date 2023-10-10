@@ -155,7 +155,7 @@
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">体重　<span class="badge text-bg-danger">必須</span>　※0.1kg単位で、単位は入力不要です(例：2.5)</label>
-                <input type="text" class="form-control" name="WEIGHT" id="inputWeight"  value="<%=cat.getWeight() %>">
+                <input type="number" step="0.1" class="form-control" name="WEIGHT" id="inputWeight"  value="<%=cat.getWeight() %>">
             </div>
           
             <div class="mb-3">
