@@ -156,10 +156,10 @@
                 <div class="card mb-3">
                 	<img src="images/cat_2.jpg" style="height:180px; width: 100%; object-fit: cover;" class="card-img-top" alt="猫画像">
                     <div class="card-body">
-                        <h5 class="card-title text-center border-bottom pb-2">pepe<small> ちゃん</small></h5>
-                        <p class="card-text text-right">描種 : アメリカンショートヘアー</p>
-                        <p class="card-text text-right">年齢 : 1歳2ヵ月</p>
-                        <p class="card-text text-right">性別 : 男の子</p>
+                        <h5 class="card-title text-center border-bottom pb-2">kuku<small> ちゃん</small></h5>
+                        <p class="card-text text-right">描種 : スコティッシュ・フォールド</p>
+                        <p class="card-text text-right">年齢 : 1歳5ヵ月</p>
+                        <p class="card-text text-right">性別 : 女の子</p>
                     </div>
                 </div>
             </div>
@@ -168,10 +168,10 @@
                 <div class="card mb-3">
                 	<img src="images/cat_3.jpg" style="height:180px; width: 100%; object-fit: cover;" class="card-img-top" alt="猫画像">
                     <div class="card-body">
-                        <h5 class="card-title text-center border-bottom pb-2">pepe<small> ちゃん</small></h5>
-                        <p class="card-text text-right">描種 : アメリカンショートヘアー</p>
-                        <p class="card-text text-right">年齢 : 1歳2ヵ月</p>
-                        <p class="card-text text-right">性別 : 男の子</p>
+                        <h5 class="card-title text-center border-bottom pb-2">popo<small> ちゃん</small></h5>
+                        <p class="card-text text-right">描種 : 混血種</p>
+                        <p class="card-text text-right">年齢 : 2歳0ヵ月</p>
+                        <p class="card-text text-right">性別 : 女の子</p>
                     </div>
                 </div>
             </div>
@@ -180,9 +180,9 @@
                 <div class="card mb-3">
                 	<img src="images/cat_4.jpg" style="height:180px; width: 100%; object-fit: cover;" class="card-img-top" alt="猫画像">
                      <div class="card-body">
-                         <h5 class="card-title text-center border-bottom pb-2">pepe<small> ちゃん</small></h5>
-                         <p class="card-text text-right">描種 : アメリカンショートヘアー</p>
-                         <p class="card-text text-right">年齢 : 1歳2ヵ月</p>
+                         <h5 class="card-title text-center border-bottom pb-2">ohana<small> ちゃん</small></h5>
+                         <p class="card-text text-right">描種 : マンチカン</p>
+                         <p class="card-text text-right">年齢 : 1歳6ヵ月</p>
                          <p class="card-text text-right">性別 : 男の子</p>
                      </div>
                  </div>
