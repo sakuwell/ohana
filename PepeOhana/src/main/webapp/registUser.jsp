@@ -90,16 +90,16 @@
             	<p class="text-danger"><%= error %></p>
             <% } %>
             <div class="mb-3">
-                <label for="" class="form-label">ユーザーID　<span class="badge text-bg-danger">必須</span></label>
-                <input type="text" class="form-control" name="userId" id="inputID" value="">
+                <label for="" class="form-label">ユーザーID　<span class="badge text-bg-danger">必須</span>　※50文字以内</label>
+                <input type="text" class="form-control" name="userId" id="inputID" value="" maxlength="50">
             </div>
             <div class="mb-3">
-                <label for="" class="form-label">ユーザー名　<span class="badge text-bg-danger">必須</span></label>
-                <input type="text" class="form-control" name="userName" id="inputName" value="">
+                <label for="" class="form-label">ユーザー名　<span class="badge text-bg-danger">必須</span>　※20文字以内</label>
+                <input type="text" class="form-control" name="userName" id="inputName" value="" maxlength="20">
             </div>
             <div class="mb-3">
-                <label for="" class="form-label">パスワード　<span class="badge text-bg-danger">必須</span></label>
-                <input type="password" class="form-control" name="userPass" id="inputPass">
+                <label for="" class="form-label">パスワード　<span class="badge text-bg-danger">必須</span>　※20文字以内</label>
+                <input type="password" class="form-control" name="userPass" id="inputPass" maxlength="20">
             </div>
             <div style="text-align: center;">
                 <button type="submit" id="btn" class="btn btn-lg mt-3" style="background-color:#E87B4C; color:#ffffff;">新規登録する</button>
