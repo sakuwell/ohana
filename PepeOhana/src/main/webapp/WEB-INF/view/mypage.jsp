@@ -120,7 +120,7 @@
         <table class="table">
             <tr>
                 <th><small>ユーザーID</small></th>
-                <td><%= userId %></td>
+                <td><%= replaceEscapeChar(userId) %></td>
             </tr>
             <tr>
                 <th style="width:20%;"><small>ユーザー名</small></th>
