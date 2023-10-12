@@ -221,7 +221,7 @@
             				<% } %>
 							<label class="form-label">ねこIDを入力してください</label>
 							<label class="form-label">※ねこIDは、ねこの詳細画面に記載しています</label>
-       		                <input type="text" class="form-control" style="width:100px;" name="CATID" id="inputCatId">
+       		                <input type="text" class="form-control" style="width:100px;" name="CATID" id="inputCatId" oninput="value =value.replace(/[^0-9]+/i,'');"/>
 						</div>
 						<p style="text-align:center; margin-bottom:0;">
 							<button type="submit" class="btn btn-lg mt-4" style="background-color:#E87B4C; color:#ffffff;">まっちんぐ</button>
